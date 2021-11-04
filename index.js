@@ -8,7 +8,6 @@ app.get("/", (req, res) => {
 app.listen(3000, () => {
   console.log("Project is ready")
 })*/
-require('events').EventEmitter.prototype._maxListeners = 100;
 //Codice da inserire su replit:
 const Discord = require("discord.js");
 const Canvas = require("canvas");
@@ -16,17 +15,21 @@ const ytch = require('yt-channel-info');
 const moment = require("moment");
 const bot = new Discord.Client();
 const { getInfo } = require('ytdl-getinfo')
-bot.login(process.env.token);
+bot.login("ODEzNDM5NDQ0NDE3NzczNjM5.YDPUhA.nlUrBqLVSy5UPUh7yajhBLXJ4SU");
+require('events').EventEmitter.prototype._maxListeners = 100;
 const { Collection } = require("discord.js")
 const voiceCollection = new Collection()
-//Controllare se il BOT starta
+//Bot Start
 bot.on('ready', () =>{
     console.log("Rogi Bot è stato attivato!")
-    bot.channels.cache.get("698931027258638367").send("Rogi Bot è online!")
-})
-//Stato del bot
-bot.on("ready", () => {
+    const on = new Discord.MessageEmbed()
+    .setTitle("ONLINE")
+    .setColor("GREEN")
+    .setDescription("<:RogiBot:854792536694587434>Sono online!<:RogiBot:854792536694587434>")
+    .setTimestamp()
+    bot.channels.cache.get(`905099873664237568`).send({embeds: [on]})
     bot.user.setActivity("!help")
+
 })
 //Embed generali
 const Noperm = new Discord.MessageEmbed()
@@ -603,7 +606,21 @@ bot.on("message", (message) => {
         .setColor("RANDOM")
         .setDescription(`${user} ora non puo' più entrare in <#${channel.id}>`))
     }
+    //Reactions
+    if(message.content.includes(":")) return;
+    if(message.content.toLowerCase().includes("rogi")) message.react("<:Rogi:904005869799366696>")
+    if(message.content.toLowerCase().includes("ciao") || message.content.toLowerCase().includes("salve") || message.content.toLowerCase().includes("hello") || message.content.toLowerCase().includes("benvenuto")) message.react("<:RogiCiao:904001520880726036>")
+    if(message.content.toLowerCase().includes("?")) message.react("<:RogiDomandoso:904007044246433923>")
+    if(message.content.toLowerCase() == "f") message.react("<:RogiF:904002259921293382>")
+    if(message.content.toLowerCase() == "gg") message.react("<:RogiGG:904002692286922753> ")
+    if(message.content.toLowerCase().includes("amore") || message.content.toLowerCase().includes("amo") || message.content.toLowerCase().includes("adoro") || message.content.toLowerCase().includes("adorare")) message.react("<:RogiHearts:904005290905718874>")
+    if(message.content.toLowerCase().includes("lol")) message.react(" <:RogiLOL:904003061960282142> ")
+    if(message.content.toLowerCase().includes("ok") || message.content.toLowerCase().includes("va bene") || message.content.toLowerCase().includes("capito")) message.react("<:RogiOk:904003454350004265>")
+    if(message.content.toLocaleLowerCase().includes("triste") || message.content.toLowerCase().includes("sad") || message.content.toLowerCase().includes("piango")) message.react("<:RogiSad:904004495611142176>")
 })
+
+
+
 bot.on("voiceStateUpdate", async (oldState, newState) => {
     //Creare le stanze private
     const user = await bot.users.fetch(newState.id)
@@ -644,7 +661,7 @@ bot.on("voiceStateUpdate", async (oldState, newState) => {
 bot.on("guildMemberAdd", async (member) => {
     if (member.guild.id != "602019987279839274") return
     var server = bot.guilds.cache.get("602019987279839274");
-var botCount = server.members.cache.filter(member => member.user.bot).size;
+    var botCount = server.members.cache.filter(member => member.user.bot).size;
     var utentiCount = server.memberCount - botCount;  
     const canvas =  Canvas.createCanvas(1280, 720);
     const ctx = canvas.getContext("2d");
@@ -675,4 +692,16 @@ setInterval(function () {
         var canaleyoutube = bot.channels.cache.get("862009685087748117")
         canaleyoutube.setName(`🎬│Subscribers: ${response.subscriberCount}`)
     })
+    //Natale Countdown
+    const currenttime = new Date()
+    const Christmas = new Date("December 25 2021 00:00:00")
+    const diff = Christmas - currenttime
+    const days = Math.floor(diff / 1000 / 60 / 60 / 24)
+    const hours = Math.floor(diff / 1000 / 60 / 60)
+    const minutes = Math.floor(diff / 1000 / 60)
+    const canale = bot.channels.cache.get("905070103035518987")
+    canale.setName(`🤶🏻│${days} giorni a Natale!`)
+    if(days == "0") {
+        canale.setName(`🤶🏻│${hours} ore e ${minutes} minuti a Natale!`)
+    }
 }, 10000)
