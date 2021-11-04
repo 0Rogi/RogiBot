@@ -15,7 +15,7 @@ const ytch = require('yt-channel-info');
 const moment = require("moment");
 const bot = new Discord.Client();
 const { getInfo } = require('ytdl-getinfo')
-bot.login("ODEzNDM5NDQ0NDE3NzczNjM5.YDPUhA.nlUrBqLVSy5UPUh7yajhBLXJ4SU");
+bot.login(process.env.token);
 require('events').EventEmitter.prototype._maxListeners = 100;
 const { Collection } = require("discord.js")
 const voiceCollection = new Collection()
@@ -27,7 +27,7 @@ bot.on('ready', () =>{
     .setColor("GREEN")
     .setDescription("<:RogiBot:854792536694587434>Sono online!<:RogiBot:854792536694587434>")
     .setTimestamp()
-    bot.channels.cache.get(`905099873664237568`).send({embeds: [on]})
+    bot.channels.cache.get(`905099873664237568`).send(on)
     bot.user.setActivity("!help")
 
 })
@@ -651,7 +651,7 @@ bot.on("voiceStateUpdate", async (oldState, newState) => {
         member.voice.setChannel(channel)
     }
     //Disconnettere da #membri e #iscritti
-    if (newState.channelID == "814829205904424980" || newState.channelID == "862009685087748117") {
+    if (newState.channelID == "814829205904424980" || newState.channelID == "862009685087748117" || newState.channelID == "905070103035518987") {
         var server = bot.guilds.cache.get("602019987279839274");
         var utente = server.members.cache.find(x => x.id == newState.id);
         utente.voice.kick()
