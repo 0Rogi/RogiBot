@@ -697,11 +697,14 @@ setInterval(function () {
     const Christmas = new Date("December 25 2021 00:00:00")
     const diff = Christmas - currenttime
     const days = Math.floor(diff / 1000 / 60 / 60 / 24)
-    const hours = Math.floor(diff / 1000 / 60 / 60)
+    const hours = Math.floor(diff / 1000 / 60 / 60) % 24
     const minutes = Math.floor(diff / 1000 / 60)
     const canale = bot.channels.cache.get("905070103035518987")
-    canale.setName(`🤶🏻│${days} giorni a Natale!`)
+    canale.setName(`🤶🏻│-${days} giorni a Natale!`)
     if(days == "0") {
-        canale.setName(`🤶🏻│${hours} ore e ${minutes} minuti a Natale!`)
+        canale.setName(`🤶🏻│-${hours} ore e -${minutes} minuti a Natale!`)
+    }
+    if(days == "0" && hours == "0" && minutes == 0) {
+        canale.setName(`🤶🏻│È NATALE!`)
     }
 }, 10000)
