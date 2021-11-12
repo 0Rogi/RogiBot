@@ -61,7 +61,7 @@ bot.on("message", (message) => {
         .setColor("#ffff00")
         .setTitle("Clicca qui")
         .setThumbnail("https://i.imgur.com/vEHGQrx.png")
-        .setURL("https://tinyurl.com/RogiYT")
+        .setURL("https://youtube.com/c/RodariRogi23")
         .setDescription(":love_you_gesture: Questo è il canale youtube **RodariRogi23**\rIscriviti, lascia like, e attiva la campanellina");
         message.channel.send(youtubeembed)
     }
@@ -109,7 +109,7 @@ bot.on("message", (message) => {
         message.channel.send(invitoembed)
         console.log(message.author.tag + " Ha eseguito il comando !invito")
     }
-    //Commands-2
+    /*Commands-2
     if (message.content == "!commands-2") {
         console.log(message.author.tag + " Ha eseguito il comando !commands-2")
         var comandi2embed = new Discord.MessageEmbed()
@@ -119,7 +119,7 @@ bot.on("message", (message) => {
         .setTimestamp()
         .setDescription("Questi sono i comandi utilizzabili sono dagli staffer\r!warn @(nome dell'utente) **MANDA UN’INFRAZIONE ALL' UTENTE SELEZIONATO**\r!infractions  @(nome dell'utente) **VEDI QUANTE INFRAZIONI HA L'UTENTE SELEZIONATO**\r!mute @(nome dell'utente) **MUTA L'UTENTE SELEZIONATO**\r!unmute @(nome dell'utente) **SMUTA L'UTENTE SELEZIONATO**\r!kick @(nome dell'utente) **CESPELLE L'UTENTE SELEZIONATO** \r!clear (numero di messaggi) **CANCELLA I MESSAGGI**\r!ban @(nome dell'utente) **BANNA L'UTENTE SELEZIONATO**\r!unban @(nome dell'utente) **SBANNA L'UTENTE SELEZIONATO**");
         message.channel.send(comandi2embed)
-    }
+    }*/
     //Primo comando in assoluto
     if (message.content == "!comando"){
         console.log(message.author.tag + " Ha eseguito il comando !comando")
@@ -129,7 +129,7 @@ bot.on("message", (message) => {
     if (message.content == "!time") {
         console.log(message.author.tag + " Ha eseguito il comando !time")
         var data = new Date();
-        var ora = data.getHours() + 2;
+        var ora = data.getHours() + 1;
         var min = data.getMinutes();
         if(min == "0" ||min == "1" || min == "2" || min == "3" || min == "4" || min == "5" || min == "6" || min == "7" || min == "8" || min == "9") {
           var minuti = `0${min}`
@@ -619,8 +619,6 @@ bot.on("message", (message) => {
     if(message.content.toLocaleLowerCase().includes("triste") || message.content.toLowerCase().includes("sad") || message.content.toLowerCase().includes("piango")) message.react("<:RogiSad:904004495611142176>")
 })
 
-
-
 bot.on("voiceStateUpdate", async (oldState, newState) => {
     //Creare le stanze private
     const user = await bot.users.fetch(newState.id)
@@ -697,7 +695,7 @@ setInterval(function () {
     const Christmas = new Date("December 25 2021 00:00:00")
     const diff = Christmas - currenttime
     const days = Math.floor(diff / 1000 / 60 / 60 / 24)
-    const hours = Math.floor(diff / 1000 / 60 / 60) % 24
+    const hours = Math.floor(diff / 1000 / 60 / 60) % 24 + 1
     const minutes = Math.floor(diff / 1000 / 60)
     const canale = bot.channels.cache.get("905070103035518987")
     canale.setName(`🤶🏻│-${days} giorni a Natale!`)
