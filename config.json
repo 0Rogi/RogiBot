@@ -1,0 +1,35 @@
+{
+    "token": "ODEzNDM5NDQ0NDE3NzczNjM5.YDPUhA.nlUrBqLVSy5UPUh7yajhBLXJ4SU",
+    "token2": "ODczMjA3MTk0NDIwNjYyMzIy.YQ1Dkg.CSTRZ5AsECMzL04n62VsKPl2rmQ",
+    "idServer": {
+        "idServer": "602019987279839274",
+        "idServerTest": "854065814218997800"
+    },
+    "idbot": {
+        "rogidiscordbot": "813439444417773639",
+        "rogifunbot": "846690950931021874",
+        "rogitestbot": "873207194420662322"
+    },
+    "idruoli": {
+        "fan": "704646594506653791",
+        "friend": "823969594670186546",
+        "helper": "624628040546385930",
+        "moderator": "621002745024872461",
+        "special": "741619600319578162",
+        "staff": "741616767079809024",
+        "owner": "621001109149974529",
+        "common": "741619822810366024"
+    },
+    "idcanali": {
+        "proomschannel": "813742934096740353",
+        "proomsparent": "866340075951226900",
+        "membri": "814829205904424980", 
+        "iscritti": "862009685087748117",
+        "natale": "917831083578511431",
+        "welcome": "813375425056342036"
+    },
+    "webhook": {
+        "id": "917127984488529930",
+        "token": "x1Pe7uqvFwwA8jorEXMlyBXSuiwtd4sJm0KqiTMahAlQ328NkO4zlvqfTkMA9V1pL55Y"
+    }
+}

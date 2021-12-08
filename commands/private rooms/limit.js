@@ -1,0 +1,31 @@
+module.exports = {
+    name: `plimit`,
+    description: `Imposta un limite alla stanza privata`,
+    execute(message) {
+        var channel = message.member.voice.channel
+        if(!channel) return message.reply({embeds: [nochannel]})
+        if(channel.parent.id != config.idcanali.proomsparent) return message.reply({embeds: [nopvt]})
+        if(message.author.username != channel.name) return message.reply({embeds: [noperm]})
+        const args = message.content.slice(8)
+        function numbers(start, end) {
+            return Array(end - start + 1).fill().map((_, idx) => start + idx)
+        }
+        var array = numbers(0, 99);
+        if(!array.some(word => args.includes(word)) || args > 99) {
+            const embed = new Discord.MessageEmbed()
+                .setTitle(`ERRORE`)
+                .setThumbnail(`https://i.imgur.com/lRLRIr4.png`)
+                .setColor(`RED`)
+                .setDescription(`:x: Inserisci un numero che va da 0 a 99`)
+            message.reply({embeds: [embed]})
+            return
+        }
+        channel.setUserLimit(args)
+        var embed = new Discord.MessageEmbed()
+            .setDescription(`Il tuo canale ha adesso un limite di ${args} utenti`)
+            .setColor(`YELLOW`)
+        if(args == `0`) embed.setDescription(`Il tuo canale adesso non ha più un limite di utenti`)
+        if(args == `1`) embed.setDescription(`Il tuo canale adesso ha un limite di 1 utente`)
+        message.reply({embeds: [embed]})
+    }
+}

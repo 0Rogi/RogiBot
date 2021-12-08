@@ -1,0 +1,11 @@
+module.exports = {
+    name: `villagerbot`,
+    description: `Per avere tutti i comandi e le spiegazioni di Villager Bot`,
+    execute(message) {
+        var embed = new Discord.MessageEmbed()
+            .setColor(`YELLOW`)
+            .setTitle(`!villagerbot`)
+            .setDescription(`Villager è un bot che permette di giocare a minecraft tramite discord!! Non è fantastico? La moneta di questo bot sono gli smeraldi! Come si ottengono?? Devi scavare scrivendo: **/mine**. In questo modo potrai scavare e avrai una probabilità di trovare smeraldi. Se trovi degli oggetti questi si possono vendere usando il comando: **/sell [Quantità] [Nome dell’oggetto]**. Puoi anche sfidare gli altri utenti con il comando **/battle @[nome dell’utente]** oppure con **/duel @[nome dell’utente]**. Come faccio a vedere quanti smeraldi ho? Puoi vederlo con **/balance**, se vuoi scoprire quanti smeraldi ha una persona specifica usa: **/balance @[Nome dell’utente]**. Puoi anche regalare smeraldi o oggetti con il comando **/give @[Nome dell’utente] [numero]** puoi dare degli smeraldi, se vuoi regalare degli oggetti usa il comando: **/giveitem @[Nome dell’utente] [Numero] [Oggetto]**. Puoi perfino sfidarti con il bot con il comando **/gamble [Numero di smeraldi]** così potrai sfidare gli smeraldi e potrai vincerli o perderli!! Puoi farlo anche con gli utenti **/pillage @[nome utente]** FUNZIONA SOLO SE ENTRAMBI HANNO 64 SMERALDI NELL'INVENTARIO. Con gli smeraldi guadagnati potrai comprare gli oggetti dal negozio usando **/shop pickaxes** per i picconi, **/shop magic** per libri incantati e pozioni, **/shop other** per altri oggetti. Se vuoi nascondere agli altri quanti smeraldi hai puoi tramutarli in blocchi di smeraldo e metterli nella tua personale cassaforte con il comando: **/deposit [Numero di blocchi che riesci a creare con i tuoi smeraldi]**. Per riprenderlo usa il comando: **/withdraw [Numero blocchi]** e potrai rimetterli nell’inventario e usarli per vendere. In fine con **/chung [Nome della pozione]** potrai bere una delle pozioni che hai trovato scavando (se le hai trovate) oppure puoi anche venderle.  Conosci Minecraft maledetto? Bene puoi usare il comando **/cursed** per vedere delle immagini maledette di Minecraft!`);
+        message.reply({embeds: [embed]})
+    }
+}
