@@ -19,6 +19,6 @@ module.exports = {
             token: config.webhook.token
         })
         message.delete()
-        wc.send(args.toString())
+        wc.send({allowedMentions: { parse: [] }, content: args.toString()})
     }
 }
