@@ -6,7 +6,7 @@ module.exports = {
         const user = await client.users.fetch(newState.id)
         const member = server.members.cache.find(x => x.id == newState.id)
         if (server.channels.cache.find(canale => canale.name == user.username)) {
-            user.send(`\`\`\`diff\n- Hai già creato una stanza privata, per crearne una nuova, connettiti in quella precedente e digita !delete\n\`\`\``).catch(() => { })
+            user.send(`\`\`\`diff\n- Hai già creato una stanza privata, per crearne una nuova, connettiti in quella precedente e digita !pdelete\n\`\`\``).catch(() => { })
             var canale = server.channels.cache.find(canale => canale.name == user.username)
             member.voice.setChannel(canale)
             return
@@ -17,12 +17,15 @@ module.exports = {
             permissionOverwrites: [
             {
                 id: server.id,
-                allow: [`VIEW_CHANNEL`],
                 deny: [`CONNECT`]
             },
             {
                 id: user.id,
                 allow: [`CONNECT`]
+            },
+            {
+                id: config.idruoli.staff,
+                allow: [`VIEW_CHANNEL`]
             }
             ]
         })
