@@ -12,7 +12,7 @@ module.exports = {
             .addField(`\u200b`, `\u200b`, true)
             .addField(`:link:Discriminator:`, `\`\`\`#${utente.user.discriminator.toString()}\`\`\``, true)
             .addField(`:robot:È un bot?`, utente.user.bot ? `\`\`\`Si\`\`\`` : `\`\`\`No\`\`\``, true)
-            .addField(`:red_car:Entrato nel server:`, `\`\`\`${moment(utente.user.joinAt).format(`ddd DD MMM YYYY`)}\`\`\``, true)
+            .addField(`:red_car:Entrato nel server:`, `\`\`\`${message.member.joinedAt.toDateString()}\`\`\``, true)
             .addField(`:pencil:Creazione account:`, `\`\`\`${moment(utente.user.createdAt).format(`ddd DD MMM YYYY`)}\`\`\``, true)
         message.reply({embeds: [embed]})
     }
