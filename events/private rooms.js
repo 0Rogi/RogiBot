@@ -26,6 +26,10 @@ module.exports = {
             {
                 id: config.idruoli.staff,
                 allow: [`VIEW_CHANNEL`]
+            },
+            {
+                id: config.idruoli.muted,
+                deny: [`VIEW_CHANNEL`]
             }
             ]
         })

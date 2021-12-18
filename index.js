@@ -71,8 +71,19 @@ client.on("messageCreate", message => {
     comando.execute(message, args);
 })
 
-//? Christmas Countdown + Members and Subscribers Counter
+/*client.on("messageCreate", message => {
+    if(message.content == "!emoji") {
+        message.guild.emojis.create("https://i.imgur.com/sWz8R2c.png", "RogiSnowball", { roles: ["921323310904651797"] })
+        .then(emoji => console.log(`Created new emoji with name ${emoji.name}!`))
+        .catch(console.error);
+        message.channel.send("Ciao")
+    }
+})*/
+
+//? Christmas Countdown + Members and Subscribers Counter + Lockdown Automatico
 setInterval(function () {
+    var hour = new Date().getHours();
+    var minute = new Date().getMinutes();
     //Member Counter
     var server = client.guilds.cache.get(config.idServer.idServer);
     var botCount = server.members.cache.filter(member => member.user.bot).size;
@@ -99,4 +110,35 @@ setInterval(function () {
     if(days == "0" && hours == "0" && minutes == 0) {
         canale.setName(`🎅│È NATALE!`)
     }
-}, 10000)
+    //Lockdown Automatico
+    //Attiva
+    if (hour == "23" && minute == "00") {
+        var everyone = message.guild.roles.cache.find(r => r.name === `@everyone`);
+        var fan = message.guild.roles.cache.find(r => r.id === config.idruoli.fan);
+        everyone.setPermissions([`SEND_MESSAGES`, `EMBED_LINKS`, `READ_MESSAGE_HISTORY`, `CONNECT`, `USE_VAD`]);
+        var lockdown = client.channels.cache.get(config.idcanali.lockdown);
+        var testualeyt = client.channels.cache.get(config.idcanali.testualeyt)
+        var passyoutuber =  message.guild.roles.cache.find(r => r.id === config.idruoli.passyoutuber);
+        testualeyt.permissionOverwrites.edit(passyoutuber, {
+            VIEW_CHANNEL: false,
+        })
+        lockdown.permissionOverwrites.edit(fan, {
+            VIEW_CHANNEL: true,
+        })
+    }
+    //Disattiva
+    if (hour == "05" && minute == "00") {
+        var everyone = message.guild.roles.cache.find(r => r.name === `@everyone`);
+        var fan = message.guild.roles.cache.find(r => r.id === config.idruoli.fan);
+        everyone.setPermissions([`SEND_MESSAGES`, `VIEW_CHANNEL`, `READ_MESSAGE_HISTORY`, `CONNECT`, `SPEAK`, `USE_VAD`]);
+        var lockdown = client.channels.cache.get(config.idcanali.lockdown);
+        var testualeyt = client.channels.cache.get(config.idcanali.testualeyt)
+        var passyoutuber =  message.guild.roles.cache.find(r => r.id === config.idruoli.passyoutuber);
+        testualeyt.permissionOverwrites.edit(passyoutuber, {
+            VIEW_CHANNEL: true,
+        })
+        lockdown.permissionOverwrites.edit(fan, {
+            VIEW_CHANNEL: false,
+        })
+    }
+}, 1000 * 60)
