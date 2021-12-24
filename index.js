@@ -3,6 +3,7 @@ global.ms = require(`ms`)
 global.moment = require(`moment`)
 global.Canvas = require(`canvas`)
 global.ytch = require(`yt-channel-info`)
+//global.giveMeAJoke = require('discord-jokes');
 global.client = new Discord.Client({intents: 32767, allowedMentions: { parse: [] }});
 const fs = require(`fs`);
 global.config = require(`./config.json`)
@@ -25,7 +26,7 @@ global.nopvt = new Discord.MessageEmbed()
     .setColor(`RED`)
     .setThumbnail(`https://i.imgur.com/lRLRIr4.png`)
     .setDescription(`:x: Non sei in una stanza privata!`)
-//Connect other files
+//!Command Handler
 client.commands = new Discord.Collection();
 
 const commandsFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
@@ -60,14 +61,6 @@ client.on("messageCreate", message => {
     if (!client.commands.has(command) && !client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))) return
 
     var comando = client.commands.get(command) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))
-
-    if (comando.onlyStaff) {
-        if (!message.member.hasPermission("ADMINISTRATOR")) {
-            message.channel.send("Non hai il permesso di eseguire questo comando")
-            return
-        }
-    }
-
     comando.execute(message, args);
 })
 
@@ -97,48 +90,19 @@ setInterval(function () {
     })
     //Natale Countdown
     const currenttime = new Date()
-    const Christmas = new Date("December 25 2021 23:00:00")
+    const Christmas = new Date("December 25 2021 00:00:00")
     const diff = Christmas - currenttime
     const days = Math.floor(diff / 1000 / 60 / 60 / 24)
     const hours = Math.floor(diff / 1000 / 60 / 60) % 24 + 1
-    const minutes = Math.floor(diff / 1000 / 60)
+    const seconds = Math.floor(diff / 1000) % 60
+    const minutes = Math.floor(diff / 1000 / 60) % 60
     const canale = client.channels.cache.get(config.idcanali.natale)
-    canale.setName(`🎅│-${days} giorni a Natale!`)
-    if(days == "0") {
-        canale.setName(`🎅│-${hours} ore e -${minutes} minuti a Natale!`)
-    }
-    if(days == "0" && hours == "0" && minutes == 0) {
-        canale.setName(`🎅│È NATALE!`)
-    }
-    //Lockdown Automatico
-    //Attiva
-    if (hour == "23" && minute == "00") {
-        var everyone = message.guild.roles.cache.find(r => r.name === `@everyone`);
-        var fan = message.guild.roles.cache.find(r => r.id === config.idruoli.fan);
-        everyone.setPermissions([`SEND_MESSAGES`, `EMBED_LINKS`, `READ_MESSAGE_HISTORY`, `CONNECT`, `USE_VAD`]);
-        var lockdown = client.channels.cache.get(config.idcanali.lockdown);
-        var testualeyt = client.channels.cache.get(config.idcanali.testualeyt)
-        var passyoutuber =  message.guild.roles.cache.find(r => r.id === config.idruoli.passyoutuber);
-        testualeyt.permissionOverwrites.edit(passyoutuber, {
-            VIEW_CHANNEL: false,
-        })
-        lockdown.permissionOverwrites.edit(fan, {
-            VIEW_CHANNEL: true,
-        })
-    }
-    //Disattiva
-    if (hour == "05" && minute == "00") {
-        var everyone = message.guild.roles.cache.find(r => r.name === `@everyone`);
-        var fan = message.guild.roles.cache.find(r => r.id === config.idruoli.fan);
-        everyone.setPermissions([`SEND_MESSAGES`, `VIEW_CHANNEL`, `READ_MESSAGE_HISTORY`, `CONNECT`, `SPEAK`, `USE_VAD`]);
-        var lockdown = client.channels.cache.get(config.idcanali.lockdown);
-        var testualeyt = client.channels.cache.get(config.idcanali.testualeyt)
-        var passyoutuber =  message.guild.roles.cache.find(r => r.id === config.idruoli.passyoutuber);
-        testualeyt.permissionOverwrites.edit(passyoutuber, {
-            VIEW_CHANNEL: true,
-        })
-        lockdown.permissionOverwrites.edit(fan, {
-            VIEW_CHANNEL: false,
-        })
+    console.log(days, hours, seconds, currenttime)
+    if(days > 0 && days != 0) {
+        canale.setName(`🎅│-${days} giorni a Natale!`)
+    } else if(hours > 0 && days < 0 || days == 0) {
+        canale.setName(`🎅│-${hours} ore e ${minutes} minuti`)
+    } else if(hours < 0 && minutes < 0) {
+        canale.setName(`🎅│BUON NATALE`)
     }
 }, 1000 * 60)
