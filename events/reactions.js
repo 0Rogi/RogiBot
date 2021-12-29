@@ -1,4 +1,4 @@
-/*module.exports = {
+module.exports = {
     name: `messageCreate`,
     execute(message) {
         if(message.content.includes(`:`)) return;
@@ -12,4 +12,4 @@
         if(message.content.toLowerCase().includes(`ok`) || message.content.toLowerCase().includes(`va bene`) || message.content.toLowerCase().includes(`capito`)) message.react(`<:RogiOk:904003454350004265>`)
         if(message.content.toLocaleLowerCase().includes(`triste`) || message.content.toLowerCase().includes(`sad`) || message.content.toLowerCase().includes(`piango`)) message.react(`<:RogiSad:904004495611142176>`)
     }
-}*/
+}

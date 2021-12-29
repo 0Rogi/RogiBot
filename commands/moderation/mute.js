@@ -1,66 +1,51 @@
 module.exports = {
     name: `mute`,
     description: `Muta un utente nel server`,
-    execute(message) {
-        if(!message.member.permissions.has(`MANAGE_MESSAGES`)) {
-            message.reply({embeds: [noperm]});
-            return;
-        }
-        var user = message.mentions.members.first();
-        var args = message.content.split(` `).slice(2);
-        var reason = args.join(` `)
-        if(!reason) reason = `Nessun Motivo`
-        if(!user) {
-            var args = message.content.split(` `).slice(1)
-            var id = args.join(` `)
-            var server = client.guilds.cache.get(config.idServer.idServer)
-            var user = server.members.cache.find(x => x.id == id)
-            if(!user)  {
-                const embed = new Discord.MessageEmbed()
-                    .setColor(`RED`)
-                    .setTitle(`Errore`)
-                    .setDescription(`:x: **Inserisci un utente valido**`)
-                    .setThumbnail(`https://i.imgur.com/lRLRIr4.png`)
-                    .setFooter(`Moderatore: ${message.author.tag}`)
-            message.reply({embeds: [embed]});
-            return;
-        }}
-        if (user.roles.cache.has(config.idruoli.muted)) {
-            const embed = new Discord.MessageEmbed()
-                    .setColor(`RED`)
-                    .setTitle(`Errore`)
-                    .setDescription(`:x: **Quest'utente è già mutato**`)
-                    .setThumbnail(`https://i.imgur.com/lRLRIr4.png`)
-                    .setFooter(`Moderatore: ${message.author.tag}`)
-            message.reply({embeds: [embed]})
-            return;
-        }
-        if(user.permissions.has(`MANAGE_MESSAGES`)) {
-            const embed = new Discord.MessageEmbed()
+    onlyHelper: true,
+    execute(message, args) {
+        let id = args[0]
+        let server = client.guilds.cache.get(config.idServer.idServer)
+        let utente = message.mentions.members.first() || server.members.cache.find(x => x.id == id) 
+        if(!utente) {
+            let embed = new Discord.MessageEmbed()
+                .setAuthor(`[Errore] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+                .setDescription(`:x: Inserisci un utente valido`)
                 .setColor(`RED`)
-                .setTitle(`Errore`)
-                .setDescription(`:x: **Non posso mutare quest'utente**`)
-                .setThumbnail(`https://i.imgur.com/lRLRIr4.png`)
-                .setFooter(`Moderatore: ${message.author.tag}`)
-            message.reply({embeds: [embed]});
-            return;
+            message.reply({embeds: [embed]})
+            return
         }
-        const embed1 = new Discord.MessageEmbed()
+        if(utente.roles.cache.has(config.idruoli.staff)) {
+            let embed = new Discord.MessageEmbed()
+                .setAuthor(`[Errore] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+                .setDescription(`:x: ${utente} è uno staffer, non posso mutarlo`)
+                .setColor(`RED`)
+            message.reply({embeds: [embed]})
+            return
+        }
+        let reason = args.slice(1).join(` `)
+        if(reason == "") reason = "Nessun Motivo"
+        if(utente.roles.cache.has(config.idruoli.muted)) {
+            let embed = new Discord.MessageEmbed()
+                .setAuthor(`[Errore] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+                .setDescription(`:x: Questo utente è già mutato`)
+                .setColor(`RED`)
+            message.reply({embeds: [embed]})
+            return
+        }
+        let embedserver = new Discord.MessageEmbed()
+            .setAuthor(`[Mute] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+            .setDescription(`:white_check_mark: ${utente} è ora mutato per il motivo: **${reason}**`)
+            .setColor(`GREEN`)
+        let embedutente = new Discord.MessageEmbed()
+            .setAuthor(`[Mute] ${utente.user.username}#${utente.user.discriminator}`, utente.user.avatarURL({ dynamic: true }))
+            .setDescription(`Sei stato mutato in ${message.guild.name} per il seguente motivo: **${reason}**`)
             .setColor(`RED`)
-            .setTitle(`Sei stato mutato!`)
-            .setDescription(`${user.user.username}, sei stato mutato dal server **${message.guild.name}** da ${message.author.tag} per il seguente motivo: **${reason}**`)
-            .setFooter(`Moderatore: ${message.author.tag}`)
-        user.send({embeds: [embed1]}).catch(() => { })
+        utente.send({embeds: [embedutente]}).catch(() => { 
+            embedserver.setDescription(`:white_check_mark: ${utente} è ora mutato per il motivo: **${reason}**\n⚠️NON POSSO AVVISARE QUESTO UTENTE IN DM⚠️`)
+        })
         setTimeout(() => {
-            const embed2 = new Discord.MessageEmbed()
-            .setColor(`#25a605`)
-            .setTitle(`Riuscito!`)
-            .setDescription(`${user} è stato mutato per il motivo: **${reason}**`)
-            .setThumbnail(`https://i.imgur.com/P7xHsvc.png`)
-            .setFooter(`Moderatore: ${message.author.tag}`)
-        message.reply({embeds: [embed2]})
-        user.roles.add(config.idruoli.muted)
-        user.roles.remove(config.idruoli.passyoutuber)
-        }, 1000)
+            message.reply({embeds: [embedserver]})
+            utente.roles.add(config.idruoli.muted)
+        }, 1000);
     }
 }
