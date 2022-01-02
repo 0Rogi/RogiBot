@@ -13,8 +13,7 @@ module.exports = {
         var array = numbers(0, 99);
         if(!array.some(word => args.includes(word)) || args > 99) {
             const embed = new Discord.MessageEmbed()
-                .setTitle(`ERRORE`)
-                .setThumbnail(`https://i.imgur.com/lRLRIr4.png`)
+                .setTitle(`Errore`)
                 .setColor(`RED`)
                 .setDescription(`:x: Inserisci un numero che va da 0 a 99`)
             message.reply({embeds: [embed]})
@@ -23,9 +22,9 @@ module.exports = {
         channel.setUserLimit(args)
         var embed = new Discord.MessageEmbed()
             .setDescription(`Il tuo canale ha adesso un limite di ${args} utenti`)
-            .setColor(`YELLOW`)
-        if(args == `0`) embed.setDescription(`Il tuo canale adesso non ha più un limite di utenti`)
-        if(args == `1`) embed.setDescription(`Il tuo canale adesso ha un limite di 1 utente`)
+            .setColor(`GREEN`)
+        if(args == `0`) embed.setDescription(`:white_check_mark: Il tuo canale adesso non ha più un limite di utenti`)
+        if(args == `1`) embed.setDescription(`:white_check_mark: Il tuo canale adesso ha un limite di 1 utente`)
         message.reply({embeds: [embed]})
     }
 }

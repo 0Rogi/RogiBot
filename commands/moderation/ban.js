@@ -8,7 +8,7 @@ module.exports = {
         let utente = message.mentions.members.first() || server.members.cache.find(x => x.id == id) 
         if(!utente) {
             let embed = new Discord.MessageEmbed()
-                .setAuthor(`[Errore] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+                .setTitle(`Errore`)
                 .setDescription(`:x: Inserisci un utente valido`)
                 .setColor(`RED`)
             message.reply({embeds: [embed]})
@@ -16,7 +16,7 @@ module.exports = {
         }
         if(utente.roles.cache.has(config.idruoli.staff)) {
             let embed = new Discord.MessageEmbed()
-                .setAuthor(`[Errore] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+                .setTitle(`Errore`)
                 .setDescription(`:x: ${utente} è uno staffer, non posso bannarlo`)
                 .setColor(`RED`)
             message.reply({embeds: [embed]})
@@ -25,11 +25,11 @@ module.exports = {
         let reason = args.slice(1).join(` `)
         if(reason == "") reason = "Nessun Motivo"
         let embedserver = new Discord.MessageEmbed()
-            .setAuthor(`[Ban] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+            .setTitle(`Ban`)
             .setDescription(`:white_check_mark: ${utente} è ora bannato per il motivo: **${reason}**`)
             .setColor(`GREEN`)
         let embedutente = new Discord.MessageEmbed()
-            .setAuthor(`[Ban] ${utente.user.username}#${utente.user.discriminator}`, utente.user.avatarURL({ dynamic: true }))
+            .setTitle(`Ban`)
             .setDescription(`Sei stato bannato in ${message.guild.name} per il seguente motivo: **${reason}**`)
             .setColor(`RED`)
         utente.send({embeds: [embedutente]}).catch(() => { 

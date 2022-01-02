@@ -10,7 +10,6 @@ module.exports = {
                 .setColor(`RED`)
                 .setTitle(`Errore`) 
                 .setDescription(`:x: Inserisci il messaggio della partner`)
-                .setThumbnail(`https://i.imgur.com/lRLRIr4.png`)
             message.reply({embeds: [embed]})
             return
         }

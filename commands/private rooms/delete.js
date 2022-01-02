@@ -8,8 +8,8 @@ module.exports = {
         if(message.author.username != channel.name) return message.reply({embeds: [noperm]})
         channel.delete()
         const embed = new Discord.MessageEmbed()
-            .setColor(`YELLOW`)
-            .setDescription(`La tua stanza privata è stata cancellata`)
+            .setColor(`GREEN`)
+            .setDescription(`:white_check_mark: La tua stanza privata è stata cancellata`)
         message.reply({embeds: [embed]})
     }
 }

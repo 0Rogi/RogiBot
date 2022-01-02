@@ -9,7 +9,7 @@ module.exports = {
         channel.permissionOverwrites.create(config.idServer.idServer, {CONNECT: false})
         const embed = new Discord.MessageEmbed()
             .setDescription(`Il tuo canale <#${channel.id}> è stato bloccato, ora nessuno puo' entrarci`)
-            .setColor(`YELLOW`)
+            .setColor(`GREEN`)
         message.reply({embeds: [embed]})
     }
 }

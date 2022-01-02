@@ -1,8 +1,8 @@
 module.exports = {
     name: `shutdown`,
     description: `Spegne il bot`,
+    onlyOwner: true,
     execute(message) {
-        if(message.author != `601308178482855956`) return message.reply({embeds: [noperm]})
         var embed = new Discord.MessageEmbed()
             .setTitle(`RESTART`)
             .setColor(`RED`)

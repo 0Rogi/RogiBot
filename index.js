@@ -2,31 +2,23 @@ global.Discord = require(`discord.js`);
 global.ms = require(`ms`)
 global.moment = require(`moment`)
 global.Canvas = require(`canvas`)
-global.ytch = require(`yt-channel-info`)
-//global.giveMeAJoke = require('discord-jokes');
+global.ytch = require(`yt-channel-info`);
 global.client = new Discord.Client({intents: 32767, allowedMentions: { parse: [] }});
 const fs = require(`fs`);
 global.config = require(`./config.json`)
 client.login(config.token);
-//No Permission Embed
-global.noperm = new Discord.MessageEmbed()
-    .setColor(`RED`)
-    .setTitle(`Errore`) 
-    .setDescription(`:x: Non hai il permesso`)
-    .setThumbnail(`https://i.imgur.com/lRLRIr4.png`)
 //No Channel Embed
 global.nochannel = new Discord.MessageEmbed()
-    .setTitle(`ERRORE`)
-    .setThumbnail(`https://i.imgur.com/lRLRIr4.png`)
+    .setTitle(`Errore`)
     .setColor(`RED`)
     .setDescription(`:x: Non sei connesso in un canale vocale`)
 //No Private Room Embed
 global.nopvt = new Discord.MessageEmbed()
-    .setTitle(`ERRORE`)
+    .setTitle(`Errore`)
     .setColor(`RED`)
-    .setThumbnail(`https://i.imgur.com/lRLRIr4.png`)
     .setDescription(`:x: Non sei in una stanza privata!`)
-//!Command Handler
+
+//!Commands Handler
 client.commands = new Discord.Collection();
 
 const commandsFiles = fs.readdirSync(`./commands`).filter(file => file.endsWith(`.js`));
@@ -43,6 +35,7 @@ for (const folder of commandsFolder) {
         client.commands.set(command.name, command);
     }
 }
+
 //!Event Handler
 const eventsFiles = fs.readdirSync(`./events`).filter(file => file.endsWith(`.js`));
 for (const file of eventsFiles) {
@@ -50,6 +43,7 @@ for (const file of eventsFiles) {
     client.on(event.name, (...args) => event.execute(...args))
 }
 
+//!Commands Check
 client.on(`messageCreate`, message => {
     const prefix = `!`;
 
@@ -61,19 +55,19 @@ client.on(`messageCreate`, message => {
     if (!client.commands.has(command) && !client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))) {
         let embed = new Discord.MessageEmbed()
             .setColor(`RED`)
-            .setDescription(`:x: Il comando \`!${command}\` non esiste`)
-            .setAuthor(`[Comando non esistente] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+            .setDescription(`Il comando \`!${command}\` non esiste`)
+            .setTitle(`Comando non esistente`)
         message.reply({embeds: [embed]})
         return
     }
 
     var comando = client.commands.get(command) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))
 
-    if(comando.onlyHelper && !message.member.roles.cache.has(config.idruoli.owner) && !message.member.roles.cache.has(config.idruoli.moderator) && !message.member.roles.cache.has(config.idruoli.helper)) {
+    if(comando.onlyHelpers && !message.member.roles.cache.has(config.idruoli.owner) && !message.member.roles.cache.has(config.idruoli.moderator) && !message.member.roles.cache.has(config.idruoli.helper)) {
         let embed = new Discord.MessageEmbed()
             .setColor(`RED`)
-            .setDescription(`:x: Devi essere almeno **Helper** per eseguire questo comando`)
-            .setAuthor(`[Nessun Permesso] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+            .setDescription(`Devi essere almeno **Helper** per eseguire il comando \`!${command}\``)
+            .setTitle(`Non hai il permesso!`)
         message.reply({embeds: [embed]})
         return
     }
@@ -81,8 +75,8 @@ client.on(`messageCreate`, message => {
     if(comando.onlyMods && !message.member.roles.cache.has(config.idruoli.owner) && !message.member.roles.cache.has(config.idruoli.moderator)) {
         let embed = new Discord.MessageEmbed()
             .setColor(`RED`)
-            .setDescription(`:x: Devi essere almeno **Moderatore** per eseguire questo comando`)
-            .setAuthor(`[Nessun Permesso] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+            .setDescription(`Devi essere almeno **Moderatore** per eseguire il comando \`!${command}\``)
+            .setTitle(`Non hai il permesso!`)
         message.reply({embeds: [embed]})
         return
     }
@@ -90,8 +84,8 @@ client.on(`messageCreate`, message => {
     if(comando.onlyOwner && !message.member.roles.cache.has(config.idruoli.owner)) {
         let embed = new Discord.MessageEmbed()
             .setColor(`RED`)
-            .setDescription(`:x: Devi essere almeno **Owner** per eseguire questo comando`)
-            .setAuthor(`[Nessun Permesso] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+            .setDescription(`Devi essere almeno **Owner** per eseguire il comando \`!${command}\``)
+            .setTitle(`Non hai il permesso!`)
         message.reply({embeds: [embed]})
         return
     }
@@ -110,8 +104,6 @@ client.on(`messageCreate`, message => {
 
 //? Christmas Countdown + Members and Subscribers Counter + Lockdown Automatico
 setInterval(function () {
-    var hour = new Date().getHours();
-    var minute = new Date().getMinutes();
     //Member Counter
     var server = client.guilds.cache.get(config.idServer.idServer);
     var botCount = server.members.cache.filter(member => member.user.bot).size;

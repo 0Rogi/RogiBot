@@ -1,13 +1,13 @@
 module.exports = {
     name: `lockdown`,
     description: `Attiva/Disattiva il sistema di lockdown (blocco del server)`,
-    onlyHelper: true,
+    onlyHelpers: true,
     execute(message) {
         const args = message.content.split(` `).slice(1);
         var lock = args.join(` `);
         if(!lock) {
             let embed = new Discord.MessageEmbed()
-            .setAuthor(`[Errore] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+            .setTitle(`Errore`)
             .setDescription(`:x: Inserisci on o off`)
             .setColor(`RED`)
         message.reply({embeds: [embed]})
@@ -15,7 +15,7 @@ module.exports = {
         }
         if(lock != `on` && lock != `off`) {
             let embed = new Discord.MessageEmbed()
-            .setAuthor(`[Errore] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+            .setTitle(`Errore`)
             .setDescription(`:x: Puoi inserire solo on o off`)
             .setColor(`RED`)
         message.reply({embeds: [embed]})
@@ -35,7 +35,7 @@ module.exports = {
             VIEW_CHANNEL: true,
         })
         let embed = new Discord.MessageEmbed()
-            .setAuthor(`[Lockdown] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+            .setTItle(`Lockdown`)
             .setDescription(`:white_check_mark: Sistema di lockdown attivato. Nessun utente tranne gli staffer, potranno vedere i canali`)
             .setColor(`GREEN`)
         message.reply({embeds: [embed]})
@@ -54,7 +54,7 @@ module.exports = {
             VIEW_CHANNEL: false,
         })
         let embed = new Discord.MessageEmbed()
-            .setAuthor(`[Lockdown] ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL({ dynamic: true }))
+            .setTItle(`Lockdown`)
             .setDescription(`:white_check_mark: Sistema di lockdown disattivato. Gli utenti potranno di nuovo vedere i canali`)
             .setColor(`GREEN`)
         message.reply({embeds: [embed]})

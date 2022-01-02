@@ -1,9 +1,10 @@
 module.exports = {
     name: `avatar`,
     description: `Avatar di qualcuno`,
-    execute(message) {
-        var user = message.mentions.members.first()
-        if(!user) user = message.member
+    execute(message, args) {
+        let id = args[0]
+        let server = client.guilds.cache.get(config.idServer.idServer)
+        let user = message.mentions.members.first() || server.members.cache.find(x => x.id == id) || message.member 
         const avatar = user.displayAvatarURL()
         const embed = new Discord.MessageEmbed()
             .setTitle(`Avatar di ${user.user.username}`)
