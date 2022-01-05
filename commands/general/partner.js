@@ -2,7 +2,7 @@ module.exports = {
     name: `partner`,
     description: `Fare partnership`,
     execute(message) {
-        if(message.author != "601308178482855956" && message.author != "816218053112496188") return message.reply({embeds: [noperm]})
+        if(message.author != `601308178482855956` && message.author != `816218053112496188`) return message.reply({embeds: [noperm]})
         const args1 = message.content.split(` `).slice(1)
         let args = args1.slice(0).join(` `)
         if(!args) {

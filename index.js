@@ -5,7 +5,9 @@ global.Canvas = require(`canvas`)
 global.ytch = require(`yt-channel-info`);
 global.client = new Discord.Client({intents: 32767, allowedMentions: { parse: [] }});
 const fs = require(`fs`);
-global.config = require(`./config.json`)
+global.config = require(`./JSON/config.json`)
+global.ephiphany = require(`./JSON/ephiphany.json`)
+global.lyricsFinder = require('lyrics-finder')
 client.login(config.token);
 //No Channel Embed
 global.nochannel = new Discord.MessageEmbed()
@@ -43,13 +45,22 @@ for (const file of eventsFiles) {
     client.on(event.name, (...args) => event.execute(...args))
 }
 
+const eventsFolders = fs.readdirSync('./events');
+for (const folder of eventsFolders) {
+    const eventsFiles = fs.readdirSync(`./events/${folder}`).filter(file => file.endsWith('.js'));
+    for (const file of eventsFiles) {
+        const event = require(`./events/${folder}/${file}`);
+        client.on(event.name, (...args) => event.execute(...args));
+    }
+}
+
 //!Commands Check
 client.on(`messageCreate`, message => {
     const prefix = `!`;
 
     if (!message.content.startsWith(prefix) || message.author.bot) return
 
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const args = message.content.toLowerCase().slice(prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
 
     if (!client.commands.has(command) && !client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))) {
@@ -93,15 +104,6 @@ client.on(`messageCreate`, message => {
     comando.execute(message, args);
 })
 
-/*client.on(`messageCreate`, message => {
-    if(message.content == `!emoji`) {
-        message.guild.emojis.create(`https://i.imgur.com/sWz8R2c.png`, `RogiSnowball`, { roles: [`921323310904651797`] })
-        .then(emoji => console.log(`Created new emoji with name ${emoji.name}!`))
-        .catch(console.error);
-        message.channel.send(`Ciao`)
-    }
-})*/
-
 //? Christmas Countdown + Members and Subscribers Counter + Lockdown Automatico
 setInterval(function () {
     //Member Counter
@@ -133,3 +135,42 @@ setInterval(function () {
         canale.setName(`🎅│BUON NATALE`)
     }*/
 }, 1000 * 60)
+
+setInterval(function () {
+    var hour = new Date().getHours();
+    var minutes = new Date().getMinutes();
+    if (hour == `23` && minutes == `00`) {
+        let channel = client.channels.cache.get(ephiphany.channel)
+        let server = client.guilds.cache.get(config.idServer.idServer)
+        channel.permissionOverwrites.set([
+            {
+                id: server.id,
+                allow: [`VIEW_CHANNEL`],
+                deny: [`SEND_MESSAGES`]
+            }
+        ])
+        let row = new Discord.MessageActionRow()
+            .addComponents(
+                new Discord.MessageButton()
+            .setLabel(`Apri la tua Calza`)
+            .setStyle(`PRIMARY`)
+            .setCustomId(`Epifania`))
+        let attachment = new Discord.MessageAttachment(`./Images/Ephiphany-Sock.png`)
+        channel.send({content: `Oggi è il giorno della **Befana**, quindi avrete ricevuto sicuramente molti dolci...\nPer festeggiare ancor di più questo giorno, potrete aprire **la vostra calza della befana** anche qui nel server discord!!\nNella calza qui sotto ci sono ben **4 regali**!!\nPremi il **pulsante qui sotto** e vedi cosa hai trovato :wink:`, components: [row], files: [attachment]})
+    }
+}, 1000 * 60)
+
+process.on(`uncaughtException`, err => {
+    let embed = new Discord.MessageEmbed()
+        .setTitle(`⚠️Errore di codice⚠️`)
+        .setDescription(err.toString())
+        .setColor(`RED`)
+    client.channels.cache.get(config.idcanali.codeerror).send({embeds: [embed]})
+})
+process.on(`unhandledRejection`, err => {
+    let embed = new Discord.MessageEmbed()
+        .setTitle(`⚠️Errore di codice⚠️`)
+        .setDescription(err.toString())
+        .setColor(`RED`)
+    client.channels.cache.get(config.idcanali.codeerror).send({embeds: [embed]})
+})

@@ -23,7 +23,7 @@ module.exports = {
             return
         }
         let reason = args.slice(1).join(` `)
-        if(reason == "") reason = "Nessun Motivo"
+        if(reason == ``) reason = `Nessun Motivo`
         if(utente.roles.cache.has(config.idruoli.muted)) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)

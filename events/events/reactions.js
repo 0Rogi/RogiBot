@@ -1,7 +1,7 @@
 module.exports = {
     name: `messageCreate`,
     execute(message) {
-        if(message.content.includes(`:`)) return;
+        if(message.content.includes(`:`) || message.author.bot) return
         if(message.content.toLowerCase().includes(`rogi`)) message.react(`<:Rogi:904005869799366696>`)
         if(message.content.toLowerCase().includes(`ciao`) || message.content.toLowerCase().includes(`salve`) || message.content.toLowerCase().includes(`hello`) || message.content.toLowerCase().includes(`benvenuto`)) message.react(`<:RogiCiao:904001520880726036>`)
         if(message.content.toLowerCase().includes(`?`)) message.react(`<:RogiDomandoso:904007044246433923>`)

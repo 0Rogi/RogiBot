@@ -9,10 +9,10 @@ module.exports = {
         var botCount = server.members.cache.filter(member => member.user.bot).size;
         var utentiCount = server.memberCount - botCount;
         var creationdate = server.createdAt
-        var categoryCount = server.channels.cache.filter(c => c.type == "GUILD_CATEGORY").size
-        var textCount = server.channels.cache.filter(c => c.type == "GUILD_TEXT").size
-        var voiceCount = server.channels.cache.filter(c => c.type == "GUILD_VOICE").size
-        var newsCount = server.channels.cache.filter(c => c.type == "GUILD_NEWS").size
+        var categoryCount = server.channels.cache.filter(c => c.type == `GUILD_CATEGORY`).size
+        var textCount = server.channels.cache.filter(c => c.type == `GUILD_TEXT`).size
+        var voiceCount = server.channels.cache.filter(c => c.type == `GUILD_VOICE`).size
+        var newsCount = server.channels.cache.filter(c => c.type == `GUILD_NEWS`).size
 
         const embed = new Discord.MessageEmbed()
             .setTitle(name)

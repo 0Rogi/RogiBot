@@ -15,7 +15,7 @@ module.exports = {
             return
         }
         let nick = args.slice(1).join(` `)
-        if(nick == "") {
+        if(nick == ``) {
             let embedserver = new Discord.MessageEmbed()
                 .setTitle(`Nick`)
                 .setDescription(`:white_check_mark: Il nome di ${utente} è stato resettato con successo!`)

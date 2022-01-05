@@ -23,7 +23,7 @@ module.exports = {
             return
         }
         let reason = args.slice(1).join(` `)
-        if(reason == "") reason = "Nessun Motivo"
+        if(reason == ``) reason = `Nessun Motivo`
         let embedserver = new Discord.MessageEmbed()
             .setTitle(`Ban`)
             .setDescription(`:white_check_mark: ${utente} è ora bannato per il motivo: **${reason}**`)

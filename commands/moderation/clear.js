@@ -25,7 +25,7 @@ module.exports = {
         message.channel.bulkDelete(count, true)
         const embed = new Discord.MessageEmbed()
             .setDescription(`:white_check_mark: ${count} messaggi eliminati`)
-            .setAuthor(`Clear`)
+            .setTitle(`Clear`)
             .setColor(`GREEN`)
         message.channel.send({embeds: [embed]}).then(msg => {
         setTimeout(() => {

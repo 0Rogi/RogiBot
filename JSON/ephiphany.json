@@ -1,0 +1,38 @@
+{
+        "firstgift": "https://i.imgur.com/NVZnkyX.png",
+        "rpsimage": "https://i.imgur.com/wqdpHSZ.jpg",
+        "channel": "927471682287960154",
+        "generalrole": "928354307617726535",
+        "emojisrole": {
+            "emoji1": "927482090075856926",
+            "emoji2": "927482194140758016"
+        },
+        "alreadyclaimed": {
+            "claimed1": "927486814695079958",
+            "claimed2": "927486856164159499",
+            "claimed3": "927486693039304754",
+            "claimed4": "928347848968392724"
+        },
+        "emojisimage": {
+            "emoji1": "https://i.imgur.com/qgnDUbu.png",
+            "emoji2": "https://i.imgur.com/rTBrVzm.png" 
+        },
+        "freddure": {
+            "freddura1": "https://i.imgur.com/pza70Xi.png",
+            "freddura2": "https://i.imgur.com/u25MJy0.png",
+            "freddura3": "https://i.imgur.com/MDHb8XE.png",
+            "freddura4": "https://i.imgur.com/8Go0L8s.png",
+            "ruolo1": "927860602611826699",
+            "ruolo2": "927860602611826699",
+            "ruolo3": "927860669867511848",
+            "ruolo4": "927860707234553907"
+        },
+        "thirdgift": {
+            "image": "https://i.imgur.com/NSJtwpy.png",
+            "ruolo": "928323621737349150"
+        },
+        "fourthgift": {
+            "image": "https://i.imgur.com/xXEbzZr.png",
+            "ruolo": "928347848968392724"
+        }
+}
