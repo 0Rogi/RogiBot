@@ -9,6 +9,6 @@ module.exports = {
             .setColor(`GREEN`)
             .setDescription(`<:RogiBot:854792536694587434>Sono online!<:RogiBot:854792536694587434>`)
             .setTimestamp()
-        client.channels.cache.get(`905099873664237568`).send({embeds: [embed]})
+        client.channels.cache.get(config.idcanali.online).send({embeds: [embed]})
     }
 }

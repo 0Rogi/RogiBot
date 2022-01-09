@@ -19,7 +19,6 @@ global.nopvt = new Discord.MessageEmbed()
     .setTitle(`Errore`)
     .setColor(`RED`)
     .setDescription(`:x: Non sei in una stanza privata!`)
-
 //!Commands Handler
 client.commands = new Discord.Collection();
 
@@ -117,7 +116,7 @@ setInterval(function () {
         var canaleyoutube = client.channels.cache.get(config.idcanali.iscritti)
         canaleyoutube.setName(`🎬│Subscribers: ${response.subscriberCount}`)
     })
-    //Christmas Countdown
+    //*Christmas Countdown
     /*const currenttime = new Date()
     const Christmas = new Date(`December 25 2021 00:00:00`)
     const diff = Christmas - currenttime
@@ -135,8 +134,8 @@ setInterval(function () {
         canale.setName(`🎅│BUON NATALE`)
     }*/
 }, 1000 * 60)
-
-setInterval(function () {
+//*Canale befana
+/*setInterval(function () {
     var hour = new Date().getHours();
     var minutes = new Date().getMinutes();
     if (hour == `23` && minutes == `00`) {
@@ -158,8 +157,9 @@ setInterval(function () {
         let attachment = new Discord.MessageAttachment(`./Images/Ephiphany-Sock.png`)
         channel.send({content: `Oggi è il giorno della **Befana**, quindi avrete ricevuto sicuramente molti dolci...\nPer festeggiare ancor di più questo giorno, potrete aprire **la vostra calza della befana** anche qui nel server discord!!\nNella calza qui sotto ci sono ben **4 regali**!!\nPremi il **pulsante qui sotto** e vedi cosa hai trovato :wink:`, components: [row], files: [attachment]})
     }
-}, 1000 * 60)
+}, 1000 * 60)*/
 
+//!Code error
 process.on(`uncaughtException`, err => {
     let embed = new Discord.MessageEmbed()
         .setTitle(`⚠️Errore di codice⚠️`)

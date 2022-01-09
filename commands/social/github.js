@@ -3,7 +3,7 @@ module.exports = {
     description: `Per avere il github di Rogi`,
     execute(message) {
         var embed = new Discord.MessageEmbed()
-            .setTitle(`RodariRogi23`)
+            .setTitle(`Rogi`)
             .setURL(`https://github.com/RodariRogi23`)
             .setColor(`YELLOW`)
             .setDescription(`:v: Questo è l'account **github** di Rogi, se vuoi facci un salto!`)

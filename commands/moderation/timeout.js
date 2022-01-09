@@ -1,7 +1,7 @@
 module.exports = {
     name: `timeout`,
     description: `Mette in timeout un utente`,
-    onlyOwner: true,
+    onlyHelpers: true,
     execute(message, args) {
         let time = args[1]
         let reason = args.slice(2).join(` `)
