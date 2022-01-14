@@ -9,7 +9,7 @@ module.exports = {
             .setDescription(`🔴Mi sto restartando!`)
         message.reply({embeds: [embed]}).then(msg => {
             client.destroy()
-            client.login(config.token2)
+            client.login(config.token)
             console.clear()
             console.log(`Restarting del Bot...`)
             console.log(`Bot online!`)

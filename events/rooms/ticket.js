@@ -2,15 +2,15 @@
     name: `ready`,
     execute() {
         let embed = new Discord.MessageEmbed()
-            .setTitle(`🎫TICKETS🎫`)
-            .setDescription(`Clicca il pulsante qui sotto per aprire un ticket\n**Non aprire ticket inutili, altrimenti verranno presi provvedimenti**`)
-            .setColor(`YELLOW`)
+            .setTitle(`🔇MUTATO🔇`)
+            .setDescription(`Sei stato mutato! Se non lo ritieni corretto clicca il pulsante qui sotto per parlare con i moderatori!`)
+            .setColor(`RED`)
         let row = new Discord.MessageActionRow()
             .addComponents(new Discord.MessageButton()
-                .setLabel(`Apri un ticket`)
-                .setStyle(`PRIMARY`)
+                .setLabel(`Parla con i moderatori`)
+                .setStyle(`DANGER`)
                 .setCustomId(`Ticket`))
-        client.channels.cache.get(config.idcanali.needhelp).send({embeds: [embed], components: [row]}).then(msg => {
+        client.channels.cache.get(config.idcanali.muted).send({embeds: [embed], components: [row]}).then(msg => {
             msg.pin()
         })
     }
