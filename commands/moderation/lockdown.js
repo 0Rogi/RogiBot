@@ -35,7 +35,7 @@ module.exports = {
             VIEW_CHANNEL: true,
         })
         let embed = new Discord.MessageEmbed()
-            .setTItle(`Lockdown`)
+            .setTitle(`Lockdown`)
             .setDescription(`:white_check_mark: Sistema di lockdown attivato. Nessun utente tranne gli staffer, potranno vedere i canali`)
             .setColor(`GREEN`)
         message.reply({embeds: [embed]})
@@ -54,7 +54,7 @@ module.exports = {
             VIEW_CHANNEL: false,
         })
         let embed = new Discord.MessageEmbed()
-            .setTItle(`Lockdown`)
+            .setTitle(`Lockdown`)
             .setDescription(`:white_check_mark: Sistema di lockdown disattivato. Gli utenti potranno di nuovo vedere i canali`)
             .setColor(`GREEN`)
         message.reply({embeds: [embed]})
