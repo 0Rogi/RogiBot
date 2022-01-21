@@ -1,7 +1,7 @@
 module.exports = {
     name: `messageUpdate`,
     execute(oldMessage, newMessage) {
-        if(oldMessage.author.bot) return
+        if(oldMessage.author.bot || oldMessage.guild != config.idServer.idServer) return
         const channel = client.channels.cache.get(config.idcanali.logs)
         let user = oldMessage.author
         let embed = new Discord.MessageEmbed()

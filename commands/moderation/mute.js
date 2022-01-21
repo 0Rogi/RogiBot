@@ -14,7 +14,7 @@ module.exports = {
             message.reply({embeds: [embed]})
             return
         }
-        if(utente.roles.cache.has(config.idruoli.staff)) {
+        if(utente.roles.cache.has(config.idruoli.staff) && !message.member.roles.cache.has(config.idruoli.owner)) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
                 .setDescription(`:x: ${utente} è uno staffer, non posso mutarlo`)

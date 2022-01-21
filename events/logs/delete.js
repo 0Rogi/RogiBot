@@ -1,7 +1,7 @@
 module.exports = {
     name: `messageDelete`,
     execute(message) {
-        if(message.member.bot) return
+        if(message.author.bot || message.guild != config.idServer.idServer) return
         const channel = client.channels.cache.get(config.idcanali.logs)
         let user = message.author
         if(message.attachment) return

@@ -14,6 +14,14 @@ module.exports = {
             message.reply({embeds: [embed]})
             return
         }
+        if(utente.roles.cache.has(config.idruoli.staff) && !message.member.roles.cache.has(config.idruoli.owner)) {
+            let embed = new Discord.MessageEmbed()
+                .setTitle(`Errore`)
+                .setDescription(`:x: ${utente} è uno staffer, non posso cambiargli il nome`)
+                .setColor(`RED`)
+            message.reply({embeds: [embed]})
+            return
+        }
         let nick = args.slice(1).join(` `)
         if(nick == ``) {
             let embedserver = new Discord.MessageEmbed()

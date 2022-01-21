@@ -1,6 +1,7 @@
 module.exports = {
     name: `guildMemberAdd`,
     execute(member) {
+        if(message.guild != config.idServer.idServer) return
         const channel = client.channels.cache.get(config.idcanali.logs)
         let embed = new Discord.MessageEmbed()
             .setTitle("Nuovo membro!")
