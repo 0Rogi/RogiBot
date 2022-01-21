@@ -8,6 +8,7 @@ const fs = require(`fs`);
 global.config = require(`./JSON/config.json`)
 global.ephiphany = require(`./JSON/ephiphany.json`)
 global.lyricsFinder = require('lyrics-finder')
+global.checkspam = new Map()
 client.login(config.token);
 //No Channel Embed
 global.nochannel = new Discord.MessageEmbed()
@@ -103,7 +104,7 @@ client.on(`messageCreate`, message => {
     comando.execute(message, args);
 })
 
-//? Christmas Countdown + Members and Subscribers Counter + Lockdown Automatico
+//? Christmas Countdown + Members and Subscribers Counter + Youtube Notifier
 setInterval(function () {
     //Member Counter
     var server = client.guilds.cache.get(config.idServer.idServer);
@@ -115,6 +116,23 @@ setInterval(function () {
     ytch.getChannelInfo(`UCw7lKb-XBW4ApE0puSbJLFQ`).then((response) => {
         var canaleyoutube = client.channels.cache.get(config.idcanali.iscritti)
         canaleyoutube.setName(`🎬│Subscribers: ${response.subscriberCount}`)
+    })
+    //Youtube Notifier
+    ytch.getChannelVideos(`UCw7lKb-XBW4ApE0puSbJLFQ`, `newest`).then(async response => {
+        var idVideo = response.items[0]?.videoId
+        if (!idVideo) return
+
+        client.channels.cache.get(`813375357428170792`).messages.fetch()
+            .then(messages => {
+                var giaMandato = false;
+                messages.forEach(msg => {
+                    if (msg.content.includes(idVideo)) giaMandato = true;
+                });
+
+                if (!giaMandato) {
+                    client.channels.cache.get(`813375357428170792`).send(`**${response.items[0].author}** Ha pubblicato un nuovo video: **${response.items[0].title}**!! Che aspetti? Corri a vederlo!!\nhttps://www.youtu.be/${idVideo}`)
+                }
+            })
     })
     //*Christmas Countdown
     /*const currenttime = new Date()
