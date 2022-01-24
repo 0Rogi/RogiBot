@@ -39,18 +39,22 @@ for (const folder of commandsFolder) {
 }
 
 //!Event Handler
-const eventsFiles = fs.readdirSync(`./events`).filter(file => file.endsWith(`.js`));
-for (const file of eventsFiles) {
-    const event = require(`./events/${file}`);
-    client.on(event.name, (...args) => event.execute(...args))
-}
-
 const eventsFolders = fs.readdirSync('./events');
 for (const folder of eventsFolders) {
-    const eventsFiles = fs.readdirSync(`./events/${folder}`).filter(file => file.endsWith('.js'));
+    const eventsFiles = fs.readdirSync(`./events/${folder}`)
+
     for (const file of eventsFiles) {
-        const event = require(`./events/${folder}/${file}`);
-        client.on(event.name, (...args) => event.execute(...args));
+        if (file.endsWith(".js")) {
+            const event = require(`./events/${folder}/${file}`);
+            client.on(event.name, (...args) => event.execute(...args));
+        }
+        else {
+            const eventsFiles2 = fs.readdirSync(`./events/${folder}/${file}`)
+            for (const file2 of eventsFiles2) {
+                const event = require(`./events/${folder}/${file}/${file2}`);
+                client.on(event.name, (...args) => event.execute(...args));
+            }
+        }
     }
 }
 
@@ -135,47 +139,7 @@ setInterval(function () {
             })
     })
 }, 1000 * 60)
-/*setInterval(function () {
-    //*Canale Befana
-    var hour = new Date().getHours();
-    var minutes = new Date().getMinutes();
-    if (hour == `23` && minutes == `00`) {
-        let channel = client.channels.cache.get(ephiphany.channel)
-        let server = client.guilds.cache.get(config.idServer.idServer)
-        channel.permissionOverwrites.set([
-            {
-                id: server.id,
-                allow: [`VIEW_CHANNEL`],
-                deny: [`SEND_MESSAGES`]
-            }
-        ])
-        let row = new Discord.MessageActionRow()
-            .addComponents(
-                new Discord.MessageButton()
-            .setLabel(`Apri la tua Calza`)
-            .setStyle(`PRIMARY`)
-            .setCustomId(`Epifania`))
-        let attachment = new Discord.MessageAttachment(`./Images/Ephiphany-Sock.png`)
-        channel.send({content: `Oggi è il giorno della **Befana**, quindi avrete ricevuto sicuramente molti dolci...\nPer festeggiare ancor di più questo giorno, potrete aprire **la vostra calza della befana** anche qui nel server discord!!\nNella calza qui sotto ci sono ben **4 regali**!!\nPremi il **pulsante qui sotto** e vedi cosa hai trovato :wink:`, components: [row], files: [attachment]})
-    }
-    //*Christmas Countdown
-    const currenttime = new Date()
-    const Christmas = new Date(`December 25 2021 00:00:00`)
-    const diff = Christmas - currenttime
-    const days = Math.floor(diff / 1000 / 60 / 60 / 24)
-    const hours = Math.floor(diff / 1000 / 60 / 60) % 24 + 1
-    const seconds = Math.floor(diff / 1000) % 60
-    const minutes = Math.floor(diff / 1000 / 60) % 60
-    const canale = client.channels.cache.get(config.idcanali.natale)
-    console.log(days, hours, seconds, currenttime)
-    if(days > 0 && days != 0) {
-        canale.setName(`🎅│-${days} giorni a Natale!`)
-    } else if(hours > 0 && days < 0 || days == 0) {
-        canale.setName(`🎅│-${hours} ore e ${minutes} minuti`)
-    } else if(hours < 0 && minutes < 0) {
-        canale.setName(`🎅│BUON NATALE`)
-    }
-}, 1000 * 60)*/
+
 //!Code error
 process.on(`uncaughtException`, err => {
     let embed = new Discord.MessageEmbed()
