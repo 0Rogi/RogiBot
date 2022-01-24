@@ -36,7 +36,7 @@ module.exports = {
                     message.member.timeout(1000 * 60 * 10, `Rilevazione di Spam`)
                     message.channel.setRateLimitPerUser(10)
                     message.channel.send({embeds: [embed], components: [row]})
-                    client.channels.cache.get(config.idcanali.logs).send({embeds: [embed2]})
+                    client.channels.cache.get(config.idcanali.logs.moderation).send({embeds: [embed2]})
                 } else {
                     data.msgs = msgs;
                     checkspam.set(message.author.id, data)

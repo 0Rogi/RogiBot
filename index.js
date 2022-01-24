@@ -134,26 +134,9 @@ setInterval(function () {
                 }
             })
     })
-    //*Christmas Countdown
-    /*const currenttime = new Date()
-    const Christmas = new Date(`December 25 2021 00:00:00`)
-    const diff = Christmas - currenttime
-    const days = Math.floor(diff / 1000 / 60 / 60 / 24)
-    const hours = Math.floor(diff / 1000 / 60 / 60) % 24 + 1
-    const seconds = Math.floor(diff / 1000) % 60
-    const minutes = Math.floor(diff / 1000 / 60) % 60
-    const canale = client.channels.cache.get(config.idcanali.natale)
-    console.log(days, hours, seconds, currenttime)
-    if(days > 0 && days != 0) {
-        canale.setName(`🎅│-${days} giorni a Natale!`)
-    } else if(hours > 0 && days < 0 || days == 0) {
-        canale.setName(`🎅│-${hours} ore e ${minutes} minuti`)
-    } else if(hours < 0 && minutes < 0) {
-        canale.setName(`🎅│BUON NATALE`)
-    }*/
 }, 1000 * 60)
-//*Canale befana
 /*setInterval(function () {
+    //*Canale Befana
     var hour = new Date().getHours();
     var minutes = new Date().getMinutes();
     if (hour == `23` && minutes == `00`) {
@@ -175,8 +158,24 @@ setInterval(function () {
         let attachment = new Discord.MessageAttachment(`./Images/Ephiphany-Sock.png`)
         channel.send({content: `Oggi è il giorno della **Befana**, quindi avrete ricevuto sicuramente molti dolci...\nPer festeggiare ancor di più questo giorno, potrete aprire **la vostra calza della befana** anche qui nel server discord!!\nNella calza qui sotto ci sono ben **4 regali**!!\nPremi il **pulsante qui sotto** e vedi cosa hai trovato :wink:`, components: [row], files: [attachment]})
     }
+    //*Christmas Countdown
+    const currenttime = new Date()
+    const Christmas = new Date(`December 25 2021 00:00:00`)
+    const diff = Christmas - currenttime
+    const days = Math.floor(diff / 1000 / 60 / 60 / 24)
+    const hours = Math.floor(diff / 1000 / 60 / 60) % 24 + 1
+    const seconds = Math.floor(diff / 1000) % 60
+    const minutes = Math.floor(diff / 1000 / 60) % 60
+    const canale = client.channels.cache.get(config.idcanali.natale)
+    console.log(days, hours, seconds, currenttime)
+    if(days > 0 && days != 0) {
+        canale.setName(`🎅│-${days} giorni a Natale!`)
+    } else if(hours > 0 && days < 0 || days == 0) {
+        canale.setName(`🎅│-${hours} ore e ${minutes} minuti`)
+    } else if(hours < 0 && minutes < 0) {
+        canale.setName(`🎅│BUON NATALE`)
+    }
 }, 1000 * 60)*/
-
 //!Code error
 process.on(`uncaughtException`, err => {
     let embed = new Discord.MessageEmbed()

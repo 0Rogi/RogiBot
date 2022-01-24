@@ -49,7 +49,7 @@ module.exports = {
             .setTitle(`🎫Nuovo Ticket🎫`)
             .setColor(`YELLOW`)
             .setDescription(`${user} ha aperto un ticket: <#${canale.id}>`)
-        client.channels.cache.get(config.idcanali.logs).send({embeds: [embed]})
+        client.channels.cache.get(config.idcanali.logs.ticket).send({embeds: [embed]})
         interaction.deferUpdate()
         })
     }
