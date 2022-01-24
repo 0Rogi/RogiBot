@@ -25,5 +25,15 @@ module.exports = {
         setTimeout(() => {
             message.channel.bulkDelete(count, true)
         }, 500);
+        let embedlog = new Discord.MessageEmbed()
+                .setTitle(`🧹CLEAR🧹`)
+                .setColor(`RED`)
+                .setDescription(`[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
+                .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                .addField(`🔨Moderatore:`, `Nome: **${message.member.user.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
+                .addField(`Stanza:`, message.channel.toString())
+                .addField(`Messaggi Eliminati:`, count.toString())
+        let channel = client.channels.cache.get(config.idcanali.logs.moderation)
+        channel.send({embeds: [embedlog]})
     }
 }

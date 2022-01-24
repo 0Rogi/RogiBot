@@ -51,12 +51,24 @@ module.exports = {
         var embed = new Discord.MessageEmbed()
             .setTitle(`Slowmode`)
             .setColor(`GREEN`)
+        let notime = false
         if (time == 0) {
             embed.setDescription(`:white_check_mark: Slowmode disattivata`)
+            notime = true
         }
         else {
             embed.setDescription(`:white_check_mark: Slowmode impostata a ${tempo}`)
         }
+        let embedlog = new Discord.MessageEmbed()
+                .setTitle(`⛓️SLOWMODE⛓️`)
+                .setColor(`RED`)
+                .setDescription(`[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
+                .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                .addField(`🔨Moderatore:`, `Nome: **${message.member.user.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
+                .addField(`Stanza:`, message.channel.toString())
+                .addField(`Nuovo Slowmode:`, notime ? `_Slowmode disattivata_` : tempo.toString())
+        let channel = client.channels.cache.get(config.idcanali.logs.moderation)
+        channel.send({embeds: [embedlog]})
         message.reply({embeds: [embed]})
-    },
-};
+    }
+}

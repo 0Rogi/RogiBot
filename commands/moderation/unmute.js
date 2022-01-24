@@ -30,10 +30,27 @@ module.exports = {
             .setTitle(`Unmute`)
             .setDescription(`Sei stato smutato in ${message.guild.name}`)
             .setColor(`RED`)
+        let dm = true
         utente.send({embeds: [embedutente]}).catch(() => { 
             embedserver.setDescription(`:white_check_mark: ${utente} è ora smutato\n⚠️NON POSSO AVVISARE QUESTO UTENTE IN DM⚠️`)
+            dm = false
         })
         setTimeout(() => {
+            let embed = new Discord.MessageEmbed()
+                .setTitle(`🔉UNMUTE🔉`)
+                .setColor(`GREEN`)
+                .setDescription(`⚠️L'utente **è stato** avvisato nei dm⚠️\n[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
+                .setThumbnail(utente.displayAvatarURL({
+                    dynamic: true,
+                    format: `png`,
+                    size: 512
+                }))
+                .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                .addField(`🔨Moderatore:`, `Nome: **${message.member.user.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
+                .addField(`👤Utente:`, `Nome: **${utente.user.username}**, ID: **${utente.id}**\n||${utente.toString()}||`)
+            if(dm == false) embed.setDescription(`⚠️L'utente **non è stato** avvisato nei dm⚠️\n[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
+            let channel = client.channels.cache.get(config.idcanali.logs.moderation)
+            channel.send({embeds: [embed]})
             message.reply({embeds: [embedserver]})
             utente.roles.remove(config.idruoli.muted)
         }, 1000);
