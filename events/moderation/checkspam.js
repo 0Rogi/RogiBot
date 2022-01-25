@@ -27,6 +27,11 @@ module.exports = {
                         .setTitle(`Spam Rilevato`)
                         .setColor(`RED`)
                         .setDescription(`È stato rilevato uno **spam** da parte di ${message.author} in ${message.channel}, l'utente è stato messo in timeout`)
+                        .setThumbnail(message.author.displayAvatarURL({
+                            dynamic: true,
+                            format: `png`,
+                            size: 512
+                        }))
                     let button = new Discord.MessageButton()
                         .setStyle(`PRIMARY`)
                         .setLabel(`Annulla Slowmode`)

@@ -81,7 +81,7 @@ module.exports = {
                 format: `png`,
                 size: 512
             }))
-            .setColor(`RED`)
+            .setColor(`YELLOW`)
         channel.send({embeds: [embed]})
     }
 }

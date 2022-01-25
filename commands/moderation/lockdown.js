@@ -72,6 +72,11 @@ module.exports = {
                 .setTitle(`💀LOCKDOWN💀`)
                 .setColor(`RED`)
                 .setDescription(`[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
+                .setThumbnail(message.author.displayAvatarURL({
+                    dynamic: true,
+                    format: `png`,
+                    size: 512
+                }))
                 .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
                 .addField(`🔨Moderatore:`, `Nome: **${message.member.user.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
                 .addField(`💀Stato del lockdown:`, `🔴Disattivo`)

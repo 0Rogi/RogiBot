@@ -46,8 +46,8 @@ module.exports = {
         })
         setTimeout(() => {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`🖊️Nome modificato🖊️`)
-                .setColor(`RED`)
+                .setTitle(`🖊️NOME MODIFICATO🖊️`)
+                .setColor(`YELLOW`)
                 .setDescription(`⚠️L'utente **è stato** avvisato nei dm⚠️\n[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
                 .setThumbnail(utente.displayAvatarURL({
                     dynamic: true,

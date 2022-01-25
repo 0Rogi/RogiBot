@@ -62,7 +62,7 @@ for (const folder of eventsFolders) {
 client.on(`messageCreate`, message => {
     const prefix = `!`;
 
-    if (!message.content.startsWith(prefix) || message.author.bot) return
+    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild) return
 
     const args = message.content.toLowerCase().slice(prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
