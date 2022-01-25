@@ -1,6 +1,5 @@
 module.exports = {
     name: `clear`,
-    description: `Cancella dei messaggi`,
     onlyHelpers: true,
     async execute(message) {
         let count = message.content.slice(7);

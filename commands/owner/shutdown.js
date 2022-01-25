@@ -1,9 +1,8 @@
 module.exports = {
     name: `shutdown`,
-    description: `Spegne il bot`,
     onlyOwner: true,
     execute(message) {
-        var embed = new Discord.MessageEmbed()
+        let embed = new Discord.MessageEmbed()
             .setTitle(`RESTART`)
             .setColor(`RED`)
             .setDescription(`🔴Bot offline`)

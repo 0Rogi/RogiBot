@@ -1,6 +1,5 @@
 module.exports = {
     name: `friend`,
-    description: `Per diventare un rogi's friend`,
     onlyOwner: true,
     execute(message, args) {
         let id = args[0]

@@ -1,6 +1,5 @@
 module.exports = {
     name: `lyrics`,
-    description: `Prende il testo di una canzone`,
     async execute(message, args) {
         if(!message.member.roles.cache.has(ephiphany.fourthgift.ruolo)) {
             let embed = new Discord.MessageEmbed()

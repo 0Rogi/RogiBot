@@ -2,7 +2,7 @@ module.exports = {
     name: `slowmode`,
     onlyHelpers: true,
     async execute(message) {
-        var time = message.content.split(/\s+/)[1];
+        let time = message.content.split(/\s+/)[1];
         if (!time) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
@@ -33,7 +33,7 @@ module.exports = {
                 return
             }
 
-            var tempo = ms(time, { long: true });
+            let tempo = ms(time, { long: true });
             tempo = tempo + ` `
             tempo = tempo.replace(`second `, `secondo`)
             tempo = tempo.replace(`seconds`, `secondi`)
@@ -48,7 +48,7 @@ module.exports = {
 
         message.channel.setRateLimitPerUser(parseInt(time) / 1000)
 
-        var embed = new Discord.MessageEmbed()
+        let embed = new Discord.MessageEmbed()
             .setTitle(`Slowmode`)
             .setColor(`GREEN`)
         let notime = false

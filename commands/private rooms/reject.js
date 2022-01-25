@@ -1,8 +1,7 @@
 module.exports = {
     name: `preject`,
-    description: `Kicka un utente in particolare dalla stanza privata`,
     execute(message, args) {
-        var channel = message.member.voice.channel
+        let channel = message.member.voice.channel
         if(!channel) return message.reply({embeds: [nochannel]})
         if(channel.parent.id != config.idcanali.proomsparent) return message.reply({embeds: [nopvt]})
         if(message.author.username != channel.name) return message.reply({embeds: [noperm]})
@@ -19,7 +18,7 @@ module.exports = {
         }
         channel.permissionOverwrites.create(user.id, {CONNECT: false})
         user.voice.disconnect()
-        const embed = new Discord.MessageEmbed()
+        let embed = new Discord.MessageEmbed()
             .setColor(`GREEN`)
             .setDescription(`${user} adesso non puo' più entrare in <#${channel.id}>`)
         message.reply({embeds: [embed]})

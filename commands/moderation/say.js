@@ -1,10 +1,9 @@
 module.exports = {
     name: `say`,
-    description: `Per annunciare qualcosa dagli staffer`,
     onlyHelpers: true,
     execute(message){
-        const args = message.content.split(` `).slice(1);
-        var saytext = args.join(` `);
+        let args = message.content.split(` `).slice(1);
+        let saytext = args.join(` `);
         if(!saytext) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
@@ -13,7 +12,7 @@ module.exports = {
             message.reply({embeds: [embed]})
             return
         }
-        const embed = new Discord.MessageEmbed()
+        let embed = new Discord.MessageEmbed()
             .setTitle(`ANNUNCIO DALLO STAFF`)
             .setColor(`YELLOW`)
             .setDescription(saytext.toString())

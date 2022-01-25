@@ -1,6 +1,5 @@
 module.exports = {
     name: `kick`,
-    description: `Butta fuori un utente dal server`,
     onlyMods: true,
     execute(message, args) {
         let id = args[0]

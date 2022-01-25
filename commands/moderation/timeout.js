@@ -1,6 +1,5 @@
 module.exports = {
     name: `timeout`,
-    description: `Mette in timeout un utente`,
     onlyHelpers: true,
     execute(message, args) {
         let time = args[1]

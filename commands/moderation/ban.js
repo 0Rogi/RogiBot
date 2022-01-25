@@ -1,6 +1,5 @@
 module.exports = {
     name: `ban`,
-    description: `Esclude un utente dal server`,
     onlyMods: true,
     execute(message, args) {
         let id = args[0]

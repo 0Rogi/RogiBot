@@ -1,20 +1,19 @@
 module.exports = {
     name: `serverinfo`,
-    description: `Info sul server`,
     execute(message) {
         let server = message.member.guild;
-        var name = server.name
-        var verificationlevel = server.verificationLevel
-        var owner = server.members.cache.get(server.ownerId).user.username
-        var botCount = server.members.cache.filter(member => member.user.bot).size;
-        var utentiCount = server.memberCount - botCount;
-        var creationdate = server.createdAt
-        var categoryCount = server.channels.cache.filter(c => c.type == `GUILD_CATEGORY`).size
-        var textCount = server.channels.cache.filter(c => c.type == `GUILD_TEXT`).size
-        var voiceCount = server.channels.cache.filter(c => c.type == `GUILD_VOICE`).size
-        var newsCount = server.channels.cache.filter(c => c.type == `GUILD_NEWS`).size
+        let name = server.name
+        let verificationlevel = server.verificationLevel
+        let owner = server.members.cache.get(server.ownerId).user.username
+        let botCount = server.members.cache.filter(member => member.user.bot).size;
+        let utentiCount = server.memberCount - botCount;
+        let creationdate = server.createdAt
+        let categoryCount = server.channels.cache.filter(c => c.type == `GUILD_CATEGORY`).size
+        let textCount = server.channels.cache.filter(c => c.type == `GUILD_TEXT`).size
+        let voiceCount = server.channels.cache.filter(c => c.type == `GUILD_VOICE`).size
+        let newsCount = server.channels.cache.filter(c => c.type == `GUILD_NEWS`).size
 
-        const embed = new Discord.MessageEmbed()
+        let embed = new Discord.MessageEmbed()
             .setTitle(name)
             .setThumbnail(server.iconURL())
             .setColor(`YELLOW`)

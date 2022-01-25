@@ -1,6 +1,5 @@
 module.exports = {
     name: `demote`,
-    description: `Retrocede qualcuno`,
     onlyOwner:true,
     execute(message, args) {
         let id = args[0]

@@ -1,10 +1,9 @@
 module.exports = {
     name: `lockdown`,
-    description: `Attiva/Disattiva il sistema di lockdown (blocco del server)`,
     onlyHelpers: true,
     execute(message) {
-        const args = message.content.split(` `).slice(1);
-        var lock = args.join(` `);
+        let args = message.content.split(` `).slice(1);
+        let lock = args.join(` `);
         if(!lock) {
             let embed = new Discord.MessageEmbed()
             .setTitle(`Errore`)
@@ -22,12 +21,12 @@ module.exports = {
         return
         }
         if(lock == `on`) {
-        var everyone = message.guild.roles.cache.find(r => r.name === `@everyone`);
-        var fan = message.guild.roles.cache.find(r => r.id === config.idruoli.fan);
+        let everyone = message.guild.roles.cache.find(r => r.name === `@everyone`);
+        let fan = message.guild.roles.cache.find(r => r.id === config.idruoli.fan);
         everyone.setPermissions([`SEND_MESSAGES`, `EMBED_LINKS`, `READ_MESSAGE_HISTORY`, `CONNECT`, `USE_VAD`]);
-        var lockdown = client.channels.cache.get(config.idcanali.lockdown);
-        var testualeyt = client.channels.cache.get(config.idcanali.testualeyt)
-        var passyoutuber =  message.guild.roles.cache.find(r => r.id === config.idruoli.passyoutuber);
+        let lockdown = client.channels.cache.get(config.idcanali.lockdown);
+        let testualeyt = client.channels.cache.get(config.idcanali.testualeyt)
+        let passyoutuber =  message.guild.roles.cache.find(r => r.id === config.idruoli.passyoutuber);
         testualeyt.permissionOverwrites.edit(passyoutuber, {
             VIEW_CHANNEL: false,
         })
@@ -51,12 +50,12 @@ module.exports = {
 
     }
     if(lock == `off`) {
-        var everyone = message.guild.roles.cache.find(r => r.name === `@everyone`);
-        var fan = message.guild.roles.cache.find(r => r.id === config.idruoli.fan);
+        let everyone = message.guild.roles.cache.find(r => r.name === `@everyone`);
+        let fan = message.guild.roles.cache.find(r => r.id === config.idruoli.fan);
         everyone.setPermissions([`SEND_MESSAGES`, `VIEW_CHANNEL`, `READ_MESSAGE_HISTORY`, `CONNECT`, `SPEAK`, `USE_VAD`]);
-        var lockdown = client.channels.cache.get(config.idcanali.lockdown);
-        var testualeyt = client.channels.cache.get(config.idcanali.testualeyt)
-        var passyoutuber =  message.guild.roles.cache.find(r => r.id === config.idruoli.passyoutuber);
+        let lockdown = client.channels.cache.get(config.idcanali.lockdown);
+        let testualeyt = client.channels.cache.get(config.idcanali.testualeyt)
+        let passyoutuber =  message.guild.roles.cache.find(r => r.id === config.idruoli.passyoutuber);
         testualeyt.permissionOverwrites.edit(passyoutuber, {
             VIEW_CHANNEL: true,
         })

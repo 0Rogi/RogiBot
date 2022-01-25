@@ -1,6 +1,5 @@
 module.exports = {
     name: `userinfo`,
-    description: `Info su un user`,
     execute(message, args) {
         let id = args[0]
         let server = client.guilds.cache.get(config.idServer.idServer)
@@ -10,7 +9,7 @@ module.exports = {
         if(status == "idle") status = "🟡Inattivo"
         if(status == "dnd") status = "🔴Non disturbare"
         if(status == "offline") status = "⚫Offline"
-        var embed = new Discord.MessageEmbed()
+        let embed = new Discord.MessageEmbed()
             .setTitle(user.user.username.toString())
             .setThumbnail(user.user.avatarURL({ dynamic: true }))
             .setColor(`YELLOW`)

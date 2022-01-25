@@ -1,6 +1,5 @@
 module.exports = {
     name: `mute`,
-    description: `Muta un utente nel server`,
     onlyHelpers: true,
     execute(message, args) {
         let id = args[0]

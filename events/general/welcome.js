@@ -1,6 +1,5 @@
 module.exports = {
     name: `guildMemberAdd`,
-    description: `Messaggio di benvenuto`,
     async execute(member) {
         if (member.guild.id != config.idServer.idServer) return
         if(member.id == `853927926680911913`) {

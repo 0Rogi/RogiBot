@@ -144,7 +144,7 @@ setInterval(function () {
 }, 1000 * 60)
 
 //!Code error
-/*process.on(`uncaughtException`, err => {
+process.on(`uncaughtException`, err => {
     let embed = new Discord.MessageEmbed()
         .setTitle(`⚠️Errore di codice⚠️`)
         .setDescription(err.toString())
@@ -157,4 +157,4 @@ process.on(`unhandledRejection`, err => {
         .setDescription(err.toString())
         .setColor(`RED`)
     client.channels.cache.get(config.idcanali.codeerror).send({embeds: [embed]})
-})*/
+})

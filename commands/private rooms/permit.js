@@ -1,8 +1,7 @@
 module.exports = {
     name: `ppermit`,
-    description: `Permette ad un utente in particolare di entrare nella stanza privata`,
     execute(message, args) {
-        var channel = message.member.voice.channel
+        let channel = message.member.voice.channel
         if(!channel) return message.reply({embeds: [nochannel]})
         if(channel.parent.id != config.idcanali.proomsparent) return message.reply({embeds: [nopvt]})
         if(message.author.username != channel.name) return message.reply({embeds: [noperm]})
@@ -18,7 +17,7 @@ module.exports = {
             return
         }
         channel.permissionOverwrites.create(user.id, {CONNECT: true})
-        const embed = new Discord.MessageEmbed()
+        let embed = new Discord.MessageEmbed()
             .setColor(`GREEN`)
             .setDescription(`${user} adesso puo' entrare in <#${channel.id}>`)
         message.reply({embeds: [embed]})

@@ -1,6 +1,5 @@
 module.exports = {
     name: `rps`,
-    description: `Per giocare a rock paper scissor`,
     execute(message, args) {
         if(!message.member.roles.cache.has(ephiphany.thirdgift.ruolo)) {
             let embed = new Discord.MessageEmbed()

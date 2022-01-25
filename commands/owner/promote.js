@@ -1,6 +1,5 @@
 module.exports = {
     name: `promote`,
-    description: `Promuove qualcuno`,
     onlyOwner: true,
     execute(message, args) {
         let id = args[0]

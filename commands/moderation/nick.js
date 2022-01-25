@@ -1,6 +1,5 @@
 module.exports = {
     name: `nick`,
-    description: `Cambia il nome di un utente`,
     onlyHelpers: true,
     execute(message, args) {
         let id = args[0]
