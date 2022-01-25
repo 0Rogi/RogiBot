@@ -6,10 +6,13 @@ global.ytch = require(`yt-channel-info`);
 global.client = new Discord.Client({intents: 32767, allowedMentions: { parse: [] }});
 const fs = require(`fs`);
 global.config = require(`./JSON/config.json`)
+global.parolacce = require(`./JSON/badwords.json`)
+global.bestemmie = require(`./JSON/bestemmie.json`)
 global.ephiphany = require(`./JSON/ephiphany.json`)
 global.lyricsFinder = require('lyrics-finder')
 global.checkspam = new Map()
 client.login(config.token);
+global.test = true
 //No Channel Embed
 global.nochannel = new Discord.MessageEmbed()
     .setTitle(`Errore`)
@@ -141,7 +144,7 @@ setInterval(function () {
 }, 1000 * 60)
 
 //!Code error
-process.on(`uncaughtException`, err => {
+/*process.on(`uncaughtException`, err => {
     let embed = new Discord.MessageEmbed()
         .setTitle(`⚠️Errore di codice⚠️`)
         .setDescription(err.toString())
@@ -154,4 +157,4 @@ process.on(`unhandledRejection`, err => {
         .setDescription(err.toString())
         .setColor(`RED`)
     client.channels.cache.get(config.idcanali.codeerror).send({embeds: [embed]})
-})
+})*/
