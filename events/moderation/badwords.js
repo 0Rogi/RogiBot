@@ -9,7 +9,7 @@ module.exports = {
             if(message.content.toLowerCase().includes(parola)) {
                 var aiLatiDaNonCensurare = Math.floor(Math.floor(parola.length) / 3);
                 var parolaCensurata = parola.slice(0, -1 * (parola.length - aiLatiDaNonCensurare)) + '#'.repeat(parola.length - aiLatiDaNonCensurare - aiLatiDaNonCensurare) + parola.slice(parola.length - aiLatiDaNonCensurare)
-                censurato = message.content.replace(eval(`/${parola}/g`), `**${parolaCensurata}**`)
+                censurato = message.content.toLowerCase().replace(eval(`/${parola}/g`), `**${parolaCensurata}**`)
                 messaggio = message.content.replace(eval(`/${parola}/g`), `###`)
                 parolacciatrovata = true
             }
@@ -17,7 +17,7 @@ module.exports = {
         bestemmie.forEach(bestemmia => {
             if(message.content.toLowerCase().includes(bestemmia)) {
                 bestemmiatrovata = true
-                censurato = message.content.replace(eval(`/${bestemmia}/g`), "*Dio bravo*")
+                censurato = message.content.toLowerCase().replace(eval(`/${bestemmia}/g`), "*Dio bravo*")
             }
         })
         if(parolacciatrovata) {
