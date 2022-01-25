@@ -12,7 +12,7 @@ global.ephiphany = require(`./JSON/ephiphany.json`)
 global.lyricsFinder = require('lyrics-finder')
 global.checkspam = new Map()
 client.login(config.token);
-global.test = true
+global.delete = true
 //No Channel Embed
 global.nochannel = new Discord.MessageEmbed()
     .setTitle(`Errore`)

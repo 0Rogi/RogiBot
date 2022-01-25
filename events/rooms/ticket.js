@@ -37,7 +37,7 @@ module.exports = {
             },
             {
                 id:user.id,
-                allow: [`VIEW_CHANNEL`]
+                allow: [`VIEW_CHANNEL`, `ATTACH_FILES`]
             },
             {
                 id: config.idruoli.staff,

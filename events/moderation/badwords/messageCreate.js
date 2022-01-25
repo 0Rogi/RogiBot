@@ -21,7 +21,7 @@ module.exports = {
             }
         })
         if(parolacciatrovata) {
-            global.test = false
+            global.delete = false
             message.delete()
                 let dm = true
                 let embed = new Discord.MessageEmbed()
@@ -44,11 +44,8 @@ module.exports = {
                 let embed3 = new Discord.MessageEmbed()
                     .setTitle(`🤬BAD WORD🤬`)
                     .setColor(`RED`)
-                    .setThumbnail(message.author.displayAvatarURL({
-                        dynamic: true,
-                        format: `png`,
-                        size: 512
-                    }))
+                    .setAuthor({name: message.author.username, iconURL: message.author.displayAvatarURL()})
+                    .setFooter({text: `User ID: ${message.author.id}`})
                     .setDescription(censurato.toString())
              await message.author.send({embeds: [embed2]}).catch(() => { dm = false })
             if(dm == false) embed.setDescription(`⚠️L'utente **non** è stato avvisato nei dm⚠️`)
@@ -57,18 +54,15 @@ module.exports = {
             message.channel.send({embeds: [embed3]})
         }
         if(bestemmiatrovata) {
-            global.test = false
+            global.delete = false
             let dm = true
             message.delete()
             let embed = new Discord.MessageEmbed()
                 .setTitle(`🤬BESTEMMIA🤬`)
                 .setColor(`RED`)
-                .setThumbnail(message.author.displayAvatarURL({
-                    dynamic: true,
-                    format: `png`,
-                    size: 512
-                }))
                 .setDescription(censurato.toString())
+                .setAuthor({name: message.author.username, iconURL: message.author.displayAvatarURL()})
+                .setFooter({text: `User ID: ${message.author.id}`})
             let embed2 = new Discord.MessageEmbed()
                 .setTitle(`MODERA IL LINGUAGGIO`)
                 .setDescription(`Hai bestemmiato in ${message.guild.name}, modera il linguaggio, il tuo messaggio: **${message.content}**`)
