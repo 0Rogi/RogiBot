@@ -8,7 +8,7 @@ module.exports = {
         let logs = fetchedLogs.entries.first()
         if(!logs) return
         let {executor, target, reason} = logs
-        if(executor.bot) return
+        if(executor.bot || logs.createdAt < kick.joinedAt || logs.target.id != kick.id || new Date().getTime() - logs.createdAt > 10000) return
         if(reason == `` || !reason) reason = `Nessun Motivo`
         let embed = new Discord.MessageEmbed()
             .setTitle(`🏓KICK MANUALE🏓`)
