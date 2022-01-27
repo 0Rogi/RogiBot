@@ -1,7 +1,7 @@
 module.exports = {
     name: `timeout`,
     onlyHelpers: true,
-    execute(message, args) {
+    async execute(message, args) {
         let time = args[1]
         let reason = args.slice(2).join(` `)
         let id = args[0]
@@ -10,13 +10,14 @@ module.exports = {
         if(!utente) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Inserisci un utente valido`)
+                .setDescription(`*Non riesco a trovare l'utente\n\`!timeout [utente] [tempo] [motivo]\`*`)
                 .setColor(`RED`)
+                .setThumbnail(`https://i.imgur.com/ULYfVp2.png`)
             message.reply({embeds: [embed]})
             return
         }
         if(!time) {
-            let embed = new Discord.MessageEmbed()
+            let embed = new Discord.MessageEmbed() //!FARE UN'IMMAGINE DI ERRORE
                 .setTitle(`Errore`)
                 .setDescription(`:x: Inserisci un tempo valido`)
                 .setColor(`RED`)
@@ -26,7 +27,7 @@ module.exports = {
         if(utente.roles.cache.has(config.idruoli.staff) && !message.member.roles.cache.has(config.idruoli.owner)) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: ${utente} è uno staffer, non posso metterlo in timeout`)
+                .setDescription(`:x: ${utente} è uno staffer, non posso metterlo in timeout`) //!FARE UN'IMMAGINE DI ERRORE
                 .setColor(`RED`)
             message.reply({embeds: [embed]})
             return
@@ -35,7 +36,7 @@ module.exports = {
         if(time < 1000 * 60) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Inserisci un tempo maggiore o uguale ad un minuto`)
+                .setDescription(`:x: Inserisci un tempo maggiore o uguale ad un minuto`) //!FARE UN'IMMAGINE DI ERRORE
                 .setColor(`RED`)
             message.reply({embeds: [embed]})
             return
@@ -50,19 +51,23 @@ module.exports = {
         tempo = tempo.replace(`hours`, `ore`)
         if(!reason) reason = `Nessun Motivo`
         let embedserver = new Discord.MessageEmbed()
-            .setTitle(`Timeout`)
-            .setDescription(`:white_check_mark: ${utente} ha ricevuto un timeout di ${tempo} per il motivo: **${reason}**`)
-            .setColor(`GREEN`)
+            .setAuthor({name: `[TIMEOUT] ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+            .setDescription(`⚠️**HO AVVISATO** QUEST'UTENTE IN DM⚠️`)
+            .setThumbnail(utente.displayAvatarURL({dynamic: true, size: 512})) //!FARE UN'IMMAGINE PER IL TIMEOUT
+            .setColor(`PURPLE`)
+            .addField(`Utente:`, `Nome: ${utente.user.username}, ID: ${utente.id}\n||${utente.toString()}||`)
+            .addField(`Motivo:`, reason.toString())
+            .addField(`Per:`, tempo.toString())
         let embedutente = new Discord.MessageEmbed()
-            .setTitle(`Timeout`)
-            .setDescription(`Hai ricevuto un timeout di ${tempo} in ${message.guild.name} per il seguente motivo: **${reason}**`)
+            .setTitle(`Sei stato messo in timeout!`)
+            .setThumbnail(utente.displayAvatarURL({dynamic: true, size: 512}))
             .setColor(`RED`)
+            .addField(`Messo in timeout da:`, message.author.toString(), true)
+            .addField(`Messo in timeout:`, message.guild.name, true)
+            .addField(`Per il motivo:`, reason.toString(), true)
+            .addField(`Per:`, tempo.toString(), true)
         let dm = true
-        utente.send({embeds: [embedutente]}).catch(() => { 
-            embedserver.setDescription(`:white_check_mark: ${utente} ha ricevuto un timeout di ${tempo} per il motivo: **${reason}**\n⚠️NON POSSO AVVISARE QUESTO UTENTE IN DM⚠️`)
-            dm = false
-        })
-        setTimeout(() => {
+        await utente.send({embeds: [embedutente]}).catch(() => { dm = false })
             let embed = new Discord.MessageEmbed()
                 .setTitle(`⛔TIMEOUT⛔`)
                 .setColor(`RED`)
@@ -76,11 +81,12 @@ module.exports = {
                 .addField(`🔨Moderatore:`, `Nome: **${message.member.user.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
                 .addField(`👤Utente:`, `Nome: **${utente.user.username}**, ID: **${utente.id}**\n||${utente.toString()}||`)
                 .addField(`📖Motivo:`, reason)
+                .addField(`⏰Tempo:`, tempo.toString())
             if(dm == false) embed.setDescription(`⚠️L'utente **non è stato** avvisato nei dm⚠️\n[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
+            if(dm == false) embedserver.setDescription(`⚠️**NON POSSO AVVISARE** QUESTO UTENTE IN DM⚠️`)
             let channel = client.channels.cache.get(config.idcanali.logs.moderation)
             channel.send({embeds: [embed]})
             message.reply({embeds: [embedserver]})
             utente.timeout(time, reason)
-        }, 1000)
     }
 }
