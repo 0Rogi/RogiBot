@@ -1,14 +1,15 @@
 module.exports = {
     name: `rps`,
-    execute(message, args) {
-        if(!message.member.roles.cache.has(ephiphany.thirdgift.ruolo)) {
+    execute(message) {
+        if(!message.member.roles.cache.has(config.idruoli.level15) && !message.member.roles.cache.has(config.idruoli.level20) && !message.member.roles.cache.has(config.idruoli.level25) && !message.member.roles.cache.has(config.idruoli.level30)) {
             let embed = new Discord.MessageEmbed()
                 .setColor(`RED`)
-                .setDescription(`Il comando \`!rps\` non esiste`)
-                .setTitle(`Comando non esistente`)
+                .setDescription(`Hai bisogno almeno del **livello 15** per eseguire questo comando`)
+                .setTitle(`Non hai il livello`)
             message.reply({embeds: [embed]})
             return
         }
+        let args = message.content.toLowerCase().slice(5)
         if(!args || args != `rock` && args != `paper` && args != `scissor`) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
@@ -41,7 +42,7 @@ module.exports = {
             .setTitle(title.toString())
             .setDescription(`Risposta di ${message.member}:\n**${descriptionuser.toString()}**\nRisposta BOT:\n**${descriptionbot}**`)
             .setColor(`YELLOW`)
-            .setThumbnail(ephiphany.rpsimage)
+            .setThumbnail("https://i.imgur.com/wqdpHSZ.jpg")
         message.reply({embeds: [embed]})
     }
 }

@@ -1,11 +1,11 @@
 module.exports = {
     name: `lyrics`,
     async execute(message, args) {
-        if(!message.member.roles.cache.has(ephiphany.fourthgift.ruolo)) {
+        if(!message.member.roles.cache.has(config.idruoli.level20) && !message.member.roles.cache.has(config.idruoli.level25) && !message.member.roles.cache.has(config.idruoli.level30)) {
             let embed = new Discord.MessageEmbed()
                 .setColor(`RED`)
-                .setDescription(`Il comando \`!lyrics\` non esiste`)
-                .setTitle(`Comando non esistente`)
+                .setDescription(`Hai bisogno almeno del livello **20** per eseguire questo comando`)
+                .setTitle(`Non hai il livello`)
             message.reply({embeds: [embed]})
             return
         }

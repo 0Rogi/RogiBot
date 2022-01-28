@@ -8,7 +8,6 @@ const fs = require(`fs`);
 global.config = require(`./JSON/config.json`)
 global.parolacce = require(`./JSON/badwords.json`)
 global.bestemmie = require(`./JSON/bestemmie.json`)
-global.ephiphany = require(`./JSON/ephiphany.json`)
 global.lyricsFinder = require('lyrics-finder')
 global.checkspam = new Map()
 client.login(config.token);
@@ -67,7 +66,7 @@ client.on(`messageCreate`, message => {
 
     if (!message.content.startsWith(prefix) || message.author.bot || !message.guild) return
 
-    const args = message.content.toLowerCase().slice(prefix.length).trim().split(/ +/);
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
 
     if (!client.commands.has(command) && !client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))) {
