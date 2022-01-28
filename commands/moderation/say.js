@@ -17,7 +17,8 @@ module.exports = {
             .setTitle(`ANNUNCIO DALLO STAFF`)
             .setColor(`YELLOW`)
             .setDescription(saytext.toString())
-            .setFooter(`Annuncio da ${message.author.tag}`)
+            .setFooter({text: `Annuncio da ${message.author.tag}`})
+        global.delete = false
         message.delete()
         message.channel.send({embeds: [embed]})
     } 
