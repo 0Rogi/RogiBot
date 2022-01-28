@@ -7,8 +7,9 @@ module.exports = {
         if(!saytext) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Inserisci il testo da annunciare`)
+                .setDescription(`*Inserisci il testo da annunciare\n\`!say [annuncio]\`*`)
                 .setColor(`RED`)
+                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
             message.reply({embeds: [embed]})
             return
         }

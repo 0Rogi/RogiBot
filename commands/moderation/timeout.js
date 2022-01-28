@@ -17,18 +17,20 @@ module.exports = {
             return
         }
         if(!time) {
-            let embed = new Discord.MessageEmbed() //!FARE UN'IMMAGINE DI ERRORE
+            let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Inserisci un tempo valido`)
+                .setDescription(`*Inserisci un tempo valido\n\`!timeout [utente] [tempo] [motivo]\`*`)
                 .setColor(`RED`)
+                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
             message.reply({embeds: [embed]})
             return
         }
         if(utente.roles.cache.has(config.idruoli.staff) && !message.member.roles.cache.has(config.idruoli.owner)) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: ${utente} è uno staffer, non posso metterlo in timeout`) //!FARE UN'IMMAGINE DI ERRORE
+                .setDescription(`${utente} è uno staffer, non posso metterlo in timeout`)
                 .setColor(`RED`)
+                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
             message.reply({embeds: [embed]})
             return
         }
@@ -36,7 +38,8 @@ module.exports = {
         if(time < 1000 * 60) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Inserisci un tempo maggiore o uguale ad un minuto`) //!FARE UN'IMMAGINE DI ERRORE
+                .setDescription(`*Inserisci un tempo maggiore o uguale ad un minuto\n\`!timeout [utente] [tempo] [motivo]\`*`)
+                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
                 .setColor(`RED`)
             message.reply({embeds: [embed]})
             return

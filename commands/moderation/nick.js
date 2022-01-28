@@ -8,16 +8,18 @@ module.exports = {
         if(!utente) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Inserisci un utente valido`)
+                .setDescription(`*Non riesco a trovare l'utente\n\`!nick [utente] [nuovo nick]\`*`)
                 .setColor(`RED`)
+                .setThumbnail(`https://i.imgur.com/ULYfVp2.png`)
             message.reply({embeds: [embed]})
             return
         }
         if(utente.roles.cache.has(config.idruoli.staff) && !message.member.roles.cache.has(config.idruoli.owner)) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: ${utente} è uno staffer, non posso cambiargli il nome`)
+                .setDescription(`${utente} è uno staffer, non posso cambiargli il nome`)
                 .setColor(`RED`)
+                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
             message.reply({embeds: [embed]})
             return
         }

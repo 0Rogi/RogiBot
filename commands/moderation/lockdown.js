@@ -7,7 +7,8 @@ module.exports = {
         if(!lock) {
             let embed = new Discord.MessageEmbed()
             .setTitle(`Errore`)
-            .setDescription(`:x: Inserisci on o off`)
+            .setDescription(`*Inserisci on o off\n\`!lockdown on/off\`*`)
+            .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
             .setColor(`RED`)
         message.reply({embeds: [embed]})
         return
@@ -15,7 +16,8 @@ module.exports = {
         if(lock != `on` && lock != `off`) {
             let embed = new Discord.MessageEmbed()
             .setTitle(`Errore`)
-            .setDescription(`:x: Puoi inserire solo on o off`)
+            .setDescription(`*Inserisci on o off\n\`!lockdown on/off\`*`)
+            .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
             .setColor(`RED`)
         message.reply({embeds: [embed]})
         return

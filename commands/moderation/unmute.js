@@ -17,7 +17,8 @@ module.exports = {
         if(!utente.roles.cache.has(config.idruoli.muted)) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Questo utente non è mutato`) //!FARE UN'IMMAGINE DI ERRORE
+                .setDescription(`*Questo utente non è mutato\n\`!unmute [utente]\`*`)
+                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
                 .setColor(`RED`)
             message.reply({embeds: [embed]})
             return

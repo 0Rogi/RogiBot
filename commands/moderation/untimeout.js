@@ -17,7 +17,8 @@ module.exports = {
         if(utente.roles.cache.has(config.idruoli.staff) && !message.member.roles.cache.has(config.idruoli.owner)) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: ${utente} è uno staffer, non posso togliergli un timeout`) //!FARE UN'IMMAGINE DI ERRORE
+                .setDescription(`${utente} è uno staffer, non posso togliergli un timeout`)
+                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
                 .setColor(`RED`)
             message.reply({embeds: [embed]})
             return

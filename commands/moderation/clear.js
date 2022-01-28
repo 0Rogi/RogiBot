@@ -7,16 +7,18 @@ module.exports = {
         if (!count) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Inserisci un numero valido`)
+                .setDescription(`*Inserisci un numero valido\n\`!clear [numero di messaggi]\`*`)
                 .setColor(`RED`)
+                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
             message.reply({embeds: [embed]})
             return
         }
         if(count>100){
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Posso cancellare solo 100 messaggi per volta!`)
+                .setDescription(`*Posso cancellare solo 100 messaggi per volta!\n\`!clear [numero messaggi]\`*`)
                 .setColor(`RED`)
+                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
             message.reply({embeds: [embed]});
             return
         }

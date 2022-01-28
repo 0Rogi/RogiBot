@@ -7,27 +7,29 @@ module.exports = {
         let utente = message.mentions.members.first() || server.members.cache.find(x => x.id == id) 
         if(!utente) {
             let embed = new Discord.MessageEmbed()
-            .setTitle(`Errore`)
-            .setDescription(`*Non riesco a trovare l'utente\n\`!mute [utente] [motivo]\`*`)
-            .setColor(`RED`)
-            .setThumbnail(`https://i.imgur.com/ULYfVp2.png`)
+                .setTitle(`Errore`)
+                .setDescription(`*Non riesco a trovare l'utente\n\`!mute [utente] [motivo]\`*`)
+                .setColor(`RED`)
+                .setThumbnail(`https://i.imgur.com/ULYfVp2.png`)
             message.reply({embeds: [embed]})
             return
         }
         if(utente.roles.cache.has(config.idruoli.staff) && !message.member.roles.cache.has(config.idruoli.owner)) {
-            let embed = new Discord.MessageEmbed() //!FARE UN'IMMAGINE DI ERRORE
+            let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: ${utente} è uno staffer, non posso mutarlo`)
+                .setDescription(`${utente} è uno staffer, non posso mutarlo`)
                 .setColor(`RED`)
+                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
             message.reply({embeds: [embed]})
             return
         }
         let reason = args.slice(1).join(` `)
         if(reason == ``) reason = `Nessun Motivo`
         if(utente.roles.cache.has(config.idruoli.muted)) {
-            let embed = new Discord.MessageEmbed() //!FARE UN'IMMAGINE DI ERRORE
+            let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Questo utente è già mutato`)
+                .setDescription(`*Questo utente è già mutato\n\`!mute [utente] [motivo]\`*`)
+                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
                 .setColor(`RED`)
             message.reply({embeds: [embed]})
             return

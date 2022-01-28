@@ -6,8 +6,9 @@ module.exports = {
         if (!time) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Inserisci un tempo`)
+                .setDescription(`*Inserisci un tempo valido\n\`!slowmode [tempo]\`*`)
                 .setColor(`RED`)
+                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
             message.reply({embeds: [embed]})
             return
         }
@@ -18,8 +19,9 @@ module.exports = {
             if (!time) {    
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`Errore`)
-                    .setDescription(`:x: Inserisci un tempo valido`)
+                    .setDescription(`*Inserisci un tempo valido\n\`!slowmode [tempo]\`*`)
                     .setColor(`RED`)
+                    .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
                 message.reply({embeds: [embed]})
                 return
             }
@@ -27,8 +29,9 @@ module.exports = {
             if (time > 21600000) {
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`Errore`)
-                    .setDescription(`:x: Puoi impostare un massimo di 6 ore di slowmode`)
+                    .setDescription(`*Puoi impostare un massimo di 6 ore di slowmode\n\`!slowmode [tempo]\`*`)
                     .setColor(`RED`)
+                    .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
                 message.reply({embeds: [embed]})
                 return
             }
