@@ -81,5 +81,15 @@
     "webhook": {
         "id": "917127984488529930",
         "token": "x1Pe7uqvFwwA8jorEXMlyBXSuiwtd4sJm0KqiTMahAlQ328NkO4zlvqfTkMA9V1pL55Y"
+    },
+    "images": {
+        "rogitimeout": "https://i.imgur.com/DN6K8cj.png",
+        "rogimute": "https://i.imgur.com/QjKtYcr.png",
+        "rogikick": "https://i.imgur.com/gsdiE2l.png",
+        "rogierror": "https://i.imgur.com/iYXbEvc.png",
+        "rogiban": "https://i.imgur.com/D854icT.png",
+        "rogilockdownon": "https://i.imgur.com/zk8EDow.png",
+        "rogilockdownoff": "https://i.imgur.com/EazNiNs.png",
+        "roginotfound": "https://i.imgur.com/BpBqe8T.png"
     }
 }

@@ -12,7 +12,7 @@ module.exports = {
                 .setTitle(`Errore`)
                 .setDescription(`*Non riesco a trovare l'utente\n\`!timeout [utente] [tempo] [motivo]\`*`)
                 .setColor(`RED`)
-                .setThumbnail(`https://i.imgur.com/ULYfVp2.png`)
+                .setThumbnail(config.images.roginotfound)
             message.reply({embeds: [embed]})
             return
         }
@@ -21,7 +21,7 @@ module.exports = {
                 .setTitle(`Errore`)
                 .setDescription(`*Inserisci un tempo valido\n\`!timeout [utente] [tempo] [motivo]\`*`)
                 .setColor(`RED`)
-                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
             return
         }
@@ -30,7 +30,7 @@ module.exports = {
                 .setTitle(`Errore`)
                 .setDescription(`${utente} è uno staffer, non posso metterlo in timeout`)
                 .setColor(`RED`)
-                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
             return
         }
@@ -39,7 +39,7 @@ module.exports = {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
                 .setDescription(`*Inserisci un tempo maggiore o uguale ad un minuto\n\`!timeout [utente] [tempo] [motivo]\`*`)
-                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
+                .setThumbnail(config.images.rogierror)
                 .setColor(`RED`)
             message.reply({embeds: [embed]})
             return
@@ -56,7 +56,7 @@ module.exports = {
         let embedserver = new Discord.MessageEmbed()
             .setAuthor({name: `[TIMEOUT] ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
             .setDescription(`⚠️**HO AVVISATO** QUEST'UTENTE IN DM⚠️`)
-            .setThumbnail(utente.displayAvatarURL({dynamic: true, size: 512})) //!FARE UN'IMMAGINE PER IL TIMEOUT
+            .setThumbnail(config.images.rogitimeout)
             .setColor(`PURPLE`)
             .addField(`Utente:`, `Nome: ${utente.user.username}, ID: ${utente.id}\n||${utente.toString()}||`)
             .addField(`Motivo:`, reason.toString())

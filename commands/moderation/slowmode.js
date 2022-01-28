@@ -8,7 +8,7 @@ module.exports = {
                 .setTitle(`Errore`)
                 .setDescription(`*Inserisci un tempo valido\n\`!slowmode [tempo]\`*`)
                 .setColor(`RED`)
-                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
             return
         }
@@ -21,7 +21,7 @@ module.exports = {
                     .setTitle(`Errore`)
                     .setDescription(`*Inserisci un tempo valido\n\`!slowmode [tempo]\`*`)
                     .setColor(`RED`)
-                    .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
+                    .setThumbnail(config.images.rogierror)
                 message.reply({embeds: [embed]})
                 return
             }
@@ -31,7 +31,7 @@ module.exports = {
                     .setTitle(`Errore`)
                     .setDescription(`*Puoi impostare un massimo di 6 ore di slowmode\n\`!slowmode [tempo]\`*`)
                     .setColor(`RED`)
-                    .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
+                    .setThumbnail(config.images.rogierror)
                 message.reply({embeds: [embed]})
                 return
             }

@@ -9,7 +9,7 @@ module.exports = {
                 .setTitle(`Errore`)
                 .setDescription(`*Inserisci un numero valido\n\`!clear [numero di messaggi]\`*`)
                 .setColor(`RED`)
-                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
             return
         }
@@ -18,7 +18,7 @@ module.exports = {
                 .setTitle(`Errore`)
                 .setDescription(`*Posso cancellare solo 100 messaggi per volta!\n\`!clear [numero messaggi]\`*`)
                 .setColor(`RED`)
-                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]});
             return
         }

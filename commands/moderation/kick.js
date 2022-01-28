@@ -10,7 +10,7 @@ module.exports = {
                 .setTitle(`Errore`)
                 .setDescription(`*Non riesco a trovare l'utente\n\`!kick [utente] [motivo]\`*`)
                 .setColor(`RED`)
-                .setThumbnail(`https://i.imgur.com/ULYfVp2.png`)
+                .setThumbnail(config.images.roginotfound)
             message.reply({embeds: [embed]})
             return
         }
@@ -18,7 +18,7 @@ module.exports = {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
                 .setDescription(`${utente} è uno staffer, non posso kickarlo`)
-                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
+                .setThumbnail(config.images.rogierror)
                 .setColor(`RED`)
             message.reply({embeds: [embed]})
             return
@@ -29,7 +29,7 @@ module.exports = {
         let embedserver = new Discord.MessageEmbed()
             .setAuthor({name: `[KICK] ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
             .setDescription(`⚠️**HO AVVISATO** QUEST'UTENTE IN DM⚠️`)
-            .setThumbnail(utente.displayAvatarURL({dynamic: true, size: 512})) //!FARE UN'IMMAGINE PER IL KICK
+            .setThumbnail(config.images.rogikick)
             .setColor(`PURPLE`)
             .addField(`Utente:`, `Nome: ${utente.user.username}, ID: ${utente.id}\n||${utente.toString()}||`)
             .addField(`Motivo:`, reason.toString())

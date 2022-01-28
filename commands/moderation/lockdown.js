@@ -8,7 +8,7 @@ module.exports = {
             let embed = new Discord.MessageEmbed()
             .setTitle(`Errore`)
             .setDescription(`*Inserisci on o off\n\`!lockdown on/off\`*`)
-            .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
+            .setThumbnail(config.images.rogierror)
             .setColor(`RED`)
         message.reply({embeds: [embed]})
         return
@@ -17,7 +17,7 @@ module.exports = {
             let embed = new Discord.MessageEmbed()
             .setTitle(`Errore`)
             .setDescription(`*Inserisci on o off\n\`!lockdown on/off\`*`)
-            .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
+            .setThumbnail(config.images.rogierror)
             .setColor(`RED`)
         message.reply({embeds: [embed]})
         return
@@ -39,6 +39,7 @@ module.exports = {
             .setTitle(`Lockdown`)
             .setDescription(`:white_check_mark: Sistema di lockdown attivato. Nessun utente tranne gli staffer, potranno vedere i canali`)
             .setColor(`GREEN`)
+            .setThumbnail(config.images.rogilockdownon)
         message.reply({embeds: [embed]})
         let embedlog = new Discord.MessageEmbed()
                 .setTitle(`💀LOCKDOWN💀`)
@@ -68,6 +69,7 @@ module.exports = {
             .setTitle(`Lockdown`)
             .setDescription(`:white_check_mark: Sistema di lockdown disattivato. Gli utenti potranno di nuovo vedere i canali`)
             .setColor(`GREEN`)
+            .setThumbnail(config.images.rogilockdownoff)
         message.reply({embeds: [embed]})
         let embedlog = new Discord.MessageEmbed()
                 .setTitle(`💀LOCKDOWN💀`)

@@ -9,7 +9,7 @@ module.exports = {
                 .setTitle(`Errore`)
                 .setDescription(`*Inserisci il testo da annunciare\n\`!say [annuncio]\`*`)
                 .setColor(`RED`)
-                .setThumbnail(`https://i.imgur.com/6SnnI0Q.png`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
             return
         }
