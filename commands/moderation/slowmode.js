@@ -35,8 +35,8 @@ module.exports = {
                 message.reply({embeds: [embed]})
                 return
             }
-
-            let tempo = ms(time, { long: true });
+            
+            var tempo = ms(time, { long: true });
             tempo = tempo + ` `
             tempo = tempo.replace(`second `, `secondo`)
             tempo = tempo.replace(`seconds`, `secondi`)
@@ -52,15 +52,17 @@ module.exports = {
         message.channel.setRateLimitPerUser(parseInt(time) / 1000)
 
         let embed = new Discord.MessageEmbed()
-            .setTitle(`Slowmode`)
-            .setColor(`GREEN`)
+            .setAuthor({name: `[SLOWMODE] ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+            .setThumbnail(config.images.rogislowmode)
+            .setColor(`PURPLE`)
+            .addField(`Canale:`, `Nome: ${message.channel.name}, ID: ${message.channel.id}\n||${message.channel.toString()}||`)
         let notime = false
         if (time == 0) {
-            embed.setDescription(`:white_check_mark: Slowmode disattivata`)
+            embed.addField(`Nuova Slowmode:`,`_Slowmode disattivata_`)
             notime = true
         }
         else {
-            embed.setDescription(`:white_check_mark: Slowmode impostata a ${tempo}`)
+            embed.addField(`Nuova Slowmode:`, `${tempo}`)
         }
         let embedlog = new Discord.MessageEmbed()
                 .setTitle(`⛓️SLOWMODE⛓️`)
@@ -74,7 +76,7 @@ module.exports = {
                 .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
                 .addField(`🔨Moderatore:`, `Nome: **${message.member.user.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
                 .addField(`Stanza:`, message.channel.toString())
-                .addField(`Nuovo Slowmode:`, notime ? `_Slowmode disattivata_` : tempo.toString())
+                .addField(`Nuova Slowmode:`, notime ? `_Slowmode disattivata_` : tempo.toString())
         let channel = client.channels.cache.get(config.idcanali.logs.moderation)
         channel.send({embeds: [embedlog]})
         message.reply({embeds: [embed]})

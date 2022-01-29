@@ -1,7 +1,7 @@
 module.exports = {
     name: `nick`,
     onlyHelpers: true,
-    execute(message, args) {
+    async execute(message, args) {
         let id = args[0]
         let server = client.guilds.cache.get(config.idServer.idServer)
         let utente = message.mentions.members.first() || server.members.cache.find(x => x.id == id) 
@@ -23,29 +23,24 @@ module.exports = {
             message.reply({embeds: [embed]})
             return
         }
-        let change = true
         let nick = args.slice(1).join(` `)
-        if(nick == ``) change = false
         let embedserver = new Discord.MessageEmbed()
-            .setTitle(`Nick`)
-            .setDescription(`:white_check_mark: Il nuovo nome di ${utente} è ora: ${nick}`)
-            .setColor(`GREEN`)
+            .setAuthor({name: `[NICK] ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+            .setDescription(`⚠️**HO AVVISATO** QUEST'UTENTE IN DM⚠️`)
+            .setThumbnail(config.images.roginick)
+            .setColor(`PURPLE`)
+            .addField(`Utente:`, `Nome: ${utente.user.username}, ID: ${utente.id}\n||${utente.toString()}||`)
+            .addField(`Nuovo Nick:`, nick ? nick.toString() : `_Resettato_`)
         let embedutente = new Discord.MessageEmbed()
-            .setTitle(`Nick`)
-            .setDescription(`:white_check_mark: Il tuo nuovo nome in ${message.guild.name} è ora: ${nick}`)
+            .setTitle(`Nome Inserito!`)
+            .setThumbnail(utente.displayAvatarURL({dynamic: true, size: 512}))
             .setColor(`RED`)
-        if(change == false) {
-            embedserver.setDescription(`:white_check_mark: Il nuovo nome di ${utente} è stato resettato`)
-            embedutente.setDescription(`:white_check_mark: Il tuo nuovo in ${message.guild.name} è stato resettato`)
-        }
-        let oldnick = utente.nickname
+            .addField(`Inserito da:`, message.author.toString(), true)
+            .addField(`Inserito in:`, message.guild.name, true)
+            .addField(`Nuovo Nick:`, nick ? nick.toString() : `_Resettato_`)
         let dm = true
-        utente.send({embeds: [embedutente]}).catch(() => { 
-            embedserver.setDescription(`:white_check_mark: Il nuovo nome di ${utente} è ora: ${nick}\n⚠️NON POSSO AVVISARE QUESTO UTENTE IN DM⚠️`)
-            if(change == false) embedserver.setDescription(`:white_check_mark: Il nuovo nome di ${utente} è stato resettato\n⚠️NON POSSO AVVISARE QUESTO UTENTE IN DM⚠️`)
-            dm = false
-        })
-        setTimeout(() => {
+        await utente.send({embeds: [embedutente]}).catch(() => { dm = false })
+        let oldnick = utente.nickname
             let embed = new Discord.MessageEmbed()
                 .setTitle(`🖊️NOME MODIFICATO🖊️`)
                 .setColor(`YELLOW`)
@@ -58,19 +53,19 @@ module.exports = {
                 .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
                 .addField(`🔨Moderatore:`, `Nome: **${message.member.user.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
                 .addField(`👤Utente:`, `Nome: **${utente.user.username}**, ID: **${utente.id}**\n||${utente.toString()}||`)
-                if(change == true) {
-                embed.addField(`📘Vecchio Nick:`, oldnick ? oldnick : utente.user.username, true)
-                embed.addField(`📖Nuovo Nick:`, nick.toString(), true)
-                }
-                if(change == false) {
+                if(nick == ``) {
                     embed.addField(`📖Nuovo Nick:`, `_Resettato_`)
+                } else {
+                    embed.addField(`📘Vecchio Nick:`, oldnick ? oldnick.toString() : utente.user.username.toString(), true)
+                    embed.addField(`📖Nuovo Nick:`, nick.toString(), true)
                 }
-            if(dm == false) embed.setDescription(`⚠️L'utente **non è stato** avvisato nei dm⚠️\n[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
+            
+            if(dm == false) embedlogs.setDescription(`⚠️L'utente **non è stato** avvisato nei dm⚠️\n[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
+            if(dm == false) embedserver.setDescription(`⚠️**NON POSSO AVVISARE** QUESTO UTENTE IN DM⚠️`)
             let channel = client.channels.cache.get(config.idcanali.logs.moderation)
             channel.send({embeds: [embed]})
             message.reply({embeds: [embedserver]})
-            if(change == true) utente.setNickname(nick.toString())
-            if(change == false) utente.setNickname(utente.user.username)
-        }, 1000);
+            utente.setNickname(nick.toString())
+            
     }
 }

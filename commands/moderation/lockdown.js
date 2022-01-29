@@ -37,7 +37,7 @@ module.exports = {
         })
         let embed = new Discord.MessageEmbed()
             .setTitle(`Lockdown`)
-            .setDescription(`:white_check_mark: Sistema di lockdown attivato. Nessun utente tranne gli staffer, potranno vedere i canali`)
+            .setDescription(`È appena stato attivato il sistema di lockdown!\n**NESSUN UTENTE** tranne gli staffer potranno vedere i canali`)
             .setColor(`GREEN`)
             .setThumbnail(config.images.rogilockdownon)
         message.reply({embeds: [embed]})
@@ -48,6 +48,11 @@ module.exports = {
                 .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
                 .addField(`🔨Moderatore:`, `Nome: **${message.member.user.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
                 .addField(`💀Stato del lockdown:`, `🟢Attivo`)
+                .setThumbnail(message.author.displayAvatarURL({
+                    dynamic: true,
+                    format: `png`,
+                    size: 512
+                }))
         let channel = client.channels.cache.get(config.idcanali.logs.moderation)
         channel.send({embeds: [embedlog]})
 
@@ -67,13 +72,13 @@ module.exports = {
         })
         let embed = new Discord.MessageEmbed()
             .setTitle(`Lockdown`)
-            .setDescription(`:white_check_mark: Sistema di lockdown disattivato. Gli utenti potranno di nuovo vedere i canali`)
+            .setDescription(`È appena stato disattivato il sistema di lockdown!\n**TUTTI GLI UTENTI** potranno rivedere i canali`)
             .setColor(`GREEN`)
             .setThumbnail(config.images.rogilockdownoff)
         message.reply({embeds: [embed]})
         let embedlog = new Discord.MessageEmbed()
                 .setTitle(`💀LOCKDOWN💀`)
-                .setColor(`RED`)
+                .setColor(`GREEN`)
                 .setDescription(`[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
                 .setThumbnail(message.author.displayAvatarURL({
                     dynamic: true,

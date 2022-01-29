@@ -163,6 +163,7 @@ process.on(`uncaughtException`, async err => {
     let row = new Discord.MessageActionRow()
         .addComponents(button, button2)
     await client.channels.cache.get(config.idcanali.codeerror).send({content: "<@601308178482855956>", embeds: [embed], components: [row]})
+    console.log(err)
 })
 process.on(`unhandledRejection`, async err => {
     let embed = new Discord.MessageEmbed()
@@ -184,4 +185,5 @@ process.on(`unhandledRejection`, async err => {
     let row = new Discord.MessageActionRow()
         .addComponents(button, button2)
     await client.channels.cache.get(config.idcanali.codeerror).send({content: "<@601308178482855956>", embeds: [embed], components: [row]})
+    console.log(err)
 })
