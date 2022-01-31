@@ -5,8 +5,9 @@ module.exports = {
         if(message.channel.parent != config.idcanali.helpparent) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Questo canale non è un ticket`)
                 .setColor(`RED`)
+                .setDescription(`*Questo canale non è un ticket*`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
             return
         }
@@ -16,15 +17,17 @@ module.exports = {
         if(!user) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Inserisci un utente valido`)
+                .setDescription(`*Non riesco a trovare l'utente\n\`!tadd [utente]\`*`)
                 .setColor(`RED`)
+                .setThumbnail(config.images.roginotfound)
             message.reply({embeds: [embed]})
             return
         }
         let embed = new Discord.MessageEmbed()
-            .setTitle(`Tadd`)
-            .setDescription(`:white_check_mark: ${user} è stato **aggiunto** al ticket con successo`)
+            .setTitle(`ADD`)
+            .setDescription(`${user} è stato **aggiunto** al ticket con successo`)
             .setColor(`GREEN`)
+            .setThumbnail(user.displayAvatarURL({dynamic: true}))
         message.channel.permissionOverwrites.create(user.id, {VIEW_CHANNEL: true})
         message.reply({embeds: [embed]})
     }

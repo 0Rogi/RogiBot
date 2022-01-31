@@ -1,17 +1,18 @@
-global.Discord = require(`discord.js`);
+global.Discord = require(`discord.js`)
 global.ms = require(`ms`)
 global.moment = require(`moment`)
 global.Canvas = require(`canvas`)
-global.ytch = require(`yt-channel-info`);
-global.client = new Discord.Client({intents: 32767, allowedMentions: { users: ["601308178482855956"] }});
-const fs = require(`fs`);
+global.ytch = require(`yt-channel-info`)
+global.lyricsFinder = require('lyrics-finder')
+global.discordTranscripts = require('discord-html-transcripts')
+global.client = new Discord.Client({intents: 32767, allowedMentions: { repliedUser: false }})
+const fs = require(`fs`)
 global.config = require(`./JSON/config.json`)
 global.parolacce = require(`./JSON/badwords.json`)
 global.bestemmie = require(`./JSON/bestemmie.json`)
-global.lyricsFinder = require('lyrics-finder')
 global.checkspam = new Map()
-client.login(config.token);
 global.delete = true
+client.login(config.token)
 //No Channel Embed
 global.nochannel = new Discord.MessageEmbed()
     .setTitle(`Errore`)
