@@ -4,8 +4,9 @@ module.exports = {
         if(!message.member.roles.cache.has(config.idruoli.level25) && !message.member.roles.cache.has(config.idruoli.level30)) {
             let embed = new Discord.MessageEmbed()
                 .setColor(`RED`)
-                .setDescription(`Hai bisogno almeno del **livello 25** per eseguire questo comando`)
+                .setDescription(`_Hai bisogno almeno del **livello 25**\nper eseguire questo comando_`)
                 .setTitle(`Non hai il livello`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
             return
         }
@@ -13,8 +14,9 @@ module.exports = {
         if(!saytext) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Inserisci il testo da trasformare in embed`)
+                .setDescription(`*Inserisci un messaggio\n\`!embed [messaggio]\`*`)
                 .setColor(`RED`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
             return
         }

@@ -5,7 +5,8 @@ module.exports = {
             .setTitle(`Rogi`)
             .setURL(`https://youtube.com/c/RodariRogi23`)
             .setColor(`YELLOW`)
-            .setDescription(`:v: Questo è il **canale** di Rogi, Speedrun, Bedwars, Minigiochi e molto altro!! Facci un salto e iscriviti se ti va!`)
+            .setThumbnail(`https://www.prolocoquartodaltino.it/wp-content/uploads/sites/22/2021/01/Logo-YouTube.jpg`)
+            .setDescription(`:v: Questo è il **canale** di Rogi, Speedrun, Bedwars, Minigiochi e molto altro\nse ti va, iscriviti :wink:`)
         let row = new Discord.MessageActionRow().addComponents(new Discord.MessageButton().setLabel(`YOUTUBE`).setStyle(`LINK`).setURL(`https://youtube.com/c/RodariRogi23`).setEmoji(`<:YoutubeTogether:894484116580470814>`))
         message.reply({embeds: [embed], components: [row]})
     }

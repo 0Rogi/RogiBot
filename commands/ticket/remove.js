@@ -24,9 +24,9 @@ module.exports = {
             return
         }
         let embed = new Discord.MessageEmbed()
-            .setTitle(`ADD`)
+            .setTitle(`REMOVE`)
             .setDescription(`${user} è stato **rimosso** dal ticket con successo`)
-            .setColor(`GREEN`)
+            .setColor(`RED`)
             .setThumbnail(user.displayAvatarURL({dynamic: true}))
         message.channel.permissionOverwrites.create(user.id, {VIEW_CHANNEL: false})
         message.reply({embeds: [embed]})

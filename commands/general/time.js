@@ -7,8 +7,9 @@ module.exports = {
         if(min < `10`) {     
             let embed = new Discord.MessageEmbed()
                 .setColor(`YELLOW`)
-                .addField(`Orario`, `:alarm_clock: Sono le ore ${ora}:${min}`)
+                .addField(`Orario`, `:alarm_clock: Sono le ore ${ora}:0${min}`)
             message.reply({embeds: [embed]})
+            return
         }
         let embed = new Discord.MessageEmbed()
             .setColor(`YELLOW`)

@@ -9,8 +9,10 @@ module.exports = {
         message.reply({embeds: [embed]}).then(msg => {
             console.clear()
             console.log(`Spegnimento del Bot...`)
-            console.log(`Bot spento!`)
-            client.destroy()
+            setTimeout(() => {
+                console.log(`Bot spento!`)
+                process.exit(1)
+            }, 1000);
         })
     }
 }

@@ -1,3 +1,4 @@
+require('events').EventEmitter.prototype._maxListeners = 100;
 global.Discord = require(`discord.js`)
 global.ms = require(`ms`)
 global.moment = require(`moment`)
@@ -69,7 +70,9 @@ client.on(`messageCreate`, message => {
 
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
-
+    
+    if(command == "play" || command == "p" || command == "pause" || command == "resume" || command == "leave" || command == "stop" || command == "skip" || command == "next" || command == "autoplayoff" || command == "autoplayon" || command == "repeat" || command == "queue") return
+    
     if (!client.commands.has(command) && !client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))) {
         let embed = new Discord.MessageEmbed()
             .setColor(`RED`)
@@ -163,7 +166,7 @@ process.on(`uncaughtException`, async err => {
         .setEmoji(`🗑️`)
     let row = new Discord.MessageActionRow()
         .addComponents(button, button2)
-    await client.channels.cache.get(config.idcanali.codeerror).send({content: "<@601308178482855956>", embeds: [embed], components: [row]})
+    await client.channels.cache.get(config.idcanali.codeerror).send({embeds: [embed], components: [row]})
     console.log(err)
 })
 process.on(`unhandledRejection`, async err => {
@@ -185,6 +188,6 @@ process.on(`unhandledRejection`, async err => {
         .setEmoji(`🗑️`)
     let row = new Discord.MessageActionRow()
         .addComponents(button, button2)
-    await client.channels.cache.get(config.idcanali.codeerror).send({content: "<@601308178482855956>", embeds: [embed], components: [row]})
+    await client.channels.cache.get(config.idcanali.codeerror).send({embeds: [embed], components: [row]})
     console.log(err)
 })

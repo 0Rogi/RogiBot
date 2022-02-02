@@ -4,26 +4,29 @@ module.exports = {
         if(!message.member.roles.cache.has(config.idruoli.level20) && !message.member.roles.cache.has(config.idruoli.level25) && !message.member.roles.cache.has(config.idruoli.level30)) {
             let embed = new Discord.MessageEmbed()
                 .setColor(`RED`)
-                .setDescription(`Hai bisogno almeno del livello **20** per eseguire questo comando`)
+                .setDescription(`_Hai bisogno almeno del **livello 20**\nper eseguire questo comando_`)
                 .setTitle(`Non hai il livello`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
             return
         }
         let title = args.join(` `)
         let lyrics = await lyricsFinder(title) || `Error`
         if(lyrics.length > 4096) {
-                let embed = new Discord.MessageEmbed()
-                    .setTitle(`Errore`)
-                    .setDescription(`:x: La canzone è troppo lunga per essere visualizzata`)
-                    .setColor(`RED`)
-                message.reply({embeds: [embed]})
+            let embed = new Discord.MessageEmbed()
+                .setTitle(`Errore`)
+                .setDescription(`*La canzone è troppo lunga\nper essere visualizzata*`)
+                .setColor(`RED`)
+                .setThumbnail(config.images.rogierror)
+            message.reply({embeds: [embed]})
                 return
         }
         if(lyrics == `Error`) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Inserisci una canzone valida`)
+                .setDescription(`*Non riesco a trovare questa canzone\n\`!lyrics [canzone]\`*`)
                 .setColor(`RED`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
             return
         }

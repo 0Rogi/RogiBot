@@ -1,14 +1,15 @@
 module.exports = {
     name: `partner`,
+    onlyHelpers: true,
     execute(message) {
-        if(message.author != `601308178482855956` && message.author != `816218053112496188`) return message.reply({embeds: [noperm]})
         let args1 = message.content.split(` `).slice(1)
         let args = args1.slice(0).join(` `)
         if(!args) {
             let embed = new Discord.MessageEmbed()
+                .setTitle(`Errore`)
+                .setDescription(`*Inserisci il messaggio della partner\n\`!partner [messaggio]\`*`)
                 .setColor(`RED`)
-                .setTitle(`Errore`) 
-                .setDescription(`:x: Inserisci il messaggio della partner`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
             return
         }
