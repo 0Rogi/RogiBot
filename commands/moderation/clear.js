@@ -30,7 +30,6 @@ module.exports = {
         let embedlog = new Discord.MessageEmbed()
                 .setTitle(`🧹CLEAR🧹`)
                 .setColor(`YELLOW`)
-                .setDescription(`[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
                 .setThumbnail(message.author.displayAvatarURL({
                     dynamic: true,
                     format: `png`,

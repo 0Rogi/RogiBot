@@ -1,18 +1,15 @@
 module.exports = {
     name: `shutdown`,
     onlyOwner: true,
-    execute(message) {
+    async execute(message) {
         let embed = new Discord.MessageEmbed()
-            .setTitle(`RESTART`)
+            .setTitle(`Shutdown`)
+            .setDescription(`Il bot è stato **spento** con successo!\nOra nessun comando funzionerà più`)
             .setColor(`RED`)
-            .setDescription(`🔴Bot offline`)
-        message.reply({embeds: [embed]}).then(msg => {
-            console.clear()
-            console.log(`Spegnimento del Bot...`)
-            setTimeout(() => {
-                console.log(`Bot spento!`)
-                process.exit(1)
-            }, 1000);
-        })
+            .setThumbnail(config.images.rogishutdown)
+        console.clear()
+        console.error(`SPEGNIMENTO DEL BOT`)
+        await message.reply({embeds: [embed]})
+        client.destroy()
     }
 }

@@ -60,7 +60,7 @@ module.exports = {
     if(lock == `off`) {
         let everyone = message.guild.roles.cache.find(r => r.name === `@everyone`);
         let fan = message.guild.roles.cache.find(r => r.id === config.idruoli.fan);
-        everyone.setPermissions([`SEND_MESSAGES`, `VIEW_CHANNEL`, `READ_MESSAGE_HISTORY`, `CONNECT`, `SPEAK`, `USE_VAD`]);
+        everyone.setPermissions([`SEND_MESSAGES`, `VIEW_CHANNEL`, `READ_MESSAGE_HISTORY`, `CONNECT`, `SPEAK`, `USE_VAD`, `STREAM`]);
         let lockdown = client.channels.cache.get(config.idcanali.lockdown);
         let testualeyt = client.channels.cache.get(config.idcanali.testualeyt)
         let passyoutuber =  message.guild.roles.cache.find(r => r.id === config.idruoli.passyoutuber);

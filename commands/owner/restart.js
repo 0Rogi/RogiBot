@@ -1,20 +1,15 @@
 module.exports = {
     name: `restart`,
     onlyOwner: true,
-    execute(message) {
+    async execute(message) {
         let embed = new Discord.MessageEmbed()
-            .setTitle(`RESTART`)
+            .setTitle(`Restart`)
+            .setDescription(`Il bot è in fase di **restart**!!\nA breve tornerà online!`)
             .setColor(`RED`)
-            .setDescription(`🔴Mi sto restartando!`)
-        message.reply({embeds: [embed]}).then(msg => {
-            client.destroy()
-            client.login(config.token)
-            console.clear()
-            console.log(`Restarting del Bot...`)
-            console.log(`Bot online!`)
-            embed.setDescription(`🟢Bot restartato con successo!`)
-            embed.setColor(`YELLOW`)
-            msg.reply({embeds: [embed]})
-        })
+            .setThumbnail(config.images.rogirestart)
+        console.clear()
+        console.error(`Restart del bot...`)
+        await message.reply({embeds: [embed]})
+        process.exit()
     }
 }

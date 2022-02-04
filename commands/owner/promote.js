@@ -1,57 +1,65 @@
 module.exports = {
     name: `promote`,
     onlyOwner: true,
-    execute(message, args) {
+    async execute(message, args) {
         let id = args[0]
         let server = client.guilds.cache.get(config.idServer.idServer)
         let user = message.mentions.members.first() || server.members.cache.find(x => x.id == id) 
         if(!user) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Inserisci un utente valido`)
+                .setDescription(`*Non riesco a trovare l'utente\n\`!promote [utente]\`*`)
                 .setColor(`RED`)
+                .setThumbnail(config.images.roginotfound)
             message.reply({embeds: [embed]})
             return
         }
         if(!user.roles.cache.has(config.idruoli.helper) && !user.roles.cache.has(config.idruoli.moderator)) {
             user.roles.add(config.idruoli.helper)
             user.roles.add(config.idruoli.staff)
+            let dm = true
             let embedserver = new Discord.MessageEmbed()
-                .setTitle(`Promote`)
-                .setDescription(`:white_check_mark: ${user} è ora un <@&${config.idruoli.helper}>!`)
+                .setAuthor({name: `[PROMOTE] ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+                .setDescription(`⚠️**HO AVVISATO** QUEST'UTENTE IN DM⚠️`)
+                //.setThumbnail(config.images.rogi)
+                .setColor(`PURPLE`)
+                .addField(`Utente:`, `Nome: ${user.user.username}, ID: ${user.id}\n||${user.toString()}||`)
+                .addField(`Grado:`, `<@&${config.idruoli.helper}>`)
+            let embedutente = new Discord.MessageEmbed()
+                .setTitle(`Sei promosso!`)
+                .setThumbnail(user.displayAvatarURL({dynamic: true, size: 512}))
                 .setColor(`GREEN`)
-            let embeduser = new Discord.MessageEmbed()
-                .setTitle(`Promote`)
-                .setDescription(`:white_check_mark: Sei ora un helper nel server ${message.guild.name}`)
-                .setColor(`GREEN`)
-            user.send({embeds: [embeduser]}).catch(() => { 
-            embedserver.setDescription(`:white_check_mark: ${user} è ora un <@&${config.idruoli.helper}>!\n⚠️NON POSSO AVVISARE QUESTO UTENTE IN DM⚠️`)
-            })
-            setTimeout(() => {
-                message.reply({embeds: [embedserver]})
-            }, 1000);
+                .addField(`Server:`, message.guild.name, true)
+                .addField(`Grado:`, `Helper`, true)
+            await user.send({embeds: [embedutente]}).catch(() => { dm = false })
+            if(dm == false) embedserver.setDescription(`⚠️**NON POSSO AVVISARE** QUESTO UTENTE IN DM⚠️`)
+            message.reply({embeds: [embedserver]})
         } else if(!user.roles.cache.has(config.idruoli.moderator) && user.roles.cache.has(config.idruoli.helper)) {
             user.roles.add(config.idruoli.moderator)
             user.roles.remove(config.idruoli.helper)
+            let dm = true
             let embedserver = new Discord.MessageEmbed()
-                .setTitle(`Promote`)
-                .setDescription(`:white_check_mark: ${user} è ora un <@&${config.idruoli.moderator}>!`)
+                .setAuthor({name: `[PROMOTE] ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+                .setDescription(`⚠️**HO AVVISATO** QUEST'UTENTE IN DM⚠️`)
+                //.setThumbnail(config.images.rogi)
+                .setColor(`PURPLE`)
+                .addField(`Utente:`, `Nome: ${user.user.username}, ID: ${user.id}\n||${user.toString()}||`)
+                .addField(`Grado:`, `<@&${config.idruoli.moderator}>`)
+            let embedutente = new Discord.MessageEmbed()
+                .setTitle(`Sei promosso!`)
+                .setThumbnail(user.displayAvatarURL({dynamic: true, size: 512}))
                 .setColor(`GREEN`)
-            let embeduser = new Discord.MessageEmbed()
-                .setTitle(`Promote`)
-                .setDescription(`:white_check_mark: Sei ora un moderatore nel server ${message.guild.name}`)
-                .setColor(`GREEN`)
-        user.send({embeds: [embeduser]}).catch(() => { 
-            embedserver.setDescription(`:white_check_mark: ${user} è ora un <@&${config.idruoli.moderator}>!\n⚠️NON POSSO AVVISARE QUESTO UTENTE IN DM⚠️`)
-        })
-        setTimeout(() => {
+                .addField(`Server:`, message.guild.name, true)
+                .addField(`Grado:`, `Moderatore`, true)
+            await user.send({embeds: [embedutente]}).catch(() => { dm = false })
+            if(dm == false) embedserver.setDescription(`⚠️**NON POSSO AVVISARE** QUESTO UTENTE IN DM⚠️`)
             message.reply({embeds: [embedserver]})
-        }, 1000);
         } else if(user.roles.cache.has(config.idruoli.moderator) || user.roles.cache.has(config.idruoli.owner)) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`:x: Questo utente è già di grado massimo`)
+                .setDescription(`*Quest'utente è di grado massimo*`)
                 .setColor(`RED`)
+                .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
         }
     }
