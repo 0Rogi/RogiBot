@@ -24,7 +24,7 @@ module.exports = {
             return
         }
         let embed = new Discord.MessageEmbed()
-            .setTitle(`ADD`)
+            .setTitle(`Aggiunta di un Utente`)
             .setDescription(`${user} è stato **aggiunto** al ticket con successo`)
             .setColor(`GREEN`)
             .setThumbnail(user.displayAvatarURL({dynamic: true}))

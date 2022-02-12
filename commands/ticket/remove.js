@@ -24,7 +24,7 @@ module.exports = {
             return
         }
         let embed = new Discord.MessageEmbed()
-            .setTitle(`REMOVE`)
+            .setTitle(`Rimozione di un Utente`)
             .setDescription(`${user} è stato **rimosso** dal ticket con successo`)
             .setColor(`RED`)
             .setThumbnail(user.displayAvatarURL({dynamic: true}))

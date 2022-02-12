@@ -1,4 +1,4 @@
-require('events').EventEmitter.prototype._maxListeners = 100;
+require('events').EventEmitter.prototype._maxListeners = 100 
 global.Discord = require(`discord.js`)
 global.ms = require(`ms`)
 global.moment = require(`moment`)
@@ -7,56 +7,47 @@ global.ytch = require(`yt-channel-info`)
 global.lyricsFinder = require('lyrics-finder')
 global.discordTranscripts = require('discord-html-transcripts')
 global.client = new Discord.Client({intents: 32767, allowedMentions: { repliedUser: false }})
-const fs = require(`fs`)
+const fs = require(`fs`) 
 global.config = require(`./JSON/config.json`)
 global.parolacce = require(`./JSON/badwords.json`)
 global.bestemmie = require(`./JSON/bestemmie.json`)
 global.checkspam = new Map()
 global.delete = true
 client.login(config.token)
-//No Channel Embed
-global.nochannel = new Discord.MessageEmbed()
-    .setTitle(`Errore`)
-    .setColor(`RED`)
-    .setDescription(`:x: Non sei connesso in un canale vocale`)
-//No Private Room Embed
-global.nopvt = new Discord.MessageEmbed()
-    .setTitle(`Errore`)
-    .setColor(`RED`)
-    .setDescription(`:x: Non sei in una stanza privata!`)
-//!Commands Handler
-client.commands = new Discord.Collection();
 
-const commandsFiles = fs.readdirSync(`./commands`).filter(file => file.endsWith(`.js`));
+//!Commands Handler
+client.commands = new Discord.Collection() 
+
+const commandsFiles = fs.readdirSync(`./commands`).filter(file => file.endsWith(`.js`)) 
 for (const file of commandsFiles) {
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
+    const command = require(`./commands/${file}`) 
+    client.commands.set(command.name, command) 
 }
 
-const commandsFolder = fs.readdirSync(`./commands`);
+const commandsFolder = fs.readdirSync(`./commands`) 
 for (const folder of commandsFolder) {
-    const commandsFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith(`.js`));
+    const commandsFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith(`.js`)) 
     for (const file of commandsFiles) {
-        const command = require(`./commands/${folder}/${file}`);
-        client.commands.set(command.name, command);
+        const command = require(`./commands/${folder}/${file}`) 
+        client.commands.set(command.name, command) 
     }
 }
 
 //!Event Handler
-const eventsFolders = fs.readdirSync('./events');
+const eventsFolders = fs.readdirSync('./events') 
 for (const folder of eventsFolders) {
     const eventsFiles = fs.readdirSync(`./events/${folder}`)
 
     for (const file of eventsFiles) {
         if (file.endsWith(".js")) {
-            const event = require(`./events/${folder}/${file}`);
-            client.on(event.name, (...args) => event.execute(...args));
+            const event = require(`./events/${folder}/${file}`) 
+            client.on(event.name, (...args) => event.execute(...args)) 
         }
         else {
             const eventsFiles2 = fs.readdirSync(`./events/${folder}/${file}`)
             for (const file2 of eventsFiles2) {
-                const event = require(`./events/${folder}/${file}/${file2}`);
-                client.on(event.name, (...args) => event.execute(...args));
+                const event = require(`./events/${folder}/${file}/${file2}`) 
+                client.on(event.name, (...args) => event.execute(...args)) 
             }
         }
     }
@@ -64,12 +55,12 @@ for (const folder of eventsFolders) {
 
 //!Commands Check
 client.on(`messageCreate`, message => {
-    const prefix = `!`;
+    const prefix = `!` 
 
-    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild) return
+    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild || message.content.startsWith(`${prefix}${prefix}`) || message.content == prefix || message.guild != config.idServer.idServer) return
 
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
+    const args = message.content.slice(prefix.length).trim().split(/ +/) 
+    const command = args.shift().toLowerCase() 
     
     if(command == "play" || command == "p" || command == "pause" || command == "resume" || command == "leave" || command == "stop" || command == "skip" || command == "next" || command == "autoplayoff" || command == "autoplayon" || command == "repeat" || command == "queue") return
     
@@ -111,15 +102,15 @@ client.on(`messageCreate`, message => {
         return
     }
 
-    comando.execute(message, args);
+    comando.execute(message, args) 
 })
 
-//? Christmas Countdown + Members and Subscribers Counter + Youtube Notifier
+//? Members and Subscribers Counter + Youtube Notifier
 setInterval(function () {
     //Member Counter
-    var server = client.guilds.cache.get(config.idServer.idServer);
-    var botCount = server.members.cache.filter(member => member.user.bot).size;
-    var utentiCount = server.memberCount - botCount;
+    var server = client.guilds.cache.get(config.idServer.idServer) 
+    var botCount = server.members.cache.filter(member => member.user.bot).size 
+    var utentiCount = server.memberCount - botCount 
     var canalemembri = client.channels.cache.get(config.idcanali.membri)
     canalemembri.setName(`👾│Members: ${utentiCount}`)
     //Youtube Counter
@@ -134,10 +125,10 @@ setInterval(function () {
 
         client.channels.cache.get(`813375357428170792`).messages.fetch()
             .then(messages => {
-                var giaMandato = false;
+                var giaMandato = false 
                 messages.forEach(msg => {
-                    if (msg.content.includes(idVideo)) giaMandato = true;
-                });
+                    if (msg.content.includes(idVideo)) giaMandato = true 
+                }) 
 
                 if (!giaMandato) {
                     client.channels.cache.get(`813375357428170792`).send(`**${response.items[0].author}** Ha pubblicato un nuovo video: **${response.items[0].title}**!! Che aspetti? Corri a vederlo!!\nhttps://www.youtu.be/${idVideo}`)
@@ -146,7 +137,7 @@ setInterval(function () {
     })
 }, 1000 * 60)
 
-//!Code errors
+//! Code errors
 process.on(`uncaughtException`, async err => {
     let embed = new Discord.MessageEmbed()
         .setTitle(`⚠️ERRORE⚠️`)

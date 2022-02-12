@@ -6,7 +6,12 @@ module.exports = {
         const user = await client.users.fetch(newState.id)
         const member = server.members.cache.find(x => x.id == newState.id)
         if (server.channels.cache.find(canale => canale.name == user.username)) {
-            user.send(`\`\`\`diff\n- Hai già creato una stanza privata, per crearne una nuova, connettiti in quella precedente e digita !pdelete\n\`\`\``).catch(() => { })
+            let embed = new Discord.MessageEmbed()
+                .setTitle(`Errore`)
+                .setDescription(`*Hai già aperto una stanza privata!\nPer crearne una nuova, connettiti in quella precedente e usa il comando \`!pdelete\`*`)
+                .setThumbnail(config.images.rogierror)
+                .setColor(`RED`)
+            user.send({embeds: [embed]}).catch(() => { })
             var canale = server.channels.cache.find(canale => canale.name == user.username)
             member.voice.setChannel(canale)
             return

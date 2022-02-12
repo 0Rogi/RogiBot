@@ -13,6 +13,7 @@ module.exports = {
                 .setTitle(`Ticket in chiusura...`)
                 .setDescription(`Tra \`20 secondi\` il ticket verrà chiuso...`)
                 .setColor(`RED`)
+                .setThumbnail(config.images.rogiclosing)
             let button = new Discord.MessageButton()
                 .setStyle(`DANGER`)
                 .setLabel(`Annulla`)
@@ -26,6 +27,7 @@ module.exports = {
                     .setTitle(`Ticket in chiusura...`)
                     .setDescription(`Tra \`10 secondi\` il ticket verrà chiuso...`)
                     .setColor(`RED`)
+                    .setThumbnail(config.images.rogiclosing)
                 msg.edit({embeds: [embed]})
                 }, 1000 * 10);
             })
