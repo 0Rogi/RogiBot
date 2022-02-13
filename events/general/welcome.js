@@ -12,7 +12,7 @@ module.exports = {
         let utentiCount = server.memberCount - botCount;  
         let canvas =  Canvas.createCanvas(1280, 720);
         let ctx = canvas.getContext(`2d`);
-        let background = await Canvas.loadImage(`./Images/WelcomeImage.png`);
+        let background = await Canvas.loadImage(`./Canvas/img/WelcomeImage.png`);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);        
         let avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: `jpg` }))
         ctx.drawImage(avatar, 470, 250, 350, 350);

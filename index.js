@@ -105,27 +105,27 @@ client.on(`messageCreate`, message => {
     comando.execute(message, args) 
 })
 
-//? Members and Subscribers Counter + Youtube Notifier
+//? Members and Subscribers Counter + Youtube Notifier + San Valentine Days
 setInterval(function () {
+    let server = client.guilds.cache.get(config.idServer.idServer) 
     //Member Counter
-    var server = client.guilds.cache.get(config.idServer.idServer) 
-    var botCount = server.members.cache.filter(member => member.user.bot).size 
-    var utentiCount = server.memberCount - botCount 
-    var canalemembri = client.channels.cache.get(config.idcanali.membri)
+    let botCount = server.members.cache.filter(member => member.user.bot).size 
+    let utentiCount = server.memberCount - botCount 
+    let canalemembri = client.channels.cache.get(config.idcanali.membri)
     canalemembri.setName(`👾│Members: ${utentiCount}`)
     //Youtube Counter
     ytch.getChannelInfo(`UCw7lKb-XBW4ApE0puSbJLFQ`).then((response) => {
-        var canaleyoutube = client.channels.cache.get(config.idcanali.iscritti)
+        let canaleyoutube = client.channels.cache.get(config.idcanali.iscritti)
         canaleyoutube.setName(`🎬│Subscribers: ${response.subscriberCount}`)
     })
     //Youtube Notifier
     ytch.getChannelVideos(`UCw7lKb-XBW4ApE0puSbJLFQ`, `newest`).then(async response => {
-        var idVideo = response.items[0]?.videoId
+        let idVideo = response.items[0]?.videoId
         if (!idVideo) return
 
         client.channels.cache.get(`813375357428170792`).messages.fetch()
             .then(messages => {
-                var giaMandato = false 
+                let giaMandato = false 
                 messages.forEach(msg => {
                     if (msg.content.includes(idVideo)) giaMandato = true 
                 }) 
@@ -135,6 +135,17 @@ setInterval(function () {
                 }
             })
     })
+    //San Valentine Event
+    let date = new Date()
+    if(date.getMonth() == 1 && date.getDate() == 14 && date.getHours() == 7 && date.getMinutes() == 0) {
+        let attachment = new Discord.MessageAttachment(`./Canvas/img/SanValentineAnnouncement.png`)
+        let wc = new Discord.WebhookClient({
+            id: `934774825648545842`, 
+            token: `uGPTMCf11i9kGoF_xjkt8w1K_MPqKVxi_lWFTWv05sHWI7jRneLDSGNJlG82tk4HRAID`
+        })
+        wc.send({content: `Oggi è San Valentino, il giorno dell'amore e degli innamorati, oggi potrete dichiararvi alla persona che amate o trascorrere la giornata con il vostro partner!\n\nComunque... per questo giorno così speciale, il server è stato aggiornato con una nuova immagine e in più solo per oggi sono disponibili 2 nuovi comandi:\n*\`!kiss [utente]\`* per poter dare un bacio a qualcuno❤️\n*\`!ship [utente]\`* per poter vedere la compatibilità vostra con quella di qualcun'altro!\n\nBeh, cos'altro dire? Divertitevi ad usare questi 2 comandi e buon San Valentino😉\n\n||<@&704646594506653791>||`, files: [attachment]})
+        server.setIcon(`https://i.imgur.com/8KLWK5k.png`)
+    }
 }, 1000 * 60)
 
 //! Code errors
