@@ -138,13 +138,15 @@ setInterval(function () {
     //San Valentine Event
     let date = new Date()
     if(date.getMonth() == 1 && date.getDate() == 14 && date.getHours() == 7 && date.getMinutes() == 0) {
-        let attachment = new Discord.MessageAttachment(`./Canvas/img/SanValentineAnnouncement.png`)
+        server.setIcon(`https://i.imgur.com/8KLWK5k.png`)
+    }
+    if(date.getMonth() == 1 && date.getDate() == 15 && date.getHours() == 7 && date.getMinutes() == 0) {
         let wc = new Discord.WebhookClient({
             id: `934774825648545842`, 
             token: `uGPTMCf11i9kGoF_xjkt8w1K_MPqKVxi_lWFTWv05sHWI7jRneLDSGNJlG82tk4HRAID`
         })
-        wc.send({content: `Oggi è San Valentino, il giorno dell'amore e degli innamorati, oggi potrete dichiararvi alla persona che amate o trascorrere la giornata con il vostro partner!\n\nComunque... per questo giorno così speciale, il server è stato aggiornato con una nuova immagine e in più solo per oggi sono disponibili 2 nuovi comandi:\n*\`!kiss [utente]\`* per poter dare un bacio a qualcuno❤️\n*\`!ship [utente]\`* per poter vedere la compatibilità vostra con quella di qualcun'altro!\n\nBeh, cos'altro dire? Divertitevi ad usare questi 2 comandi e buon San Valentino😉\n\n||<@&704646594506653791>||`, files: [attachment]})
-        server.setIcon(`https://i.imgur.com/8KLWK5k.png`)
+        server.setIcon(`https://i.imgur.com/9L95Pls.png`)
+        wc.send(`Buongiorno a tutti!\n\nSan Valentino è finito, spero che lo abbiate passato con qualcuno di importante per voi!!\n\nComunque... mi dispiace tantissimo, ma i comandi non sono più disponibili e l'icona del server è stata resettata!\n\nO almeno... questo fino al prossimo 14 Febbraio :wink:`)
     }
 }, 1000 * 60)
 
