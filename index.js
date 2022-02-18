@@ -13,7 +13,13 @@ global.parolacce = require(`./JSON/badwords.json`)
 global.bestemmie = require(`./JSON/bestemmie.json`)
 global.checkspam = new Map()
 global.delete = true
-client.login(config.token)
+try {
+    require('dotenv').config()
+} catch {
+
+}
+
+client.login(process.env.token)
 
 //!Commands Handler
 client.commands = new Discord.Collection() 
@@ -141,12 +147,7 @@ setInterval(function () {
         server.setIcon(`https://i.imgur.com/8KLWK5k.png`)
     }
     if(date.getMonth() == 1 && date.getDate() == 15 && date.getHours() == 7 && date.getMinutes() == 0) {
-        let wc = new Discord.WebhookClient({
-            id: `934774825648545842`, 
-            token: `uGPTMCf11i9kGoF_xjkt8w1K_MPqKVxi_lWFTWv05sHWI7jRneLDSGNJlG82tk4HRAID`
-        })
         server.setIcon(`https://i.imgur.com/9L95Pls.png`)
-        wc.send(`Buongiorno a tutti!\n\nSan Valentino è finito, spero che lo abbiate passato con qualcuno di importante per voi!!\n\nComunque... mi dispiace tantissimo, ma i comandi non sono più disponibili e l'icona del server è stata resettata!\n\nO almeno... questo fino al prossimo 14 Febbraio :wink:`)
     }
 }, 1000 * 60)
 

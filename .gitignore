@@ -1,4 +1,5 @@
 **/node_modules
+**/OldFunctions
+.env
 RogiBot.zip
 RogiBot.rar
-**/OldFunctions

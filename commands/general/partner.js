@@ -14,8 +14,8 @@ module.exports = {
             return
         }
         let wc = new Discord.WebhookClient({
-            id: config.webhook.id, 
-            token: config.webhook.token
+            id: "944316479720026143", 
+            token: process.env.partnertoken
         })
         message.delete()
         wc.send({allowedMentions: { parse: [] }, content: args.toString()})
