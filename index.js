@@ -111,7 +111,7 @@ client.on(`messageCreate`, message => {
     comando.execute(message, args) 
 })
 
-//? Members and Subscribers Counter + Youtube Notifier + San Valentine Days
+//? Members and Subscribers Counter + Youtube Notifier + San Valentine Event
 setInterval(function () {
     let server = client.guilds.cache.get(config.idServer.idServer) 
     //Member Counter
@@ -171,7 +171,7 @@ process.on(`uncaughtException`, async err => {
         .setEmoji(`🗑️`)
     let row = new Discord.MessageActionRow()
         .addComponents(button, button2)
-    await client.channels.cache.get(config.idcanali.codeerror).send({embeds: [embed], components: [row]})
+    await client.channels.cache.get(config.idcanali.logs.codeerror).send({embeds: [embed], components: [row]})
     console.log(err)
 })
 process.on(`unhandledRejection`, async err => {
@@ -193,6 +193,6 @@ process.on(`unhandledRejection`, async err => {
         .setEmoji(`🗑️`)
     let row = new Discord.MessageActionRow()
         .addComponents(button, button2)
-    await client.channels.cache.get(config.idcanali.codeerror).send({embeds: [embed], components: [row]})
+    await client.channels.cache.get(config.idcanali.logs.codeerror).send({embeds: [embed], components: [row]})
     console.log(err)
 })

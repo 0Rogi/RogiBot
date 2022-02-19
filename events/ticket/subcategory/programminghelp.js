@@ -4,7 +4,7 @@ module.exports = {
         if(interaction.customId == `SottocategorieTicket`) {
             if(interaction.values[0] == `helpbot` || interaction.values[1] == `helpbot`) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`🤖Aiuto per creare un bot`)
+                    .setTitle(`⚙️Aiuto sulla programmazione\n🤖Aiuto per creare un bot`)
                     .setDescription(`🧠Prima di parlare con lo staff, cerca di risolvere il tuo problema da solo\nEcco dei piccoli consigli **che possono** aiutarti prima di aprire il ticket\n**N.B.** Questo è un server dedicato a minecraft e ai video di Rogi, quindi non alla programmazione, ti aiuteremo comunque, ma sarebbe meglio chiedere in un server di programmazione`)
                     .setColor(`YELLOW`)
                     .addField(`__💾Prova a salvare i file__`, `La maggior parte delle volte i problemi con il bot sono causati dal fatto che i file non siano stati salvati, quindi controlla di aver premuto control + s`)
@@ -26,7 +26,7 @@ module.exports = {
             }   
             if(interaction.values[0] == `helpweb` || interaction.values[1] == `helpweb`) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`📶Aiuto per creare un sito`)
+                    .setTitle(`⚙️Aiuto sulla programmazione\n📶Aiuto per creare un sito`)
                     .setDescription(`🧠Prima di parlare con lo staff, cerca di risolvere il tuo problema da solo\nEcco dei piccoli consigli **che possono** aiutarti prima di aprire il ticket\n**N.B.** Questo è un server dedicato a minecraft e ai video di Rogi, quindi non alla programmazione, ti aiuteremo comunque, ma sarebbe meglio chiedere in un server di programmazione`)
                     .setColor(`YELLOW`)
                     .addField(`__Vuoi creare un sito e non sai come fare__`, `Se desideri creare un sito ma non hai la minima idea di cosa fare, prima di aprire il ticket, vai a studiare html e css, due linguaggi di programmazione per creare siti web`)

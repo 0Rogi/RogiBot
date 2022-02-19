@@ -4,7 +4,7 @@ module.exports = {
         if(interaction.customId == `SottocategorieTicket`) {
             if(interaction.values[0] == `userreport` || interaction.values[1] == `userreport`) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`🧑Segnala un utente`)
+                    .setTitle(`👥Domande allo staff\n🧑Segnala un utente`)
                     .setDescription(`🧠Prima di parlare con lo staff, cerca di risolvere il tuo problema da solo\nEcco dei piccoli consigli **che possono** aiutarti prima di aprire il ticket`)
                     .setColor(`YELLOW`)
                     .addField(`__⚠️Un utente ti sta dando fastidio nel server__`, `Se un utente ti sta dando fastidio all'interno del server, non aprire un ticket, cercate di risolverla tra voi, o se la situazione degenera, pinga **un** membro dello staff, possibilmente online, che provvederà`)
@@ -25,7 +25,7 @@ module.exports = {
             }   
             if(interaction.values[0] == `wantstaff` || interaction.values[1] == `wantstaff`) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`🔨Diventare uno staffer`)
+                    .setTitle(`👥Domande allo staff\n🔨Diventare uno staffer`)
                     .setDescription(`🧠Prima di parlare con lo staff, cerca di risolvere il tuo problema da solo\nEcco dei piccoli consigli **che possono** aiutarti prima di aprire il ticket`)
                     .setColor(`YELLOW`)
                     .addField(`__❗Vuoi diventare un helper?__`, `Se desideri diventare un helper, appena ci sarà bisogno di un nuovo staffer, potrai fare la candidatura!`)
@@ -46,7 +46,7 @@ module.exports = {
             }
             if(interaction.values[0] == `wantcollab` || interaction.values[1] == `wantcollab`) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`💜Facciamo una collaborazione`)
+                    .setTitle(`👥Domande allo staff\n🤝Facciamo una collaborazione`)
                     .setDescription(`🧠Prima di parlare con lo staff, cerca di risolvere il tuo problema da solo\nEcco dei piccoli consigli **che possono** aiutarti prima di aprire il ticket`)
                     .setColor(`YELLOW`)
                     .addField(`__🔴Voglio far parte di un video di Rogi__`, `Se desideri far parte di un video di Rogi, sappi che fa entrare nei suoi video solo i suoi amici, quindi è difficile che tu riesca ad entrare nei video`)

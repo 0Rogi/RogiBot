@@ -4,7 +4,7 @@ module.exports = {
         if(interaction.customId == `SottocategorieTicket`) {
             if(interaction.values[0] == `botbugs` || interaction.values[1] == `botbugs`) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`🤖 Bug nel bot`)
+                    .setTitle(`👀Problemi nel server\n🤖Bug nel bot`)
                     .setDescription(`🧠Prima di parlare con lo staff, cerca di risolvere il tuo problema da solo\nEcco dei piccoli consigli **che possono** aiutarti prima di aprire il ticket`)
                     .setColor(`YELLOW`)
                     .addField(`__🔴Il bot è offline__`, `Se stai avendo problemi con il bot, è probabile che il bot sia in fase di test, quindi attendi una mezz'oretta e tutto ritornerà come prima!`)
@@ -25,7 +25,7 @@ module.exports = {
             }   
             if(interaction.values[0] == `serverbug` || interaction.values[1] == `serverbug`) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`🎡Bug nel server`)
+                    .setTitle(`👀Problemi nel server\n🎡Bug nel server`)
                     .setDescription(`🧠Prima di parlare con lo staff, cerca di risolvere il tuo problema da solo\nEcco dei piccoli consigli **che possono** aiutarti prima di aprire il ticket`)
                     .setColor(`YELLOW`)
                     .addField(`__💢Puoi vedere qualche chat che non dovresti__`, `Se il tuo problema è che riesci a vedere qualche chat che non dovresti, è possibile che ci siano dei test in corso`)

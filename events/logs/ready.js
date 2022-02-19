@@ -9,6 +9,6 @@ module.exports = {
             .setColor(`GREEN`)
             .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
             .addField(`🟢Online`,`<:RogiBot:854792536694587434> Rogi Bot Online!`)
-        client.channels.cache.get(config.idcanali.online).send({embeds: [embed]})
+        client.channels.cache.get(config.idcanali.logs.online).send({embeds: [embed]})
     }
 }

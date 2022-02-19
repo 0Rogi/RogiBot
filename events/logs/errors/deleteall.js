@@ -4,7 +4,7 @@ module.exports = {
         if(interaction.customId == `EliminaTutti`) {
             let message = interaction.message
             let field = message.embeds[0].fields[1].value
-            client.channels.cache.get(config.idcanali.codeerror).messages.fetch()
+            client.channels.cache.get(config.idcanali.logs.codeerror).messages.fetch()
             .then(messages => {
                 messages.forEach(msg => {
                     try {
@@ -12,7 +12,7 @@ module.exports = {
                     } catch {
 
                     }
-                });
+                })
             })
         }
     }
