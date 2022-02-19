@@ -65,7 +65,6 @@
         "moderationparent": "863041329196957706",
         "online": "936638967837782087",
         "codeerror": "935828401409912862",
-        "github": "905097123748536411",
         "logs": {
             "message": "853991043011969034",
             "ticket": "933739439946088509",
@@ -73,10 +72,6 @@
             "joinleave": "934047317739307018",
             "github": "935489318905053234"
         }
-    },
-    "webhook": {
-        "id": "917127984488529930",
-        "token": "x1Pe7uqvFwwA8jorEXMlyBXSuiwtd4sJm0KqiTMahAlQ328NkO4zlvqfTkMA9V1pL55Y"
     },
     "images": {
         "rogitimeout": "https://i.imgur.com/DN6K8cj.png",
