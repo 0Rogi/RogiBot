@@ -25,6 +25,5 @@ module.exports = {
             .setColor(`YELLOW`)
         client.channels.cache.get(config.idcanali.welcome).send({ embeds: [embed], files: [new Discord.MessageAttachment(canvas.toBuffer(), `Welcome.png`)]})
         member.roles.add(config.idruoli.fan)
-        member.roles.add(config.idruoli.common)
     }
 }

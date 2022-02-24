@@ -60,7 +60,7 @@ module.exports = {
                     embed.addField(`📖Nuovo Nick:`, nick.toString(), true)
                 }
             
-            if(dm == false) embedlogs.setDescription(`⚠️L'utente **non è stato** avvisato nei dm⚠️\n[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
+            if(dm == false) embed.setDescription(`⚠️L'utente **non è stato** avvisato nei dm⚠️\n[Message link](https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
             if(dm == false) embedserver.setDescription(`⚠️**NON POSSO AVVISARE** QUESTO UTENTE IN DM⚠️`)
             let channel = client.channels.cache.get(config.idcanali.logs.moderation)
             channel.send({embeds: [embed]})
