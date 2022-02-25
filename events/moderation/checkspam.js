@@ -1,11 +1,11 @@
 module.exports = {
     name: `messageCreate`,
     execute(message) {
-        if(message.author.bot || message.member.roles.cache.has(config.idruoli.staff)) return
+        if(message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.guild != config.idServer.idServer) return
         if(checkspam.has(message.author.id)) {
-            const data = checkspam.get(message.author.id)
-            const { lastmsg, timer } = data;
-            const diff = message.createdTimestamp - lastmsg.createdTimestamp;
+            let data = checkspam.get(message.author.id)
+            let { lastmsg, timer } = data;
+            let diff = message.createdTimestamp - lastmsg.createdTimestamp;
             let msgs = data.msgs
             if(diff > 5000) {
                 clearTimeout(timer);

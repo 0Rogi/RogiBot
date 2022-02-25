@@ -1,6 +1,7 @@
 module.exports = {
     name: "interactionCreate",
     async execute(interaction) {
+        if(interaction.guild != config.idServer.idServer || !interaction.isButton()) return
         if(interaction.customId == "AnnullaTimeout") {
             let embed = new Discord.MessageEmbed()
                 .setColor(`RED`)

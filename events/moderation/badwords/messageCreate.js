@@ -1,7 +1,7 @@
 module.exports = {
     name: `messageCreate`,
     async execute(message) {
-        if(message.author.bot || message.member.roles.cache.has(config.idruoli.staff)) return
+        if(message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.guild != config.idServer.idServer) return
         let trovata = false
         let censurato = message.content
 

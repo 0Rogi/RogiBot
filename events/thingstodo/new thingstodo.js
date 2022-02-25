@@ -1,7 +1,7 @@
 module.exports = {
     name: `messageCreate`,
     async execute(message) {
-        if(message.channel == config.idcanali.thingstodo) {
+        if(message.channel == config.idcanali.thingstodo && interaction.guild == config.idServer.idServer) {
             if(message.author.bot) return
             let embed = new Discord.MessageEmbed()
                 .setColor(`WHITE`)

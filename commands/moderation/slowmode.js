@@ -36,7 +36,7 @@ module.exports = {
                 return
             }
             
-            var tempo = ms(time, { long: true });
+            let tempo = ms(time, { long: true });
             tempo = tempo + ` `
             tempo = tempo.replace(`second `, `secondo`)
             tempo = tempo.replace(`seconds`, `secondi`)

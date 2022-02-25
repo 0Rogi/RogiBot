@@ -1,6 +1,7 @@
 module.exports = {
     name: `guildMemberRemove`,
     async execute(kick) {
+        if(kick.guild != config.idServer.idServer) return
         let fetchedLogs = await kick.guild.fetchAuditLogs({
             limit: 1,
             type: `MEMBER_KICK`,

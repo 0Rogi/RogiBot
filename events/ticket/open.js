@@ -1,6 +1,7 @@
 module.exports = {
     name: `interactionCreate`,
     execute(interaction) {
+        if(interaction.guild != config.idServer.idServer) return
         if(interaction.customId == `Open` || interaction.customId == `SottocategorieTicket` && interaction.values[0] == `Other` || interaction.customId == `SottocategorieTicket` && interaction.values[1] == `Other`) {
             let title = interaction.message.embeds[0].title
             let embed = new Discord.MessageEmbed()

@@ -1,7 +1,7 @@
 module.exports = {
     name: `messageCreate`,
     execute(message) {
-        if(message.author.bot) return
+        if(message.author.bot || message.guild != config.idServer.idServer) return
         if(message.content.toLocaleLowerCase() == `sus`) return message.react(`<:RogiSus:928954313504600064>`)
         if(message.content.toLowerCase() == `rogi`) return message.react(`<:Rogi:904005869799366696>`)
         if(message.content.toLowerCase() == `ciao` || message.content.toLowerCase() == `salve` || message.content.toLowerCase() == `hello` || message.content.toLowerCase() == `benvenuto`) return message.react(`<:RogiCiao:904001520880726036>`)

@@ -1,6 +1,7 @@
 module.exports = {
     name: `guildBanAdd`,
     async execute(ban) {
+        if(ban.guild != config.idServer.idServer) return
         let fetchedLogs = await ban.guild.fetchAuditLogs({
             limit: 1,
             type: `MEMBER_BAN_ADD`,

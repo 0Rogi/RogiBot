@@ -1,10 +1,11 @@
 module.exports = {
     name: `interactionCreate`,
     execute(interaction) {
+        if(!interaction.isButton() || interaction.guild != config.idServer.idServer) return
         if(interaction.customId == `Ticket`) {
             let server = client.guilds.cache.get(config.idServer.idServer)
             let user = interaction.user
-            /*if (server.channels.cache.find(canale => canale.topic == `User ID: ${user.id}`)) {
+            if (server.channels.cache.find(canale => canale.topic == `User ID: ${user.id}`)) {
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`Errore`)
                     .setDescription(`*Hai già un ticket aperto*`)
@@ -12,7 +13,7 @@ module.exports = {
                     .setThumbnail(config.images.rogierror)
                 interaction.reply({embeds: [embed], ephemeral: true})
                 return
-            }*/
+            }
             server.channels.create(`ticket-${user.username}`, { type:`GUILD_TEXT` }).then(canale => {
             canale.setTopic(`User ID: ${user.id}`)
             canale.setParent(config.idcanali.helpparent)
@@ -61,6 +62,9 @@ module.exports = {
             let row = new Discord.MessageActionRow()
                 .addComponents(menu)
             canale.send({embeds: [embed], components: [row]})
+            canale.send(interaction.member.toString()).then(msg => {
+                msg.delete()
+            })
             interaction.deferUpdate()
         })
     }

@@ -1,6 +1,7 @@
 module.exports = {
     name: "interactionCreate",
     execute(interaction) {
+        if(interaction.guild != config.idServer.idServer || !interaction.isButton()) return
         if(interaction.customId == `AnnullaSlowmode`) {
             let embed = new Discord.MessageEmbed()
                 .setColor(`RED`)

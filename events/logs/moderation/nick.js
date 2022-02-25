@@ -1,12 +1,13 @@
 module.exports = {
     name: `guildMemberUpdate`,
     async execute(oldMember, newMember) {
-        if(!oldMember.nickname && newMember.nickname || oldMember.nickname && !newMember.nickname || newMember.nickname && oldMember.nickname != newMember.nickname )
-       { const fetchedLogs = await newMember.guild.fetchAuditLogs({
-            limit: 1,
-            type: 'MEMBER_UPDATE',
-        })
-        const logs = fetchedLogs.entries.first()
+        if(newMember.guild != config.idServer.idServer || oldMember.guild != config.idServer.idServer) return
+        if(!oldMember.nickname && newMember.nickname || oldMember.nickname && !newMember.nickname || newMember.nickname && oldMember.nickname != newMember.nickname) { 
+                let fetchedLogs = await newMember.guild.fetchAuditLogs({
+                limit: 1,
+                type: 'MEMBER_UPDATE',
+            })
+        let logs = fetchedLogs.entries.first()
         let { executor, target } = logs
         if(executor == target || executor.bot) return
         let embedutente = new Discord.MessageEmbed()

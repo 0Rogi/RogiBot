@@ -1,20 +1,20 @@
-require('events').EventEmitter.prototype._maxListeners = 100 
+require(`events`).EventEmitter.prototype._maxListeners = 100 
 global.Discord = require(`discord.js`)
 global.ms = require(`ms`)
 global.moment = require(`moment`)
 global.Canvas = require(`canvas`)
 global.ytch = require(`yt-channel-info`)
-global.lyricsFinder = require('lyrics-finder')
-global.discordTranscripts = require('discord-html-transcripts')
-global.client = new Discord.Client({intents: 32767, allowedMentions: { repliedUser: false }})
-const fs = require(`fs`) 
+global.lyricsFinder = require(`lyrics-finder`)
+global.discordTranscripts = require(`discord-html-transcripts`)
+global.client = new Discord.Client({intents: 32767})
+let fs = require(`fs`) 
 global.config = require(`./JSON/config.json`)
 global.parolacce = require(`./JSON/badwords.json`)
 global.bestemmie = require(`./JSON/bestemmie.json`)
 global.checkspam = new Map()
 global.delete = true
 try {
-    require('dotenv').config()
+    require(`dotenv`).config()
 } catch {
 
 }
@@ -24,35 +24,35 @@ client.login(process.env.token)
 //!Commands Handler
 client.commands = new Discord.Collection() 
 
-const commandsFiles = fs.readdirSync(`./commands`).filter(file => file.endsWith(`.js`)) 
-for (const file of commandsFiles) {
-    const command = require(`./commands/${file}`) 
+let commandsFiles = fs.readdirSync(`./commands`).filter(file => file.endsWith(`.js`)) 
+for (let file of commandsFiles) {
+    let command = require(`./commands/${file}`) 
     client.commands.set(command.name, command) 
 }
 
-const commandsFolder = fs.readdirSync(`./commands`) 
-for (const folder of commandsFolder) {
-    const commandsFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith(`.js`)) 
-    for (const file of commandsFiles) {
-        const command = require(`./commands/${folder}/${file}`) 
+let commandsFolder = fs.readdirSync(`./commands`) 
+for (let folder of commandsFolder) {
+    let commandsFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith(`.js`)) 
+    for (let file of commandsFiles) {
+        let command = require(`./commands/${folder}/${file}`) 
         client.commands.set(command.name, command) 
     }
 }
 
 //!Event Handler
-const eventsFolders = fs.readdirSync('./events') 
-for (const folder of eventsFolders) {
-    const eventsFiles = fs.readdirSync(`./events/${folder}`)
+let eventsFolders = fs.readdirSync(`./events`) 
+for (let folder of eventsFolders) {
+    let eventsFiles = fs.readdirSync(`./events/${folder}`)
 
-    for (const file of eventsFiles) {
-        if (file.endsWith(".js")) {
-            const event = require(`./events/${folder}/${file}`) 
+    for (let file of eventsFiles) {
+        if (file.endsWith(`.js`)) {
+            let event = require(`./events/${folder}/${file}`) 
             client.on(event.name, (...args) => event.execute(...args)) 
         }
         else {
-            const eventsFiles2 = fs.readdirSync(`./events/${folder}/${file}`)
-            for (const file2 of eventsFiles2) {
-                const event = require(`./events/${folder}/${file}/${file2}`) 
+            let eventsFiles2 = fs.readdirSync(`./events/${folder}/${file}`)
+            for (let file2 of eventsFiles2) {
+                let event = require(`./events/${folder}/${file}/${file2}`) 
                 client.on(event.name, (...args) => event.execute(...args)) 
             }
         }
@@ -61,14 +61,14 @@ for (const folder of eventsFolders) {
 
 //!Commands Check
 client.on(`messageCreate`, message => {
-    const prefix = `!` 
+    let prefix = `!` 
 
-    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild || message.content.startsWith(`${prefix}${prefix}`) || message.content == prefix || message.guild != config.idServer.idServer) return
+    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild || message.content.startsWith(`${prefix}${prefix}`) || message.content == prefix || message.guild != config.idServer.idServer || message.channel == config.idcanali.thingstodo) return
 
-    const args = message.content.slice(prefix.length).trim().split(/ +/) 
-    const command = args.shift().toLowerCase() 
+    let args = message.content.slice(prefix.length).trim().split(/ +/) 
+    let command = args.shift().toLowerCase() 
     
-    if(command == "play" || command == "p" || command == "pause" || command == "resume" || command == "leave" || command == "stop" || command == "skip" || command == "next" || command == "autoplayoff" || command == "autoplayon" || command == "repeat" || command == "queue") return
+    if(command == `play` || command == `p` || command == `pause` || command == `resume` || command == `leave` || command == `stop` || command == `skip` || command == `next` || command == `autoplayoff` || command == `autoplayon` || command == `repeat` || command == `queue`) return
     
     if (!client.commands.has(command) && !client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))) {
         let embed = new Discord.MessageEmbed()
@@ -79,7 +79,7 @@ client.on(`messageCreate`, message => {
         return
     }
 
-    var comando = client.commands.get(command) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))
+    let comando = client.commands.get(command) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))
 
     if(comando.onlyHelpers && !message.member.roles.cache.has(config.idruoli.owner) && !message.member.roles.cache.has(config.idruoli.moderator) && !message.member.roles.cache.has(config.idruoli.helper)) {
         let embed = new Discord.MessageEmbed()
@@ -150,12 +150,11 @@ setInterval(function () {
         server.setIcon(`https://i.imgur.com/9L95Pls.png`)
     }
 }, 1000 * 60)
-
 //! Code errors
 process.on(`uncaughtException`, async err => {
     let embed = new Discord.MessageEmbed()
         .setTitle(`⚠️ERRORE⚠️`)
-        .addField(`⏰Orario:`, `${moment(new Date().getTime()).format('ddd DD MMM YYYY, HH:mm:ss')}`)
+        .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
         .addField(`📛Errore:`, err.stack ? `${err.stack.slice(0, 900)}` : `${err.slice(0, 900)}`)
         .setThumbnail(`https://i.imgur.com/ULYfVp2.png`)
         .setColor(`RED`)
@@ -177,7 +176,7 @@ process.on(`uncaughtException`, async err => {
 process.on(`unhandledRejection`, async err => {
     let embed = new Discord.MessageEmbed()
         .setTitle(`⚠️ERRORE⚠️`)
-        .addField(`⏰Orario:`, `${moment(new Date().getTime()).format('ddd DD MMM YYYY, HH:mm:ss')}`)
+        .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
         .addField(`📛Errore:`, err.stack ? `${err.stack.slice(0, 900)}` : `${err.slice(0, 900)}`)
         .setThumbnail(`https://i.imgur.com/ULYfVp2.png`)
         .setColor(`RED`)

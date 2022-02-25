@@ -1,6 +1,7 @@
 module.exports = {
     name: `interactionCreate`,
     execute(interaction) {
+        if(!interaction.isButton() || interaction.guild != config.idServer.idServer) return
         if(interaction.customId == `Solved`) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Problema risolto`)

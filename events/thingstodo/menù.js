@@ -1,7 +1,7 @@
 module.exports = {
     name: `interactionCreate`,
     execute(interaction) {
-        if(!interaction.isSelectMenu()) return
+        if(!interaction.isSelectMenu() || interaction.guild != config.idServer.idServer) return
         if(interaction.customId == `Thingstodo`) {
             if(interaction.values[0] == `Todo` || interaction.values[1] == `Todo`) {
                 let embed = new Discord.MessageEmbed()

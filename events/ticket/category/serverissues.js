@@ -1,6 +1,7 @@
 module.exports = {
     name: `interactionCreate`,
     execute(interaction) {
+        if(!interaction.isSelectMenu() || interaction.guild != config.idServer.idServer) return
         if(interaction.customId == `CategorieTicket`) {
             if(interaction.values[0] == `serverissues` || interaction.values[1] == `serverissues`) {
                 let embed = new Discord.MessageEmbed()
