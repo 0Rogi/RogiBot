@@ -12,7 +12,7 @@ module.exports = {
             }
             if(interaction.values[0] == `Completed` || interaction.values[1] == `Completed`) {
                 let embed = new Discord.MessageEmbed()
-                    .setColor(`WHITE`)
+                    .setColor(`GREEN`)
                     .addField(`Stato:`, `🟩Completato`)
                     .addField(`Thing to do:`, interaction.message.embeds[0].fields[1].value)
                 interaction.update({embeds: [embed]})
