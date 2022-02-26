@@ -24,14 +24,12 @@ module.exports = {
                         .setDescription(`È stato rilevato uno **spam** da parte di ${message.author}, è stato messo in timeout per 10 minuti, lo slowmode di questo canale è stato impostato a 10 secondi`)
                         .setFooter({text: `User ID: ${message.author.id}`})
                     let embed2 = new Discord.MessageEmbed()
-                        .setTitle(`Spam Rilevato`)
+                        .setTitle(`⌨️Spam Rilevato⌨️`)
+                        .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                        .addField(`💬Canale:`, `${message.channel}`)
+                        .addField(`👤Utente:`, `Nome: **${message.author.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
                         .setColor(`RED`)
-                        .setDescription(`È stato rilevato uno **spam** da parte di ${message.author} in ${message.channel}, l'utente è stato messo in timeout`)
-                        .setThumbnail(message.author.displayAvatarURL({
-                            dynamic: true,
-                            format: `png`,
-                            size: 512
-                        }))
+                        .setThumbnail(message.author.avatarURL({dynamic: true}))
                     let button = new Discord.MessageButton()
                         .setStyle(`PRIMARY`)
                         .setLabel(`Annulla Slowmode`)
