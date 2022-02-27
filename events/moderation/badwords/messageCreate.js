@@ -3,7 +3,7 @@ module.exports = {
     async execute(message) {
         if(message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.guild != config.idServer.idServer) return
         let trovata = false
-        let censurato = message.content
+        let censurato = message.content.toLowerCase()
 
         parolacce.forEach(parola => {
             if (message.content.toLowerCase().includes(parola.toLowerCase())) {
