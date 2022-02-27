@@ -112,13 +112,13 @@ client.on(`messageCreate`, message => {
 })
 
 //? Members and Subscribers Counter + Youtube Notifier + San Valentine Event
-setInterval(function () {
+setInterval(async function () {
     let server = client.guilds.cache.get(config.idServer.idServer) 
     //Member Counter
     let botCount = server.members.cache.filter(member => member.user.bot).size 
     let utentiCount = server.memberCount - botCount 
     let canalemembri = client.channels.cache.get(config.idcanali.membri)
-    canalemembri.setName(`👾│Members: ${utentiCount}`)
+    canalemembri.setName(`👪│Members: ${utentiCount}`)
     //Youtube Counter
     ytch.getChannelInfo(`UCw7lKb-XBW4ApE0puSbJLFQ`).then((response) => {
         let canaleyoutube = client.channels.cache.get(config.idcanali.iscritti)
@@ -149,8 +149,30 @@ setInterval(function () {
     if(date.getMonth() == 1 && date.getDate() == 15 && date.getHours() == 7 && date.getMinutes() == 0) {
         server.setIcon(`https://i.imgur.com/9L95Pls.png`)
     }
+    //Bot Other Log
+    if(date.getHours() == 11 && date.getMinutes() == 50 || date.getHours() == 23 && date.getMinutes() == 0) {
+        let uptime = ms(client.uptime, { long: true })
+        let ping = client.ws.ping
+        let ram = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)
+        let channel = client.channels.cache.get(config.idcanali.generaltxt)
+        channel.messages.fetch({ limit: 1 }).then(messages => {
+            let generalmessage = messages.first()
+            let embed = new Discord.MessageEmbed()
+            .setTitle(`🟢IL BOT È FUNZIONANTE!`)
+            .addField(`⌚Il mio uptime attuale è:`, uptime.toString(), true)
+            .addField(`💾La mia ram usata attualmente è:`, `${ram.toString()}MB`, true)
+            .addField(`🐢Il mio ping attuale è:`, `${ping.toString()}ms`, true)
+            .addField(`💭L'ultimo messaggio mandato in general è:`, generalmessage.content, true)
+            .addField(`🖊️Scritto da:`, generalmessage.author.toString(), true)
+            .addField(`🔗Link al messaggio:`, `[Message link](https://discord.com/channels/${generalmessage.guild.id}/${generalmessage.channel.id}/${generalmessage.id})`, true)
+            .setColor(`YELLOW`)
+            .setThumbnail(client.guilds.cache.get(config.idServer.idServer).iconURL({dynamic: true}))
+        client.channels.cache.get(config.idcanali.logs.other).send({embeds: [embed]})
+        })
+    }
 }, 1000 * 60)
-//! Code errors
+
+/* Code errors
 process.on(`uncaughtException`, async err => {
     let embed = new Discord.MessageEmbed()
         .setTitle(`⚠️ERRORE⚠️`)
@@ -194,4 +216,4 @@ process.on(`unhandledRejection`, async err => {
         .addComponents(button, button2)
     await client.channels.cache.get(config.idcanali.logs.codeerror).send({embeds: [embed], components: [row]})
     console.log(err)
-})
+})*/
