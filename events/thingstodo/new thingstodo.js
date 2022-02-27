@@ -2,7 +2,7 @@ module.exports = {
     name: `messageCreate`,
     async execute(message) {
         if(message.channel == config.idcanali.thingstodo && message.guild == config.idServer.idServer) {
-            if(message.author.bot) return
+            if(message.author.bot || !message.content) return
             let embed = new Discord.MessageEmbed()
                 .setColor(`WHITE`)
                 .addField(`Stato:`, `🔲Da fare...`)
@@ -22,6 +22,12 @@ module.exports = {
                         value: 'Completed',
                         description: 'Thing to do completato',
                         emoji: '🟩'
+                    },
+                    {
+                        label: 'Importante',
+                        value: 'Important',
+                        description: 'Things to do importante',
+                        emoji: '🟥'
                     },
                     {
                         label: 'Elimina',
