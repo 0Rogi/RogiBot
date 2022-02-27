@@ -14,7 +14,7 @@ module.exports = {
             message.reply({embeds: [embed]})
             return
         }
-        if(!user.roles.cache.has(config.idruoli.helper) && !user.roles.cache.has(config.idruoli.moderator)) {
+        if(!user.roles.cache.has(config.idruoli.helper) && !user.roles.cache.has(config.idruoli.moderator) && !user.roles.cache.has(config.idruoli.srmoderator)) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
                 .setDescription(`*Quest'utente non è uno staffer*`)
@@ -22,6 +22,26 @@ module.exports = {
                 .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
             return
+        } else if(user.roles.cache.has(config.idruoli.srmoderator)) {
+            user.roles.remove(config.idruoli.srmoderator)
+            user.roles.add(config.idruoli.moderator)
+            let dm = true
+            let embedserver = new Discord.MessageEmbed()
+                .setAuthor({name: `[DEMOTE] ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
+                .setDescription(`⚠️**HO AVVISATO** QUEST'UTENTE IN DM⚠️`)
+                //.setThumbnail(config.images.rogi)
+                .setColor(`PURPLE`)
+                .addField(`Utente:`, `Nome: ${user.user.username}, ID: ${user.id}\n||${user.toString()}||`)
+                .addField(`Grado:`, `<@&${config.idruoli.moderator}>`)
+            let embedutente = new Discord.MessageEmbed()
+                .setTitle(`Sei stato retrocesso!`)
+                .setThumbnail(user.displayAvatarURL({dynamic: true, size: 512}))
+                .setColor(`RED`)
+                .addField(`Server:`, message.guild.name, true)
+                .addField(`Grado:`, `Moderatore`, true)
+            await user.send({embeds: [embedutente]}).catch(() => { dm = false })
+            if(dm == false) embedserver.setDescription(`⚠️**NON POSSO AVVISARE** QUESTO UTENTE IN DM⚠️`)
+            message.reply({embeds: [embedserver]})
         } else if(user.roles.cache.has(config.idruoli.moderator)) {
             user.roles.remove(config.idruoli.moderator)
             user.roles.add(config.idruoli.helper)
@@ -34,7 +54,7 @@ module.exports = {
                 .addField(`Utente:`, `Nome: ${user.user.username}, ID: ${user.id}\n||${user.toString()}||`)
                 .addField(`Grado:`, `<@&${config.idruoli.helper}>`)
             let embedutente = new Discord.MessageEmbed()
-                .setTitle(`Sei retrocesso!`)
+                .setTitle(`Sei stato retrocesso!`)
                 .setThumbnail(user.displayAvatarURL({dynamic: true, size: 512}))
                 .setColor(`RED`)
                 .addField(`Server:`, message.guild.name, true)
@@ -54,7 +74,7 @@ module.exports = {
                 .addField(`Utente:`, `Nome: ${user.user.username}, ID: ${user.id}\n||${user.toString()}||`)
                 .addField(`Grado:`, `<@&${config.idruoli.fan}>`)
             let embedutente = new Discord.MessageEmbed()
-                .setTitle(`Sei retrocesso!`)
+                .setTitle(`Sei stato retrocesso!`)
                 .setThumbnail(user.displayAvatarURL({dynamic: true, size: 512}))
                 .setColor(`RED`)
                 .addField(`Server:`, message.guild.name, true)
