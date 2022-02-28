@@ -1,7 +1,7 @@
 module.exports = {
     name: `messageCreate`,
     execute(message) {
-        if(message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.guild != config.idServer.idServer) return
+        if(message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.guild != config.idServer.idServer || message.channel.parent == config.idcanali.helpparent) return
         if(checkspam.has(message.author.id)) {
             let data = checkspam.get(message.author.id)
             let { lastmsg, timer } = data;

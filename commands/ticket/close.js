@@ -42,6 +42,7 @@ module.exports = {
                         .addField(`👤Ticket di:`, `Nome: **${user.user.username}**, ID: **${message.channel.topic.slice(9)}**\n${client.users.cache.get(message.channel.topic.slice(9)).toString()}`)
                         .setThumbnail(message.member.displayAvatarURL({dynamic: true}))
                         .setColor(`RED`)
+                    if(message.channel.name.startsWith(`⛔│`)) {embedlog.addField(`Richiesta di Unmute:`, `🟢Sì`)} else {embedlog.addField(`Richiesta di Unmute:`, `🔴No`)}
                     let logs = client.channels.cache.get(config.idcanali.logs.ticket)
                     logs.send({embeds: [embedlog], files: [attachment]})
                     message.channel.delete()

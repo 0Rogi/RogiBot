@@ -111,7 +111,7 @@ client.on(`messageCreate`, message => {
     comando.execute(message, args) 
 })
 
-//? Members and Subscribers Counter + Youtube Notifier + San Valentine Event
+//? Members and Subscribers Counter + Youtube Notifier + San Valentine Event + Other Logs
 setInterval(async function () {
     let server = client.guilds.cache.get(config.idServer.idServer) 
     //Member Counter
@@ -150,7 +150,7 @@ setInterval(async function () {
         server.setIcon(`https://i.imgur.com/9L95Pls.png`)
     }
     //Bot Other Log
-    if(date.getHours() == 11 && date.getMinutes() == 50 || date.getHours() == 23 && date.getMinutes() == 0) {
+    if(date.getHours() == 11 && date.getMinutes() == 0 || date.getHours() == 23 && date.getMinutes() == 0) {
         let uptime = ms(client.uptime, { long: true })
         let ping = client.ws.ping
         let ram = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)
@@ -172,7 +172,7 @@ setInterval(async function () {
     }
 }, 1000 * 60)
 
-/* Code errors
+//! Code errors
 process.on(`uncaughtException`, async err => {
     let embed = new Discord.MessageEmbed()
         .setTitle(`⚠️ERRORE⚠️`)
@@ -216,4 +216,4 @@ process.on(`unhandledRejection`, async err => {
         .addComponents(button, button2)
     await client.channels.cache.get(config.idcanali.logs.codeerror).send({embeds: [embed], components: [row]})
     console.log(err)
-})*/
+})

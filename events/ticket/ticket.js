@@ -14,7 +14,7 @@ module.exports = {
                 interaction.reply({embeds: [embed], ephemeral: true})
                 return
             }
-            server.channels.create(`ticket-${user.username}`, { type:`GUILD_TEXT` }).then(canale => {
+            server.channels.create(`❓│ticket-${user.username}`, { type:`GUILD_TEXT` }).then(canale => {
             canale.setTopic(`User ID: ${user.id}`)
             canale.setParent(config.idcanali.helpparent)
             canale.permissionOverwrites.set([
