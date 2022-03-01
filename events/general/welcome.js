@@ -17,7 +17,7 @@ module.exports = {
         let ctx = canvas.getContext(`2d`);
         let background = await Canvas.loadImage(`./Canvas/img/WelcomeImage.png`);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);        
-        let avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: `jpg` }))
+        let avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: `png` }))
         ctx.drawImage(avatar, 470, 250, 350, 350);
         /*ctx.font = `40px Impact`;
         ctx.fillStyle = `#F8F8F8`;
