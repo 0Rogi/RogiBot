@@ -1,6 +1,6 @@
 module.exports = {
     name: `kick`,
-    onlyHelpers: true,
+    onlyMods: true,
     async execute(message, args) {
         let id = args[0]
         let server = client.guilds.cache.get(config.idServer.idServer)

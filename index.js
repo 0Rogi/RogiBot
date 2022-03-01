@@ -6,7 +6,9 @@ global.Canvas = require(`canvas`)
 global.ytch = require(`yt-channel-info`)
 global.lyricsFinder = require(`lyrics-finder`)
 global.discordTranscripts = require(`discord-html-transcripts`)
-global.client = new Discord.Client({intents: 32767})
+global.discordModals = require(`discord-modals`)
+global.client = new Discord.Client({intents: 32767, allowedMentions: { parse: [] }})
+discordModals(client)
 let fs = require(`fs`) 
 global.config = require(`./JSON/config.json`)
 global.parolacce = require(`./JSON/badwords.json`)
@@ -81,7 +83,7 @@ client.on(`messageCreate`, message => {
 
     let comando = client.commands.get(command) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))
 
-    if(comando.onlyHelpers && !message.member.roles.cache.has(config.idruoli.owner) && !message.member.roles.cache.has(config.idruoli.moderator) && !message.member.roles.cache.has(config.idruoli.helper)) {
+    if(comando.onlyHelpers && !message.member.roles.cache.has(config.idruoli.owner) && !message.member.roles.cache.has(config.idruoli.srmoderator) && !message.member.roles.cache.has(config.idruoli.moderator) && !message.member.roles.cache.has(config.idruoli.helper)) {
         let embed = new Discord.MessageEmbed()
             .setColor(`RED`)
             .setDescription(`Devi essere almeno **Helper** per eseguire il comando \`!${command}\``)
@@ -90,7 +92,7 @@ client.on(`messageCreate`, message => {
         return
     }
 
-    if(comando.onlyMods && !message.member.roles.cache.has(config.idruoli.owner) && !message.member.roles.cache.has(config.idruoli.moderator)) {
+    if(comando.onlyMods && !message.member.roles.cache.has(config.idruoli.owner) && !message.member.roles.cache.has(config.idruoli.srmoderator) && !message.member.roles.cache.has(config.idruoli.moderator)) {
         let embed = new Discord.MessageEmbed()
             .setColor(`RED`)
             .setDescription(`Devi essere almeno **Moderatore** per eseguire il comando \`!${command}\``)
@@ -217,3 +219,38 @@ process.on(`unhandledRejection`, async err => {
     await client.channels.cache.get(config.idcanali.logs.codeerror).send({embeds: [embed], components: [row]})
     console.log(err)
 })
+
+setInterval(() => {
+    var hour = new Date().getHours()
+    var minutes = new Date().getMinutes()
+    if (hour == 16 && minutes == 0) {
+        let channel = client.channels.cache.get(config.idcanali.becamestaff)
+        let server = client.guilds.cache.get(config.idServer.idServer)
+        channel.permissionOverwrites.set([
+            {
+                id: server.id,
+                allow: [`VIEW_CHANNEL`],
+                deny: [`SEND_MESSAGES`]
+            }
+        ])
+        let button = new Discord.MessageButton()
+            .setStyle(`SUCCESS`)
+            .setLabel(`Candidati`)
+            .setCustomId(`Candidati`)
+        let row = new Discord.MessageActionRow()
+            .addComponents(button)
+        channel.send(`__**🔨Diventa Uno Staffer🔨**__\nSei **competente in moderazione** e ti va di **aiutare gli altri**?\nBene, allora candidati come <@&741616767079809024>!`)
+        channel.send(config.images.becamestaffer)
+        channel.send(`__**❓Quali ruoli è possibile essere❓**__\n\n<@&624628040546385930>\n<@&621002745024872461>\n<@&945393889672589312>`)
+        channel.send(`__**🤷‍♂️ Cosa si ottiene diventando staffer?🤷‍♀️**__\n\nDiventando un <@&624628040546385930> potrai:\n-Usare !clear\n-Attivare e disattivare il sistema di lockdown\n-Mutare e smutare gli utenti\n-Cambiare il nick di tutti gli utenti normali\n-Mettere e togliere il timeout a tutti gli utenti\n-Accedere ai logs\n-Accedere ai ticket normali\n\nDiventando un <@&621002745024872461> potrai:\n-Bannare e sbannare gli utenti\n-Usare !clear\n-Kickare gli utenti\n-Attivare e disattivare il sistema di lockdown\n-Mutare e smutare gli utenti\n-Cambiare il nick di tutti gli utenti normali\n-Usare !say per annunciare cose\n-Cambiare lo slowmode ai canali\n-Mettere e togliere il timeout a tutti gli utenti\n-Accedere ai logs\n-Accedere ai ticket normali\n-Accedere ai ticket di contestazione del mute\n\nDiventando un <@&945393889672589312> avrai i permessi da **amministratore**, di conseguenza potrai fare **tutto**`)
+        channel.send(`__*⚠️Dopo essersi candidati, la candidatura verrà inviata allo staff che deciderà se accettarla o meno.⚠️*__`)
+        channel.send(`__**In base a cosa si viene accettati o no?**__\nI requisiti necessari per poter essere accettati sono:\n-Essere nel server da almeno due settimane\n-Essere attivi nel server\n-Rispondere correttamente alle domande della candidatura`)
+        channel.send({content: `__**Cos'altro stai aspettando? Candidati!**__`, components: [row]})
+        let wc = new Discord.WebhookClient({
+            id: "948175921842618419", 
+            token: process.env.announcetoken
+        })
+        let attachment = new Discord.MessageAttachment(`./Canvas/Became Staff.gif`)
+        wc.send({content: `:mega:**ANNUNCIO CANDIDATURA STAFF**:hammer:\n\n:genie:Desideri tantissimo diventare un **Moderatore** o un **Helper** di questo server? Bene, da oggi le candidature:clipboard: sono finalmente **aperte**!!\n\n:question:**__Come fare a candidarsi?__**\nBasta recarsi nella chat <#947915938043428885> e completare la **candidatura**!\n\nQui sotto c'è una gif :camera: su come fare :wink:\n\n:grey_exclamation:__**Che aspetti? Candidati!**__`, files: [attachment]})
+    }
+}, 1000 * 60)

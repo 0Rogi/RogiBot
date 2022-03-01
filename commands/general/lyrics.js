@@ -19,7 +19,7 @@ module.exports = {
                 .setColor(`RED`)
                 .setThumbnail(config.images.rogierror)
             message.reply({embeds: [embed]})
-                return
+            return
         }
         if(lyrics == `Error`) {
             let embed = new Discord.MessageEmbed()

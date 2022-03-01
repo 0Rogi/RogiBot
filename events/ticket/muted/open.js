@@ -1,23 +1,3 @@
-/*module.exports = {
-    name: `ready`,
-    execute() {
-        let embed = new Discord.MessageEmbed()
-            .setTitle(`🔇SEI STATO MUTATO🔇`)
-            .setThumbnail(config.images.rogimute)
-            .setDescription(`Sei stato **mutato**, hai ricevuto in dm il motivo.\n\nSe ritieni ingiusto questo mute, puoi cliccare il pulsante qui sotto per aprire un **ticket privato** per parlare con solo i moderatori`)
-            .setColor(`DARK_PURPLE`)
-        let button = new Discord.MessageButton()
-            .setLabel(`Apri un ticket`)
-            .setStyle(`DANGER`)
-            .setCustomId(`TicketMuted`)
-        let row = new Discord.MessageActionRow()
-            .addComponents(button)    
-        client.channels.cache.get(config.idcanali.muted).send({embeds: [embed], components: [row]}).then(msg => {
-            msg.pin()
-        })
-    }
-}*/
-
 module.exports = {
     name: `interactionCreate`,
     execute(interaction) {

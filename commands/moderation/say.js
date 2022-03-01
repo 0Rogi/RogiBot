@@ -1,6 +1,6 @@
 module.exports = {
     name: `say`,
-    onlyHelpers: true,
+    onlyMods: true,
     execute(message){
         let args = message.content.split(` `).slice(1);
         let saytext = args.join(` `);

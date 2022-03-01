@@ -1,5 +1,10 @@
+# Node Modules Folder
 **/node_modules
-**/OldFunctions
+
+# Env File
 .env
-RogiBot.zip
-RogiBot.rar
+
+# Other Settings Files
+**/OldFunctions
+**/events/becamestaff/message.js
+**/events/ticket/muted/message.js

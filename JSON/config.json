@@ -28,7 +28,9 @@
         "level5": "813843750773063741",
         "fan": "704646594506653791",
         "muted": "623513180156723211",
-        "bot": "704647749034967040"
+        "bot": "704647749034967040",
+        "page2": "947935270622351390",
+        "page1": "947935224812158997"
     },
     "idcanali": {
         "welcome": "813375425056342036",
@@ -37,6 +39,7 @@
         "announcement": "942473357931192391",
         "minecraftupdates": "862003693250412574",
         "info": "813476709731008532",
+        "becamestaff": "947915938043428885",
         "membri": "814829205904424980",
         "iscritti": "862009685087748117",
         "testualeyt": "621723864854167552",
@@ -90,6 +93,7 @@
         "rogislowmode": "https://i.imgur.com/0nxhXTO.png",
         "rogishutdown": "https://i.imgur.com/sTZRSdF.png",
         "rogirestart": "https://i.imgur.com/QVVlcAG.png",
-        "rogiclosing": "https://i.imgur.com/SdQ8Yno.png"
+        "rogiclosing": "https://i.imgur.com/SdQ8Yno.png",
+        "becamestaffer": "https://i.imgur.com/NEyDPBo.png"
     }
 }
