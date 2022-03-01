@@ -50,7 +50,7 @@ module.exports = {
                 .setThumbnail(modal.user.displayAvatarURL({dynamic: true}))
                 .setColor(`YELLOW`)
             modal.member.roles.add(config.idruoli.page2)
-            client.channels.cache.get(config.idcanali.logs.other).messages.fetch().then(messages => {
+            await client.channels.cache.get(config.idcanali.logs.other).messages.fetch().then(messages => {
                 messages.forEach(async msg => {
                     if(msg.embeds[0]?.title == `Candidatura Staff (Pagina1)`) {
                         if(msg.embeds[0]?.footer.text == `User ID: ${modal.user.id}`) {
