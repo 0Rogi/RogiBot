@@ -1,7 +1,7 @@
 module.exports = {
     name: `lyrics`,
     async execute(message, args) {
-        if(!message.member.roles.cache.has(config.idruoli.level20) && !message.member.roles.cache.has(config.idruoli.level25) && !message.member.roles.cache.has(config.idruoli.level30) && !message.member.roles.cache.has(config.idruoli.owner)) {
+        if(!message.member.roles.cache.has(config.idruoli.level20) && !message.member.roles.cache.has(config.idruoli.level25) && !message.member.roles.cache.has(config.idruoli.level30) && !message.member.roles.cache.has(config.idruoli.serverbooster) && !message.member.roles.cache.has(config.idruoli.srmoderator) && !message.member.roles.cache.has(config.idruoli.owner)) {
             let embed = new Discord.MessageEmbed()
                 .setColor(`RED`)
                 .setDescription(`_Hai bisogno almeno del **livello 20**\nper eseguire questo comando_`)
@@ -10,6 +10,7 @@ module.exports = {
             message.reply({embeds: [embed]})
             return
         }
+        message.channel.sendTyping()
         let title = args.join(` `)
         let lyrics = await lyricsFinder(title) || `Error`
         if(lyrics.length > 4096) {

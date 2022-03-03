@@ -1,7 +1,7 @@
 module.exports = {
     name: `rps`,
     execute(message) {
-        if(!message.member.roles.cache.has(config.idruoli.level15) && !message.member.roles.cache.has(config.idruoli.level20) && !message.member.roles.cache.has(config.idruoli.level25) && !message.member.roles.cache.has(config.idruoli.level30) && !message.member.roles.cache.has(config.idruoli.owner)) {
+        if(!message.member.roles.cache.has(config.idruoli.level15) && !message.member.roles.cache.has(config.idruoli.level20) && !message.member.roles.cache.has(config.idruoli.level25) && !message.member.roles.cache.has(config.idruoli.level30) && !message.member.roles.cache.has(config.idruoli.serverbooster) && !message.member.roles.cache.has(config.idruoli.srmoderator) && !message.member.roles.cache.has(config.idruoli.owner)) {
             let embed = new Discord.MessageEmbed()
                 .setColor(`RED`)
                 .setDescription(`_Hai bisogno almeno del **livello 15**\nper eseguire questo comando_`)
