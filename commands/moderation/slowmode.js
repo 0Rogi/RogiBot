@@ -25,7 +25,6 @@ module.exports = {
                 message.reply({embeds: [embed]})
                 return
             }
-
             if (time > 21600000) {
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`Errore`)
@@ -35,8 +34,22 @@ module.exports = {
                 message.reply({embeds: [embed]})
                 return
             }
-            
-            let tempo = ms(time, { long: true });
+            if (time < 1 * 1000) {
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`Errore`)
+                    .setDescription(`*Puoi impostare un minimo di 1 secondo di slowmode\n\`!slowmode [tempo]\`*`)
+                    .setColor(`RED`)
+                    .setThumbnail(config.images.rogierror)
+                message.reply({embeds: [embed]})
+                return
+            }
+        }
+
+        if (time == `off` || time == `no` || time == 0)
+            time = 0
+
+        message.channel.setRateLimitPerUser(parseInt(time) / 1000)
+        let tempo = ms(time, { long: true });
             tempo = tempo + ` `
             tempo = tempo.replace(`second `, `secondo`)
             tempo = tempo.replace(`seconds`, `secondi`)
@@ -44,13 +57,6 @@ module.exports = {
             tempo = tempo.replace(`minutes`, `minuti`)
             tempo = tempo.replace(`hour `, `ora `)
             tempo = tempo.replace(`hours`, `ore`)
-        }
-
-        if (time == `off` || time == `no` || time == 0)
-            time = 0
-
-        message.channel.setRateLimitPerUser(parseInt(time) / 1000)
-
         let embed = new Discord.MessageEmbed()
             .setAuthor({name: `[SLOWMODE] ${message.author.tag}`, iconURL: message.author.displayAvatarURL({dynamic: true})})
             .setThumbnail(config.images.rogislowmode)

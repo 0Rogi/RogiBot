@@ -152,7 +152,7 @@ setInterval(async function () {
         server.setIcon(`https://i.imgur.com/9L95Pls.png`)
     }
     //Bot Other Log
-    if(date.getHours() == 11 && date.getMinutes() == 0 || date.getHours() == 23 && date.getMinutes() == 0) {
+    if(date.getHours() == 23 && date.getMinutes() == 0) {
         let uptime = ms(client.uptime, { long: true })
         let ping = client.ws.ping
         let ram = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)
