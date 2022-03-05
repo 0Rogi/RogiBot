@@ -16,5 +16,16 @@ module.exports = {
             }))
             .setColor(`RED`)
         channel.send({embeds: [embed]})
+        MongoClient.connect(process.env.mongodburl, { useNewUrlParser: true, useUnifiedTopology: true}, function(err, db) {
+            let database = db.db(`RogiDiscordDB`)
+            database.collection(`CollectionTest`).find({id: member.id}).toArray(function(err, result) {
+                if(!result[0]) {
+                    database.collection(`CollectionTest`).insertOne({id: member.id, roles: member._roles})
+                }
+                if(result[0]) {
+                    database.collection(`CollectionTest`).updateOne({id: member.id}, {$set:{roles: member._roles}})
+                }
+            })
+        })
     }
 }

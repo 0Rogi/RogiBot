@@ -7,6 +7,7 @@ global.ytch = require(`yt-channel-info`)
 global.lyricsFinder = require(`lyrics-finder`)
 global.discordTranscripts = require(`discord-html-transcripts`)
 global.discordModals = require(`discord-modals`)
+global.MongoClient = require(`mongodb`).MongoClient
 global.client = new Discord.Client({intents: 32767, allowedMentions: { parse: [] }})
 discordModals(client)
 let fs = require(`fs`) 
