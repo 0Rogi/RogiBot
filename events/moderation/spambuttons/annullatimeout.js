@@ -35,7 +35,7 @@ module.exports = {
                 .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
                 .addField(`💬Canale:`, `${interaction.channel}`)
                 .addField(`🔨Moderatore:`, `Nome: **${interaction.user.username}**, ID: **${interaction.user.id}**\n||${interaction.user.toString()}||`)
-                .addField(`👤Utente:`, `Nome: **${user.username}**, ID: **${user.id}**\n||${user.toString()}||`)
+                .addField(`👤Utente:`, `Nome: **${user.user.username}**, ID: **${user.id}**\n||${user.toString()}||`)
                 .setColor(`GREEN`)
                 .setThumbnail(interaction.user.avatarURL({dynamic: true}))
             client.channels.cache.get(config.idcanali.logs.moderation).send({embeds: [embed]})

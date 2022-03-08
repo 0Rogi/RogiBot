@@ -16,6 +16,7 @@ global.parolacce = require(`./JSON/badwords.json`)
 global.bestemmie = require(`./JSON/bestemmie.json`)
 global.checkspam = new Map()
 global.delete = true
+global.database;
 try {
     require(`dotenv`).config()
 } catch {
