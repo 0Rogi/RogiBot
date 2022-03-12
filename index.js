@@ -65,6 +65,14 @@ for (let folder of eventsFolders) {
 
 //!Commands Check
 client.on(`messageCreate`, message => {
+    let trovata = false
+    parolacce.forEach(parola => {
+        if (message.content.toLowerCase().includes(parola.toLowerCase())) {
+            trovata = true
+        }
+    })
+    if (trovata && !message.member.roles.cache.has(config.idruoli.staff)) return
+    
     let prefix = `!` 
 
     if (!message.content.startsWith(prefix) || message.author.bot || !message.guild || message.content.startsWith(`${prefix}${prefix}`) || message.content == prefix || message.guild != config.idServer.idServer || message.channel == config.idcanali.thingstodo) return

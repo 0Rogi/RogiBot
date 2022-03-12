@@ -44,7 +44,7 @@ module.exports = {
             .setTitle(title.toString())
             .setDescription(`Risposta di ${message.member}:\n**${descriptionuser.toString()}**\nRisposta BOT:\n**${descriptionbot}**`)
             .setColor(`YELLOW`)
-            .setThumbnail(`https://i.imgur.com/wqdpHSZ.jpg`)
+            .setThumbnail(`https://i.imgur.com/FydhJ7f.png`)
         message.reply({embeds: [embed]})
     }
 }
