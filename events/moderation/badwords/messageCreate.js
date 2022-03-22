@@ -21,7 +21,6 @@ module.exports = {
             })
             //* Se viene trovata anche una bestemmia
             if(bestemmia) {
-                global.delete = false
                 let dm = true
                 message.delete()
                 let embed = new Discord.MessageEmbed()
@@ -56,7 +55,6 @@ module.exports = {
                 return
             }
             //* Se viene trovata usoltanto una parolaccia
-            global.delete = false
             message.delete()
                 let dm = true
                 let embed = new Discord.MessageEmbed()

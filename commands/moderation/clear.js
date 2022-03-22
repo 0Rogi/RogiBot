@@ -22,7 +22,6 @@ module.exports = {
             message.reply({embeds: [embed]});
             return
         }
-        global.delete = false
         message.delete()
         setTimeout(() => {
             message.channel.bulkDelete(count, true)

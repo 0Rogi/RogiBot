@@ -8,14 +8,13 @@ global.lyricsFinder = require(`lyrics-finder`)
 global.discordTranscripts = require(`discord-html-transcripts`)
 global.discordModals = require(`discord-modals`)
 global.MongoClient = require(`mongodb`).MongoClient
-global.client = new Discord.Client({intents: 32767, allowedMentions: { parse: [] }})
+global.client = new Discord.Client({intents: 32767, partials: [`MESSAGE`, `CHANNEL`, `REACTION`], allowedMentions: { parse: [] }})
 discordModals(client)
 let fs = require(`fs`) 
 global.config = require(`./JSON/config.json`)
 global.parolacce = require(`./JSON/badwords.json`)
 global.bestemmie = require(`./JSON/bestemmie.json`)
 global.checkspam = new Map()
-global.delete = true
 global.database;
 try {
     require(`dotenv`).config()
@@ -75,7 +74,7 @@ client.on(`messageCreate`, message => {
     
     let prefix = `!` 
 
-    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild || message.content.startsWith(`${prefix}${prefix}`) || message.content == prefix || message.guild != config.idServer.idServer || message.channel == config.idcanali.thingstodo) return
+    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild || message.content.startsWith(`${prefix}${prefix}`) || message.content == prefix || message.guild != config.idServer.idServer || message.channel == config.idcanali.thingstodo || message.channel == config.idcanali.suggests) return
 
     let args = message.content.slice(prefix.length).trim().split(/ +/) 
     let command = args.shift().toLowerCase() 

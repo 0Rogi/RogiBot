@@ -24,7 +24,6 @@ module.exports = {
             .setAuthor({name: message.author.tag, iconURL: message.author.displayAvatarURL({dynamic: true})})
             .setColor(`YELLOW`)
             .setDescription(saytext.toString())
-        global.delete = false
         message.delete()
         message.channel.send({embeds: [embed]})
     } 

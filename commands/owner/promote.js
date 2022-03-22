@@ -14,7 +14,7 @@ module.exports = {
             message.reply({embeds: [embed]})
             return
         }
-        if(!user.roles.cache.has(config.idruoli.helper) && !user.roles.cache.has(config.idruoli.moderator) && !user.roles.cache.has(config.idruoli.srmoderator)) {
+        if(!user.roles.cache.has(config.idruoli.helper) && !user.roles.cache.has(config.idruoli.moderator) && !user.roles.cache.has(config.idruoli.srmoderator) && !user.roles.cache.has(config.idruoli.owner)) {
             user.roles.add(config.idruoli.helper)
             user.roles.add(config.idruoli.staff)
             let dm = true

@@ -38,7 +38,6 @@ module.exports = {
                 ])
             let row = new Discord.MessageActionRow()
                 .addComponents(menu)
-            global.delete = false
             message.delete()
             message.channel.send({embeds: [embed], components: [row]})
         }

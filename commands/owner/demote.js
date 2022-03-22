@@ -14,7 +14,7 @@ module.exports = {
             message.reply({embeds: [embed]})
             return
         }
-        if(!user.roles.cache.has(config.idruoli.helper) && !user.roles.cache.has(config.idruoli.moderator) && !user.roles.cache.has(config.idruoli.srmoderator)) {
+        if(!user.roles.cache.has(config.idruoli.helper) && !user.roles.cache.has(config.idruoli.moderator) && !user.roles.cache.has(config.idruoli.srmoderator) && !user.roles.cache.has(config.idruoli.owner)) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
                 .setDescription(`*Quest'utente non è uno staffer*`)
@@ -115,6 +115,13 @@ module.exports = {
             if(dm == false) embedserver.setDescription(`⚠️**NON POSSO AVVISARE** QUESTO UTENTE IN DM⚠️`)
             message.reply({embeds: [embedserver]})
             client.channels.cache.get(config.idcanali.logs.other).send({embeds: [embedlogs]})
+        } else if(user.roles.cache.has(config.idruoli.owner)) {
+            let embed = new Discord.MessageEmbed()
+                .setTitle(`Errore`)
+                .setDescription(`*Quest'utente non puo' essere retrocesso*`)
+                .setColor(`RED`)
+                .setThumbnail(config.images.rogierror)
+            message.reply({embeds: [embed]})
         }
     }
 }

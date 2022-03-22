@@ -41,7 +41,7 @@ module.exports = {
                         .setDescription(`È stato rilevato uno **spam** da parte tua in ${message.guild.name}\n\nPrenditi una pausa di 10 minuti 😄`)
                         .setColor(`RED`)
                     message.member.timeout(1000 * 60 * 10, `Rilevazione di Spam`)
-                    message.author.send({embeds: [embed3]})
+                    message.author.send({embeds: [embed3]}).catch(() => {})
                     message.channel.setRateLimitPerUser(10)
                     message.channel.send({embeds: [embed], components: [row]})
                     client.channels.cache.get(config.idcanali.logs.moderation).send({embeds: [embed2]})

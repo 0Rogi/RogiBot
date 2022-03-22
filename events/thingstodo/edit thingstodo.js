@@ -8,7 +8,6 @@ module.exports = {
                     .addField(msg.embeds[0].fields[0].name, msg.embeds[0].fields[0].value)
                     .addField(msg.embeds[0].fields[1].name, message.content.toString())
                     .setColor(msg.embeds[0].color)
-                global.delete = false
                 message.delete()
                 msg.edit({embeds: [embed]})
                 let embedlogs = new Discord.MessageEmbed()
