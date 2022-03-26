@@ -1,4 +1,4 @@
-module.exports = {
+/*module.exports = {
     name: `messageUpdate`,
     execute(oldMessage, newMessage) {
         if(!oldMessage || !newMessage || !message.guild) return
@@ -85,4 +85,4 @@ module.exports = {
             .setColor(`YELLOW`)
         channel.send({embeds: [embed]})
     }
-}
+}*/
