@@ -8,3 +8,7 @@
 **/OldFunctions
 **/events/becamestaff/message.js
 **/events/ticket/muted/message.js
+
+# Testing
+**/commands/general/testingcommands.js
+**JSON/easter.json

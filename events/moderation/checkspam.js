@@ -2,6 +2,7 @@ module.exports = {
     name: `messageCreate`,
     execute(message) {
         if(!message || !message.guild || message.guild != config.idServer.idServer) return
+        if(!message.author || !message.member) return
         if(message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.channel.parent == config.idcanali.helpparent) return
         if(checkspam.has(message.author.id)) {
             let data = checkspam.get(message.author.id)
