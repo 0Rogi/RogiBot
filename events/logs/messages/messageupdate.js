@@ -2,7 +2,7 @@ module.exports = {
     name: `messageUpdate`,
     execute(oldMessage, newMessage) {
         if(!oldMessage || !oldMessage.guild || oldMessage.guild != config.idServer.idServer) return
-        if(!oldMessage || !newMessage || !message.guild) return
+        if(!oldMessage || !newMessage || !oldMessage.guild) return
         if(oldMessage.author.bot || oldMessage.guild != config.idServer.idServer) return
         let channel = client.channels.cache.get(config.idcanali.logs.message)
         let oldtextembed = ``
