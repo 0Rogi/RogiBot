@@ -1,6 +1,6 @@
 module.exports = {
     name: `mute`,
-    onlyHelpers: true,
+    FromHelpers: true,
     async execute(message, args) {
         let id = args[0]
         let server = client.guilds.cache.get(config.idServer.idServer)

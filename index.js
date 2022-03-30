@@ -81,41 +81,80 @@ client.on(`messageCreate`, message => {
     
     if(command == `play` || command == `p` || command == `pause` || command == `resume` || command == `leave` || command == `stop` || command == `skip` || command == `next` || command == `autoplayoff` || command == `autoplayon` || command == `repeat` || command == `queue`) return
     
-    if (!client.commands.has(command) && !client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))) {
-        let embed = new Discord.MessageEmbed()
-            .setColor(`RED`)
-            .setDescription(`Il comando \`!${command}\` non esiste`)
-            .setTitle(`Comando non esistente`)
-        message.reply({embeds: [embed]})
-        return
-    }
-
     let comando = client.commands.get(command) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command))
-
-    if(comando.onlyHelpers && !message.member.roles.cache.has(config.idruoli.owner) && !message.member.roles.cache.has(config.idruoli.srmoderator) && !message.member.roles.cache.has(config.idruoli.moderator) && !message.member.roles.cache.has(config.idruoli.helper)) {
+    
+    if (!comando) {
         let embed = new Discord.MessageEmbed()
             .setColor(`RED`)
-            .setDescription(`Devi essere almeno **Helper** per eseguire il comando \`!${command}\``)
-            .setTitle(`Non hai il permesso!`)
-        message.reply({embeds: [embed]})
+            .setDescription(`Il comando \`!${command}\` **non esiste**`)
+            .setTitle(`Comando non esistente`)
+            .setThumbnail(config.images.rogierror)
+        message.reply({embeds: [embed]}).then(msg => {
+            setTimeout(() => {
+                msg.delete().catch(() => {})
+                message.delete().catch(() => {})
+            }, 1000 * 5);
+        })
         return
     }
 
-    if(comando.onlyMods && !message.member.roles.cache.has(config.idruoli.owner) && !message.member.roles.cache.has(config.idruoli.srmoderator) && !message.member.roles.cache.has(config.idruoli.moderator)) {
+    if(!message.member.roles.cache.has(config.idruoli.staff) && message.channel != config.idcanali.commands && message.channel.parent != config.idcanali.helpparent && message.channel != config.idcanali.testing) {
         let embed = new Discord.MessageEmbed()
             .setColor(`RED`)
-            .setDescription(`Devi essere almeno **Moderatore** per eseguire il comando \`!${command}\``)
-            .setTitle(`Non hai il permesso!`)
-        message.reply({embeds: [embed]})
+            .setDescription(`**Tutti i comandi** devono essere\nutilizzati in <#${config.idcanali.commands}>`)
+            .setTitle(`Canale non concesso`)
+            .setThumbnail(config.images.rogierror)
+        message.reply({embeds: [embed]}).then(msg => {
+            setTimeout(() => {
+                msg.delete().catch(() => {})
+                message.delete().catch(() => {})
+            }, 1000 * 5);
+        })
         return
     }
 
-    if(comando.onlyOwner && !message.member.roles.cache.has(config.idruoli.owner)) {
+    if(comando.FromHelpers && !message.member.roles.cache.has(config.idruoli.owner) && !message.member.roles.cache.has(config.idruoli.srmoderator) && !message.member.roles.cache.has(config.idruoli.moderator) && !message.member.roles.cache.has(config.idruoli.helper)) {
         let embed = new Discord.MessageEmbed()
             .setColor(`RED`)
-            .setDescription(`Devi essere almeno **Owner** per eseguire il comando \`!${command}\``)
+            .setDescription(`Devi essere almeno <@&${config.idruoli.helper}>\nper eseguire il comando \`!${command}\``)
             .setTitle(`Non hai il permesso!`)
-        message.reply({embeds: [embed]})
+            .setThumbnail(config.images.rogierror)
+        message.reply({embeds: [embed]}).then(msg => {
+            setTimeout(() => {
+                msg.delete().catch(() => {})
+                message.delete().catch(() => {})
+            }, 1000 * 5);
+        })
+        return
+    }
+
+    if(comando.FromMods && !message.member.roles.cache.has(config.idruoli.owner) && !message.member.roles.cache.has(config.idruoli.srmoderator) && !message.member.roles.cache.has(config.idruoli.moderator)) {
+        let embed = new Discord.MessageEmbed()
+            .setColor(`RED`)
+            .setDescription(`Devi essere almeno <@&${config.idruoli.moderator}>\nper eseguire il comando \`!${command}\``)
+            .setTitle(`Non hai il permesso!`)
+            .setThumbnail(config.images.rogierror)
+        message.reply({embeds: [embed]}).then(msg => {
+            setTimeout(() => {
+                msg.delete().catch(() => {})
+                message.delete().catch(() => {})
+            }, 1000 * 5);
+        })
+        return
+    }
+
+    if(comando.FromOwner && !message.member.roles.cache.has(config.idruoli.owner)) {
+        let embed = new Discord.MessageEmbed()
+            .setColor(`RED`)
+            .setDescription(`Devi essere almeno <@&${config.idruoli.owner}>\nper eseguire il comando \`!${command}\``)
+            .setTitle(`Non hai il permesso!`)
+            .setThumbnail(config.images.rogierror)
+        message.reply({embeds: [embed]}).then(msg => {
+            setTimeout(() => {
+                msg.delete().catch(() => {})
+                message.delete().catch(() => {})
+            }, 1000 * 5);
+        })
         return
     }
 
@@ -133,7 +172,7 @@ setInterval(async function () {
     //Youtube Counter
     ytch.getChannelInfo(`UCw7lKb-XBW4ApE0puSbJLFQ`).then((response) => {
         let canaleyoutube = client.channels.cache.get(config.idcanali.iscritti)
-        canaleyoutube.setName(`🎬│Subscribers: ${response.subscriberCount}`)
+        canaleyoutube.setName(`🎬│Subscribers: ${response?.subscriberCount}`)
     })
     //Youtube Notifier
     ytch.getChannelVideos(`UCw7lKb-XBW4ApE0puSbJLFQ`, `newest`).then(async response => {
@@ -161,7 +200,7 @@ setInterval(async function () {
         server.setIcon(`https://i.imgur.com/9L95Pls.png`)
     }
     //Bot Other Log
-    if(date.getHours() == 23 && date.getMinutes() == 0) {
+    if(date.getHours() == 22 && date.getMinutes() == 0) {
         let uptime = ms(client.uptime, { long: true })
         let ping = client.ws.ping
         let ram = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)

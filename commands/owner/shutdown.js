@@ -1,6 +1,6 @@
 module.exports = {
     name: `shutdown`,
-    onlyOwner: true,
+    FromOwner: true,
     async execute(message) {
         let embed = new Discord.MessageEmbed()
             .setTitle(`Shutdown`)

@@ -1,6 +1,6 @@
 module.exports = {
     name: `restart`,
-    onlyOwner: true,
+    FromOwner: true,
     async execute(message) {
         let embed = new Discord.MessageEmbed()
             .setTitle(`Restart`)

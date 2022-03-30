@@ -1,6 +1,6 @@
 module.exports = {
     name: `partner`,
-    onlyHelpers: true,
+    FromHelpers: true,
     execute(message) {
         let args1 = message.content.split(` `).slice(1)
         let args = args1.slice(0).join(` `)

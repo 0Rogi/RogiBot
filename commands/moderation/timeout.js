@@ -1,6 +1,6 @@
 module.exports = {
     name: `timeout`,
-    onlyHelpers: true,
+    FromHelpers: true,
     async execute(message, args) {
         let time = args[1]
         let reason = args.slice(2).join(` `)

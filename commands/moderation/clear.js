@@ -1,6 +1,6 @@
 module.exports = {
     name: `clear`,
-    onlyHelpers: true,
+    FromHelpers: true,
     async execute(message) {
         let count = message.content.slice(7);
         count = parseInt(count);

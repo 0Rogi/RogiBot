@@ -1,6 +1,6 @@
 module.exports = {
     name: `lockdown`,
-    onlyHelpers: true,
+    FromHelpers: true,
     execute(message) {
         let args = message.content.split(` `).slice(1);
         let lock = args.join(` `);

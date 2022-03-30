@@ -76,7 +76,7 @@ module.exports = {
                 if(i.user.id != message.author.id) return i.reply({content: `Non è un tuo menu`,  ephemeral: true})
                 let embed = new Discord.MessageEmbed()
                 .setTitle(`Comandi del server utilizzabili solo dall'Owner`)
-                .setDescription(`**!demote**<:StaffTag:942016780363243531>\nTi permette di retrocedere un utente\n**!promote**<:StaffTag:942016780363243531>\nTi permette di promuovere un utente\n**!shutodown**<:StaffTag:942016780363243531>\nPermette di spegnere il bot\n**!restart**<:StaffTag:942016780363243531>\nPermette di restartare il bot\n**!eval**<:StaffTag:942016780363243531>\nPermette di eseguire un codice sul momento`)
+                .setDescription(`**!demote**<:StaffTag:942016780363243531>\nTi permette di retrocedere un utente\n**!promote**<:StaffTag:942016780363243531>\nTi permette di promuovere un utente\n**!shutdown**<:StaffTag:942016780363243531>\nPermette di spegnere il bot\n**!restart**<:StaffTag:942016780363243531>\nPermette di restartare il bot\n**!eval**<:StaffTag:942016780363243531>\nPermette di eseguire un codice sul momento`)
                 .setColor(`YELLOW`)
                 i.update({embeds: [embed]})
             }

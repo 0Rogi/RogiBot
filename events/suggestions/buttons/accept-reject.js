@@ -20,7 +20,7 @@ module.exports = {
                     .setTitle(`💡Suggerimento Accettato💡`)
                     .setDescription(`${user.toString()} il tuo suggerimento è stato __accettato__!`)
                     .addField(`Suggerimento:`, interaction.message.embeds[0].fields[1].value.toString())
-                    .setColor(`RED`)
+                    .setColor(`GREEN`)
                 user.send({embeds: [embeduser]}).catch(() => {})
                 let embedsuggestion = new Discord.MessageEmbed()
                     .setTitle(`Suggerimento da ${user.username}`)

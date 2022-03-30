@@ -1,6 +1,6 @@
 module.exports = {
     name: `tadd`,
-    onlyHelpers: true,
+    FromHelpers: true,
     execute(message, args) {
         if(message.channel.parent != config.idcanali.helpparent) {
             let embed = new Discord.MessageEmbed()

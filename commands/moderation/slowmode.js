@@ -1,6 +1,6 @@
 module.exports = {
     name: `slowmode`,
-    onlyMods: true,
+    FromMods: true,
     async execute(message) {
         let time = message.content.split(/\s+/)[1];
         if (!time) {

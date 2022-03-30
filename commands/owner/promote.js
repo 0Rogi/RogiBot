@@ -1,6 +1,6 @@
 module.exports = {
     name: `promote`,
-    onlyOwner: true,
+    FromOwner: true,
     async execute(message, args) {
         let id = args[0]
         let server = client.guilds.cache.get(config.idServer.idServer)

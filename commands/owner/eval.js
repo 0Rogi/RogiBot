@@ -1,6 +1,6 @@
 module.exports = {
     name: `eval`,
-    onlyOwner: true,
+    FromOwner: true,
     execute(message, args) {
         let command = args.join(` `)
         if(!command) {
