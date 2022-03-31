@@ -37,7 +37,7 @@ module.exports = {
             .setTitle(`🗑️Messaggio Eliminato🗑️`)
             .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
             .addField(`💬Canale:`, `${message.channel}`)
-            .addField(`👤Utente:`, `Nome: **${message.author.username}**, ID: **${message.author.id}**`)
+            .addField(`👤Utente:`, `Nome: **${message.author?.username}**, ID: **${message.author.id}**`)
             .addField(`🖊️Contenuto:`, message.content.toString() ? (message.content.length > 500 ? `${message.content.slice(0, 497)}...` : message.content.toString()) : `_Nessun Contenuto_`)
             .addField(`🔗Embed:`, textembed ? textembed : `_Nessun Embed_`)
             .addField(`📁File:`, textattachment ? textattachment : `_Nessun File_`)

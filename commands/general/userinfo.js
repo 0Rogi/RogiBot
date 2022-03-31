@@ -8,7 +8,7 @@ module.exports = {
         if(status == "online") status = "🟢Online"
         if(status == "idle") status = "🟡Inattivo"
         if(status == "dnd") status = "🔴Non disturbare"
-        if(status == "offline") status = "⚫Offline"
+        if(!status || status == "offline") status = "⚫Offline"
         let embed = new Discord.MessageEmbed()
             .setTitle(user.user.username.toString())
             .setThumbnail(user.user.avatarURL({ dynamic: true }))
