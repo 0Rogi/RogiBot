@@ -1,7 +1,8 @@
 module.exports = {
     name: "april",
     FromOwner: true,
-    execute(message) {
+    async execute(message) {
+        let server = message.guild
         let role1 = server.roles.cache.get(config.idruoli.owner)
             let role2 = server.roles.cache.get(config.idruoli.srmoderator)
             let role3 = server.roles.cache.get(config.idruoli.moderator)
