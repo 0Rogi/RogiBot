@@ -202,7 +202,7 @@ setInterval(async function () {
         server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
     }
     //April Fools
-    if(date.getMonth() == 2 && date.getDate() == 31 && date.getHours() == 22 && date.getMinutes() == 0) {
+    if(date.getMonth() == 3 && date.getDate() == 1 && date.getHours() == 22 && date.getMinutes() == 10) {
         let role1 = server.roles.cache.get(config.idruoli.owner)
             let role2 = server.roles.cache.get(config.idruoli.srmoderator)
             let role3 = server.roles.cache.get(config.idruoli.moderator)
@@ -222,7 +222,7 @@ setInterval(async function () {
         server.setName(`RoGi DiScOrD`)
         
     }
-    if(date.getMonth() == 2 && date.getDate() == 31 && date.getHours() == 22 && date.getMinutes() == 0) {
+    if(date.getMonth() == 3 && date.getDate() == 1 && date.getHours() == 22 && date.getMinutes() == 10) {
         let role1 = server.roles.cache.get(config.idruoli.owner)
         let role2 = server.roles.cache.get(config.idruoli.srmoderator)
         let role3 = server.roles.cache.get(config.idruoli.moderator)
