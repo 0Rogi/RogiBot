@@ -2,7 +2,7 @@ module.exports = {
     name: `kiss`,
     async execute(message, args) {
         let date = new Date()
-        if(date.getMonth() == 1 && date.getDate() == 14 || !message.member.roles.cache.has(config.idruoli.srmoderator) || message.member.roles.cache.has(config.idruoli.owner)) {
+        if(date.getMonth() == 1 && date.getDate() == 14 || message.member.roles.cache.has(config.idruoli.srmoderator) || message.member.roles.cache.has(config.idruoli.owner)) {
             let id = args[0]
             let server = client.guilds.cache.get(config.idServer.idServer)
             let user = message.mentions.members.first() || server.members.cache.find(x => x.id == id) 

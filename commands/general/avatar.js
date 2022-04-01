@@ -23,7 +23,7 @@ module.exports = {
                         .setColor(`YELLOW`)
                         .setDescription(`Altri formati: [**.jpeg**](${avatarjpeg}) [**.png**](${avatarpng}) [**.webp**](${avatarwebp}) [**.gif**](${avatargif})`)
                     msg.edit({embeds: [embed]})
-                }, 1000 * 5);
+                }, 1000 * 10);
             })
             return
         }
