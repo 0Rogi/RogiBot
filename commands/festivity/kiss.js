@@ -1,3 +1,5 @@
+const Canvas = require(`canvas`)
+
 module.exports = {
     name: `kiss`,
     async execute(message, args) {

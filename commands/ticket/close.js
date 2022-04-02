@@ -1,3 +1,5 @@
+const discordTranscripts = require(`discord-html-transcripts`)
+
 module.exports = {
     name: `tclose`,
     execute(message) {

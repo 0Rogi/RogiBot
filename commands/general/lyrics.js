@@ -1,3 +1,5 @@
+const lyricsFinder = require(`lyrics-finder`)
+
 module.exports = {
     name: `lyrics`,
     async execute(message, args) {

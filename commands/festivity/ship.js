@@ -1,3 +1,5 @@
+const Canvas = require(`canvas`)
+
 module.exports = {
     name: `ship`,
     async execute(message, args) {

@@ -2,22 +2,11 @@ require(`events`).EventEmitter.prototype._maxListeners = 100
 global.Discord = require(`discord.js`)
 global.ms = require(`ms`)
 global.moment = require(`moment`)
-global.Canvas = require(`canvas`)
-global.ytch = require(`yt-channel-info`)
-global.lyricsFinder = require(`lyrics-finder`)
-global.discordTranscripts = require(`discord-html-transcripts`)
-global.discordModals = require(`discord-modals`)
-global.MongoClient = require(`mongodb`).MongoClient
-global.https = require(`https`)
 global.client = new Discord.Client({intents: 32767, partials: [`MESSAGE`, `CHANNEL`, `REACTION`], allowedMentions: { parse: [] }})
-discordModals(client)
-let fs = require(`fs`) 
-const { setInterval } = require("timers/promises")
+let fs = require(`fs`)
 global.config = require(`./JSON/config.json`)
 global.parolacce = require(`./JSON/badwords.json`)
 global.bestemmie = require(`./JSON/bestemmie.json`)
-global.checkspam = new Map()
-global.database;
 try {
     require(`dotenv`).config()
 } catch {
@@ -26,7 +15,7 @@ try {
 
 client.login(process.env.token)
 
-//!Commands Handler
+//! Commands Handler
 client.commands = new Discord.Collection() 
 
 let commandsFiles = fs.readdirSync(`./commands`).filter(file => file.endsWith(`.js`)) 
@@ -44,7 +33,7 @@ for (let folder of commandsFolder) {
     }
 }
 
-//!Event Handler
+//! Events Handler
 let eventsFolders = fs.readdirSync(`./events`) 
 for (let folder of eventsFolders) {
     let eventsFiles = fs.readdirSync(`./events/${folder}`)
@@ -62,6 +51,12 @@ for (let folder of eventsFolders) {
             }
         }
     }
+}
+
+//! Functions Handler
+const functionFiles = fs.readdirSync('./functions').filter(file => file.endsWith('.js'));
+for (const file of functionFiles) {
+    require(`./functions/${file}`);
 }
 
 //!Commands Check
@@ -162,112 +157,6 @@ client.on(`messageCreate`, message => {
 
     comando.execute(message, args) 
 })
-
-//? Members and Subscribers Counter + Youtube Notifier + San Valentine Event + Other Logs
-setInterval(async function () {
-    let server = client.guilds.cache.get(config.idServer.idServer) 
-    //Member Counter
-    let botCount = server.members.cache.filter(member => member.user.bot).size 
-    let utentiCount = server.memberCount - botCount 
-    let canalemembri = client.channels.cache.get(config.idcanali.membri)
-    canalemembri.setName(`👥│Members: ${utentiCount}`)
-    //Youtube Counter
-    try {
-        ytch.getChannelInfo(`UCw7lKb-XBW4ApE0puSbJLFQ`).then((response) => {
-            let canaleyoutube = client.channels.cache.get(config.idcanali.iscritti)
-            canaleyoutube.setName(`🎬│Subscribers: ${response?.subscriberCount}`)
-        })
-    } catch {
-
-    }
-    //Youtube Notifier
-    try {
-        ytch.getChannelVideos(`UCw7lKb-XBW4ApE0puSbJLFQ`, `newest`).then(async response => {
-            let idVideo = response?.items[0]?.videoId
-            if (!idVideo) return
-    
-            client.channels.cache.get(config.idcanali.lastvideo).messages.fetch().then(messages => {
-                let giaMandato = false 
-                messages.forEach(msg => {
-                    if (msg.content.includes(idVideo)) giaMandato = true 
-                }) 
-                if (!giaMandato) {
-                    client.channels.cache.get(config.idcanali.lastvideo).send(`**${response?.items[0].author}** Ha pubblicato un nuovo video: **${response?.items[0].title}**!! Che aspetti? Corri a vederlo!!\nhttps://www.youtube.com/watch?v=${idVideo}`)
-                }
-            })
-        })
-    } catch {
-
-    }
-    //San Valentine Event
-    let date = new Date()
-    if(date.getMonth() == 1 && date.getDate() == 14 && date.getHours() == 7 && date.getMinutes() == 0) {
-        server.setIcon(`https://i.imgur.com/8KLWK5k.png`)
-    }
-    if(date.getMonth() == 1 && date.getDate() == 15 && date.getHours() == 7 && date.getMinutes() == 0) {
-        server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
-    }
-    //April Fools
-    if(date.getMonth() == 2 && date.getDate() == 31 && date.getHours() == 22 && date.getMinutes() == 0) {
-        let role1 = server.roles.cache.get(config.idruoli.owner)
-        let role2 = server.roles.cache.get(config.idruoli.srmoderator)
-        let role3 = server.roles.cache.get(config.idruoli.moderator)
-        let role4 = server.roles.cache.get(config.idruoli.helper)
-        let role5 = server.roles.cache.get(config.idruoli.staff)
-        let role6 = server.roles.cache.get(config.idruoli.fan)
-        role6.setName(`Owner`)
-        await role6.setColor(`#e4b400`)
-        await role1.setHoist(false)
-        await role2.setHoist(false)
-        await role3.setHoist(false)
-        await role4.setHoist(false)
-        await role5.setHoist(true)
-        await role5.setName(`Fan`)
-        await role5.setColor(`#d6680e`)
-        server.setIcon(`https://i.imgur.com/3rUN1t6.png`)
-        server.setName(`RoGi DiScOrD`)
-    }
-    if(date.getMonth() == 3 && date.getDate() == 1 && date.getHours() == 22 && date.getMinutes() == 0) {
-        let role1 = server.roles.cache.get(config.idruoli.owner)
-        let role2 = server.roles.cache.get(config.idruoli.srmoderator)
-        let role3 = server.roles.cache.get(config.idruoli.moderator)
-        let role4 = server.roles.cache.get(config.idruoli.helper)
-        let role5 = server.roles.cache.get(config.idruoli.staff)
-        let role6 = server.roles.cache.get(config.idruoli.fan)
-        await role6.setName(`Fan`)
-        await role6.setColor(`#d6680e`)
-        await role1.setHoist(true)
-        await role2.setHoist(true)
-        await role3.setHoist(true)
-        await role4.setHoist(true)
-        await role5.setHoist(false)
-        await role5.setName(`Staff`)
-        await role5.setColor(`DEFAULT`)
-        server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
-        server.setName(`Rogi Discord`)
-    }
-    //Bot Other Log
-    if(date.getHours() == 22 && date.getMinutes() == 0) {
-        let uptime = ms(client.uptime, { long: true })
-        let ping = client.ws.ping
-        let ram = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)
-        let channel = client.channels.cache.get(config.idcanali.generaltxt)
-        channel.messages.fetch({ limit: 1 }).then(messages => {
-            let generalmessage = messages.first()
-            let embed = new Discord.MessageEmbed()
-            .setTitle(`🟢IL BOT È FUNZIONANTE!`)
-            .addField(`⌚Il mio uptime attuale è:`, uptime.toString(), true)
-            .addField(`💾La mia ram usata attualmente è:`, `${ram.toString()}MB`, true)
-            .addField(`🐢Il mio ping attuale è:`, `${ping.toString()}ms`, true)
-            .addField(`💭L'ultimo messaggio mandato in general è:`, generalmessage.content, true)
-            .addField(`🖊️Scritto da:`, generalmessage.author.toString(), true)
-            .addField(`🔗Link al messaggio:`, `[Message link](https://discord.com/channels/${generalmessage.guild.id}/${generalmessage.channel.id}/${generalmessage.id})`, true)
-            .setColor(`YELLOW`)
-            .setThumbnail(client.guilds.cache.get(config.idServer.idServer).iconURL({dynamic: true}))
-        client.channels.cache.get(config.idcanali.logs.other).send({embeds: [embed]})
-        })
-    }
-}, 1000 * 60)
 
 //! Code errors
 process.on(`uncaughtException`, async err => {

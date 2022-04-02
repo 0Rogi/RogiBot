@@ -1,3 +1,6 @@
+const discordModals = require(`discord-modals`)
+discordModals(client)
+
 module.exports = {
     name: `interactionCreate`,
     execute(interaction) {

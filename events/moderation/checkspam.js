@@ -1,3 +1,5 @@
+const checkspam = new Map()
+
 module.exports = {
     name: `messageCreate`,
     execute(message) {

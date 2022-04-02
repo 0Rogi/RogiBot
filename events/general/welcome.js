@@ -1,3 +1,5 @@
+const Canvas = require(`canvas`)
+
 module.exports = {
     name: `guildMemberAdd`,
     async execute(member) {

@@ -1,3 +1,5 @@
+const MongoClient = require(`mongodb`).MongoClient
+let database;
 module.exports = {
     name: `ready`,
     async execute() {

@@ -1,7 +1,7 @@
 module.exports = {
     name: `messageDelete`,
     execute(message) {
-        if(!message || !message.guild || message.guild != config.idServer.idServer) return
+        if(!message || !message.author ||!message.guild || message.guild != config.idServer.idServer) return
         if(message.author?.bot ||message.channel == config.idcanali.thingstodo || message.channel == config.idcanali.suggests) return
         let channel = client.channels.cache.get(config.idcanali.logs.message)
         let textembed = ``
