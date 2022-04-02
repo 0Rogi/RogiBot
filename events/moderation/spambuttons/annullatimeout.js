@@ -1,8 +1,10 @@
+const moment = require(`moment`)
+
 module.exports = {
-    name: "interactionCreate",
+    name: `interactionCreate`,
     async execute(interaction) {
         if(interaction.guild != config.idServer.idServer || !interaction.isButton()) return
-        if(interaction.customId == "AnnullaTimeout") {
+        if(interaction.customId == `AnnullaTimeout`) {
             if(!interaction.member.roles.cache.has(config.idruoli.staff)) { 
                 let embed = new Discord.MessageEmbed()
                 .setColor(`RED`)
@@ -15,8 +17,8 @@ module.exports = {
             let id = message.embeds[0].footer.text.slice(9)
             let server = client.guilds.cache.get(config.idServer.idServer)
             let user = server.members.cache.find(x => x.id == id)
-            if(!user) return interaction.reply({content: "Non riesco a trovare l'utente", ephemeral: true})
-            user.timeout(0, "Timeout Annullato")
+            if(!user) return interaction.reply({content: `Non riesco a trovare l'utente`, ephemeral: true})
+            user.timeout(0, `Timeout Annullato`)
             let button = new Discord.MessageButton()
                 .setStyle(`SECONDARY`)
                 .setLabel(`Annulla Slowmode`)

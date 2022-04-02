@@ -1,5 +1,7 @@
+const moment = require(`moment`)
+
 module.exports = {
-    name: "interactionCreate",
+    name: `interactionCreate`,
     execute(interaction) {
         if(interaction.guild != config.idServer.idServer || !interaction.isButton()) return
         if(interaction.customId == `AnnullaSlowmode`) {

@@ -1,3 +1,6 @@
+const ms = require(`ms`)
+const moment = require(`moment`)
+
 module.exports = {
     name: `slowmode`,
     FromMods: true,

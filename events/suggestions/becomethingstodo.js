@@ -4,16 +4,16 @@ module.exports = {
         if (user.bot) return
         if (messageReaction.message.partial) await messageReaction.message.fetch();
         if (messageReaction.message.channel.id == config.idcanali.suggestions) {
-            let userUp = (await messageReaction.message.reactions.cache.find(x => x._emoji.name == "👍").users.fetch()).map(user => user.id)
-            let userDown = (await messageReaction.message.reactions.cache.find(x => x._emoji.name == "👎").users.fetch()).map(user => user.id)
+            let userUp = (await messageReaction.message.reactions.cache.find(x => x._emoji.name == `👍`).users.fetch()).map(user => user.id)
+            let userDown = (await messageReaction.message.reactions.cache.find(x => x._emoji.name == `👎`).users.fetch()).map(user => user.id)
             if (!userUp || !userDown) return
-            if (messageReaction._emoji.name == "👍") {
+            if (messageReaction._emoji.name == `👍`) {
                 if (userDown.includes(user.id)) {
                     messageReaction.users.remove(user);
                     return
                 }
             }
-            if (messageReaction._emoji.name == "👎") {
+            if (messageReaction._emoji.name == `👎`) {
                 if (userUp.includes(user.id)) {
                     messageReaction.users.remove(user);
                     return

@@ -14,7 +14,7 @@ module.exports = {
             return
         }
         let wc = new Discord.WebhookClient({
-            id: "944316479720026143", 
+            id: `944316479720026143`, 
             token: process.env.partnertoken
         })
         message.delete()

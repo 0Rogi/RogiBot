@@ -1,4 +1,5 @@
 const checkspam = new Map()
+const moment = require(`moment`)
 
 module.exports = {
     name: `messageCreate`,

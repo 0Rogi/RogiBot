@@ -1,3 +1,5 @@
+const moment = require(`moment`)
+
 module.exports = {
     name: `guildMemberAdd`,
     execute(member) {

@@ -1,9 +1,8 @@
 require(`events`).EventEmitter.prototype._maxListeners = 100 
 global.Discord = require(`discord.js`)
-global.ms = require(`ms`)
-global.moment = require(`moment`)
-global.client = new Discord.Client({intents: 32767, partials: [`MESSAGE`, `CHANNEL`, `REACTION`], allowedMentions: { parse: [] }})
+const moment = require(`moment`)
 let fs = require(`fs`)
+global.client = new Discord.Client({intents: 32767, partials: [`MESSAGE`, `CHANNEL`, `REACTION`], allowedMentions: { parse: [] }})
 global.config = require(`./JSON/config.json`)
 global.parolacce = require(`./JSON/badwords.json`)
 global.bestemmie = require(`./JSON/bestemmie.json`)

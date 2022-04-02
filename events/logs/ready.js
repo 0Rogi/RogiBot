@@ -1,5 +1,7 @@
 const MongoClient = require(`mongodb`).MongoClient
 global.database;
+const moment = require(`moment`)
+
 module.exports = {
     name: `ready`,
     async execute() {

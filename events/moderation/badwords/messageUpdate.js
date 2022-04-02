@@ -1,3 +1,5 @@
+const moment = require(`moment`)
+
 module.exports = {
     name: `messageUpdate`,
     async execute(oldMessage, message) {
@@ -9,7 +11,7 @@ module.exports = {
         parolacce.forEach(parola => {
             if (message.content.toLowerCase().includes(parola.toLowerCase())) {
                 trovata = true
-                censurato = censurato.replace(eval(`/${parola}/g`), "###")
+                censurato = censurato.replace(eval(`/${parola}/g`), `###`)
             }
         })
 
@@ -52,7 +54,7 @@ module.exports = {
                 let log = client.channels.cache.get(config.idcanali.logs.moderation)
                 log.send({embeds: [embed3]})
                 message.channel.send({embeds: [embed]})
-                message.member.timeout(1000 * 60 * 5, "Bestemmie")
+                message.member.timeout(1000 * 60 * 5, `Bestemmie`)
                 return
             }
             //* Se viene trovata usoltanto una parolaccia

@@ -1,4 +1,5 @@
 setInterval(() => {
+    const ms = require(`ms`)
     const date = new Date()
     const server = client.guilds.cache.get(config.idServer.idServer)
     //* Member Counter

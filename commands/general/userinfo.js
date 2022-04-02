@@ -1,3 +1,5 @@
+const moment = require(`moment`)
+
 module.exports = {
     name: `userinfo`,
     execute(message, args) {
@@ -5,10 +7,10 @@ module.exports = {
         let server = client.guilds.cache.get(config.idServer.idServer)
         let user = message.mentions.members.first() || server.members.cache.find(x => x.id == id) || message.member
         let status = user.presence?.status;
-        if(status == "online") status = "🟢Online"
-        if(status == "idle") status = "🟡Inattivo"
-        if(status == "dnd") status = "🔴Non disturbare"
-        if(!status || status == "offline") status = "⚫Offline"
+        if(status == `online`) status = `🟢Online`
+        if(status == `idle`) status = `🟡Inattivo`
+        if(status == `dnd`) status = `🔴Non disturbare`
+        if(!status || status == `offline`) status = `⚫Offline`
         let embed = new Discord.MessageEmbed()
             .setTitle(user.user.username.toString())
             .setThumbnail(user.user.avatarURL({ dynamic: true }))
