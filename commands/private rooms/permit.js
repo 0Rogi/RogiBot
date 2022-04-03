@@ -1,3 +1,5 @@
+const config = require(`${process.cwd()}/JSON/config.json`)
+
 module.exports = {
     name: `ppermit`,
     execute(message, args) {

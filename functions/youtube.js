@@ -1,4 +1,6 @@
 const ytch = require(`yt-channel-info`)
+const config = require(`${process.cwd()}/JSON/config.json`)
+
 setInterval(() => {
     //* Subscribers Counter
     try {

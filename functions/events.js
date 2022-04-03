@@ -1,5 +1,6 @@
 setInterval(async () => {
     const date = new Date()
+    const config = require(`${process.cwd()}/JSON/config.json`)
     const server = client.guilds.cache.get(config.idServer.idServer)
     //* San Valentine
     if(date.getMonth() == 1 && date.getDate() == 14 && date.getHours() == 7 && date.getMinutes() == 0) {

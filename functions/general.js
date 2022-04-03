@@ -1,6 +1,7 @@
 setInterval(() => {
     const ms = require(`ms`)
     const date = new Date()
+    const config = require(`${process.cwd()}/JSON/config.json`)
     const server = client.guilds.cache.get(config.idServer.idServer)
     //* Member Counter
     let bots = server.members.cache.filter(member => member.user.bot).size 

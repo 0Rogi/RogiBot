@@ -1,5 +1,6 @@
 const ms = require(`ms`)
 const moment = require(`moment`)
+const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `slowmode`,

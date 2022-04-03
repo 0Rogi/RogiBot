@@ -1,5 +1,6 @@
 const discordModals = require(`discord-modals`)
 discordModals(client)
+const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `interactionCreate`,

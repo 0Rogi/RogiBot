@@ -1,6 +1,7 @@
 const MongoClient = require(`mongodb`).MongoClient
 global.database;
 const moment = require(`moment`)
+const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `ready`,

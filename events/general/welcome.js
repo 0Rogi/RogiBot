@@ -1,4 +1,5 @@
 const Canvas = require(`canvas`)
+const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `guildMemberAdd`,

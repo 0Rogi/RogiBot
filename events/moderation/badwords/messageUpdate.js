@@ -1,4 +1,7 @@
 const moment = require(`moment`)
+const parolacce = require(`${process.cwd()}/JSON/badwords.json`)
+const bestemmie = require(`${process.cwd()}/JSON/bestemmie.json`)
+const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `messageUpdate`,

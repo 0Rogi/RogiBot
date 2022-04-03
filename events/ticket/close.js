@@ -1,5 +1,6 @@
 const discordTranscripts = require(`discord-html-transcripts`)
 const moment = require(`moment`)
+const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `interactionCreate`,

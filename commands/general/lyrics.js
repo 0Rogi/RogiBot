@@ -1,4 +1,5 @@
 const lyricsFinder = require(`lyrics-finder`)
+const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `lyrics`,
