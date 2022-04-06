@@ -3,14 +3,14 @@ setInterval(async () => {
     const config = require(`${process.cwd()}/JSON/config.json`)
     const server = client.guilds.cache.get(config.idServer.idServer)
     //* San Valentine
-    if(date.getMonth() == 1 && date.getDate() == 14 && date.getHours() == 7 && date.getMinutes() == 0) {
+    if(date.getMonth() == 1 && date.getDate() == 14 && date.getHours() == 0 && date.getMinutes() == 0) {
         server.setIcon(`https://i.imgur.com/8KLWK5k.png`)
     }
-    if(date.getMonth() == 1 && date.getDate() == 15 && date.getHours() == 7 && date.getMinutes() == 0) {
+    if(date.getMonth() == 1 && date.getDate() == 15 && date.getHours() == 0 && date.getMinutes() == 0) {
         server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
     }
     //* April Fools
-    if(date.getMonth() == 2 && date.getDate() == 31 && date.getHours() == 22 && date.getMinutes() == 0) {
+    if(date.getMonth() == 3 && date.getDate() == 1 && date.getHours() == 0 && date.getMinutes() == 0) {
         let role1 = server.roles.cache.get(config.idruoli.owner)
         let role2 = server.roles.cache.get(config.idruoli.srmoderator)
         let role3 = server.roles.cache.get(config.idruoli.moderator)
@@ -29,7 +29,7 @@ setInterval(async () => {
         server.setIcon(`https://i.imgur.com/3rUN1t6.png`)
         server.setName(`RoGi DiScOrD`)
     }
-    if(date.getMonth() == 3 && date.getDate() == 1 && date.getHours() == 22 && date.getMinutes() == 0) {
+    if(date.getMonth() == 3 && date.getDate() == 2 && date.getHours() == 0 && date.getMinutes() == 0) {
         let role1 = server.roles.cache.get(config.idruoli.owner)
         let role2 = server.roles.cache.get(config.idruoli.srmoderator)
         let role3 = server.roles.cache.get(config.idruoli.moderator)

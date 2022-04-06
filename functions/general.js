@@ -9,7 +9,7 @@ setInterval(() => {
     let channel = client.channels.cache.get(config.idcanali.membri)
     channel.setName(`👥│Members: ${members}`)
     //* Other Logs
-    if(date.getHours() == 22 && date.getMinutes() == 0) {
+    if(date.getHours() == 0 && date.getMinutes() == 0) {
         client.channels.cache.get(config.idcanali.generaltxt).messages.fetch({ limit: 1 }).then(messages => {
             let msg = messages.first()
             let embed = new Discord.MessageEmbed()

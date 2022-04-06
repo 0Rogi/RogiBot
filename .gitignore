@@ -10,5 +10,5 @@
 **/events/ticket/muted/message.js
 
 # Testing
-**/commands/general/testingcommands.js
-**JSON/easter.json
+**functions/easter.js
+**events/easter/

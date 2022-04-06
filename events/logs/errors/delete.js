@@ -7,7 +7,7 @@ module.exports = {
         if(interaction.customId == `Elimina`) {
             if(interaction.channel != config.idcanali.logs.codeerror && interaction.user.id != config.rogi) return interaction.deferUpdate()
             let message = interaction.message
-            message.delete()
+            message.delete().catch(() => {})
         }
     }
 }

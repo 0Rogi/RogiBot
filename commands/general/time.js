@@ -8,12 +8,7 @@ module.exports = {
                 .addField(`Orario`, `:alarm_clock: Sono le ore **__104:69__** :smirk:`)
             message.reply({embeds: [embed]}).then(msg => {
                 setTimeout(() => {
-                    let hours;
-                    if(process.env.local) {
-                        hours = date.getHours()
-                    } else {
-                        hours = date.getHours() + 2
-                    }
+                    let hours = date.getHours()
                     let min = date.getMinutes()
                     if(min < 10) min = `0${min}`
                     if(hours < 10) hours = `0${hours}`
@@ -25,12 +20,7 @@ module.exports = {
             })
             return
         }
-        let hours;
-        if(process.env.local) {
-            hours = date.getHours()
-        } else {
-            hours = date.getHours() + 2
-        }
+        let hours = date.getHours()
         let min = date.getMinutes()
         if(min < 10) min = `0${min}`
         if(hours < 10) hours = `0${hours}`

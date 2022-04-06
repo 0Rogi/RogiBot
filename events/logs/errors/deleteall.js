@@ -11,7 +11,7 @@ module.exports = {
             .then(messages => {
                 messages.forEach(msg => {
                     try {
-                        if (msg.embeds[0].fields[1].value == field) msg.delete()
+                        if (msg.embeds[0].fields[1].value == field) msg.delete().catch(() => {})
                     } catch {
 
                     }
