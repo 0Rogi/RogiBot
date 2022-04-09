@@ -48,4 +48,11 @@ setInterval(async () => {
         server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
         server.setName(`Rogi Discord`)
     }
+    //* Palms Day
+    if(date.getMonth() == 3 && date.getDate() == 10 && date.getHours() == 0 && date.getMinutes() == 0) {
+        server.setIcon(`https://i.imgur.com/ll97Th4.png`)
+    }
+    if(date.getMonth() == 3 && date.getDate() == 11 && date.getHours() == 0 && date.getMinutes() == 0) {
+        server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
+    }
 }, 1000)
