@@ -1,4 +1,4 @@
-/*const ytch = require(`yt-channel-info`)
+const ytch = require(`yt-channel-info`)
 const config = require(`${process.cwd()}/JSON/config.json`)
 
 setInterval(() => {
@@ -30,4 +30,4 @@ setInterval(() => {
     } catch {
 
     }
-}, 1000 * 60)*/
+}, 1000 * 60)

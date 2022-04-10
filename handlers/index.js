@@ -59,6 +59,7 @@ for (const file of functionFiles) {
 const parolacce = require(`${process.cwd()}/JSON/badwords.json`)
 
 client.on(`messageCreate`, message => {
+    if(!message.guild) return
     let trovata = false
     parolacce.forEach(parola => {
         if (message.content.toLowerCase().includes(parola.toLowerCase())) {

@@ -6,6 +6,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 module.exports = {
     name: `messageCreate`,
     async execute(message) {
+        if(!message.author) return
         if(!message || !message.guild || message.guild != config.idServer.idServer) return
         if(message.author.bot || message.member.roles.cache.has(config.idruoli.staff)) return
         let trovata = false
