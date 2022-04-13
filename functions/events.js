@@ -49,10 +49,21 @@ setInterval(async () => {
         server.setName(`Rogi Discord`)
     }
     //* Palms Day
-    if(date.getMonth() == 3 && date.getDate() == 10 && date.getHours() == 0 && date.getMinutes() == 0) {
-        server.setIcon(`https://i.imgur.com/ll97Th4.png`)
+    /*if(date.getMonth() == 3 && date.getDate() == 10 && date.getHours() == 0 && date.getMinutes() == 0) {
+        server.setIcon(`https://i.imgur.com/knucbYo.png`)
     }
     if(date.getMonth() == 3 && date.getDate() == 11 && date.getHours() == 0 && date.getMinutes() == 0) {
+        server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
+    }*/
+    //* Easter
+    if(date.getMonth() == 3 && date.getDate() == 14 && date.getHours() == 0 && date.getMinutes() == 0) {
+        let channel = client.channels.cache.get(`963473599149269084`)
+        channel.permissionOverwrites.create(config.idruoli.staff, {VIEW_CHANNEL: true})
+        server.setIcon(`https://i.imgur.com/V7wXdas.png`)
+    }
+    if(date.getMonth() == 3 && date.getDate() == 18 && date.getHours() == 0 && date.getMinutes() == 0) {
+        let channel = client.channels.cache.get(`963473599149269084`)
+        channel.permissionOverwrites.create(config.idruoli.staff, {VIEW_CHANNEL: false})
         server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
     }
 }, 1000)

@@ -33,5 +33,6 @@ module.exports = {
                 })
             })
         }, 1000 * 60)
+        setInterval(removecooldown, 1000);
     }
 }
