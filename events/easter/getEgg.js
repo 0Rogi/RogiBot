@@ -186,7 +186,8 @@ module.exports = {
                                                     
                                                     let button = new Discord.MessageButton()
                                                         .setCustomId(`Disabled`)
-                                                        .setLabel(`Apri`)
+                                                        .setLabel(`Raccogli`)
+                                                        .setEmoji(`<:EasterBaket:964153827756486686>`)
                                                         .setStyle(`PRIMARY`)
                                                         .setDisabled()
                                                 
@@ -307,7 +308,8 @@ module.exports = {
                                                     
                                                     let button = new Discord.MessageButton()
                                                         .setCustomId(`Disabled`)
-                                                        .setLabel(`Apri`)
+                                                        .setLabel(`Raccogli`)
+                                                        .setEmoji(`<:EasterBaket:964153827756486686>`)
                                                         .setStyle(`PRIMARY`)
                                                         .setDisabled()
                                                 

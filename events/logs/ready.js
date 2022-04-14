@@ -2,6 +2,7 @@ const MongoClient = require(`mongodb`).MongoClient
 global.database;
 const moment = require(`moment`)
 const config = require(`${process.cwd()}/JSON/config.json`)
+const fs = require(`fs`)
 
 module.exports = {
     name: `ready`,
@@ -34,5 +35,6 @@ module.exports = {
             })
         }, 1000 * 60)
         setInterval(removecooldown, 1000);
+        setInterval(automessages, 1000 * 60);
     }
 }

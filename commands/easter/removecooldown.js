@@ -25,7 +25,7 @@ module.exports = {
                         .setTitle(`Errore`)
                         .setDescription(`*Questo utente non ha un cooldown!*`)
                         .setColor(`RED`)
-                        .setThumbnail(config.images.roginotfound)
+                        .setThumbnail(config.images.error)
                     message.reply({embeds: [embed]})
                     return
                 }
@@ -34,7 +34,7 @@ module.exports = {
                         .setTitle(`Errore`)
                         .setDescription(`*Questo utente non ha un cooldown!*`)
                         .setColor(`RED`)
-                        .setThumbnail(config.images.roginotfound)
+                        .setThumbnail(config.images.error)
                     message.reply({embeds: [embed]})
                     return
                 }

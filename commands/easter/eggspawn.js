@@ -20,7 +20,7 @@ module.exports = {
             
             let embed = new Discord.MessageEmbed()
                 .setTitle(`<:EasterEgg:962650324022222909> Nuovo Uovo di Pasqua <:EasterEgg:962650324022222909>`)
-                .setDescription(`Il **coniglio Pasquale** <:EasterRabbit:962650083147538483> ha portato un nuovo **__uovo di Pasqua__**!\nAprilo **prima degli altri** per ricevere il premio <:Prize:962650501160251482>!`)
+                .setDescription(`Il **coniglio Pasquale** <:EasterRabbit:962650083147538483> ha portato un nuovo **__uovo di Pasqua__**!\nRaccoglilo **prima degli altri** per ricevere il premio <:Prize:962650501160251482>!`)
                 .setColor(`YELLOW`)  
                 .setThumbnail(image)
                 .setFooter({text: `Ancora non Riscattato`})
@@ -38,11 +38,17 @@ module.exports = {
                 .addField(`⚙️Generato in:`, channel.toString())
             client.channels.cache.get(`960926896651128904`).send({embeds: [embedlog]})
             client.channels.cache.get(`963473599149269084`).send({embeds: [embedlog]})
-            
+            let embed2 = new Discord.MessageEmbed()
+                .setTitle(`<:EasterEgg:962650324022222909>Uovo generato con successo!<:EasterEgg:962650324022222909>`)
+                .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                .addField(`⚙️Generato in:`, channel.toString())
+                .setColor(`YELLOW`)
+            message.reply({embeds: [embed2]})
             channel.send({embeds: [embed]}).then(msg => {
                 let button = new Discord.MessageButton()
                     .setCustomId(`Egg,${msg.id}`)
                     .setLabel(`Raccogli`)
+                    .setEmoji(`<:EasterBaket:964153827756486686>`)
                     .setStyle(`PRIMARY`)
             
                 let row = new Discord.MessageActionRow()

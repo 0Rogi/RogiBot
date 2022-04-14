@@ -7,7 +7,7 @@ module.exports = {
     async execute(message, args) {
         let id = args[0]
         let server = client.guilds.cache.get(config.idServer.idServer)
-        let utente = message.mentions.members.first() || server.members.cache.find(x => x.id == id) 
+        let utente = message.mentions.members.first() || server.members.cache.find(x => x.id == id)
         if(!utente) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
