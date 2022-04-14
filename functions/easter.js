@@ -4,12 +4,12 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 //* Egg Spawn
 setInterval(async () => {
     let date = new Date()
-    if(date.getMonth() == 3 && date.getDate() >= 14 && date.getDate() <= 18 && date.getHours() >= 9 && date.getHours() <= 21) {
+    if(date.getMonth() == 3 && date.getDate() >= 14 && date.getDate() <= 18 && date.getHours() >= 9 && date.getHours() < 21) {
         
         let rooms = [`813470597135728752`, `956934019147239434`, `826014465186332682`]
         
         let tosend = await rooms[Math.floor(Math.random() * rooms.length)]
-
+        
         let channel = client.channels.cache.get(tosend)
         
         if(!channel) return
@@ -94,10 +94,10 @@ global.automessages = function() {
                 i++
             })
             if(!text) text = `_Nessun utente in classifica_`
-            client.channels.cache.get(config.idcanali.testing).send(`Buongiorno a tutti😉\nLa caccia alle uova<:EasterEgg:962650324022222909> **ricomincia da ora**. Buona fortuna\n\n**🏆Classifica Attuale**:\n${text}`)
+            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno a tutti😉\nLa caccia alle uova<:EasterEgg:962650324022222909> **ricomincia da ora**. Buona fortuna\n\n**🏆Classifica Attuale**:\n${text}`)
         })
     }
     if(date.getMonth() == 3 && date.getDate() >= 14 && date.getDate() <= 18 && date.getHours() == 21 && date.getMinutes() == 0) {
-        client.channels.cache.get(config.idcanali.testing).send(`Il coniglio Pasquale<:EasterRabbit:962650083147538483> è andato a dormire, **per oggi la caccia alle uova<:EasterEgg:962650324022222909> finisce qui**.\nBuona notte😉`)
+        client.channels.cache.get(config.idcanali.generaltxt).send(`Il coniglio Pasquale<:EasterRabbit:962650083147538483> è andato a dormire, **per oggi la caccia alle uova<:EasterEgg:962650324022222909> finisce qui**.\nBuona notte😉`)
     }
 }

@@ -23,12 +23,13 @@ module.exports = {
                     let i = 1
                     result.forEach(async r => {
                         if(r.id == user.id) {
+                            console.log(r.id, result[0].eggsopen)
                             let cooldown = r.cooldown
                             if(cooldown < 1000) cooldown = `_Nessun Cooldown_`
                             if(cooldown > 1000) cooldown = ms(cooldown)                            
                             let embed = new Discord.MessageEmbed()
                                 .setTitle(`Statistiche di ${user.user.username}`)
-                                .setDescription(`<:EasterEgg:962650324022222909> Uova disponibili: **${result[0].eggs.toString()}**\n🥚Uova aperte: **${result[0].eggsopen}**\n<:EasterPoints:963716087449526322> Punti totali: **${result[0].points.toString()}**\n⌛Cooldown attuale: **${cooldown}**\n🥇Posizione: ${i}`)
+                                .setDescription(`<:EasterEgg:962650324022222909> Uova disponibili: **${r.eggs.toString()}**\n🥚Uova aperte: **${r.eggsopen.toString()}**\n<:EasterPoints:963716087449526322> Punti totali: **${r.points.toString()}**\n⌛Cooldown attuale: **${cooldown}**\n🥇Posizione: ${i}`)
                                 .setColor(`YELLOW`)
                             message.reply({embeds: [embed]})      
                         }
