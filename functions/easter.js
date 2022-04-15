@@ -1,5 +1,6 @@
 const moment = require(`moment`)
 const config = require(`${process.cwd()}/JSON/config.json`)
+const fs = require(`fs`)
 
 //* Egg Spawn
 setInterval(async () => {
