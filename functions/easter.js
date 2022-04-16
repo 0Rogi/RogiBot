@@ -51,7 +51,7 @@ setInterval(async () => {
             client.channels.cache.get(`963473599149269084`).send({embeds: [embedlog]})
         })
     }
-}, 1000 * 60 * 60)
+}, 1000 * 60 * 30)
 
 //* Remove Cooldown
 global.removecooldown = function() {
@@ -100,5 +100,28 @@ global.automessages = function() {
     }
     if(date.getMonth() == 3 && date.getDate() >= 14 && date.getDate() <= 18 && date.getHours() == 21 && date.getMinutes() == 0) {
         client.channels.cache.get(config.idcanali.generaltxt).send(`Il coniglio Pasquale<:EasterRabbit:962650083147538483> è andato a dormire, **per oggi la caccia alle uova<:EasterEgg:962650324022222909> finisce qui**.\nBuona notte😉`)
+    }
+    if(date.getMonth() == 3 && date.getDate() == 17 && date.getHours() == 0 && date.getMinutes() == 0) {
+        database.collection(`Easter`).find().sort({points: -1}).toArray(function(err, result) {
+            let text = ``
+            let i = 0
+            result.forEach(async r => {
+                if(i > 10 - 1) return
+                let id = r.id
+                let user = client.users.cache.get(id)
+                if(user) user = user.username
+                if(!user) user = r.username
+                text += `> **#${i + 1}** ${user} - **${r.points}** - **${r.eggsopen}**\n`
+                i++
+            })
+            if(!text) text = `_Nessun utente in classifica_`
+            let button = new Discord.MessageButton()
+                .setLabel(`Apri`)
+                .setCustomId(`BigOpen`)
+                .setStyle(`PRIMARY`)
+            let row = new Discord.MessageActionRow()
+                .addComponents(button)
+            client.channels.cache.get(config.idcanali.announcement).send({content: `> 📣**BUONA PASQUA**\n> \n> **Buona Pasqua** a tutti!! Come sapete, c'è in corso **l'evento di Pasqua**<:Event:964844971297476638> con la caccia alle uova <:EasterEgg:962650324022222909>, con la seguente **classifica**🏆 in questo momento:\n> \n${text}> \n> Oggi questa classifica potrà essere **stravolta completamente**, perchè❓\n> Per augurarvi **buona pasqua**, avete qui sotto un uovo da poter aprire, che vi darà **premi**<:Prize:962650501160251482> ma anche **punti**⭐ che vi permetteranno di salire **in classifica**! Inoltre, per oggi e domani, le uova compariranno **ogni 30 minuti** anzichè ogni ora.\n> **__P.S. I <@&${config.idruoli.serverbooster}>, otterranno dei vantaggi nei premi.__**\n> \n> Vi lascio all'apertura dell'uovo.\n> \n> https://i.imgur.com/iAJxQxj.png`, components: [row]})
+        })
     }
 }

@@ -94,7 +94,7 @@ client.on(`messageCreate`, message => {
         return
     }
 
-    if(!message.member.roles.cache.has(config.idruoli.staff) && message.channel != config.idcanali.commands && message.channel.parent != config.idcanali.helpparent && message.channel != config.idcanali.testing) {
+    if(!message.member.roles.cache.has(config.idruoli.staff) && message.channel != config.idcanali.commands && message.channel.parent != config.idcanali.helpparent && message.channel != config.idcanali.testing && comando.name != `embed` && comando.name != `say`) {
         let embed = new Discord.MessageEmbed()
             .setColor(`RED`)
             .setDescription(`**Tutti i comandi** devono essere\nutilizzati in <#${config.idcanali.commands}>`)
