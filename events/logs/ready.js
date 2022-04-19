@@ -34,7 +34,5 @@ module.exports = {
                 })
             })
         }, 1000 * 60)
-        setInterval(removecooldown, 1000);
-        setInterval(automessages, 1000 * 60);
     }
 }

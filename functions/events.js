@@ -56,17 +56,10 @@ setInterval(async () => {
         server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
     }*/
     //* Easter
-    if(date.getMonth() == 3 && date.getDate() == 14 && date.getHours() == 0 && date.getMinutes() == 0) {
-        let channel = client.channels.cache.get(`963473599149269084`)
-        channel.permissionOverwrites.create(config.idruoli.staff, {VIEW_CHANNEL: true})
+    /*if(date.getMonth() == 3 && date.getDate() == 14 && date.getHours() == 0 && date.getMinutes() == 0) {
         server.setIcon(`https://i.imgur.com/V7wXdas.png`)
     }
     if(date.getMonth() == 3 && date.getDate() == 19 && date.getHours() == 0 && date.getMinutes() == 0) {
-        let channel = client.channels.cache.get(`963473599149269084`)
-        channel.permissionOverwrites.create(config.idruoli.staff, {VIEW_CHANNEL: false})
         server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
-        let role = server.roles.cache.get(config.idruoli.easter)
-        role.setName(`Easter Event Winner`)
-        server.members.cache.forEach(m => m.roles.remove(config.idruoli.easter))
-    }
+    }*/
 }, 1000)
