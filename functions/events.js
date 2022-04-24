@@ -62,4 +62,11 @@ setInterval(async () => {
     if(date.getMonth() == 3 && date.getDate() == 19 && date.getHours() == 0 && date.getMinutes() == 0) {
         server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
     }*/
+    //* 25 April
+    if(date.getMonth == 3 && date.getDate() == 25 && date.getHours() == 0 && date.getMinutes() == 0) {
+        server.setIcon(`https://i.imgur.com/Iz0sFFi.png`)
+    }
+    if(date.getMonth == 3 && date.getDate() == 26 && date.getHours() == 0 && date.getMinutes() == 0) {
+        server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
+    }
 }, 1000)
