@@ -4,12 +4,12 @@ setInterval(() => {
     const config = require(`${process.cwd()}/JSON/config.json`)
     const server = client.guilds.cache.get(config.idServer.idServer)
     //* Member Counter
-    let bots = server.members.cache.filter(member => member.user.bot).size 
-    let members = server.memberCount - bots 
+    let bots = server.members.cache.filter(member => member.user.bot).size
+    let members = server.memberCount - bots
     let channel = client.channels.cache.get(config.idcanali.membri)
-    channel.setName(`👥│Members: ${members}`)
+    channel.setName(`—͟͞͞👥】Members: ${members}`)
     //* Other Logs
-    if(date.getHours() == 0 && date.getMinutes() == 0) {
+    if (date.getHours() == 0 && date.getMinutes() == 0) {
         client.channels.cache.get(config.idcanali.generaltxt).messages.fetch({ limit: 1 }).then(messages => {
             let msg = messages.first()
             let embed = new Discord.MessageEmbed()
@@ -21,8 +21,8 @@ setInterval(() => {
                 .addField(`🖊️Scritto da:`, msg.author.toString(), true)
                 .addField(`🔗Link al messaggio:`, `[Message link](https://discord.com/channels/${msg.guild.id}/${msg.channel.id}/${msg.id})`, true)
                 .setColor(`YELLOW`)
-                .setThumbnail(client.guilds.cache.get(config.idServer.idServer).iconURL({dynamic: true}))
-        client.channels.cache.get(config.idcanali.logs.other).send({embeds: [embed]})
+                .setThumbnail(client.guilds.cache.get(config.idServer.idServer).iconURL({ dynamic: true }))
+            client.channels.cache.get(config.idcanali.logs.other).send({ embeds: [embed] })
         })
     }
 }, 1000 * 60)
