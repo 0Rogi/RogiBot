@@ -1,97 +1,66 @@
 const moment = require(`moment`)
-const parolacce = require(`${process.cwd()}/JSON/badwords.json`)
-const bestemmie = require(`${process.cwd()}/JSON/bestemmie.json`)
+const badwords = require(`${process.cwd()}/JSON/badwords.json`)
 const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `messageUpdate`,
     async execute(oldMessage, message) {
-        if(!oldMessage.author || !message.author) return
-        if(!message || !message.guild || message.guild != config.idServer.idServer) return
-        if(message.author.bot || message.member.roles.cache.has(config.idruoli.staff)) return
-        let trovata = false
-        let censurato = message.content.toLowerCase()
+        if (!message.guild) return
+        if (!message.author || !message.member) return
+        if (message.guild != config.idServer.idServer) return
+        if (message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.member.permissions.has(`ADMINISTRATOR`)) return
 
-        parolacce.forEach(parola => {
-            if (message.content.toLowerCase().includes(parola.toLowerCase())) {
-                trovata = true
-                censurato = censurato.replace(eval(`/${parola}/g`), `###`)
+        let content = message.content
+
+        content = content.replace(/\*/g, "\*")
+        content = content.replace(/\\/g, "")
+
+        let found = false;
+        let dm = true;
+        let censored = content;
+        let notcensored = content;
+
+        badwords.forEach(badword => {
+            if (content.toLowerCase().includes(badword.toLowerCase())) {
+                found = true;
+                notcensored = notcensored.replace(eval(`/${badword}/g`), `**${badword}**`)
+                sides = Math.floor(Math.floor(badword.length) / 3);
+                censoredword = badword.slice(0, -1 * (badword.length - sides)) + '#'.repeat(badword.length - sides - sides) + badword.slice(badword.length - sides)
+                censored = censored.replace(eval(`/${badword}/g`), `**${censoredword}**`)
             }
         })
 
-        if (trovata) {
-            let bestemmia = false
-            bestemmie.forEach(parola => {
-                if (message.content.toLowerCase().includes(parola.toLowerCase())) {
-                    bestemmia = true
-                }
-            })
-            //* Se viene trovata anche una bestemmia
-            if(bestemmia) {
-                let dm = true
-                message.delete()
-                let embed = new Discord.MessageEmbed()
-                    .setTitle(`🤬BESTEMMIA🤬`)
-                    .setColor(`RED`)
-                    .setDescription(censurato.toString())
-                    .setAuthor({name: message.author.username, iconURL: message.author.displayAvatarURL()})
-                    .setFooter({text: `User ID: ${message.author.id}`})
-                let embed2 = new Discord.MessageEmbed()
-                    .setTitle(`MODERA IL LINGUAGGIO`)
-                    .setDescription(`Hai bestemmiato in ${message.guild.name}, modera il linguaggio, il tuo messaggio: **${message.content}**`)
-                    .setColor(`RED`)
-                let embed3 = new Discord.MessageEmbed()
-                    .setTitle(`🤬BESTEMMIA🤬`)
-                    .setColor(`RED`)
-                    .setThumbnail(message.author.displayAvatarURL({
-                        dynamic: true,
-                        format: `png`,
-                        size: 512
-                    }))
-                    .setDescription(`⚠️L'utente **è stato** avvisato nei dm⚠️\nL'utente è stato messo in timeout per 5 minuti`)
-                    .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-                    .addField(`👤Utente:`, `Nome: **${message.author.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
-                    .addField(`💬Messaggio:`, message.content.toString())
-                    .addField(`💬Canale:`, message.channel.toString())
-                await message.author.send({embeds: [embed2]}).catch(() => { dm = false })
-                if(dm == false) embed3.setDescription(`⚠️L'utente **non** è stato avvisato nei dm⚠️\nL'utente è stato messo in timeout per 5 minuti`)
-                let log = client.channels.cache.get(config.idcanali.logs.moderation)
-                log.send({embeds: [embed3]})
-                message.channel.send({embeds: [embed]})
-                message.member.timeout(1000 * 60 * 5, `Bestemmie`)
-                return
+        if (found) {
+            message.delete().catch(() => { })
+            let embed = new Discord.MessageEmbed()
+                .setTitle(`🤬Parola non consentita🤬`)
+                .setDescription(`Hai detto una **parola non consentita**.\n\nIl tuo messaggio: ${notcensored}`)
+                .setColor(`RED`)
+            let embed2 = new Discord.MessageEmbed()
+                .setAuthor({ name: message.author.username, iconURL: message.member.displayAvatarURL({ dynamic: true }) })
+                .setDescription(censored)
+                .setColor(`DARK_PURPLE`)
+            let embed3 = new Discord.MessageEmbed()
+                .setTitle(`🤬BAD WORD🤬`)
+                .setColor(`RED`)
+                .setThumbnail(message.author.displayAvatarURL({
+                    dynamic: true,
+                    format: `png`,
+                    size: 512
+                }))
+                .setDescription(`⚠️L'utente **è stato** avvisato nei dm⚠️`)
+                .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                .addField(`👤Utente:`, `Nome: **${message.author.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
+                .addField(`💬Messaggio:`, notcensored.toString())
+                .addField(`💬Canale:`, message.channel.toString())
+            await message.author.send({ embeds: [embed] }).catch(() => { dm = false })
+            if (dm == false) embed3.setDescription(`⚠️L'utente **non** è stato avvisato nei dm⚠️`)
+            client.channels.cache.get(config.idcanali.logs.moderation.badwords).send({ embeds: [embed3] })
+            if (notcensored.toLowerCase().includes(`madonna`) || notcensored.toLowerCase().includes(`dio`)) {
+                embed.setDescription(`Hai detto una **parola non consentita**. Sei stato messo in timeout per **10 minuti**.\n\nIl tuo messaggio: ${notcensored}`)
+                message.member.timeout(1000 * 60 * 10, `Bestemmia Rilevata`)
             }
-            //* Se viene trovata usoltanto una parolaccia
-            message.delete()
-                let dm = true
-                let embed = new Discord.MessageEmbed()
-                    .setTitle(`🤬BAD WORD🤬`)
-                    .setColor(`RED`)
-                    .setThumbnail(message.author.displayAvatarURL({
-                        dynamic: true,
-                        format: `png`,
-                        size: 512
-                    }))
-                    .setDescription(`⚠️L'utente **è stato** avvisato nei dm⚠️`)
-                    .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-                    .addField(`👤Utente:`, `Nome: **${message.author.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
-                    .addField(`💬Messaggio:`, message.content.toString())
-                    .addField(`💬Canale:`, message.channel.toString())
-                let embed2 = new Discord.MessageEmbed()
-                    .setTitle(`MODERA IL LINGUAGGIO`)
-                    .setDescription(`Hai detto una parolaccia in ${message.guild.name}, modera il linguaggio, il tuo messaggio: **${message.content}**`)
-                    .setColor(`RED`)
-                let embed3 = new Discord.MessageEmbed()
-                    .setTitle(`🤬BAD WORD🤬`)
-                    .setColor(`RED`)
-                    .setAuthor({name: message.author.username, iconURL: message.author.displayAvatarURL()})
-                    .setFooter({text: `User ID: ${message.author.id}`})
-                    .setDescription(censurato.toString())
-             await message.author.send({embeds: [embed2]}).catch(() => { dm = false })
-            if(dm == false) embed.setDescription(`⚠️L'utente **non** è stato avvisato nei dm⚠️`)
-            let log = client.channels.cache.get(config.idcanali.logs.moderation)
-            log.send({embeds: [embed]})
-            message.channel.send({embeds: [embed3]})
+            message.channel.send({ embeds: [embed2] })
         }
     }
 }

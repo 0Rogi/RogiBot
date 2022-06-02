@@ -4,9 +4,9 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 module.exports = {
     name: `interactionCreate`,
     execute(interaction) {
-        if(!interaction.isButton()) return
-        if(interaction.customId.split(`,`)[0] == `NextMeme`) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({content: `Non è un tuo pulsante!`, ephemeral: true})
+        if (!interaction.isButton()) return
+        if (interaction.customId.split(`,`)[0] == `NextMeme`) {
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280>Questo non è un tuo pulsante!`, ephemeral: true })
             let url = 'https://www.reddit.com/r/memes/hot/.json?limit=100'
             https.get(url, (result) => {
                 let body = ''
@@ -19,9 +19,9 @@ module.exports = {
                     let embed = new Discord.MessageEmbed()
                         .setTitle(index.title)
                         .setImage(index.url_overridden_by_dest)
-                        .setFooter({text: `👍🏻${index.ups}`})
+                        .setFooter({ text: `👍🏻${index.ups}` })
                         .setColor(`YELLOW`)
-                    interaction.update({embeds: [embed]})         
+                    interaction.update({ embeds: [embed] })
                 })
             })
         }

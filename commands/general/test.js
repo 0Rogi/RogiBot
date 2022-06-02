@@ -3,38 +3,39 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `test`,
-    async execute(message) {
-        let testo = ``
-        let server = client.guilds.cache.get(config.idServer.idServerTest)
-        let rogidiscordbot = server.members.cache.get(config.idbot.rogidiscordbot)
-        let rogifunbot = server.members.cache.get(config.idbot.rogifunbot)
-        let rogitestbot = server.members.cache.get(config.idbot.rogitestbot)
-        let uptime = ms(client.uptime, { long: true })
-        let ping = client.ws.ping
-        let ramused = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)
-        if(rogidiscordbot.presence?.status) {
-            testo += `<:RogiDiscordBot:854792536694587434>RogiBot - ONLINE 🟢\r`
-        } else {
-            testo += `<:RogiDiscordBot:854792536694587434>RogiBot - OFFLINE 🔴\r`
-        }
-        if(rogifunbot.presence?.status) {
-            testo += `<:RogiFunBot:854792583490568222>RogiFunBot - ONLINE 🟢\r`
-        } else {
-            testo += `<:RogiFunBot:854792583490568222>RogiFunBot- OFFLINE 🔴\r`
-        }
-        if(rogitestbot.presence?.status) {
-            testo += `<:RogiTestBot:912021494819852348>RogiTestBot - ONLINE 🟢\r`
-        } else {
-            testo += `<:RogiTestBot:912021494819852348>RogiTestBot - OFFLINE 🔴\r`
-        }
-        let embed = new Discord.MessageEmbed()
-            .setTitle(`RogiDiscordBot`)
-            .addField(`🤖Tutti i bot di Rogi`, testo)
-            .addField(`⌚Uptime`, uptime.toString(), true)
-            .addField(`🐢Ping`, `${ping.toString()}ms`, true)
-            .addField(`💾Ram Usata`, `${ramused.toString()}MB`, true)
-            .setColor(`YELLOW`)
-            .setThumbnail(rogidiscordbot.displayAvatarURL())
-        message.reply({embeds: [embed]})
+    data: {
+        name: `test`,
+        description: `Comando per vedere se il bot funziona`,
+    },
+    permissionlevel: 0,
+    async execute(interaction) {
+        interaction.deferReply().then(() => {
+            let text = ``
+            let server = client.guilds.cache.get(config.idServer.idServerTest)
+            if (server.members.cache.get(config.idbot.rogidiscordbot).presence?.status) {
+                text += `<:RogiDiscordBot:854792536694587434>RogiBot - ONLINE 🟢\r`
+            } else {
+                text += `<:RogiDiscordBot:854792536694587434>RogiBot - OFFLINE 🔴\r`
+            }
+            if (server.members.cache.get(config.idbot.rogifunbot).presence?.status) {
+                text += `<:RogiFunBot:854792583490568222>RogiFunBot - ONLINE 🟢\r`
+            } else {
+                text += `<:RogiFunBot:854792583490568222>RogiFunBot- OFFLINE 🔴\r`
+            }
+            if (server.members.cache.get(config.idbot.rogimusicbot).presence?.status) {
+                text += `<:RogiMusicBot:854792640180912218>RogiMusicBot - ONLINE 🟢\r`
+            } else {
+                text += `<:RogiMusicBot:854792640180912218>RogiMusicBot - OFFLINE 🔴\r`
+            }
+            let embed = new Discord.MessageEmbed()
+                .setTitle(`🚨BOT INFO🚨`)
+                .addField(`🤖Tutti i bot di Rogi`, text)
+                .addField(`⌚Uptime`, ms(client.uptime, { long: true }), true)
+                .addField(`🐢Ping`, `${client.ws.ping}ms`, true)
+                .addField(`💾Ram Usata`, `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB`, true)
+                .setColor(`YELLOW`)
+                .setThumbnail(client.user.displayAvatarURL())
+            interaction.editReply({ embeds: [embed] })
+        })
     }
 }

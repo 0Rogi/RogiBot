@@ -1,66 +1,98 @@
-const discordTranscripts = require(`discord-html-transcripts`)
 const moment = require(`moment`)
+const fs = require(`fs`)
 const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `tclose`,
-    execute(message) {
-        let topic = message.channel.topic
-        if(!topic) {
-            message.reply({embeds: [embed]})
-            return
-        }
-        if(topic.startsWith(`User ID:`)) {
-        let ID = topic.slice(9)
-        if(message.author.id == ID || message.member.permissions.has(`MANAGE_MESSAGES`)) {
-            let embed = new Discord.MessageEmbed()
-                .setTitle(`Ticket in chiusura...`)
-                .setDescription(`Tra \`20 secondi\` il ticket verrà chiuso...`)
-                .setColor(`RED`)
-                .setThumbnail(config.images.rogiclosing)
-            let button = new Discord.MessageButton()
-                .setStyle(`DANGER`)
-                .setLabel(`Annulla`)
-                .setCustomId(`Annulla`)
-            let row = new Discord.MessageActionRow()
-                .addComponents(button)
-            global.chiudi = true
-            message.channel.send({embeds: [embed], components: [row]}).then(msg => {
-                setTimeout(() => {
-                let embed = new Discord.MessageEmbed()
-                    .setTitle(`Ticket in chiusura...`)
-                    .setDescription(`Tra \`10 secondi\` il ticket verrà chiuso...`)
-                    .setColor(`RED`)
-                    .setThumbnail(config.images.rogiclosing)
-                msg.edit({embeds: [embed]})
-                }, 1000 * 10);
-            })
-            setTimeout(async () => {
-                if(global.chiudi == true) {
-                    let user = message.guild.members.cache.find(x => x.id == ID)
-                    let attachment = await discordTranscripts.createTranscript(message.channel)
-                    let embedlog = new Discord.MessageEmbed()
-                        .setTitle(`🎫Ticket Chiuso🎫`)
-                        .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-                        .addField(`🗣️Chiuso da:`, `Nome: **${message.author.username}**, ID: **${message.member.id}**\n${message.member.toString()}`)
-                        .setThumbnail(message.member.displayAvatarURL({dynamic: true}))
+    data: {
+        name: `tclose`,
+        description: `Chiude un ticket`,
+    },
+    permissionlevel: 0,
+    execute(interaction) {
+        interaction.deferReply().then(() => {
+            database.collection(`Tickets`).find({ channel: interaction.channel.id }).toArray(function (err, result) {
+                if (!result[0]) {
+                    let embed = new Discord.MessageEmbed()
+                        .setTitle(`Errore`)
                         .setColor(`RED`)
-                    if(user) embedlog.addField(`👤Ticket di:`, `Nome: **${user.user.username}**, ID: **${message.channel.topic.slice(9)}**\n${client.users.cache.get(message.channel.topic.slice(9)).toString()}`)
-                    if(!user) embedlog.addField(`👤Ticket di:`, `*L'utente è uscito dal server*`)
-                    if(message.channel.name.startsWith(`⛔│`)) {embedlog.addField(`Richiesta di Unmute:`, `🟢Sì`)} else {embedlog.addField(`Richiesta di Unmute:`, `🔴No`)}
-                    let logs = client.channels.cache.get(config.idcanali.logs.ticket)
-                    logs.send({embeds: [embedlog], files: [attachment]})
-                    message.channel.delete()
+                        .setDescription(`*Questo canale non è un ticket*`)
+                        .setThumbnail(config.images.rogierror)
+                    interaction.editReply({ embeds: [embed] })
+                    return
                 }
-            }, 1000 * 20);
-        }
-        } else {
-            message.reply({embeds: [embed]})
-        }
+                if (result[0]) {
+                    if (result[0].closing == true) {
+                        interaction.editReply({ content: `<a:error:966371274853089280>Questo ticket è già in chiusura` })
+                        return
+                    }
+                    let embed = new Discord.MessageEmbed()
+                        .setTitle(`Ticket in chiusura`)
+                        .setDescription(`Questo ticket si chiuderà in \`20 secondi\``)
+                        .setColor(`RED`)
+                    let button = new Discord.MessageButton()
+                        .setLabel(`Annulla`)
+                        .setCustomId(`TicketNoClose`)
+                        .setStyle(`DANGER`)
+                    let row = new Discord.MessageActionRow()
+                        .addComponents(button)
+                    interaction.editReply({ embeds: [embed], components: [row] }).then(msg => {
+                        setTimeout(() => {
+                            if (msg.embeds[0]?.title == `Chiusura Annullata`) return
+                            let embed = new Discord.MessageEmbed()
+                                .setTitle(`Ticket in chiusura`)
+                                .setDescription(`Questo ticket si chiuderà in \`10 secondi\``)
+                                .setColor(`RED`)
+                            msg.edit({ embeds: [embed] }).then(() => {
+                                setTimeout(() => {
+                                    database.collection(`Tickets`).find({ channel: interaction.channel.id }).toArray(function (err, result) {
+                                        if (!result[0]) return
+                                        if (result[0]) {
+                                            if (result[0].closing == true) {
+                                                database.collection(`Tickets`).find({ channel: interaction.channel.id }).toArray(async function (err, result) {
+                                                    if (!result[0]) return
+                                                    if (result[0]) {
+                                                        let embedlog = new Discord.MessageEmbed()
+                                                            .setTitle(`✉️Ticket Chiuso✉️`)
+                                                            .setColor(`RED`)
+                                                            .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                                                            .addField(`👑Owner:`, `Nome: ${interaction.guild.members.cache.find(x => x.id == result[0].id) ? interaction.guild.members.cache.find(x => x.id == result[0].id).user.username : result[0].username}, ID: ${interaction.guild.members.cache.find(x => x.id == result[0].id) ? interaction.guild.members.cache.find(x => x.id == result[0].id).id : result[0].id}`)
+                                                            .addField(`👤Utente:`, `Nome: ${interaction.member.user.username}, ID: ${interaction.member.id}\n||${interaction.member.toString()}||`)
+                                                            .addField(`📘Categoria:`, result[0].category, true)
+                                                            .addField(`\u200b`, `\u200b`, true)
+                                                            .addField(`📖Sottocategoria:`, result[0].subcategory, true)
+                                                        let fetch = await interaction.channel.messages.fetch({
+                                                            limit: 1
+                                                        })
+                                                        let firstmsg = await fetch.last()
+                                                        interaction.channel.messages.fetch({ before: firstmsg.id }).then(async messages => {
+                                                            messages.reverse()
+                                                            let transcript = ``
+                                                            await messages.forEach(msg => {
+                                                                message = `@${msg.author.username} - ${moment(msg.createdAt).format(`ddd DD MMM YYYY, HH:mm:ss`)}:\n`
+                                                                if (msg.content) message += `${msg.content}`
+                                                                if (msg.embeds[0] && !msg.content) message += `Embed: ${msg.embeds[0].title}`
+                                                                transcript += message + `\n\n`
+                                                            })
+                                                            fs.writeFile(`transcript.txt`, transcript, function (err) {
+                                                                client.channels.cache.get(config.idcanali.logs.ticket).send({ embeds: [embedlog], files: [`${process.cwd()}/transcript.txt`] })
+                                                                database.collection(`Tickets`).deleteOne({ channel: interaction.channel.id }).then(() => {
+                                                                    interaction.channel.delete().catch(() => { })
+                                                                })
+                                                            })
+                                                        })
+                                                    }
+                                                })
+                                            }
+                                        }
+                                    })
+                                }, 1000 * 10)
+                            })
+                        }, 1000 * 10)
+                    })
+                    database.collection(`Tickets`).updateOne({ channel: interaction.channel.id }, { $set: { closing: true } })
+                }
+            })
+        })
     }
 }
-let embed = new Discord.MessageEmbed()
-    .setTitle(`Errore`)
-    .setColor(`RED`)
-    .setDescription(`*Questo canale **non è un ticket**\no non hai il permesso per eliminarlo*`)
-    .setThumbnail(config.images.roginotfound)

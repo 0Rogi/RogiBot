@@ -1,70 +1,93 @@
-const checkspam = new Map()
-const moment = require(`moment`)
 const config = require(`${process.cwd()}/JSON/config.json`)
+const moment = require(`moment`)
+const setpermissions = require(`${process.cwd()}/functions/general/setpermissions.js`)
+
+const checkspam = new Map()
 
 module.exports = {
     name: `messageCreate`,
     execute(message) {
-        if(!message || !message.guild || message.guild != config.idServer.idServer) return
-        if(!message.author || !message.member) return
-        if(message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.channel.parent == config.idcanali.helpparent) return
-        if(checkspam.has(message.author.id)) {
-            let data = checkspam.get(message.author.id)
-            let { lastmsg, timer } = data;
-            let diff = message.createdTimestamp - lastmsg.createdTimestamp;
-            let msgs = data.msgs
-            if(diff > 5000) {
-                clearTimeout(timer);
-                data.msgs = 1;
-                data.lastmsg = message;
-                data.timer = setTimeout(() => {
-                    checkspam.delete(message.author.id);
-                }, 5000)
-                checkspam.set(message.author.id, data)
-            } else {
-                ++msgs;
-                if(parseInt(msgs) === 5) {
+        if (!message.guild) return
+        if (!message.author || !message.member) return
+        if (message.guild != config.idServer.idServer) return
+        if (message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.member.permissions.has(`ADMINISTRATOR`)) return
+
+        if (checkspam.has(message.author.id)) {
+            let user = checkspam.get(message.author.id)
+            if (message.createdTimestamp - user.lastmsg <= 4000) {
+                if (user.msg >= 5) {
+                    setpermissions()
+                    database.collection(`UserStats`).find({ id: message.author.id }).toArray(function (err, result) {
+                        if (!result[0]) {
+                            database.collection(`UserStats`).insertOne({
+                                username: message.author.username, id: message.author.id, roles: message.member._roles, moderation: {
+                                    type: `tempmuted`,
+                                    moderator: null,
+                                    reason: `Rilevazione Spam`,
+                                    time: 1000 * 60 * 10
+                                }
+                            })
+                            message.member.roles.add(config.idruoli.tempmuted)
+                        }
+                        if (result[0]) {
+                            database.collection(`UserStats`).updateOne({ id: message.author.id }, {
+                                $set: {
+                                    moderation: {
+                                        type: `tempmuted`,
+                                        moderator: null,
+                                        reason: `Rilevazione Spam`,
+                                        time: 1000 * 60 * 10
+                                    }
+                                }
+                            })
+                        }
+                    })
+                    message.member.roles.add(config.idruoli.tempmuted)
                     let embed = new Discord.MessageEmbed()
-                        .setTitle(`Spam Rilevato`)
-                        .setColor(`RED`)
-                        .setDescription(`È stato rilevato uno **spam** da parte di ${message.author}, è stato messo in timeout per 10 minuti, lo slowmode di questo canale è stato impostato a 10 secondi`)
-                        .setFooter({text: `User ID: ${message.author.id}`})
+                        .setAuthor({ name: `[TEMPMUTE] ${message.member.user.tag}`, iconURL: message.member.displayAvatarURL({ dynamic: true }) })
+                        .setThumbnail(config.images.rogimute)
+                        .setColor(`PURPLE`)
+                        .addField(`👤Utente:`, `Nome: ${message.author.username}, ID: ${message.author.id}\n||${message.member.toString()}||`)
+                        .addField(`⏰Tempo:`, `10 minuti`, true)
+                        .addField(`\u200b`, `\u200b`, true)
+                        .addField(`📖Motivo:`, `Rilevazione Spam`, true)
                     let embed2 = new Discord.MessageEmbed()
                         .setTitle(`⌨️Spam Rilevato⌨️`)
                         .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
                         .addField(`💬Canale:`, `${message.channel}`)
                         .addField(`👤Utente:`, `Nome: **${message.author.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
                         .setColor(`RED`)
-                        .setThumbnail(message.author.avatarURL({dynamic: true}))
-                    let button = new Discord.MessageButton()
-                        .setStyle(`PRIMARY`)
-                        .setLabel(`Annulla Slowmode`)
-                        .setCustomId(`AnnullaSlowmode`)
-                    let row = new Discord.MessageActionRow()
-                        .addComponents(button)
+                        .setThumbnail(message.author.avatarURL({ dynamic: true }))
                     let embed3 = new Discord.MessageEmbed()
                         .setTitle(`Calmati...`)
                         .setDescription(`È stato rilevato uno **spam** da parte tua in ${message.guild.name}\n\nPrenditi una pausa di 10 minuti 😄`)
                         .setColor(`RED`)
-                    message.member.timeout(1000 * 60 * 10, `Rilevazione di Spam`)
-                    message.author.send({embeds: [embed3]}).catch(() => {})
-                    message.channel.setRateLimitPerUser(10)
-                    message.channel.send({embeds: [embed], components: [row]})
-                    client.channels.cache.get(config.idcanali.logs.moderation).send({embeds: [embed2]})
-                } else {
-                    data.msgs = msgs;
-                    checkspam.set(message.author.id, data)
+                    let embed4 = new Discord.MessageEmbed()
+                        .setTitle(`🔇TEMPMUTE🔇`)
+                        .setColor(`RED`)
+                        .setThumbnail(message.member.displayAvatarURL({ dynamic: true, format: `png`, size: 512 }))
+                        .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                        .addField(`🔨Moderatore:`, `Nome: **${client.user.username}**, ID: **${client.user.id}**\n||${client.user.toString()}||`)
+                        .addField(`👤Utente:`, `Nome: **${message.author.username}**, ID: **${message.author.id}**\n||${message.member.toString()}||`)
+                        .addField(`⏰Tempo:`, `10 minuti`)
+                        .addField(`📖Motivo:`, `Rilevazione Spam`)
+                    message.channel.send({ embeds: [embed] })
+                    message.author.send({ embeds: [embed3] }).catch(() => { })
+                    client.channels.cache.get(config.idcanali.logs.moderation.spam).send({ embeds: [embed2] })
+                    client.channels.cache.get(config.idcanali.logs.moderation.tempmute).send({ embeds: [embed4] })
+                    checkspam.delete(message.author.id)
+                    return
                 }
+                checkspam.set(message.author.id, {
+                    msg: user.msg + 1,
+                    lastmsg: message.createdTimestamp
+                })
+                return
             }
-        } else {
-            let remove = setTimeout(() => {
-                checkspam.delete(message.author.id);
-            }, 5000)
-            checkspam.set(message.author.id, {
-                msgs: 1,
-                lastmsg: message,
-                timer: remove
-            })
         }
+        checkspam.set(message.author.id, {
+            msg: 1,
+            lastmsg: message.createdTimestamp
+        })
     }
 }

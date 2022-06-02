@@ -2,42 +2,55 @@ const lyricsFinder = require(`lyrics-finder`)
 const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
-    name: `lyrics`,
-    async execute(message, args) {
-        if(!message.member.roles.cache.has(config.idruoli.level20) && !message.member.roles.cache.has(config.idruoli.level25) && !message.member.roles.cache.has(config.idruoli.level30) && !message.member.roles.cache.has(config.idruoli.serverbooster) && !message.member.roles.cache.has(config.idruoli.srmoderator) && !message.member.roles.cache.has(config.idruoli.owner)) {
-            let embed = new Discord.MessageEmbed()
-                .setColor(`RED`)
-                .setDescription(`_Hai bisogno almeno del **livello 20**\nper eseguire questo comando_`)
-                .setTitle(`Non hai il livello`)
-                .setThumbnail(config.images.rogierror)
-            message.reply({embeds: [embed]})
-            return
-        }
-        message.channel.sendTyping()
-        let title = args.join(` `)
-        let lyrics = await lyricsFinder(title) || `Error`
-        if(lyrics.length > 4096) {
-            let embed = new Discord.MessageEmbed()
-                .setTitle(`Errore`)
-                .setDescription(`*La canzone è troppo lunga\nper essere visualizzata*`)
-                .setColor(`RED`)
-                .setThumbnail(config.images.rogierror)
-            message.reply({embeds: [embed]})
-            return
-        }
-        if(lyrics == `Error`) {
-            let embed = new Discord.MessageEmbed()
-                .setTitle(`Errore`)
-                .setDescription(`*Non riesco a trovare questa canzone\n\`!lyrics [canzone]\`*`)
-                .setColor(`RED`)
-                .setThumbnail(config.images.rogierror)
-            message.reply({embeds: [embed]})
-            return
-        }
-        let embed = new Discord.MessageEmbed()
-            .setTitle(title.toString())
-            .setDescription(lyrics.toString())
-            .setColor(`YELLOW`)
-        message.reply({embeds: [embed]})
-    }
+	name: `lyrics`,
+	data: {
+		name: `lyrics`,
+		description: `Mostra il testo di una canzone - Disponibile dal livello 20`,
+		options: [
+			{
+				name: `canzone`,
+				description: `La canzone di cui cercare il testo`,
+				type: `STRING`,
+				required: true
+			}
+		]
+	},
+	permissionlevel: 0,
+	execute(interaction) {
+		if (!interaction.member.roles.cache.has(config.idruoli.level20) && !interaction.member.roles.cache.has(config.idruoli.level25) && !interaction.member.roles.cache.has(config.idruoli.level30) && !interaction.member.roles.cache.has(config.idruoli.level40) && !interaction.member.roles.cache.has(config.idruoli.level50) && !interaction.member.roles.cache.has(config.idruoli.level60) && !interaction.member.roles.cache.has(config.idruoli.level70) && !interaction.member.roles.cache.has(config.idruoli.level80) && !interaction.member.roles.cache.has(config.idruoli.level90) && !interaction.member.roles.cache.has(config.idruoli.level100) && !interaction.member.roles.cache.has(config.idruoli.serverbooster) && !interaction.member.permissions.has(`ADMINISTRATOR`)) {
+			let embed = new Discord.MessageEmbed()
+				.setTitle(`Errore`)
+				.setDescription(`*Devi avere almeno il livello 20 per usare questo comando!*`)
+				.setColor(`RED`)
+				.setThumbnail(config.images.rogierror)
+			interaction.reply({ embeds: [embed], ephemeral: true })
+			return
+		}
+		interaction.deferReply().then(async () => {
+			let lyrics = (await lyricsFinder(interaction.options.getString(`canzone`))) || `Error`
+			if (lyrics.length > 4096) {
+				let embed = new Discord.MessageEmbed()
+					.setTitle(`Errore`)
+					.setDescription(`*La canzone è troppo lunga\nper essere visualizzata*`)
+					.setColor(`RED`)
+					.setThumbnail(config.images.rogierror)
+				interaction.editReply({ embeds: [embed] })
+				return;
+			}
+			if (lyrics == `Error`) {
+				let embed = new Discord.MessageEmbed()
+					.setTitle(`Errore`)
+					.setDescription(`*Non riesco a trovare questa canzone*`)
+					.setColor(`RED`)
+					.setThumbnail(config.images.rogierror)
+				interaction.editReply({ embeds: [embed] })
+				return
+			}
+			let embed = new Discord.MessageEmbed()
+				.setTitle(interaction.options.getString(`canzone`))
+				.setDescription(lyrics.toString())
+				.setColor(`YELLOW`)
+			interaction.editReply({ embeds: [embed] })
+		})
+	}
 }

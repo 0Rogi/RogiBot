@@ -22,7 +22,7 @@ module.exports = {
             .setEmoji(`🗑️`)
         let row = new Discord.MessageActionRow()
             .addComponents(button, button2)
-        await client.channels.cache.get(config.idcanali.logs.codeerror).send({embeds: [embed], components: [row]})
+        await client.channels.cache.get(config.idcanali.logs.errors).send({ embeds: [embed], components: [row] })
         console.log(err)
     }
 }

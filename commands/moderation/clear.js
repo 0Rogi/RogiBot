@@ -3,45 +3,55 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `clear`,
-    FromHelpers: true,
-    async execute(message) {
-        let count = message.content.slice(7);
-        count = parseInt(count);
-        if (!count) {
+    data: {
+        name: `clear`,
+        description: `Cancella dei messaggi`,
+        options: [
+            {
+                name: `quantità`,
+                description: `Numero dei messaggi da eliminare`,
+                type: `NUMBER`,
+                required: true
+            }
+        ]
+    },
+    permissionlevel: 1,
+    async execute(interaction) {
+        interaction.deferReply({ ephemeral: true }).then(() => {
+            let count = interaction.options.getNumber(`quantità`)
+            if (!count) {
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`Errore`)
+                    .setDescription(`*Inserisci un numero valido*`)
+                    .setColor(`RED`)
+                    .setThumbnail(config.images.rogierror)
+                interaction.editReply({ embeds: [embed], ephemeral: true })
+                return
+            }
+            if (count > 100) {
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`Errore`)
+                    .setDescription(`*Posso cancellare solo 100 messaggi per volta*`)
+                    .setColor(`RED`)
+                    .setThumbnail(config.images.rogierror)
+                interaction.editReply({ embeds: [embed], ephemeral: true })
+                return
+            }
+            if (count < 1) {
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`Errore`)
+                    .setDescription(`*Devi inserire un numero maggiore o uguale a 1*`)
+                    .setColor(`RED`)
+                    .setThumbnail(config.images.rogierror)
+                interaction.editReply({ embeds: [embed], ephemeral: true })
+                return
+            }
             let embed = new Discord.MessageEmbed()
-                .setTitle(`Errore`)
-                .setDescription(`*Inserisci un numero valido\n\`!clear [numero di messaggi]\`*`)
-                .setColor(`RED`)
-                .setThumbnail(config.images.rogierror)
-            message.reply({embeds: [embed]})
-            return
-        }
-        if(count>100){
-            let embed = new Discord.MessageEmbed()
-                .setTitle(`Errore`)
-                .setDescription(`*Posso cancellare solo 100 messaggi per volta!\n\`!clear [numero messaggi]\`*`)
-                .setColor(`RED`)
-                .setThumbnail(config.images.rogierror)
-            message.reply({embeds: [embed]});
-            return
-        }
-        message.delete()
-        setTimeout(() => {
-            message.channel.bulkDelete(count, true)
-        }, 500);
-        let embedlog = new Discord.MessageEmbed()
-                .setTitle(`🧹CLEAR🧹`)
-                .setColor(`YELLOW`)
-                .setThumbnail(message.author.displayAvatarURL({
-                    dynamic: true,
-                    format: `png`,
-                    size: 512
-                }))
-                .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-                .addField(`🔨Moderatore:`, `Nome: **${message.member.user.username}**, ID: **${message.author.id}**\n||${message.author.toString()}||`)
-                .addField(`Stanza:`, message.channel.toString())
-                .addField(`Messaggi Eliminati:`, count.toString())
-        let channel = client.channels.cache.get(config.idcanali.logs.moderation)
-        channel.send({embeds: [embedlog]})
+                .setTitle(`Messaggi Eliminati`)
+                .setDescription(`**${count}** messaggi sono stati eliminati!`)
+                .setColor(`GREEN`)
+            interaction.editReply({ embeds: [embed], ephemeral: true })
+            interaction.channel.bulkDelete(count, true)
+        })
     }
 }
