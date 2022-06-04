@@ -4,9 +4,8 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 module.exports = {
     name: `guildMemberUpdate`,
     async execute(oldMember, newMember) {
-
         if (oldMember.guild != config.idServer.idServer) return
-
+        if (oldMember.nickname == newMember.nickname) return
         let fetchedLogs = await newMember.guild.fetchAuditLogs({
             limit: 1,
             type: `MEMBER_UPDATE`,
@@ -17,6 +16,7 @@ module.exports = {
 
         let { executor, target } = logs
         if (executor.bot) return
+        if (new Date().getTime() - logs.createdAt > 10000) return
 
         if (executor == target) {
             let embed = new Discord.MessageEmbed()

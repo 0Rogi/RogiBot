@@ -31,7 +31,7 @@ module.exports = {
             database.collection(`UserStats`).find({ id: interaction.member.id }).toArray(function (err, result) {
                 if (!result[0]) {
                     database.collection(`UserStats`).inserOne({
-                        username: member.user.username, id: member.id, roles: member._roles, moderation: {
+                        username: interaction.member.user.username, id: interaction.member.id, roles: interaction.member._roles, moderation: {
                             type: null,
                             moderator: null,
                             reason: null

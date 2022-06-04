@@ -1,3 +1,5 @@
+const config = require(`${process.cwd()}/JSON/config.json`)
+
 module.exports = {
     name: `messageDelete`,
     execute(message) {
@@ -5,6 +7,7 @@ module.exports = {
         if (!message.author) return
         if (!message.member) return
         if (message.author.bot) return
+        if (message.channel.parent == config.idcanali.staffparent) return
         let delmessage = ``
         if (message.content) delmessage += `${message.content.slice(0, 500)}`
         if (message.attachments) {

@@ -9,10 +9,9 @@ module.exports = {
         try {
             var number = Parser.evaluate(message.content.replace(/\\/g, ``))
         } catch (err) {
-            if (message.content != `stack` && serverstats.counting.currentnumber + 1 != 64) return
+            if (message.content == `stack` && serverstats.counting.currentnumber + 1 == 64) number = 64
+            else return
         }
-        if (message.content == `stack` && serverstats.counting.currentnumber + 1 == 64) number = 64
-        if (!number) return
         if (serverstats.counting.lastuser == message.author.id) {
             await database.collection(`ServerStats`).updateOne({}, {
                 $set: {
