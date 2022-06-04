@@ -4,7 +4,7 @@ module.exports = {
     name: `messageUpdate`,
     execute(oldMessage, newMessage) {
         if (newMessage.channel != config.idcanali.counting) return
-        if (newMessage.author.bot) return
+        if (newMessage.author?.bot) return
         if (!oldMessage || !newMessage) return
 
         if (newMessage.id == newMessage.channel.lastMessageId) {

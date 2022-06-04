@@ -30,7 +30,7 @@ module.exports = {
             await client.channels.cache.get(config.idcanali.welcome).send({ embeds: [embed], files: [new Discord.MessageAttachment(canvas.toBuffer(), `Welcome.png`)] })
             database.collection(`UserStats`).find({ id: interaction.member.id }).toArray(function (err, result) {
                 if (!result[0]) {
-                    database.collection(`UserStats`).inserOne({
+                    database.collection(`UserStats`).insertOne({
                         username: interaction.member.user.username, id: interaction.member.id, roles: interaction.member._roles, moderation: {
                             type: null,
                             moderator: null,

@@ -19,7 +19,7 @@ module.exports = {
 
         database.collection(`UserStats`).find({ id: member.id }).toArray(function (err, result) {
             if (!result[0]) {
-                database.collection(`UserStats`).inserOne({
+                database.collection(`UserStats`).insertOne({
                     username: member.user.username, id: member.id, roles: member._roles, moderation: {
                         type: null,
                         moderator: null,

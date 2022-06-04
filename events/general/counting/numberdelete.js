@@ -4,7 +4,7 @@ module.exports = {
     name: `messageDelete`,
     execute(message) {
         if (message.channel != config.idcanali.counting) return
-        if (message.author.bot) return
+        if (message.author?.bot) return
         if (message.content == serverstats.counting.currentnumber) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Numero Eliminato`)
