@@ -16,7 +16,8 @@ module.exports = {
 	},
 	permissionlevel: 4,
 	execute(interaction) {
-		if (!interaction.member.roles.cache.has(config.idruoli.owner)) return
+		if (!interaction.member.roles.cache.has(config.idruoli.owner) && interaction.guild == config.idServer.idServer) return
+		if (interaction.guild == config.idServer.idServerTest && !interaction.member.roles.cache.has(`954438340801884261`)) return
 		interaction.deferReply().then(async () => {
 			let command = interaction.options.getString(`codice`)
 			try {

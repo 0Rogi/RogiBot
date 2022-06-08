@@ -16,9 +16,9 @@ module.exports = {
             if (lastuser == null || !lastuser) lastuser = `_Nessun Utente_`
             let embed = new Discord.MessageEmbed()
                 .setTitle(`💯 Statistiche Counting 💯`)
-                .addField(`👤Ultimo utente:`, lastuser, true)
-                .addField(`🔢Numero Attuale:`, serverstats.counting.currentnumber.toString(), true)
-                .addField(`🏅Record Attuale:`, serverstats.counting.bestnumber.toString(), true)
+                .addField(`👤 Ultimo utente:`, lastuser, true)
+                .addField(`🔢 Numero Attuale:`, serverstats.counting.currentnumber.toString(), true)
+                .addField(`🏅 Record Attuale:`, serverstats.counting.bestnumber.toString(), true)
                 .setColor(`YELLOW`)
                 .setThumbnail(`https://i.imgur.com/yhlJWRw.png`)
             interaction.editReply({ embeds: [embed] })

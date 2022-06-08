@@ -14,9 +14,9 @@ module.exports = function unmute() {
                         .setColor(`RED`)
                         //.setDescription(`⚠️L'utente **è stato** avvisato nei dm⚠️`)
                         .setThumbnail(user.displayAvatarURL({ dynamic: true, format: `png`, size: 512 }))
-                        .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-                        .addField(`🔨Moderatore:`, `Nome: **${client.user.username}**, ID: **${client.user.id}**\n||${client.user.toString()}||`)
-                        .addField(`👤Utente:`, `Nome: **${user.username}**, ID: **${user.id}**\n||${user.toString()}||`)
+                        .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                        .addField(`🔨 Moderatore:`, `Nome: **${client.user.username}**, ID: **${client.user.id}**\n||${client.user.toString()}||`)
+                        .addField(`👤 Utente:`, `Nome: **${r.username}**, ID: **${user.id}**\n||${user.toString()}||`)
                     client.channels.cache.get(config.idcanali.logs.moderation.unmute).send({ embeds: [embed3] })
                     database.collection(`UserStats`).updateOne({ id: r.id }, {
                         $set: {

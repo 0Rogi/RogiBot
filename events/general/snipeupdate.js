@@ -4,6 +4,7 @@ module.exports = {
     name: `messageDelete`,
     execute(message) {
         if (!message.guild) return
+        if (message.guild != config.idServer.idServer) return
         if (!message.author) return
         if (!message.member) return
         if (message.author.bot) return
