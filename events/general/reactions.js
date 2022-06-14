@@ -5,8 +5,8 @@ module.exports = {
     execute(message) {
         if (message.author.bot || message.guild != config.idServer.idServer) return
 
-        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(interaction.user.id)) return
-        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
 
         if (message.content.toLocaleLowerCase() == `sus`) return message.react(`<:RogiSus:928954313504600064>`).catch(() => { })
         if (message.content.toLowerCase() == `rogi`) return message.react(`<:Rogi:904005869799366696>`).catch(() => { })
