@@ -5,6 +5,10 @@ module.exports = {
     execute(message) {
         if (message.guild) return
         if (message.author.bot) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
+
         let textattachment = ``
         let i = 0
         message.attachments.forEach(attachment => {

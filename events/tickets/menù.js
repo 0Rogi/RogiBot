@@ -4,8 +4,12 @@ const moment = require(`moment`);
 module.exports = {
 	name: `interactionCreate`,
 	execute(interaction) {
-		if (interaction.guild != config.idServer.idServer) return;
-		if (!interaction.isSelectMenu()) return;
+		if (interaction.guild != config.idServer.idServer) return
+		if (!interaction.isSelectMenu()) return
+
+		if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(interaction.user.id)) return
+		if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
+
 		if (interaction.customId.startsWith(`CategoryTicket`)) {
 			if (interaction.member.id != interaction.customId.split(`,`)[1])
 				return interaction.reply({

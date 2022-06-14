@@ -8,6 +8,10 @@ module.exports = {
         if (!message.author) return
         if (!message.member) return
         if (message.author.bot) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(interaction.user.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
+
         if (message.channel.parent == config.idcanali.staffparent) return
         let delmessage = ``
         if (message.content) delmessage += `${message.content.slice(0, 500)}`

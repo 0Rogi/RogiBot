@@ -5,6 +5,10 @@ module.exports = {
     name: `interactionCreate`,
     execute(interaction) {
         if (!interaction.isButton()) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(interaction.user.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
+
         if (interaction.customId.split(`,`)[0] == `NextMeme`) {
             if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280>Questo non è un tuo pulsante!`, ephemeral: true })
             let url = 'https://www.reddit.com/r/memes/hot/.json?limit=100'

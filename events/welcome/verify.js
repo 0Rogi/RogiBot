@@ -5,6 +5,10 @@ module.exports = {
     name: `interactionCreate`,
     async execute(interaction) {
         if (interaction.guild != config.idServer.idServer) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(interaction.user.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
+
         if (interaction.customId == `Verify`) {
             if (!interaction.member.roles.cache.has(config.idruoli.unverified)) {
                 interaction.reply({ content: `<a:error:966371274853089280> Sei già verificato!`, ephemeral: true })

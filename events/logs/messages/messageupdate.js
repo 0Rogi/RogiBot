@@ -6,6 +6,10 @@ module.exports = {
     execute(oldMessage, newMessage) {
         if (!oldMessage || !oldMessage.author || !oldMessage.guild || oldMessage.guild != config.idServer.idServer) return
         if (oldMessage.author?.bot) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(newMessage.author?.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(newMessage.author?.id)) return
+
         let oldtextembed = ``
         if (oldMessage.embeds[0]) {
             if (oldMessage.embeds[0].title) {

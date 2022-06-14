@@ -8,6 +8,9 @@ module.exports = {
         if (newMessage.author?.bot) return
         if (!oldMessage || !newMessage) return
 
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(newMessage.author.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(newMessage.author.id)) return
+
         try {
             var oldnumber = Parser.evaluate(oldMessage.content);
         }

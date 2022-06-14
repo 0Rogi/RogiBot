@@ -15,6 +15,10 @@ module.exports = {
         if (!logs) return
 
         let { executor, target, reason } = logs
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(executor.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(executor.id)) return
+
         if (executor.bot || logs.createdAt < kick.joinedAt || logs.target.id != kick.id || new Date().getTime() - logs.createdAt > 10000) return
 
         if (reason == `` || !reason) reason = `Nessun Motivo`

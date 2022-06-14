@@ -5,6 +5,10 @@ module.exports = {
     async execute(messageReaction, user) {
         if (user.bot) return
         if (messageReaction.message.guild != config.idServer.idServer) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(user.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(user.id)) return
+
         if (messageReaction.message.partial) await messageReaction.message.fetch();
         if (messageReaction.message.channel.id == config.idcanali.suggestions) {
             let userUp = (await messageReaction.message.reactions.cache.find(x => x._emoji.name == `👍`).users.fetch()).map(user => user.id)

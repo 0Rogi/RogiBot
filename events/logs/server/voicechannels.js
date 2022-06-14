@@ -5,8 +5,11 @@ module.exports = {
     name: `voiceStateUpdate`,
     async execute(oldState, newState) {
         if (oldState.guild != config.idServer.idServer || newState.guild != config.idServer.idServer) return
-
         if (!oldState.channelId && newState.channelId) {
+
+            if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(newState.id)) return
+            if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(newState.id)) return
+
             let embed = new Discord.MessageEmbed()
                 .setTitle(`📥 Utente Entrato 📥`)
                 .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
@@ -17,6 +20,10 @@ module.exports = {
             return
         }
         if (oldState.channelId && !newState.channelId) {
+
+            if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(oldState.id)) return
+            if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(oldState.id)) return
+
             let embed = new Discord.MessageEmbed()
                 .setTitle(`📤 Utente Disconnesso 📤`)
                 .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
@@ -27,6 +34,10 @@ module.exports = {
             return
         }
         if (oldState.channelId != newState.channelId) {
+
+            if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(oldState.id)) return
+            if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(oldState.id)) return
+
             let embed = new Discord.MessageEmbed()
                 .setTitle(`🚗 Utente Spostato 🚗`)
                 .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)

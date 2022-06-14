@@ -12,6 +12,10 @@ module.exports = {
             member.roles.add(config.idruoli.fan)
             return
         }
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(member.user.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(member.user.id)) return
+
         member.roles.add(config.idruoli.unverified)
     }
 }

@@ -6,6 +6,9 @@ module.exports = {
     async execute(oldMember, newMember) {
         if (oldMember.guild != config.idServer.idServer) return
 
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(newMember.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(newMember.id)) return
+
         if (oldMember._roles == newMember._roles) return
 
         const fetchedLogs = await newMember.guild.fetchAuditLogs({

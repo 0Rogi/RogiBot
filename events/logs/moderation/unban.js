@@ -17,6 +17,9 @@ module.exports = {
         let { executor, target } = logs
         if (executor.bot) return
 
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(executor.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(executor.id)) return
+
         let embed = new Discord.MessageEmbed()
             .setTitle(`📛 Unban Manuale 📛`)
             .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)

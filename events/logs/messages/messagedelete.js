@@ -6,6 +6,10 @@ module.exports = {
     async execute(message) {
         if (!message || !message.author || !message.guild || message.guild != config.idServer.idServer) return
         if (message.author?.bot || message.channel == config.idcanali.thingstodo || message.channel == config.idcanali.suggests) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
+
         let textembed = ``
         if (message.embeds[0]) {
             if (message.embeds[0].title) {

@@ -8,6 +8,10 @@ module.exports = {
         if (!message.guild) return
         if (!message.author || !message.member) return
         if (message.guild != config.idServer.idServer) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
+
         if (message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.member.permissions.has(`ADMINISTRATOR`)) return
 
         let content = message.content

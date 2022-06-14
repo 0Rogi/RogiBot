@@ -6,6 +6,9 @@ module.exports = {
     execute(member) {
         if (member.guild != config.idServer.idServer) return
 
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(member.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(member.id)) return
+
         let embed = new Discord.MessageEmbed()
             .setTitle(`🙁 Utente Uscito 🙁`)
             .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)

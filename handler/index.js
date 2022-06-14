@@ -45,6 +45,10 @@ client.on(`ready`, async () => {
 client.on(`messageCreate`, message => {
     let prefix = `!`
     if (!message.content.startsWith(prefix) || message.author.bot || !message.guild || message.content.startsWith(`${prefix}${prefix}`) || message.content == prefix || message.guild != config.idServer.idServer || message.channel == config.idcanali.thingstodo || message.channel == config.idcanali.suggests) return
+
+    if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
+    if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
+
     let args = message.content.slice(prefix.length).trim().split(/ +/)
     let writtencommand = args.shift().toLowerCase()
     let command = client.commands.get(writtencommand)
@@ -59,6 +63,10 @@ client.on(`messageCreate`, message => {
     }
 })
 client.on(`interactionCreate`, interaction => {
+
+    if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(interaction.user.id)) return
+    if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
+
     if (!interaction.isCommand()) return
     let command = client.commands.get(interaction.commandName)
     if (!command) return

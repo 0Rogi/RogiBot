@@ -4,7 +4,11 @@ module.exports = {
 	name: `messageCreate`,
 	async execute(message) {
 		if (message.channel == config.idcanali.thingstodo && message.guild == config.idServer.idServer) {
-			if (message.author.bot || !message.content || message.reference) return;
+			if (message.author.bot || !message.content || message.reference) return
+
+			if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
+			if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
+
 			let embed = new Discord.MessageEmbed()
 				.setColor(`WHITE`)
 				.addField(`Stato:`, `🔲Da fare...`)
@@ -37,10 +41,10 @@ module.exports = {
 						description: 'Elimina thing to do',
 						emoji: '❌'
 					}
-				]);
-			let row = new Discord.MessageActionRow().addComponents(menu);
-			message.delete();
-			message.channel.send({ embeds: [ embed ], components: [ row ] });
+				])
+			let row = new Discord.MessageActionRow().addComponents(menu)
+			message.delete()
+			message.channel.send({ embeds: [embed], components: [row] })
 		}
 	}
-};
+}

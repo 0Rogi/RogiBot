@@ -7,6 +7,10 @@ module.exports = {
     async execute(interaction) {
         if (!interaction.isButton()) return
         if (interaction.guild != config.idServer.idServer) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(interaction.user.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
+
         if (interaction.customId.startsWith(`channelinfoplus`)) {
             let id = interaction.customId.split(`,`)[1]
             if (interaction.member.id != id) return interaction.reply({ content: `<a:error:966371274853089280>Questo non è un tuo pulsante!`, ephemeral: true })

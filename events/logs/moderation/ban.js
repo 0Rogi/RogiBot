@@ -15,6 +15,10 @@ module.exports = {
         if (!logs) return
 
         let { executor, target, reason } = logs
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(executor.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(executor.id)) return
+
         if (executor.bot) return
 
         if (reason == `` || !reason) reason = `Nessun Motivo`

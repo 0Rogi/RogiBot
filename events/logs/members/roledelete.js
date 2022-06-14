@@ -16,6 +16,10 @@ module.exports = {
         const { executor } = logs
 
         if (executor.bot) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(executor.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(executor.id)) return
+
         if (new Date().getTime() - logs.createdAt > 10000) return
 
         let embed = new Discord.MessageEmbed()

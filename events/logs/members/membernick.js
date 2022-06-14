@@ -5,6 +5,10 @@ module.exports = {
     name: `guildMemberUpdate`,
     async execute(oldMember, newMember) {
         if (oldMember.guild != config.idServer.idServer) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(newMember.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(newMember.id)) return
+
         if (oldMember.nickname == newMember.nickname) return
         let fetchedLogs = await newMember.guild.fetchAuditLogs({
             limit: 1,

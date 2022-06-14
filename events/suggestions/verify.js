@@ -4,6 +4,10 @@ module.exports = {
     name: `interactionCreate`,
     execute(interaction) {
         if (!interaction.isButton() || interaction.guild != config.idServer.idServerLogs) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(interaction.user.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
+
         if (interaction.customId == `SuggestAccept` || interaction.customId == `SuggestRefuse`) {
             let embed = interaction.message.embeds[0]
             if (!embed) return interaction.deferUpdate()

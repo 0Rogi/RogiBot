@@ -5,6 +5,10 @@ module.exports = {
     execute(message) {
         if (message.channel.id == config.idcanali.bugs && message.guild == config.idServer.idServerLogs) {
             if (message.author.bot) return
+
+            if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
+            if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
+
             if (!message.reference || !message.content) {
                 message.delete()
                 return

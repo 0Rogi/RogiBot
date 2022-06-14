@@ -5,6 +5,10 @@ module.exports = {
     name: `typingStart`,
     async execute(typing) {
         if (typing.guild != config.idServer.idServer) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(typing.user.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(typing.user.id)) return
+
         let msg = await client.channels.cache.get(config.idcanali.logs.messages.typingstart).messages.fetch({ limit: 1 })
         msg = msg.first()
         if (msg?.embeds[0]?.footer?.text.slice(9) == typing.user.id && msg?.embeds[0]?.description.includes(typing.channel.name)) return

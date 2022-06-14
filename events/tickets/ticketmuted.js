@@ -6,6 +6,10 @@ module.exports = {
     execute(interaction) {
         if (interaction.guild != config.idServer.idServer) return
         if (!interaction.isButton()) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(interaction.user.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
+
         if (interaction.customId == `TicketsMuted`) {
             database.collection(`Tickets`).find({ id: interaction.user.id }).toArray(function (err, result) {
                 if (!result[0]) {

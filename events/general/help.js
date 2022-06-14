@@ -5,6 +5,10 @@ module.exports = {
     execute(interaction) {
         if (interaction.guild != config.idServer.idServer) return
         if (!interaction.isSelectMenu()) return
+
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(interaction.user.id)) return
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
+
         if (!interaction.customId.startsWith(`Help`)) return
         if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280>Questo non è un tuo menù!`, ephemeral: true })
         let embed = new Discord.MessageEmbed()
@@ -28,7 +32,7 @@ module.exports = {
             case `owner`: {
                 embed
                     .setTitle(`👑 Comandi Utilizzabili SOLO dall'Owner 👑`)
-                    .setDescription(`**/eval**\n*Esegue un codice JavaScript*\n**/restart**\n*Restarta il BOT*\n**/shutdown**\n*Spegne il BOT*`)
+                    .setDescription(`**/eval**\n*Esegue un codice JavaScript*\n**/restart**\n*Restarta il BOT*\n**/shutdown**\n*Spegne il BOT*\n**/maintenance**\n**Imposta lo stato di manutenzione del bot*`)
             } break
             case `statistics`: {
                 embed
