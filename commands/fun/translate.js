@@ -5,7 +5,7 @@ module.exports = {
     name: `translate`,
     data: {
         name: `translate`,
-        description: `Traduce un qualunque testo, in italiano`,
+        description: `Traduce un qualunque testo, in italiano - Disponibile dal livello 10`,
         options: [
             {
                 name: `testo`,

@@ -4,7 +4,7 @@ module.exports = {
 	name: `rps`,
 	data: {
 		name: `rps`,
-		description: `Gioca a sasso, carta, forbice con il bot - Disponibile dal livello 15`,
+		description: `Gioca a sasso, carta, forbice con il bot - Disponibile dal livello 5`,
 		options: [
 			{
 				name: `scelta`,
@@ -22,7 +22,7 @@ module.exports = {
 					},
 					{
 						name: 'Forbice',
-						value: 'paper'
+						value: 'scissor'
 					}
 				]
 			}
@@ -44,23 +44,23 @@ module.exports = {
 			let rps = [`rock`, `paper`, `scissor`]
 			let answer = Math.floor(Math.random() * rps.length)
 			let title = ``
-			if (choice == `rock` && rps[answer] == `rock`) title = `Pareggio`
-			if (choice == `rock` && rps[answer] == `paper`) title = `Hai perso`
-			if (choice == `paper` && rps[answer] == `rock`) title = `Hai vinto`
-			if (choice == `paper` && rps[answer] == `paper`) title = `Pareggio`
-			if (choice == `paper` && rps[answer] == `scissor`) title = `Hai perso`
-			if (choice == `scissor` && rps[answer] == `paper`) title = `Hai vinto`
-			if (choice == `scissor` && rps[answer] == `scissor`) title = `Pareggio`
-			if (choice == `scissor` && rps[answer] == `rock`) title = `Hai perso`
-			if (choice == `rock` && rps[answer] == `scissor`) title = `Hai vinto`
+			if (choice == `rock` && rps[answer] == `rock`) title = `🙎‍♂️ Pareggio 🕴`
+			if (choice == `rock` && rps[answer] == `paper`) title = `😦 Hai perso 😢`
+			if (choice == `paper` && rps[answer] == `rock`) title = `🥳 Hai vinto 🎉`
+			if (choice == `paper` && rps[answer] == `paper`) title = `🙎‍♂️ Pareggio 🕴`
+			if (choice == `paper` && rps[answer] == `scissor`) title = `😦 Hai perso 😢`
+			if (choice == `scissor` && rps[answer] == `paper`) title = `🥳 Hai vinto 🎉`
+			if (choice == `scissor` && rps[answer] == `scissor`) title = `🙎‍♂️ Pareggio 🕴`
+			if (choice == `scissor` && rps[answer] == `rock`) title = `😦 Hai perso 😢`
+			if (choice == `rock` && rps[answer] == `scissor`) title = `🥳 Hai vinto 🎉`
 			let descriptionuser = ``
-			if (choice == `rock`) descriptionuser = `🪨Pietra`
-			if (choice == `scissor`) descriptionuser = `✂️Forbici`
-			if (choice == `paper`) descriptionuser = `📰Carta`
+			if (choice == `rock`) descriptionuser = `🪨 Pietra`
+			if (choice == `scissor`) descriptionuser = `✂️ Forbici`
+			if (choice == `paper`) descriptionuser = `📰 Carta`
 			let descriptionbot = ``
-			if (rps[answer] == `rock`) descriptionbot = `🪨Pietra`
-			if (rps[answer] == `scissor`) descriptionbot = `✂️Forbici`
-			if (rps[answer] == `paper`) descriptionbot = `📰Carta`
+			if (rps[answer] == `rock`) descriptionbot = `🪨 Pietra`
+			if (rps[answer] == `scissor`) descriptionbot = `✂️ Forbici`
+			if (rps[answer] == `paper`) descriptionbot = `📰 Carta`
 			let embed = new Discord.MessageEmbed()
 				.setTitle(title.toString())
 				.setDescription(`Risposta di ${interaction.member}:\n**${descriptionuser.toString()}**\nRisposta BOT:\n**${descriptionbot}**`)
