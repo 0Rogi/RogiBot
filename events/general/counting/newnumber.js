@@ -50,7 +50,7 @@ module.exports = {
             message.react(`❌`)
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Numero sbagliato!`)
-                .setDescription(`${message.author.toString()} Il numero corretto era **${serverstats.counting.currentnumber + 1}** 😫`)
+                .setDescription(`${message.author.toString()} hai scritto ${number}, ma numero corretto era **${serverstats.counting.currentnumber + 1}** 😫`)
                 .setColor(`RED`)
             message.channel.send({ embeds: [embed] })
             message.channel.send(`0`).then(msg => {
