@@ -18,6 +18,7 @@ module.exports = {
     execute(interaction) {
         if (!interaction.member.roles.cache.has(config.idruoli.owner) && interaction.guild == config.idServer.idServer) return
         if (interaction.guild == config.idServer.idServerTest && !interaction.member.roles.cache.has(`954438340801884261`)) return
+
         interaction.deferReply().then(async () => {
             let stato = interaction.options.getBoolean(`stato`)
             if (stato) {
@@ -28,7 +29,9 @@ module.exports = {
                     interaction.editReply({ embeds: [embed] })
                     return
                 }
-                database.collection(`ServerStats`).updateOne({}, { $set: { maintenance: true } })
+
+                await database.collection(`ServerStats`).updateOne({}, { $set: { maintenance: true } })
+
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`Manutenzione attivata`)
                     .setColor(`YELLOW`)
@@ -41,7 +44,9 @@ module.exports = {
                     interaction.editReply({ embeds: [embed] })
                     return
                 }
-                database.collection(`ServerStats`).updateOne({}, { $set: { maintenance: false } })
+
+                await database.collection(`ServerStats`).updateOne({}, { $set: { maintenance: false } })
+
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`Manutenzione Disattivata`)
                     .setColor(`YELLOW`)

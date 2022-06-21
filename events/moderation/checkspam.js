@@ -1,7 +1,7 @@
-const config = require(`${process.cwd()}/JSON/config.json`)
 const moment = require(`moment`)
+const config = require(`${process.cwd()}/JSON/config.json`)
 const setpermissions = require(`${process.cwd()}/functions/general/setpermissions.js`)
-
+const adduser = require(`${process.cwd()}/functions/database/adduser.js`)
 const checkspam = new Map()
 
 module.exports = {
@@ -20,33 +20,26 @@ module.exports = {
             let user = checkspam.get(message.author.id)
             if (message.createdTimestamp - user.lastmsg <= 4000) {
                 if (user.msg >= 5) {
+
                     setpermissions()
-                    database.collection(`UserStats`).find({ id: message.author.id }).toArray(function (err, result) {
+                    message.member.roles.add(config.idruoli.tempmuted)
+
+                    database.collection(`users`).find({ id: message.author.id }).toArray(function (err, result) {
                         if (!result[0]) {
-                            database.collection(`UserStats`).insertOne({
-                                username: message.author.username, id: message.author.id, roles: message.member._roles, moderation: {
+                            adduser(message.member)
+                        }
+                        database.collection(`users`).updateOne({ id: message.author.id }, {
+                            $set: {
+                                moderation: {
                                     type: `tempmuted`,
-                                    moderator: null,
+                                    moderator: client.user.id,
                                     reason: `Rilevazione Spam`,
                                     time: 1000 * 60 * 10
                                 }
-                            })
-                            message.member.roles.add(config.idruoli.tempmuted)
-                        }
-                        if (result[0]) {
-                            database.collection(`UserStats`).updateOne({ id: message.author.id }, {
-                                $set: {
-                                    moderation: {
-                                        type: `tempmuted`,
-                                        moderator: null,
-                                        reason: `Rilevazione Spam`,
-                                        time: 1000 * 60 * 10
-                                    }
-                                }
-                            })
-                        }
+                            }
+                        })
                     })
-                    message.member.roles.add(config.idruoli.tempmuted)
+
                     let embed = new Discord.MessageEmbed()
                         .setAuthor({ name: `[TEMPMUTE] ${message.member.user.tag}`, iconURL: message.member.displayAvatarURL({ dynamic: true }) })
                         .setThumbnail(config.images.rogimute)
@@ -79,6 +72,7 @@ module.exports = {
                     message.author.send({ embeds: [embed3] }).catch(() => { })
                     client.channels.cache.get(config.idcanali.logs.moderation.spam).send({ embeds: [embed2] })
                     client.channels.cache.get(config.idcanali.logs.moderation.tempmute).send({ embeds: [embed4] })
+
                     checkspam.delete(message.author.id)
                     return
                 }

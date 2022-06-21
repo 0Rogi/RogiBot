@@ -4,7 +4,7 @@ const moment = require(`moment`)
 const config = require(`${process.cwd()}/JSON/config.json`)
 const ytnotifier = require(`${process.cwd()}/functions/youtube/ytnotifier.js`)
 const subscribercounter = require(`${process.cwd()}/functions/youtube/subscribercounter.js`)
-const checkbans = require(`${process.cwd()}/functions/moderation/checkbans.js`)
+// const checkbans = require(`${process.cwd()}/functions/moderation/checkbans.js`)
 const unmute = require(`${process.cwd()}/functions/moderation/unmute.js`)
 const setpermissions = require(`${process.cwd()}/functions/general/setpermissions.js`)
 const serverstatsupdate = require(`${process.cwd()}/functions/general/serverstatsupdate.js`)
@@ -17,39 +17,45 @@ module.exports = {
     async execute() {
         console.clear()
         client.user.setActivity(`/help`)
-        console.log(`► Bot Online`)
+        console.log(`-- ${client.user.username} ONLINE --`)
+
         let embed = new Discord.MessageEmbed()
             .setTitle(`✅BOT ONLINE - ${process.env.local ? `Local` : `Host`}`)
             .setColor(`GREEN`)
             .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
             .addField(`🟢Online`, `<:RogiBot:854792536694587434> Rogi Bot Online!`)
         client.channels.cache.get(config.idcanali.logs.online).send({ embeds: [embed] })
+
         let db = await MongoClient.connect(process.env.mongodburl, { useNewUrlParser: true, useUnifiedTopology: true })
         database = await db.db(`RogiDiscordDB`)
-        await console.log(` ► Connesso al database`)
-        await database.collection(`UserStats`).find().toArray(async function (err, result) {
-            global.userstatslist = await result
-            console.log(`  ► Userstats Ottenuto`)
-        })
+        await console.log(`-- Connesso al database --`)
         await database.collection(`ServerStats`).find().toArray(async function (err, result) {
             global.serverstats = await result[0]
             setInterval(serverstatsupdate, 500)
-            await console.log(`   ► Serverstats Ottenuto`)
-            console.log(`----- Tutto è funzionante -----`)
+            console.log(`-- Serverstats Ottenuto --`)
         })
+
         setInterval(ytnotifier, 1000)
-        setInterval(unmute, 1000 * 5)
-        setInterval(checkbans, 1000 * 60)
+        setInterval(unmute, 1000)
+        // setInterval(checkbans, 1000 * 60)
         setInterval(events, 1000)
 
-        /*database.collection(`UserStats`).find().toArray(function (err, result) {
-            result.forEach(r => database.collection(`UserStats`).deleteOne({ id: r.id }))
-        })*/
-
-        setInterval(updateuserindb, 1000 * 60)
+        setInterval(updateuserindb, 1000 * 5)
         setInterval(subscribercounter, 1000 * 60)
         setInterval(membercounter, 1000 * 60)
         setInterval(setpermissions, 1000 * 60 * 2)
+
+        setInterval(() => {
+
+            database.collection(`users`).find().toArray(function (err, result) {
+                result.forEach(r => {
+                    if (r.leavedAt - new Date().getTime() > 1000 * 60 * 60 * 24 * 7 * 2) {
+                        client.channels.cache.get(`698931027258638367`).send(`Un utente è nel db, ma è uscito da troppo tempo: ${r.id} - ${r.name}`)
+                    }
+                })
+            })
+
+        }, 1000)
 
     }
 }

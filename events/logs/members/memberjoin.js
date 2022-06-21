@@ -17,7 +17,7 @@ module.exports = {
             .setThumbnail(member.displayAvatarURL({ dynamic: true }))
             .setColor(`GREEN`)
 
-        database.collection(`UserStats`).find({ id: member.id }).toArray(async function (err, result) {
+        database.collection(`users`).find({ id: member.id }).toArray(async function (err, result) {
             if (!result[0]) {
                 client.channels.cache.get(config.idcanali.logs.members.join).send({ embeds: [embed] })
             } else if (result[0]) {

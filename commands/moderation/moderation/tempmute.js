@@ -1,6 +1,7 @@
 const ms = require(`ms`)
 const moment = require(`moment`)
 const config = require(`${process.cwd()}/JSON/config.json`)
+const adduser = require(`${process.cwd()}/functions/database/adduser.js`)
 const setpermissions = require(`${process.cwd()}/functions/general/setpermissions.js`)
 
 module.exports = {
@@ -52,29 +53,30 @@ module.exports = {
                 interaction.editReply({ embeds: [embed] })
                 return
             }
-            setpermissions()
-            database.collection(`UserStats`).find({ id: user.id }).toArray(async function (err, result) {
+
+            database.collection(`users`).find({ id: user.id }).toArray(async function (err, result) {
+                if (!result[0]) {
+                    adduser(guildmember)
+                }
                 if (result[0]) {
-                    if (result[0].moderation.type != null) {
-                        switch (result[0].moderation.type) {
-                            case `tempmuted`: {
-                                result[0].moderation.type = `tempmutato`
-                            } break
-                            case `muted`: {
-                                result[0].moderation.type = `mutato`
-                            } break
-                            case `banned`: {
-                                result[0].moderation.type = `bannato`
-                            } break
-                        }
+                    if (result[0]?.moderation?.type == `muted`) {
                         let embed = new Discord.MessageEmbed()
-                            .setTitle(`Questo utente ha già uno stato di moderazione!`)
-                            .setDescription(`Quest'utente è già **${result[0].moderation.type}**, da <@${result[0].moderation.moderator}> per il motivo: **${result[0].moderation.reason}**`)
+                            .setTitle(`Questo utente è già mutato!`)
+                            .setDescription(`Quest'utente è già **mutato**, da <@${result[0].moderation.moderator}> per il motivo: **${result[0].moderation.reason}**`)
+                            .setColor(`RED`)
+                        interaction.editReply({ embeds: [embed] })
+                        return
+                    }
+                    if (result[0]?.moderation?.type == `tempmuted`) {
+                        let embed = new Discord.MessageEmbed()
+                            .setTitle(`Questo utente è già mutato!`)
+                            .setDescription(`Quest'utente è già **tempmutato**, da <@${result[0].moderation.moderator}> per il motivo: **${result[0].moderation.reason}** per **${ms(result[0].moderation.time)}**`)
                             .setColor(`RED`)
                         interaction.editReply({ embeds: [embed] })
                         return
                     }
                 }
+
                 let time = interaction.options.getString(`tempo`)
                 time = ms(time)
                 let timeembed = ms(time, { long: true });
@@ -100,9 +102,9 @@ module.exports = {
                     .setTitle(`Sei stato mutato temporaneamente!`)
                     .setThumbnail(user.displayAvatarURL({ dynamic: true, size: 512 }))
                     .setColor(`RED`)
-                    .addField(`Mutato da:`, interaction.member.toString(), true)
-                    .addField(`Mutato in:`, interaction.guild.name, true)
-                    .addField(`Per il motivo:`, reason.toString(), true)
+                    .addField(`🔨 Mutato da:`, interaction.member.toString(), true)
+                    .addField(`🏠 Mutato in:`, interaction.guild.name, true)
+                    .addField(`📖 Per il motivo:`, reason.toString(), true)
                 await user.send({ embeds: [embed2] }).catch(() => { dm = false })
                 let embed3 = new Discord.MessageEmbed()
                     .setTitle(`🔇 TEMPMUTE 🔇`)
@@ -118,32 +120,22 @@ module.exports = {
                 if (dm == false) embed1.setDescription(`⚠️ **NON POSSO AVVISARE** QUESTO UTENTE IN DM ⚠️`)
                 client.channels.cache.get(config.idcanali.logs.moderation.tempmute).send({ embeds: [embed3] })
                 interaction.editReply({ embeds: [embed1] })
-                database.collection(`UserStats`).find({ id: user.id }).toArray(function (err, result) {
-                    if (!result[0]) {
-                        database.collection(`UserStats`).insertOne({
-                            username: user.username, id: user.id, roles: guildmember._roles, moderation: {
+
+                setpermissions()
+                guildmember.roles.add(config.idruoli.tempmuted)
+
+                database.collection(`users`).find({ id: user.id }).toArray(function (err, result) {
+                    database.collection(`users`).updateOne({ id: user.id }, {
+                        $set: {
+                            moderation: {
                                 type: `tempmuted`,
                                 moderator: interaction.user.id,
                                 reason: reason,
                                 time: time
                             }
-                        })
-                        guildmember.roles.add(config.idruoli.tempmuted)
-                    }
-                    if (result[0]) {
-                        database.collection(`UserStats`).updateOne({ id: user.id }, {
-                            $set: {
-                                moderation: {
-                                    type: `tempmuted`,
-                                    moderator: interaction.user.id,
-                                    reason: reason,
-                                    time: time
-                                }
-                            }
-                        })
-                    }
+                        }
+                    })
                 })
-                guildmember.roles.add(config.idruoli.tempmuted)
             })
         })
     }
