@@ -5,9 +5,9 @@ module.exports = function ytnotifier() {
     getChannelVideos(`UCw7lKb-XBW4ApE0puSbJLFQ`, `newest`).then(async response => {
         let idVideo = response?.items[0]?.videoId
         if (!idVideo) return
-        client.channels.cache.get(config.idcanali.lastvideo).messages.fetch().then(messages => {
+        client.channels.cache.get(config.idcanali.lastvideo).messages.fetch().then(async messages => {
             let sent = false
-            messages.forEach(msg => {
+            await messages.forEach(msg => {
                 if (msg.content.includes(idVideo)) sent = true
             })
             if (!sent) {

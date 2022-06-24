@@ -1,6 +1,7 @@
 const config = require(`${process.cwd()}/JSON/config.json`)
 const moment = require(`moment`)
 const fs = require(`fs`)
+const fetchAllMessages = require(`${process.cwd()}/functions/moderation/fetchmessages.js`)
 
 module.exports = {
     name: `interactionCreate`,
@@ -14,7 +15,7 @@ module.exports = {
         if (interaction.customId == `Tickets`) {
             database.collection(`Tickets`).find({ id: interaction.user.id }).toArray(function (err, result) {
                 if (!result[0]) {
-                    interaction.guild.channels.create(`❓│ticket-${interaction.user.username}`, { type: `GUILD_TEXT` }).then(ch => {
+                    interaction.guild.channels.create(`—͟͞͞❓】ticket-${interaction.user.username}`, { type: `GUILD_TEXT` }).then(ch => {
                         ch.setParent(config.idcanali.helpparent)
                         ch.permissionOverwrites.set([
                             {
@@ -32,10 +33,10 @@ module.exports = {
                         ])
                         database.collection(`Tickets`).insertOne({ username: interaction.member.user.username, id: interaction.member.id, channel: ch.id, category: null, subcategory: null, opened: false, closing: false })
                         let embed = new Discord.MessageEmbed()
-                            .setTitle(`🗨Scegli una CATEGORIA`)
+                            .setTitle(`🗨 Scegli una CATEGORIA`)
                             .setDescription(`Scegli una categoria, in modo da poter avere delle **possibili soluzioni** prima di aprire il ticket`)
                             .setColor(`YELLOW`)
-                            .addField(`Categorie:`, `**👀Problemi nel server**\n*⤷Ho riscontrato un bug all'interno del bot\n⤷Ho riscontrato un bug all'interno del server\n⤷Altro...*\n**👥Domande allo staff**\n*⤷Voglio segnalare un utente\n⤷Posso far parte dello staff?\n⤷Facciamo una collaborazione?\n⤷Altro...*`)
+                            .addField(`Categorie:`, `**👀 Problemi nel server**\n*⤷ Ho riscontrato un bug all'interno del bot\n⤷ Ho riscontrato un bug all'interno del server\n⤷ Altro...*\n**👥 Domande allo staff**\n*⤷ Voglio segnalare un utente\n⤷ Posso far parte dello staff?\n⤷ Facciamo una collaborazione?\n⤷ Altro...*`)
                         let menu = new Discord.MessageSelectMenu()
                             .setCustomId(`CategoryTicket,${interaction.member.id}`)
                             .setPlaceholder(`Seleziona una categoria`)
@@ -64,18 +65,14 @@ module.exports = {
                 }
             })
         } else if (interaction.customId.startsWith(`TicketOpen`)) {
-            if (interaction.member.id != interaction.customId.split(`,`)[1]) return interaction.reply({ content: `<a:error:966371274853089280>Questo non è un tuo menù!`, ephemeral: true })
-            let category
-            let subcategory
+            if (interaction.member.id != interaction.customId.split(`,`)[1]) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo menù!`, ephemeral: true })
             database.collection(`Tickets`).find({ id: interaction.member.id, channel: interaction.channel.id }).toArray(function (err, result) {
                 if (!result[0]) return
                 if (result[0]) {
-                    category = result[0].category
-                    subcategory = result[0].subcategory
                     let embed = new Discord.MessageEmbed()
-                        .setTitle(`${category}\n${subcategory}`)
+                        .setTitle(`${result[0].category}\n${result[0].subcategory}`)
                         .setColor(`GREEN`)
-                        .setDescription(`Il tuo ticket è stato **aperto**, ora puoi parlare con lo staff\n\n📜**Regole del ticket**\n1) Ricorda sempre che la persona con cui parlerai, è un __essere umano come te__, quindi non è assicurato che riusciremo ad aiutarti;\n2) Ricorda di essere educato;\n3) Non dire: "Posso fare una domanda?" "Posso chiedere aiuto?" ma esponi direttamente il tuo problema o la tua domanda`)
+                        .setDescription(`Il tuo ticket è stato **aperto**, ora puoi parlare con lo staff\n\n📜 **Regole del ticket**\n1) Ricorda sempre che la persona con cui parlerai, è un __essere umano come te__, quindi non è assicurato che riusciremo ad aiutarti;\n2) Ricorda di essere educato;\n3) Non dire: "Posso fare una domanda?" "Posso chiedere aiuto?" ma esponi direttamente il tuo problema o la tua domanda`)
                     let button = new Discord.MessageButton()
                         .setLabel(`Chiudi Ticket`)
                         .setStyle(`DANGER`)
@@ -97,18 +94,21 @@ module.exports = {
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         }
                     ])
+                    if (result[0].subcategory == `Facciamo una collaborazione?`) {
+                        interaction.channel.permissionOverwrites.create(`985910805730054154`, { VIEW_CHANNEL: true, SEND_MESSAGES: true, ATTACH_FILES: true })
+                    }
                     database.collection(`Tickets`).updateOne({ id: interaction.member.id, channel: interaction.channel.id }, { $set: { opened: true } })
                     database.collection(`Tickets`).find({ id: interaction.member.id, channel: interaction.channel.id }).toArray(function (err, result) {
                         if (!result[0]) return
                         if (result[0]) {
                             let embedlog = new Discord.MessageEmbed()
-                                .setTitle(`✉️Ticket Aperto✉️`)
+                                .setTitle(`✉️ Ticket Aperto ✉️`)
                                 .setColor(`GREEN`)
-                                .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-                                .addField(`👤Utente:`, `Nome: ${interaction.member.user.username}, ID: ${interaction.member.id}\n||${interaction.member.toString()}||`)
-                                .addField(`📘Categoria:`, result[0].category, true)
+                                .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                                .addField(`👤 Utente:`, `Nome: ${interaction.member.user.username}, ID: ${interaction.member.id}\n||${interaction.member.toString()}||`)
+                                .addField(`📘 Categoria:`, result[0].category, true)
                                 .addField(`\u200b`, `\u200b`, true)
-                                .addField(`📖Sottocategoria:`, result[0].subcategory, true)
+                                .addField(`📖 Sottocategoria:`, result[0].subcategory, true)
                             client.channels.cache.get(config.idcanali.logs.ticket).send({ embeds: [embedlog] })
                         }
                     })
@@ -119,7 +119,7 @@ module.exports = {
                 if (!result[0]) return
                 if (result[0]) {
                     if (result[0].closing == true) {
-                        interaction.reply({ content: `<a:error:966371274853089280>Questo ticket è già in chiusura`, ephemeral: true })
+                        interaction.reply({ content: `<a:error:966371274853089280> Questo ticket è già in chiusura`, ephemeral: true })
                         return
                     }
                     let embed = new Discord.MessageEmbed()
@@ -135,7 +135,7 @@ module.exports = {
                     interaction.deferUpdate()
                     interaction.channel.send({ embeds: [embed], components: [row] }).then(msg => {
                         setTimeout(() => {
-                            if (msg.embeds[0]?.title == `Chiusura Annullata`) return
+                            if (msg.embeds[0]?.title != `Ticket in chiusura`) return
                             let embed = new Discord.MessageEmbed()
                                 .setTitle(`Ticket in chiusura`)
                                 .setDescription(`Questo ticket si chiuderà in \`10 secondi\``)
@@ -149,21 +149,18 @@ module.exports = {
                                                 database.collection(`Tickets`).find({ channel: interaction.channel.id }).toArray(async function (err, result) {
                                                     if (!result[0]) return
                                                     if (result[0]) {
+
                                                         let embedlog = new Discord.MessageEmbed()
-                                                            .setTitle(`✉️Ticket Chiuso✉️`)
+                                                            .setTitle(`✉️ Ticket Chiuso ✉️`)
                                                             .setColor(`RED`)
-                                                            .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-                                                            .addField(`👑Owner:`, `Nome: ${interaction.guild.members.cache.find(x => x.id == result[0].id) ? interaction.guild.members.cache.find(x => x.id == result[0].id).user.username : result[0].username}, ID: ${interaction.guild.members.cache.find(x => x.id == result[0].id) ? interaction.guild.members.cache.find(x => x.id == result[0].id).id : result[0].id}`)
-                                                            .addField(`👤Utente:`, `Nome: ${interaction.member.user.username}, ID: ${interaction.member.id}\n||${interaction.member.toString()}||`)
-                                                            .addField(`📘Categoria:`, result[0].category, true)
+                                                            .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                                                            .addField(`👑 Owner:`, `Nome: ${interaction.guild.members.cache.find(x => x.id == result[0].id) ? interaction.guild.members.cache.find(x => x.id == result[0].id).user.username : result[0].username}, ID: ${interaction.guild.members.cache.find(x => x.id == result[0].id) ? interaction.guild.members.cache.find(x => x.id == result[0].id).id : result[0].id}`)
+                                                            .addField(`👤 Utente:`, `Nome: ${interaction.member.user.username}, ID: ${interaction.member.id}\n||${interaction.member.toString()}||`)
+                                                            .addField(`📘 Categoria:`, result[0].category, true)
                                                             .addField(`\u200b`, `\u200b`, true)
-                                                            .addField(`📖Sottocategoria:`, result[0].subcategory, true)
-                                                        let fetch = await interaction.channel.messages.fetch({
-                                                            limit: 1
-                                                        })
-                                                        let firstmsg = await fetch.last()
-                                                        interaction.channel.messages.fetch({ before: firstmsg.id }).then(async messages => {
-                                                            messages.reverse()
+                                                            .addField(`📖 Sottocategoria:`, result[0].subcategory, true)
+
+                                                        fetchAllMessages(interaction.channel.id).then(async messages => {
                                                             let transcript = ``
                                                             await messages.forEach(msg => {
                                                                 message = `@${msg.author.username} - ${moment(msg.createdAt).format(`ddd DD MMM YYYY, HH:mm:ss`)}:\n`

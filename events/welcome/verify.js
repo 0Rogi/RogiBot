@@ -1,6 +1,5 @@
 const config = require(`${process.cwd()}/JSON/config.json`)
 const Canvas = require(`canvas`)
-const adduser = require(`${process.cwd()}/functions/database/adduser.js`)
 
 module.exports = {
     name: `interactionCreate`,
@@ -16,7 +15,6 @@ module.exports = {
                 return
             }
             await interaction.reply({ content: `<a:checkmark:970022827866611762> Sei stato verificato!`, ephemeral: true })
-
             let bots = client.guilds.cache.get(config.idServer.idServer).members.cache.filter(member => member.user.bot).size;
             let users = client.guilds.cache.get(config.idServer.idServer).memberCount - bots;
             let canvas = Canvas.createCanvas(1280, 720);
@@ -29,16 +27,20 @@ module.exports = {
             ctx.font = '40px "robotoBold"'
             ctx.fillStyle = `#F8F8F8`;
             ctx.fillText(`${interaction.user.tag}\nè entrato nel server!\nSei il nostro ${users} utente!`, 450, 100)
-
             let embed = new Discord.MessageEmbed()
                 .setDescription(`👋🏻Ciao ${interaction.member.toString()}, benvenuto in ${interaction.member.guild.name}\n👀Sei il nostro ${users} membro!\n📜Leggi il <#698178808011948032> e rispetta le regole 😉\n🚨Puoi vedere tutte le info del sever in <#813476709731008532>`)
                 .setImage(`attachment://Welcome.png`)
                 .setColor(`YELLOW`)
             await client.channels.cache.get(config.idcanali.welcome).send({ embeds: [embed], files: [new Discord.MessageAttachment(canvas.toBuffer(), `Welcome.png`)] })
-
-            database.collection(`users`).find({ id: interaction.member.id }).toArray(function (err, result) {
+            database.collection(`UserStats`).find({ id: interaction.member.id }).toArray(function (err, result) {
                 if (!result[0]) {
-                    adduser(interaction.member)
+                    database.collection(`UserStats`).insertOne({
+                        username: interaction.member.user.username, id: interaction.member.id, roles: interaction.member._roles, moderation: {
+                            type: null,
+                            moderator: null,
+                            reason: null
+                        }
+                    })
                 } else if (result[0]) {
                     result[0].roles.forEach(role => {
                         if (role == config.idruoli.serverbooster || role == config.idruoli.unverified) return

@@ -29,23 +29,50 @@ module.exports = {
                 return
             })
             if (!user) return
-
-            let embed1 = new Discord.MessageEmbed()
-                .setAuthor({ name: `[UNBAN] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
-                .setThumbnail(config.images.rogiban)
-                .setColor(`PURPLE`)
-                .addField(`👤 Utente:`, `Nome: ${user.username}, ID: ${user.id}\n||${user.toString()}||`)
-            let embed3 = new Discord.MessageEmbed()
-                .setTitle(`📛 UNBAN 📛`)
-                .setColor(`GREEN`)
-                .setThumbnail(user.displayAvatarURL({ dynamic: true, format: `png`, size: 512 }))
-                .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-                .addField(`🔨 Moderatore:`, `Nome: **${interaction.member.user.username}**, ID: **${interaction.member.user.id}**\n||${interaction.member.toString()}||`)
-                .addField(`👤 Utente:`, `Nome: **${user.username}**, ID: **${user.id}**\n||${user.toString()}||`)
-            client.channels.cache.get(config.idcanali.logs.moderation.unbans).send({ embeds: [embed3] })
-            interaction.editReply({ embeds: [embed1] })
-
-            interaction.guild.members.unban(user).catch(() => { })
+            database.collection(`UserStats`).find({ id: user.id }).toArray(async function (err, result) {
+                if (!result[0]) {
+                    let embed = new Discord.MessageEmbed()
+                        .setTitle(`Erorre`)
+                        .setDescription(`*Questo utente non ha uno stato di moderazione*`)
+                        .setColor(`RED`)
+                    interaction.editReply({ embeds: [embed] })
+                    return
+                }
+                if (result[0]?.moderation.type != `banned`) {
+                    let embed = new Discord.MessageEmbed()
+                        .setTitle(`Erorre`)
+                        .setDescription(`*Questo utente non è bannato*`)
+                        .setColor(`RED`)
+                    interaction.editReply({ embeds: [embed] })
+                    return
+                }
+                interaction.guild.members.unban(user).catch(() => { })
+                let embed1 = new Discord.MessageEmbed()
+                    .setAuthor({ name: `[UNBAN] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
+                    .setThumbnail(config.images.rogiban)
+                    .setColor(`PURPLE`)
+                    .addField(`👤 Utente:`, `Nome: ${user.username}, ID: ${user.id}\n||${user.toString()}||`)
+                let embed3 = new Discord.MessageEmbed()
+                    .setTitle(`📛 UNBAN 📛`)
+                    .setColor(`GREEN`)
+                    .setThumbnail(user.displayAvatarURL({ dynamic: true, format: `png`, size: 512 }))
+                    .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                    .addField(`🔨 Moderatore:`, `Nome: **${interaction.member.user.username}**, ID: **${interaction.member.user.id}**\n||${interaction.member.toString()}||`)
+                    .addField(`👤 Utente:`, `Nome: **${user.username}**, ID: **${user.id}**\n||${user.toString()}||`)
+                client.channels.cache.get(config.idcanali.logs.moderation.unbans).send({ embeds: [embed3] })
+                interaction.editReply({ embeds: [embed1] })
+                if (result[0]) {
+                    database.collection(`UserStats`).updateOne({ id: user.id }, {
+                        $set: {
+                            moderation: {
+                                type: null,
+                                moderator: null,
+                                reason: null
+                            }
+                        }
+                    })
+                }
+            })
         })
     }
 }

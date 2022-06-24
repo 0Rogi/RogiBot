@@ -2,7 +2,6 @@ const moment = require(`moment`)
 const badwords = require(`${process.cwd()}/JSON/badwords.json`)
 const config = require(`${process.cwd()}/JSON/config.json`)
 const setpermissions = require(`${process.cwd()}/functions/general/setpermissions.js`)
-const adduser = require(`${process.cwd()}/functions/database/adduser.js`)
 
 module.exports = {
     name: `messageCreate`,
@@ -64,11 +63,34 @@ module.exports = {
             if (dm == false) embed3.setDescription(`⚠️ L'utente **non** è stato avvisato nei dm ⚠️`)
             client.channels.cache.get(config.idcanali.logs.moderation.badwords).send({ embeds: [embed3] })
             if (notcensored.toLowerCase().includes(`madonna`) || notcensored.toLowerCase().includes(`dio`)) {
-                embed.setDescription(`Hai detto una **parola non consentita**. Sei stato mutato per **10 minuti**.\n\nIl tuo messaggio: ${notcensored}`)
-
+                embed.setDescription(`Hai detto una **parola non consentita**. Sei stato messo mutato per **10 minuti**.\n\nIl tuo messaggio: ${notcensored}`)
                 setpermissions()
+                database.collection(`UserStats`).find({ id: message.author.id }).toArray(function (err, result) {
+                    if (!result[0]) {
+                        database.collection(`UserStats`).insertOne({
+                            username: message.author.username, id: message.author.id, roles: message.member._roles, moderation: {
+                                type: `tempmuted`,
+                                moderator: null,
+                                reason: `Bestemmia`,
+                                time: 1000 * 60 * 10
+                            }
+                        })
+                        message.member.roles.add(config.idruoli.tempmuted)
+                    }
+                    if (result[0]) {
+                        database.collection(`UserStats`).updateOne({ id: message.author.id }, {
+                            $set: {
+                                moderation: {
+                                    type: `tempmuted`,
+                                    moderator: null,
+                                    reason: `Bestemmia`,
+                                    time: 1000 * 60 * 10
+                                }
+                            }
+                        })
+                    }
+                })
                 message.member.roles.add(config.idruoli.tempmuted)
-
                 let embedlog = new Discord.MessageEmbed()
                     .setAuthor({ name: `[TEMPMUTE] ${message.member.user.tag}`, iconURL: message.member.displayAvatarURL({ dynamic: true }) })
                     .setThumbnail(config.images.rogimute)
@@ -78,22 +100,6 @@ module.exports = {
                     .addField(`\u200b`, `\u200b`, true)
                     .addField(`📖 Motivo:`, `Bestemmia`, true)
                 client.channels.cache.get(config.idcanali.logs.moderation.tempmute).send({ embeds: [embedlog] })
-
-                database.collection(`users`).find({ id: message.author.id }).toArray(function (err, result) {
-                    if (!result[0]) {
-                        adduser(message.member)
-                    }
-                    database.collection(`users`).updateOne({ id: message.author.id }, {
-                        $set: {
-                            moderation: {
-                                type: `tempmuted`,
-                                moderator: client.user.id,
-                                reason: `Bestemmia`,
-                                time: 1000 * 60 * 10
-                            }
-                        }
-                    })
-                })
             }
             message.channel.send({ embeds: [embed2] })
         }

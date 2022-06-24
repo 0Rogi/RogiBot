@@ -13,7 +13,7 @@ module.exports = {
         if (interaction.customId == `TicketsMuted`) {
             database.collection(`Tickets`).find({ id: interaction.user.id }).toArray(function (err, result) {
                 if (!result[0]) {
-                    interaction.guild.channels.create(`⛔│ticket-${interaction.user.username}`, { type: `GUILD_TEXT` }).then(async ch => {
+                    interaction.guild.channels.create(`—͟͞͞⛔】ticket-${interaction.user.username}`, { type: `GUILD_TEXT` }).then(async ch => {
                         ch.setParent(config.idcanali.helpparent)
                         ch.permissionOverwrites.set([
                             {
@@ -45,13 +45,13 @@ module.exports = {
                             if (!result[0]) return
                             if (result[0]) {
                                 let embedlog = new Discord.MessageEmbed()
-                                    .setTitle(`✉️Ticket Aperto✉️`)
+                                    .setTitle(`✉️ Ticket Aperto ✉️`)
                                     .setColor(`GREEN`)
-                                    .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-                                    .addField(`👤Utente:`, `Nome: ${interaction.member.user.username}, ID: ${interaction.member.id}\n||${interaction.member.toString()}||`)
-                                    .addField(`📘Categoria:`, result[0].category, true)
+                                    .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                                    .addField(`👤 Utente:`, `Nome: ${interaction.member.user.username}, ID: ${interaction.member.id}\n||${interaction.member.toString()}||`)
+                                    .addField(`📘 Categoria:`, result[0].category, true)
                                     .addField(`\u200b`, `\u200b`, true)
-                                    .addField(`📖Sottocategoria:`, result[0].subcategory, true)
+                                    .addField(`📖 Sottocategoria:`, result[0].subcategory, true)
                                 client.channels.cache.get(config.idcanali.logs.ticket).send({ embeds: [embedlog] })
                             }
                         })

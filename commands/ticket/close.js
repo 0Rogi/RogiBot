@@ -1,6 +1,7 @@
 const moment = require(`moment`)
 const fs = require(`fs`)
 const config = require(`${process.cwd()}/JSON/config.json`)
+const fetchAllMessages = require(`${process.cwd()}/functions/moderation/fetchmessages.js`)
 
 module.exports = {
     name: `tclose`,
@@ -23,7 +24,7 @@ module.exports = {
                 }
                 if (result[0]) {
                     if (result[0].closing == true) {
-                        interaction.editReply({ content: `<a:error:966371274853089280>Questo ticket è già in chiusura` })
+                        interaction.editReply({ content: `<a:error:966371274853089280> Questo ticket è già in chiusura` })
                         return
                     }
                     let embed = new Discord.MessageEmbed()
@@ -52,21 +53,18 @@ module.exports = {
                                                 database.collection(`Tickets`).find({ channel: interaction.channel.id }).toArray(async function (err, result) {
                                                     if (!result[0]) return
                                                     if (result[0]) {
+
                                                         let embedlog = new Discord.MessageEmbed()
-                                                            .setTitle(`✉️Ticket Chiuso✉️`)
+                                                            .setTitle(`✉️ Ticket Chiuso ✉️`)
                                                             .setColor(`RED`)
-                                                            .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-                                                            .addField(`👑Owner:`, `Nome: ${interaction.guild.members.cache.find(x => x.id == result[0].id) ? interaction.guild.members.cache.find(x => x.id == result[0].id).user.username : result[0].username}, ID: ${interaction.guild.members.cache.find(x => x.id == result[0].id) ? interaction.guild.members.cache.find(x => x.id == result[0].id).id : result[0].id}`)
-                                                            .addField(`👤Utente:`, `Nome: ${interaction.member.user.username}, ID: ${interaction.member.id}\n||${interaction.member.toString()}||`)
-                                                            .addField(`📘Categoria:`, result[0].category, true)
+                                                            .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                                                            .addField(`👑 Owner:`, `Nome: ${interaction.guild.members.cache.find(x => x.id == result[0].id) ? interaction.guild.members.cache.find(x => x.id == result[0].id).user.username : result[0].username}, ID: ${interaction.guild.members.cache.find(x => x.id == result[0].id) ? interaction.guild.members.cache.find(x => x.id == result[0].id).id : result[0].id}`)
+                                                            .addField(`👤 Utente:`, `Nome: ${interaction.member.user.username}, ID: ${interaction.member.id}\n||${interaction.member.toString()}||`)
+                                                            .addField(`📘 Categoria:`, result[0].category, true)
                                                             .addField(`\u200b`, `\u200b`, true)
-                                                            .addField(`📖Sottocategoria:`, result[0].subcategory, true)
-                                                        let fetch = await interaction.channel.messages.fetch({
-                                                            limit: 1
-                                                        })
-                                                        let firstmsg = await fetch.last()
-                                                        interaction.channel.messages.fetch({ before: firstmsg.id }).then(async messages => {
-                                                            messages.reverse()
+                                                            .addField(`📖 Sottocategoria:`, result[0].subcategory, true)
+
+                                                        fetchAllMessages(interaction.channel.id).then(async messages => {
                                                             let transcript = ``
                                                             await messages.forEach(msg => {
                                                                 message = `@${msg.author.username} - ${moment(msg.createdAt).format(`ddd DD MMM YYYY, HH:mm:ss`)}:\n`

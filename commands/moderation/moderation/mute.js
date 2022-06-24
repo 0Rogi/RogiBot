@@ -1,8 +1,6 @@
 const moment = require(`moment`)
-const ms = require(`ms`)
 const config = require(`${process.cwd()}/JSON/config.json`)
 const setpermissions = require(`${process.cwd()}/functions/general/setpermissions.js`)
-const adduser = require(`${process.cwd()}/functions/database/adduser.js`)
 
 module.exports = {
     name: `mute`,
@@ -47,33 +45,29 @@ module.exports = {
                 interaction.editReply({ embeds: [embed] })
                 return
             }
-
-            database.collection(`users`).find({ id: user.id }).toArray(async function (err, result) {
-                if (!result[0]) {
-                    adduser(guildmember)
-                }
+            setpermissions()
+            database.collection(`UserStats`).find({ id: user.id }).toArray(async function (err, result) {
                 if (result[0]) {
-                    if (result[0]?.moderation?.type == `muted`) {
+                    if (result[0].moderation.type != null) {
+                        switch (result[0].moderation.type) {
+                            case `tempmuted`: {
+                                result[0].moderation.type = `tempmutato`
+                            } break
+                            case `muted`: {
+                                result[0].moderation.type = `mutato`
+                            } break
+                            case `banned`: {
+                                result[0].moderation.type = `bannato`
+                            } break
+                        }
                         let embed = new Discord.MessageEmbed()
-                            .setTitle(`Questo utente è già mutato!`)
-                            .setDescription(`Quest'utente è già **mutato**, da <@${result[0].moderation.moderator}> per il motivo: **${result[0].moderation.reason}**`)
-                            .setColor(`RED`)
-                        interaction.editReply({ embeds: [embed] })
-                        return
-                    }
-                    if (result[0]?.moderation?.type == `tempmuted`) {
-                        let embed = new Discord.MessageEmbed()
-                            .setTitle(`Questo utente è già mutato!`)
-                            .setDescription(`Quest'utente è già **tempmutato**, da <@${result[0].moderation.moderator}> per il motivo: **${result[0].moderation.reason}** per **${ms(result[0].moderation.time)}**`)
+                            .setTitle(`Questo utente ha già uno stato di moderazione!`)
+                            .setDescription(`Quest'utente è già **${result[0].moderation.type}**, da <@${result[0].moderation.moderator}> per il motivo: **${result[0].moderation.reason}**`)
                             .setColor(`RED`)
                         interaction.editReply({ embeds: [embed] })
                         return
                     }
                 }
-
-                setpermissions()
-                guildmember.roles.add(config.idruoli.muted)
-
                 let reason = interaction.options.getString(`motivo`) || `Nessun Motivo`
                 let dm = true
                 let embed1 = new Discord.MessageEmbed()
@@ -81,15 +75,15 @@ module.exports = {
                     .setDescription(`⚠️ **HO AVVISATO** QUEST'UTENTE IN DM ⚠️`)
                     .setThumbnail(config.images.rogimute)
                     .setColor(`PURPLE`)
-                    .addField(`👤 Utente:`, `Nome: ${user.username}, ID: ${user.id}\n||${user.toString()}||`)
-                    .addField(`📖 Motivo:`, reason.toString())
+                    .addField(`Utente:`, `Nome: ${user.username}, ID: ${user.id}\n||${user.toString()}||`)
+                    .addField(`Motivo:`, reason.toString())
                 let embed2 = new Discord.MessageEmbed()
                     .setTitle(`Sei stato mutato!`)
                     .setThumbnail(user.displayAvatarURL({ dynamic: true, size: 512 }))
                     .setColor(`RED`)
-                    .addField(`🔨 Mutato da:`, interaction.member.toString(), true)
-                    .addField(`🏠 Mutato in:`, interaction.guild.name, true)
-                    .addField(`📖 Per il motivo:`, reason.toString(), true)
+                    .addField(`Mutato da:`, interaction.member.toString(), true)
+                    .addField(`Mutato in:`, interaction.guild.name, true)
+                    .addField(`Per il motivo:`, reason.toString(), true)
                 await user.send({ embeds: [embed2] }).catch(() => { dm = false })
                 let embed3 = new Discord.MessageEmbed()
                     .setTitle(`🔇 MUTE 🔇`)
@@ -104,19 +98,30 @@ module.exports = {
                 if (dm == false) embed1.setDescription(`⚠️ **NON POSSO AVVISARE** QUESTO UTENTE IN DM ⚠️`)
                 client.channels.cache.get(config.idcanali.logs.moderation.mute).send({ embeds: [embed3] })
                 interaction.editReply({ embeds: [embed1] })
-
-                database.collection(`users`).updateOne({ id: user.id }, {
-                    $set: {
-                        moderation: {
-                            type: `muted`,
-                            moderator: interaction.member.id,
-                            reason: reason,
-                        }
+                guildmember.roles.add(config.idruoli.muted)
+                database.collection(`UserStats`).find({ id: user.id }).toArray(function (err, result) {
+                    if (!result[0]) {
+                        database.collection(`UserStats`).insertOne({
+                            username: user.username, id: user.id, roles: guildmember._roles, moderation: {
+                                type: `muted`,
+                                moderator: interaction.user.id,
+                                reason: reason
+                            }
+                        })
+                    }
+                    if (result[0]) {
+                        database.collection(`UserStats`).updateOne({ id: user.id }, {
+                            $set: {
+                                moderation: {
+                                    type: `muted`,
+                                    moderator: interaction.user.id,
+                                    reason: reason
+                                }
+                            }
+                        })
                     }
                 })
             })
         })
     }
 }
-
-//TODO Tempmute

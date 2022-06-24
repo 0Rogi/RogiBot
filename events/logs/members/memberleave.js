@@ -1,6 +1,5 @@
 const moment = require(`moment`)
 const config = require(`${process.cwd()}/JSON/config.json`)
-const adduser = require(`${process.cwd()}/functions/database/adduser.js`)
 
 module.exports = {
     name: `guildMemberRemove`,
@@ -21,9 +20,24 @@ module.exports = {
 
         client.channels.cache.get(config.idcanali.logs.members.leave).send({ embeds: [embed] })
 
-        database.collection(`users`).find({ id: member.id }).toArray(function (err, result) {
-            adduser(member)
-            database.collection(`users`).updateOne({ id: member.id }, { $set: { roles: member._roles, leavedAt: new Date().getTime() } })
+        database.collection(`UserStats`).find({ id: member.id }).toArray(function (err, result) {
+            if (!result[0]) {
+                database.collection(`UserStats`).insertOne({
+                    username: member.user.username, id: member.id, roles: member._roles, moderation: {
+                        type: null,
+                        moderator: null,
+                        reason: null
+                    }
+                })
+            } else if (result[0]) {
+                if (member._roles.includes(config.idruoli.unverified)) {
+                    member._roles.forEach(role => {
+                        if (role.id == config.idruoli.unverified) return
+                        member._roles == role.id
+                    })
+                }
+                database.collection(`UserStats`).updateOne({ id: member.id }, { $set: { roles: member._roles } })
+            }
         })
     }
 }
