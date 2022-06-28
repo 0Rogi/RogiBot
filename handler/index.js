@@ -70,10 +70,15 @@ client.on(`interactionCreate`, interaction => {
     if (!interaction.isCommand()) return
     let command = client.commands.get(interaction.commandName)
     if (!command) return
+
     if (command.name == `clear` && interaction.guild != config.idServer.idServer && interaction.member.permissions.has(`ADMINISTRATOR`)) return command.execute(interaction)
     if (command.name == `test` && interaction.guild == config.idServer.idServerTest) return command.execute(interaction)
     if (command.name == `eval` && interaction.guild == config.idServer.idServerTest && interaction.member.permissions.has(`ADMINISTRATOR`)) return command.execute(interaction)
     if (command.name == `say`) return command.execute(interaction)
+    if (command.name == `tclose`) return command.execute(interaction)
+    if (command.name == `tadd`) return command.execute(interaction)
+    if (command.name == `tremove`) return command.execute(interaction)
+
     if (interaction.channel != config.idcanali.commands && interaction.channel != config.idcanali.helpparent && !interaction.member.roles.cache.has(config.idruoli.staff)) {
         interaction.deferReply({ ephemeral: true }).then(() => {
             let embed = new Discord.MessageEmbed()

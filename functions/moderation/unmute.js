@@ -3,22 +3,12 @@ const moment = require(`moment`)
 
 module.exports = function unmute() {
     database.collection(`UserStats`).find().toArray(function (err, result) {
-        result.forEach(r => {
+        result.forEach(async r => {
             if (r?.moderation.type == `tempmuted`) {
                 if (r.moderation.time - 1000 <= 0) {
                     let user = client.guilds.cache.get(config.idServer.idServer).members.cache.find(x => x.id == r.id)
                     if (!user) return
-                    user.roles.remove(config.idruoli.tempmuted)
-                    let embed3 = new Discord.MessageEmbed()
-                        .setTitle(`🔊UNMUTE🔊`)
-                        .setColor(`RED`)
-                        //.setDescription(`⚠️L'utente **è stato** avvisato nei dm⚠️`)
-                        .setThumbnail(user.displayAvatarURL({ dynamic: true, format: `png`, size: 512 }))
-                        .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-                        .addField(`🔨 Moderatore:`, `Nome: **${client.user.username}**, ID: **${client.user.id}**\n||${client.user.toString()}||`)
-                        .addField(`👤 Utente:`, `Nome: **${r.username}**, ID: **${user.id}**\n||${user.toString()}||`)
-                    client.channels.cache.get(config.idcanali.logs.moderation.unmute).send({ embeds: [embed3] })
-                    database.collection(`UserStats`).updateOne({ id: r.id }, {
+                    await database.collection(`UserStats`).updateOne({ id: r.id }, {
                         $set: {
                             moderation: {
                                 type: null,
@@ -28,6 +18,17 @@ module.exports = function unmute() {
                             }
                         }
                     })
+                    user.roles.remove(config.idruoli.tempmuted)
+                    let embed3 = new Discord.MessageEmbed()
+                        .setTitle(`🔊 UNMUTE 🔊`)
+                        .setColor(`RED`)
+                        //.setDescription(`⚠️L'utente **è stato** avvisato nei dm⚠️`)
+                        .setThumbnail(user.displayAvatarURL({ dynamic: true, format: `png`, size: 512 }))
+                        .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                        .addField(`🔨 Moderatore:`, `Nome: **${client.user.username}**, ID: **${client.user.id}**\n||${client.user.toString()}||`)
+                        .addField(`👤 Utente:`, `Nome: **${r.username}**, ID: **${user.id}**\n||${user.toString()}||`)
+                    client.channels.cache.get(config.idcanali.logs.moderation.unmute).send({ embeds: [embed3] })
+                    return
                 }
                 database.collection(`UserStats`).updateOne({ id: r.id }, {
                     $set: {
@@ -35,7 +36,7 @@ module.exports = function unmute() {
                             type: r.moderation.type,
                             moderator: r.moderation.moderator,
                             reason: r.moderation.reason,
-                            time: r.moderation.time - 5000
+                            time: r.moderation.time - 1000
                         }
                     }
                 })

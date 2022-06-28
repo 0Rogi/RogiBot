@@ -22,7 +22,8 @@ module.exports = {
                     counting: {
                         currentnumber: 0,
                         lastuser: null,
-                        bestnumber: serverstats.counting.bestnumber
+                        bestnumber: serverstats.counting.bestnumber,
+                        messageid: null
                     }
                 }
             })
@@ -43,7 +44,8 @@ module.exports = {
                     counting: {
                         currentnumber: 0,
                         lastuser: null,
-                        bestnumber: serverstats.counting.bestnumber
+                        bestnumber: serverstats.counting.bestnumber,
+                        messageid: null
                     }
                 }
             })
@@ -64,7 +66,8 @@ module.exports = {
                 counting: {
                     currentnumber: number,
                     lastuser: message.author.id,
-                    bestnumber: serverstats.counting.bestnumber > number ? serverstats.counting.bestnumber : number
+                    bestnumber: serverstats.counting.bestnumber > number ? serverstats.counting.bestnumber : number,
+                    messageid: message.id
                 }
             }
         })

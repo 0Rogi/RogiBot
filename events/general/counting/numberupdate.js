@@ -1,9 +1,8 @@
 const config = require(`${process.cwd()}/JSON/config.json`)
-const Parser = require(`expr-eval`).Parser
 
 module.exports = {
     name: `messageUpdate`,
-    execute(oldMessage, newMessage) {
+    async execute(oldMessage, newMessage) {
         if (newMessage.channel != config.idcanali.counting) return
         if (newMessage.author?.bot) return
         if (!oldMessage || !newMessage) return
@@ -11,18 +10,20 @@ module.exports = {
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(newMessage.author.id)) return
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(newMessage.author.id)) return
 
-        try {
-            var oldnumber = Parser.evaluate(oldMessage.content);
-        }
-        catch { return }
-
-        try {
-            var newnumber = Parser.evaluate(newMessage.content);
-        }
-        catch { return }
-
-        if (oldnumber != newnumber && oldnumber == serverstats.counting.currentnumber) {
+        if (newMessage.id == serverstats.counting.messageid) {
             newMessage.reactions.removeAll()
+
+            await database.collection(`ServerStats`).updateOne({}, {
+                $set: {
+                    counting: {
+                        currentnumber: serverstats.counting.currentnumber,
+                        lastuser: serverstats.counting.lastuser,
+                        bestnumber: serverstats.counting.bestnumber,
+                        messageid: null
+                    }
+                }
+            })
+
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Numero Modificato`)
                 .setDescription(`${newMessage.author.toString()} ha modificato il numero ${serverstats.counting.currentnumber} 🤦‍♂️`)

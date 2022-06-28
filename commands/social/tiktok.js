@@ -11,7 +11,7 @@ module.exports = {
 				.setTitle(`rogi23yt`)
 				.setColor(`YELLOW`)
 				.setThumbnail(`https://i.imgur.com/DE6hAjE.png`)
-				.setDescription(`Per aprire il profilo **instagram di Rogi**,\npremi il pulsante qui sotto`)
+				.setDescription(`Per aprire il profilo **tiktok di Rogi**,\npremi il pulsante qui sotto`)
 			let row = new Discord.MessageActionRow().addComponents(
 				new Discord.MessageButton()
 					.setLabel(`Vedi Profilo`)

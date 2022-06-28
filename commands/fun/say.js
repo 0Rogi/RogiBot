@@ -1,4 +1,5 @@
 const config = require(`${process.cwd()}/JSON/config.json`)
+const badwords = require(`${process.cwd()}/JSON/badwords.json`)
 
 module.exports = {
 	name: `say`,
@@ -25,12 +26,30 @@ module.exports = {
 			interaction.reply({ embeds: [embed], ephemeral: true })
 			return
 		}
-		interaction.deferReply({ ephemeral: true }).then(() => {
+		interaction.deferReply({ ephemeral: true }).then(async () => {
 			let text = interaction.options.getString(`testo`)
 			if (text.length > 2000) {
 				let embed = new Discord.MessageEmbed()
 					.setTitle(`Errore`)
 					.setDescription(`*Testo troppo lungo!\npuoi usare massimo 2000 caratteri!*`)
+					.setColor(`RED`)
+					.setThumbnail(config.images.rogierror)
+				interaction.editReply({ embeds: [embed] })
+				return
+			}
+			let send = true
+			await badwords.forEach(b => {
+				b = b.replace(/\_/g, "")
+				b = b.replace(/\*/g, "")
+				b = b.replace(/\`/g, "")
+				b = b.replace(/\~\~/g, "")
+				b = b.replace(/\|\|/g, "")
+				if (text.toLowerCase().includes(b)) send = false
+			})
+			if (!send) {
+				let embed = new Discord.MessageEmbed()
+					.setTitle(`Errore`)
+					.setDescription(`*Non puoi mandare parolacce con /say!\nRicorda di rispettare le regole!*`)
 					.setColor(`RED`)
 					.setThumbnail(config.images.rogierror)
 				interaction.editReply({ embeds: [embed] })

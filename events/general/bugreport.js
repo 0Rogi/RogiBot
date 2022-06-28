@@ -28,10 +28,10 @@ module.exports = {
                         return
                     }
                     let embeduser = new Discord.MessageEmbed()
-                        .setTitle(`🪲Bug Report🪲`)
+                        .setTitle(`🪲 Bug Report 🪲`)
                         .setDescription(`${user.toString()}, ${message.author.toString()} ha risposto al tuo bug report!`)
-                        .addField(`🪲Bug:`, msg.embeds[0].fields[0].value.toString())
-                        .addField(`📤Risposta:`, message.content.toString())
+                        .addField(`🪲 Bug:`, msg.embeds[0].fields[0].value.toString())
+                        .addField(`📤 Risposta:`, message.content.toString())
                         .setColor(`RED`)
                     let dm = true
                     await user.send({ embeds: [embeduser] }).catch(() => {
@@ -46,11 +46,11 @@ module.exports = {
                     })
                     if (dm) {
                         let embed1 = new Discord.MessageEmbed()
-                            .setTitle(`📤Bug Response📤`)
+                            .setTitle(`📤 Bug Response 📤`)
                             .setDescription(embed.description)
                             .setThumbnail(embed.thumbnail.url)
                             .addField(embed.fields[0].name, embed.fields[0].value)
-                            .addField(`📤Risposta da ${message.author.username}:`, message.content.toString())
+                            .addField(`📤 Risposta da ${message.author.username}:`, message.content.toString())
                             .setColor(`RED`)
                         msg.edit({ embeds: [embed1], components: [] })
                         message.delete()

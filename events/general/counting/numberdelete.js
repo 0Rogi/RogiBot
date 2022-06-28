@@ -9,10 +9,10 @@ module.exports = {
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
 
-        if (message.content == serverstats.counting.currentnumber) {
+        if (message.id == serverstats.counting.messageid) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Numero Eliminato`)
-                .setDescription(`${newMessage.author.toString()} ha eliminato il numero ${serverstats.counting.currentnumber} 🤦‍♂️`)
+                .setDescription(`${message.author.toString()} ha eliminato il numero ${serverstats.counting.currentnumber} 🤦‍♂️`)
                 .setColor(`YELLOW`)
             message.channel.send({ embeds: [embed] })
             message.channel.send(serverstats.counting.currentnumber.toString()).then(msg => {
