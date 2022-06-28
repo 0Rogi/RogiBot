@@ -39,11 +39,11 @@ module.exports = {
 			}
 			let send = true
 			await badwords.forEach(b => {
-				b = b.replace(/\_/g, "")
-				b = b.replace(/\*/g, "")
-				b = b.replace(/\`/g, "")
-				b = b.replace(/\~\~/g, "")
-				b = b.replace(/\|\|/g, "")
+				text = text.replace(/\_/g, ``)
+				text = text.replace(/\*/g, ``)
+				text = text.replace(/\`/g, ``)
+				text = text.replace(/\~\~/g, ``)
+				text = text.replace(/\|\|/g, ``)
 				if (text.toLowerCase().includes(b)) send = false
 			})
 			if (!send) {
@@ -55,12 +55,21 @@ module.exports = {
 				interaction.editReply({ embeds: [embed] })
 				return
 			}
+			text = interaction.options.getString(`testo`)
 			let embed = new Discord.MessageEmbed()
 				.setTitle(`Messaggio Mandato`)
 				.setDescription(`Il tuo messaggio **è stato mandato** con successo!`)
 				.setColor(`GREEN`)
+			let embedlog = new Discord.MessageEmbed()
+				.setTitle(`/SAY`)
+				.addField(`👤 Utente:`, `Nome: ${interaction.user.username}, ID: ${interaction.user.id}\n||${interaction.user.toString()}||`)
+				.addField(`📖 Contenuto:`, text.toString())
+				.addField(`⚓ Canale:`, interaction.channel.toString())
+				.setThumbnail(interaction.member.displayAvatarURL({ dynamic: true }))
+				.setColor(`YELLOW`)
 			interaction.channel.send(text)
 			interaction.editReply({ embeds: [embed], ephemeral: true })
+			client.channels.cache.get(config.idcanali.logs.messages.say).send({ embeds: [embedlog] })
 		})
 	}
 }
