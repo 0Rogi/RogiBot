@@ -37,14 +37,9 @@ module.exports = {
         setInterval(checkbans, 1000 * 60)
         setInterval(events, 1000)
 
-        /*database.collection(`UserStats`).find().toArray(function (err, result) {
-            result.forEach(r => database.collection(`UserStats`).deleteOne({ id: r.id }))
-        })*/
-
         setInterval(updateuserindb, 1000 * 60)
         setInterval(subscribercounter, 1000 * 60)
         setInterval(membercounter, 1000 * 60)
         setInterval(setpermissions, 1000 * 60 * 2)
-
     }
 }

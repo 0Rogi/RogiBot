@@ -70,10 +70,18 @@ module.exports = async function events() {
     }*/
 
     //* 25 April
-    if (date.getMonth == 3 && date.getDate() == 25 && date.getHours() == 0 && date.getMinutes() == 0) {
+    if (date.getMonth() == 3 && date.getDate() == 25 && date.getHours() == 0 && date.getMinutes() == 0) {
         server.setIcon(`https://i.imgur.com/Iz0sFFi.png`)
     }
-    if (date.getMonth == 3 && date.getDate() == 26 && date.getHours() == 0 && date.getMinutes() == 0) {
+    if (date.getMonth() == 3 && date.getDate() == 26 && date.getHours() == 0 && date.getMinutes() == 0) {
+        server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
+    }
+
+    //* Summer
+    if (date.getMonth() == 6 && date.getDate() == 1 && date.getHours() == 0 && date.getMinutes() == 0) {
+        server.setIcon(`https://i.imgur.com/rt6v0aX.png`)
+    }
+    if (date.getMonth() == 8 && date.getDate() == 1 && date.getHours() == 0 && date.getMinutes() == 0) {
         server.setIcon(`https://i.imgur.com/bhSUCXi.gif`)
     }
 }

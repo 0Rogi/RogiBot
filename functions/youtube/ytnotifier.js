@@ -11,7 +11,7 @@ module.exports = function ytnotifier() {
                 if (msg.content.includes(idVideo)) sent = true
             })
             if (!sent) {
-                client.channels.cache.get(config.idcanali.lastvideo).send(`**${response?.items[0].author}** Ha pubblicato un nuovo video: **${response?.items[0].title}**!! Che aspetti? Corri a vederlo!!\nhttps://www.youtube.com/watch?v=${idVideo}`)
+                client.channels.cache.get(config.idcanali.lastvideo).send(`**${response?.items[0].author}** Ha pubblicato un nuovo video: **${response?.items[0].title}**!! Che aspetti? Corri a vederlo!!\nhttps://www.youtube.com/watch?v=${idVideo}`).then(m => m.crosspost().catch(() => { }))
             }
         })
     })
