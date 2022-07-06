@@ -38,19 +38,23 @@ module.exports = {
                 }, 1000 * 10)
                 return
             }
-            let user = interaction.guild.members.cache.find(x => x.id == interaction.options.getUser(`utente`)?.id) || interaction.member
-            let avatar = user.displayAvatarURL({ dynamic: true, size: 512 })
-            let avatarjpeg = user.displayAvatarURL({ dynamic: true, size: 512, format: `jpeg` })
-            let avatarpng = user.displayAvatarURL({ dynamic: true, size: 512, format: `png` })
-            let avatarwebp = user.displayAvatarURL({ dynamic: true, size: 512, format: `webp` })
-            let avatargif = user.displayAvatarURL({ dynamic: true, size: 512, format: `gif` })
+
+            let user = client.users.cache.get(interaction.options.getUser(`utente`)?.id) || interaction.user
+            let guildmember = interaction.guild.members.cache.find(x => x.id == interaction.options.getUser(`utente`)?.id) || interaction.member
             user.displayAvatarURL({ dynamic: true, size: 512 })
             let embed = new Discord.MessageEmbed()
-                .setTitle(`Avatar di ${user.user.username}`)
-                .setImage(avatar)
+                .setTitle(`Avatar di ${user.username}`)
+                .setImage(user?.displayAvatarURL({ dynamic: true, size: 512 }))
                 .setColor(`YELLOW`)
-                .setDescription(`Altri formati: [**.jpeg**](${avatarjpeg}) [**.png**](${avatarpng}) [**.webp**](${avatarwebp}) [**.gif**](${avatargif})`)
-            interaction.editReply({ embeds: [embed] })
+                .setDescription(`Altri formati: [**.jpeg**](${user.displayAvatarURL({ dynamic: true, size: 512, format: `jpeg` })}) [**.png**](${user.displayAvatarURL({ dynamic: true, size: 512, format: `png` })}) [**.webp**](${user.displayAvatarURL({ dynamic: true, size: 512, format: `webp` })}) [**.gif**](${user.displayAvatarURL({ dynamic: true, size: 512, format: `gif` })})`)
+            if (guildmember?.displayAvatarURL() != user?.displayAvatarURL()) embed.setThumbnail(guildmember?.displayAvatarURL({ dynamic: true, size: 512 }))
+            let button = new Discord.MessageButton()
+                .setLabel(`Vedi Banner`)
+                .setStyle(`PRIMARY`)
+                .setCustomId(`showbanner,${interaction.member.id},${user.id}`)
+            let row = new Discord.MessageActionRow()
+                .addComponents(button)
+            interaction.editReply({ embeds: [embed], components: [row] })
         })
     }
 }
