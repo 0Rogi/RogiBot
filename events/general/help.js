@@ -32,7 +32,7 @@ module.exports = {
             case `owner`: {
                 embed
                     .setTitle(`👑 Comandi Utilizzabili SOLO dall'Owner 👑`)
-                    .setDescription(`**/eval**\n*Esegue un codice JavaScript*\n**/restart**\n*Restarta il BOT*\n**/shutdown**\n*Spegne il BOT*\n**/maintenance**\n**Imposta lo stato di manutenzione del bot*`)
+                    .setDescription(`**/eval**\n*Esegue un codice JavaScript*\n**/restart**\n*Restarta il BOT*\n**/shutdown**\n*Spegne il BOT*\n**/maintenance**\n*Imposta lo stato di manutenzione del bot*`)
             } break
             case `statistics`: {
                 embed
