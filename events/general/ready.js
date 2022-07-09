@@ -1,5 +1,6 @@
 const MongoClient = require(`mongodb`).MongoClient
 global.database;
+global.serverstats = false
 const moment = require(`moment`)
 const config = require(`${process.cwd()}/JSON/config.json`)
 const ytnotifier = require(`${process.cwd()}/functions/youtube/ytnotifier.js`)
