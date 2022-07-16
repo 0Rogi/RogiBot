@@ -13,6 +13,7 @@ module.exports = {
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
 
         if (message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.member.permissions.has(`ADMINISTRATOR`)) return
+        if (message.channel == config.idcanali.nsfw) return
 
         let content = message.content
 
