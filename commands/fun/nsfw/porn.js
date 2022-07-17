@@ -1,11 +1,12 @@
 const pornhub = require(`discord-phub`)
 const config = require(`${process.cwd()}/JSON/config.json`)
+let oldimg
 
 module.exports = {
     name: `porn`,
     data: {
         name: `porn`,
-        description: `Test per i porno`,
+        description: `Comandi nsfw`,
         options: [
             {
                 name: `pussy`,
@@ -49,6 +50,7 @@ module.exports = {
             },
         ]
     },
+    permissionlevel: 0,
     async execute(interaction) {
         if (interaction.channel != config.idcanali.nsfw) {
             let embed = new Discord.MessageEmbed()
@@ -60,13 +62,23 @@ module.exports = {
             return
         }
         await interaction.deferReply()
-        let img = new pornhub.RandomPHUB()
-        img = img.getRandomInCategory(interaction.options.getSubcommand())
-
+        let img
+        while (true) {
+            img = new pornhub.RandomPHUB()
+            img = img.getRandomInCategory(interaction.options.getSubcommand())
+            console.log(img.url, oldimg)
+            if (!img.url.endsWith(`.mp4`)) {
+                if (oldimg) {
+                    if (img.url != oldimg) break
+                } else {
+                    break
+                }
+            }
+        }
         let embed = new Discord.MessageEmbed()
             .setImage(img.url)
             .setColor(`YELLOW`)
-
+        oldimg = img.url
         interaction.editReply({ embeds: [embed] })
     }
 }

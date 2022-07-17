@@ -45,6 +45,7 @@ module.exports = {
             },
         ]
     },
+    permissionlevel: 0,
     async execute(interaction) {
         await interaction.deferReply()
         let command = interaction.options.getSubcommand()
