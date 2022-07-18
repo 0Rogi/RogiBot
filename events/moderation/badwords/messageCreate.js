@@ -71,10 +71,11 @@ module.exports = {
                         database.collection(`UserStats`).insertOne({
                             username: message.author.username, id: message.author.id, roles: message.member._roles, moderation: {
                                 type: `tempmuted`,
-                                moderator: null,
+                                moderator: client.user.id,
                                 reason: `Bestemmia`,
                                 time: 1000 * 60 * 10
-                            }
+                            },
+                            leavedAt: 0
                         })
                         message.member.roles.add(config.idruoli.tempmuted)
                     }
@@ -83,7 +84,7 @@ module.exports = {
                             $set: {
                                 moderation: {
                                     type: `tempmuted`,
-                                    moderator: null,
+                                    moderator: client.user.id,
                                     reason: `Bestemmia`,
                                     time: 1000 * 60 * 10
                                 }

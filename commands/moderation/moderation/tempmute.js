@@ -127,7 +127,8 @@ module.exports = {
                                 moderator: interaction.user.id,
                                 reason: reason,
                                 time: time
-                            }
+                            },
+                            leavedAt: 0
                         })
                         guildmember.roles.add(config.idruoli.tempmuted)
                     }

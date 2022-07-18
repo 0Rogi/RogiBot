@@ -63,13 +63,7 @@ module.exports = {
                 interaction.editReply({ embeds: [embed1] })
                 if (result[0]) {
                     database.collection(`UserStats`).updateOne({ id: user.id }, {
-                        $set: {
-                            moderation: {
-                                type: null,
-                                moderator: null,
-                                reason: null
-                            }
-                        }
+                        $set: { moderation: {} }
                     })
                 }
             })

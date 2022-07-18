@@ -23,11 +23,7 @@ module.exports = {
         database.collection(`UserStats`).find({ id: member.id }).toArray(function (err, result) {
             if (!result[0]) {
                 database.collection(`UserStats`).insertOne({
-                    username: member.user.username, id: member.id, roles: member._roles, moderation: {
-                        type: null,
-                        moderator: null,
-                        reason: null
-                    }
+                    username: member.user.username, id: member.id, roles: member._roles, moderation: {}, leaveAt: new Date().getTime()
                 })
             } else if (result[0]) {
                 if (member._roles.includes(config.idruoli.unverified)) {
@@ -36,7 +32,9 @@ module.exports = {
                         member._roles == role.id
                     })
                 }
-                database.collection(`UserStats`).updateOne({ id: member.id }, { $set: { roles: member._roles } })
+                database.collection(`UserStats`).updateOne({ id: member.id }, {
+                    $set: { roles: member._roles, leavedAt: new Date().getTime() }
+                })
             }
         })
     }

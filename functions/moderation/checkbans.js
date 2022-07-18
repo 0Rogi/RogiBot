@@ -8,9 +8,10 @@ module.exports = async function checkbans() {
                 database.collection(`UserStats`).insertOne({
                     id: ban.user.id, username: ban.user.username, moderation: {
                         type: `banned`,
-                        moderator: null,
+                        moderator: client.user.id,
                         reason: ban.reason
-                    }
+                    },
+                    leavedAt: 0
                 })
             }
             if (result[0]?.moderation.type != `banned`) {
@@ -18,7 +19,7 @@ module.exports = async function checkbans() {
                     $set: {
                         moderation: {
                             type: `banned`,
-                            moderator: null,
+                            moderator: client.user.id,
                             reason: ban.reason
                         }
                     }
@@ -30,13 +31,7 @@ module.exports = async function checkbans() {
         result.forEach(r => {
             if (r?.moderation.type == `banned` && !bans.has(r.id)) {
                 database.collection(`UserStats`).updateOne({ id: r.id }, {
-                    $set: {
-                        moderation: {
-                            type: null,
-                            moderator: null,
-                            reason: null
-                        }
-                    }
+                    $set: { moderation: {} }
                 })
             }
         })

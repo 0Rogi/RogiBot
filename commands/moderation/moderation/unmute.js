@@ -76,13 +76,7 @@ module.exports = {
                 guildmember.roles.remove(config.idruoli.tempmuted)
                 if (result[0]) {
                     database.collection(`UserStats`).updateOne({ id: user.id }, {
-                        $set: {
-                            moderation: {
-                                type: null,
-                                moderator: null,
-                                reason: null
-                            }
-                        }
+                        $set: { moderation: {} }
                     })
                 }
             })

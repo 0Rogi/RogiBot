@@ -12,6 +12,7 @@ const serverstatsupdate = require(`${process.cwd()}/functions/general/serverstat
 const updateuserindb = require(`${process.cwd()}/functions/general/updateuserindb.js`)
 const membercounter = require(`${process.cwd()}/functions/general/membercounter.js`)
 const events = require(`${process.cwd()}/functions/general/events.js`)
+const databasebackup = require(`${process.cwd()}/functions/moderation/databasebackup.js`)
 
 module.exports = {
     name: `ready`,
@@ -37,6 +38,7 @@ module.exports = {
         setInterval(unmute, 1000)
         setInterval(checkbans, 1000 * 60)
         setInterval(events, 1000)
+        setInterval(() => { databasebackup(false) }, 1000)
 
         setInterval(updateuserindb, 1000 * 60)
         setInterval(subscribercounter, 1000 * 60)

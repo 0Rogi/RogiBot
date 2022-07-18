@@ -106,7 +106,8 @@ module.exports = {
                                 type: `muted`,
                                 moderator: interaction.user.id,
                                 reason: reason
-                            }
+                            },
+                            leavedAt: 0
                         })
                     }
                     if (result[0]) {

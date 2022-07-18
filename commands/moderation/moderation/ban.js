@@ -56,12 +56,7 @@ module.exports = {
             database.collection(`UserStats`).find({ id: user.id }).toArray(async function (err, result) {
                 if (!result[0]) {
                     database.collection(`UserStats`).insertOne({
-                        username: user.username, id: user.id, moderation: {
-                            type: null,
-                            moderator: null,
-                            reason: null,
-                            time: null
-                        }
+                        username: user.username, id: user.id, moderation: {}, leavedAt: 0
                     })
                 }
                 if (result[0]?.moderation.type == `banned`) {
@@ -111,7 +106,8 @@ module.exports = {
                                 moderator: interaction.user.id,
                                 reason: reason,
                                 time: time
-                            }
+                            },
+                            leavedAt: 0
                         })
                     }
                     if (result[0]) {
