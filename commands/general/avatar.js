@@ -52,12 +52,8 @@ module.exports = {
                 .setLabel(`Vedi Banner`)
                 .setStyle(`PRIMARY`)
                 .setCustomId(`showbanner,${interaction.member.id},${user.id}`)
-            let button2 = new Discord.MessageButton()
-                .setLabel(`Vedi Server Banner`)
-                .setStyle(`PRIMARY`)
-                .setCustomId(`serverbanner,${interaction.member.id}`)
             let row = new Discord.MessageActionRow()
-                .addComponents(button1, button2)
+                .addComponents(button1)
             interaction.editReply({ embeds: [embed], components: [row] })
         })
     }

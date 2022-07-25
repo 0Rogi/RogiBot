@@ -26,12 +26,8 @@ module.exports = {
                 .setLabel(`Vedi Avatar`)
                 .setStyle(`PRIMARY`)
                 .setCustomId(`showavatar,${interaction.member.id},${user.id}`)
-            let button2 = new Discord.MessageButton()
-                .setLabel(`Vedi Server Avatar`)
-                .setStyle(`PRIMARY`)
-                .setCustomId(`serveravatar,${interaction.member.id}`)
             let row = new Discord.MessageActionRow()
-                .addComponents(button1, button2)
+                .addComponents(button1)
             if (!banner) {
                 if (user.banner_color) {
                     let canvas = await Canvas.createCanvas(1024, 408)
@@ -66,29 +62,9 @@ module.exports = {
                 .setLabel(`Vedi Banner`)
                 .setStyle(`PRIMARY`)
                 .setCustomId(`showbanner,${interaction.member.id},${user.id}`)
-            let button2 = new Discord.MessageButton()
-                .setLabel(`Vedi Server Banner`)
-                .setStyle(`PRIMARY`)
-                .setCustomId(`serverbanner,${interaction.member.id}`)
             let row = new Discord.MessageActionRow()
-                .addComponents(button1, button2)
+                .addComponents(button1)
             interaction.update({ embeds: [embed], components: [row], files: [] })
-        }
-        if (interaction.customId.startsWith(`serveravatar`)) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true })
-            let embed = new Discord.MessageEmbed()
-                .setTitle(`Immagine del Server`)
-                .setImage(interaction.guild.iconURL({ dynamic: true, size: 512 }))
-                .setColor(`YELLOW`)
-            interaction.reply({ embeds: [embed], ephemeral: true })
-        }
-        if (interaction.customId.startsWith(`serverbanner`)) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true })
-            let embed = new Discord.MessageEmbed()
-                .setTitle(`Banner del Server`)
-                .setImage(interaction.guild.bannerURL({ dynamic: true, size: 512 }))
-                .setColor(`YELLOW`)
-            interaction.reply({ embeds: [embed], ephemeral: true })
         }
     }
 }
