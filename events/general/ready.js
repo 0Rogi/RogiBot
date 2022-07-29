@@ -38,7 +38,7 @@ module.exports = {
         setInterval(unmute, 1000)
         setInterval(checkbans, 1000 * 60)
         setInterval(events, 1000)
-        setInterval(() => { databasebackup(false) }, 1000)
+        setInterval(() => { databasebackup(false) }, 1000 * 60)
 
         setInterval(updateuserindb, 1000 * 60)
         setInterval(subscribercounter, 1000 * 60)
