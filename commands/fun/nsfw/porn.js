@@ -15,7 +15,7 @@ module.exports = {
             },
             {
                 name: `oral`,
-                description: `Manda una gif di sesso orale`,
+                description: `Manda sesso orale`,
                 type: `SUB_COMMAND`
             },
             {
@@ -25,12 +25,12 @@ module.exports = {
             },
             {
                 name: `cumshots`,
-                description: `Manda un cumshot`,
+                description: `Manda masturbazione maschile`,
                 type: `SUB_COMMAND`
             },
             {
                 name: `cock`,
-                description: `Manda una pene`,
+                description: `Manda un pene`,
                 type: `SUB_COMMAND`
             },
             {
@@ -45,17 +45,32 @@ module.exports = {
             },
             {
                 name: `anal`,
-                description: `Manda una gif di sesso anale`,
+                description: `Manda sesso anale`,
                 type: `SUB_COMMAND`
             },
+            {
+                name: `squirting`,
+                description: `Manda masturbazione femminile`,
+                type: `SUB_COMMAND`
+            },
+            {
+                name: `lgbt-lesbian`,
+                description: `Manda sesso tra donne`,
+                type: `SUB_COMMAND`
+            },
+            {
+                name: `lgbt-gay`,
+                description: `Manda sesso tra uomini`,
+                type: `SUB_COMMAND`
+            }
         ]
     },
     permissionlevel: 0,
     async execute(interaction) {
-        if (interaction.channel != config.idcanali.nsfw) {
+        if (interaction.channel != config.idcanali.nsfw && interaction.channel != config.idcanali.testing) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
-                .setDescription(`*Puoi usare questo comando solo in <#997620229104472164> 😦*`)
+                .setDescription(`*Puoi usare questo comando solo in <#${config.idcanali.nsfw}> 😦*`)
                 .setColor(`RED`)
                 .setThumbnail(config.images.rogierror)
             interaction.reply({ embeds: [embed], ephemeral: true })
@@ -66,7 +81,6 @@ module.exports = {
         while (true) {
             img = new pornhub.RandomPHUB()
             img = img.getRandomInCategory(interaction.options.getSubcommand())
-            console.log(img.url, oldimg)
             if (!img.url.endsWith(`.mp4`)) {
                 if (oldimg) {
                     if (img.url != oldimg) break
