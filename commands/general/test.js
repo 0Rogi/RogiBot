@@ -13,14 +13,14 @@ module.exports = {
             let text = ``
             let server = client.guilds.cache.get(config.idServer.idServerTest)
             if (server.members.cache.get(config.idbot.rogidiscordbot).presence?.status) {
-                text += `<:RogiDiscordBot:854792536694587434> RogiBot - ONLINE 🟢\r`
+                text += `<:RogiBot:1003320534811033600> RogiBot - ONLINE 🟢\n`
             } else {
-                text += `<:RogiDiscordBot:854792536694587434> RogiBot - OFFLINE 🔴\r`
+                text += `<:RogiBot:1003320534811033600> RogiBot - OFFLINE 🔴\n`
             }
             if (server.members.cache.get(config.idbot.rogimusicbot).presence?.status) {
-                text += `<:RogiMusicBot:854792640180912218> RogiMusicBot - ONLINE 🟢\r`
+                text += `<:RogiMusicBot:854792640180912218> RogiMusicBot - ONLINE 🟢\n`
             } else {
-                text += `<:RogiMusicBot:854792640180912218> RogiMusicBot - OFFLINE 🔴\r`
+                text += `<:RogiMusicBot:854792640180912218> RogiMusicBot - OFFLINE 🔴\n`
             }
             let embed = new Discord.MessageEmbed()
                 .setTitle(`🚨 BOT INFO 🚨`)
