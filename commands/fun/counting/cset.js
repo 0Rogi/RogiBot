@@ -19,6 +19,14 @@ module.exports = {
         interaction.deferReply().then(async () => {
             let number = interaction.options.getNumber(`numero`)
             number = parseInt(number)
+            if (number < 0) {
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`Errore`)
+                    .setDescription(`*Il numero deve essere maggiore o uguale a 0*`)
+                    .setColor(`RED`)
+                interaction.editReply({ embeds: [embed] })
+                return
+            }
             await database.collection(`ServerStats`).updateOne({}, {
                 $set: {
                     counting: {
@@ -29,13 +37,21 @@ module.exports = {
                 }
             })
             let embed = new Discord.MessageEmbed()
-                .setTitle(`Numero Modificato`)
+                .setTitle(`✏️ Numero Modificato ✏️`)
                 .setDescription(`Il numero corrente è stato modificato in **${number}**`)
                 .setColor(`YELLOW`)
             interaction.editReply({ embeds: [embed] })
-            client.channels.cache.get(config.idcanali.counting).send(number.toString()).then(msg => {
-                msg.react(`✅`)
-            })
+            if (interaction.channel == config.idcanali.counting) {
+                client.channels.cache.get(config.idcanali.counting).send(number.toString()).then(msg => {
+                    msg.react(`✅`)
+                })
+            } else if (interaction.channel != config.idcanali.counting) {
+                embed.setDescription(`${interaction.user.toString()} ha modificato il numero corrente in **${number}**`)
+                client.channels.cache.get(config.idcanali.counting).send({ embeds: [embed] })
+                client.channels.cache.get(config.idcanali.counting).send(number.toString()).then(msg => {
+                    msg.react(`✅`)
+                })
+            }
         })
     }
 }

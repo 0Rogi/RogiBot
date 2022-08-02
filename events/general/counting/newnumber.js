@@ -6,9 +6,9 @@ module.exports = {
     async execute(message) {
         if (message.author.bot) return
         if (message.channel != config.idcanali.counting) return
-        
-        if (message.content.includes("\"") || message.content.includes("\'")) return
-        
+
+        if (message.content.includes(`\"`) || message.content.includes(`\'`) || message.content.startsWith(`!`) || message.content == `cos` || message.content == `E` || message.content.startsWith(`\\`)) return
+
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
 
