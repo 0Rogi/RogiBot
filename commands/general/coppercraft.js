@@ -10,7 +10,7 @@ module.exports = {
     execute(interaction) {
         interaction.deferReply().then(() => {
             try {
-                mcutil.status(`coppercraft.seekahostservers.com`, { port: 25565 }).then(async response => {
+                mcutil.status(`coppercraft.seekahostservers.com`, 25565).then(async response => {
                     if (response.version == `§4● Offline`) {
                         let embed = new Discord.MessageEmbed()
                             .setTitle(`<:CopperCraft:965902219067138069> CopperCraft <:CopperCraft:965902219067138069>`)
@@ -30,17 +30,17 @@ module.exports = {
                         return
                     }
                     let text = `\`\`\`\n`
-                    if (response.samplePlayers) {
-                        await response.samplePlayers.forEach(player => {
+                    if (response.players.sample) {
+                        await response.players.sample.forEach(player => {
                             text += `${player.name}\n`
                         })
                     }
                     text += `\`\`\``
-                    if (!response.samplePlayers || !text) text = `_Nessun Player Online_`
+                    if (!response.players.sample || !text) text = `_Nessun Player Online_`
                     let embed = new Discord.MessageEmbed()
                         .setTitle(`<:CopperCraft:965902219067138069> CopperCraft <:CopperCraft:965902219067138069>`)
-                        .addField(`Player Online: ${response.onlinePlayers}`, `${text}`)
-                        .addField(`🎞️ Server IP:`, response.host)
+                        .addField(`<:online:966385817327132723> Player Online: ${response.players.online}`, `${text}`)
+                        .addField(`🎞️ Server IP:`, response.srvRecord.host)
                         .addField(`⌨️ Versione:`, `1.19`)
                         .setColor(`YELLOW`)
                         .setThumbnail(`https://i.imgur.com/U4TvwrV.png`)

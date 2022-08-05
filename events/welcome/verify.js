@@ -18,17 +18,17 @@ module.exports = {
             let bots = client.guilds.cache.get(config.idServer.idServer).members.cache.filter(member => member.user.bot).size;
             let users = client.guilds.cache.get(config.idServer.idServer).memberCount - bots;
             let canvas = Canvas.createCanvas(1280, 720);
-            let ctx = canvas.getContext(`2d`);
-            let background = await Canvas.loadImage(`./Canvas/img/WelcomeImage.png`);
+            let ctx = canvas.getContext(`2d`)
+            let background = await Canvas.loadImage(`${process.cwd()}/Canvas/img/welcome/image${Math.floor(Math.floor(Math.random() * (7 + 1)))}.png`)
             ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
             let avatar = await Canvas.loadImage(interaction.member.user.displayAvatarURL({ format: `png` }))
-            ctx.drawImage(avatar, 470, 250, 350, 350);
+            ctx.drawImage(avatar, 470, 250, 350, 350)
             await Canvas.registerFont(`${process.cwd()}/Canvas/font/robotoBold.ttf`, { family: `robotoBold` })
             ctx.font = '40px "robotoBold"'
-            ctx.fillStyle = `#F8F8F8`;
-            ctx.fillText(`${interaction.user.tag}\nè entrato nel server!\nSei il nostro ${users} utente!`, 450, 100)
+            ctx.fillStyle = `#F8F8F8`
+            ctx.fillText(`${interaction.user.username}\nè entrato nel server!\nSei il nostro ${users} utente!`, 450, 100)
             let embed = new Discord.MessageEmbed()
-                .setDescription(`👋🏻Ciao ${interaction.member.toString()}, benvenuto in ${interaction.member.guild.name}\n👀Sei il nostro ${users} membro!\n📜Leggi il <#698178808011948032> e rispetta le regole 😉\n🚨Puoi vedere tutte le info del sever in <#813476709731008532>`)
+                .setDescription(`👋🏻 Ciao ${interaction.member.toString()}, benvenuto in ${interaction.member.guild.name} \n👀 Sei il nostro **${users}** membro!\n📜 Leggi le <#698178808011948032> e rispettale 😉\n🌐 Puoi vedere tutte le info del sever in <#813476709731008532>`)
                 .setImage(`attachment://Welcome.png`)
                 .setColor(`YELLOW`)
             await client.channels.cache.get(config.idcanali.welcome).send({ embeds: [embed], files: [new Discord.MessageAttachment(canvas.toBuffer(), `Welcome.png`)] })
