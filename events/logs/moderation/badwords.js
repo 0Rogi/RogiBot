@@ -29,7 +29,7 @@ module.exports = {
                         .addField(`⏰ Tempo:`, `10 minuti`, true)
                         .addField(`\u200b`, `\u200b`, true)
                         .addField(`📖 Motivo:`, `Bestemmia`, true)
-                    message.channel.send({ embeds: [embed] })
+                    client.channels.cache.get(channel).send({ embeds: [embed] })
                     message.member.roles.add(config.idruoli.tempmuted)
                     database.collection(`UserStats`).find({ id: message.author.id }).toArray(function (err, result) {
                         if (!result[0]) {
