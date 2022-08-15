@@ -12,6 +12,7 @@ module.exports = {
             let channel;
             let keyword;
             let content = message.embeds[0]?.description
+            let bestemmia = false
             console.log(message.embeds[0]?.fields)
             message.embeds[0]?.fields?.forEach(f => {
                 if (f.name == `channel_id`) {
@@ -21,15 +22,6 @@ module.exports = {
                     keyword = f.value
                 }
                 if (f.name == `rule_name` && f.value == `Bestemmie`) {
-                    let embed = new Discord.MessageEmbed()
-                        .setAuthor({ name: `[TEMPMUTE] ${message.author.tag}`, iconURL: message.member.displayAvatarURL({ dynamic: true }) })
-                        .setThumbnail(config.images.rogimute)
-                        .setColor(`PURPLE`)
-                        .addField(`👤 Utente:`, `Nome: ${message.author.username}, ID: ${message.author.id}\n||${message.author.toString()}||`)
-                        .addField(`⏰ Tempo:`, `10 minuti`, true)
-                        .addField(`\u200b`, `\u200b`, true)
-                        .addField(`📖 Motivo:`, `Bestemmia`, true)
-                    client.channels.cache.get(channel).send({ embeds: [embed] })
                     message.member.roles.add(config.idruoli.tempmuted)
                     database.collection(`UserStats`).find({ id: message.author.id }).toArray(function (err, result) {
                         if (!result[0]) {
@@ -57,9 +49,20 @@ module.exports = {
                             })
                         }
                     })
+                    bestemmia = true
                 }
             })
-
+            if (bestemmia) {
+                let embed = new Discord.MessageEmbed()
+                    .setAuthor({ name: `[TEMPMUTE] ${message.author.tag}`, iconURL: message.member.displayAvatarURL({ dynamic: true }) })
+                    .setThumbnail(config.images.rogimute)
+                    .setColor(`PURPLE`)
+                    .addField(`👤 Utente:`, `Nome: ${message.author.username}, ID: ${message.author.id}\n||${message.author.toString()}||`)
+                    .addField(`⏰ Tempo:`, `10 minuti`, true)
+                    .addField(`\u200b`, `\u200b`, true)
+                    .addField(`📖 Motivo:`, `Bestemmia`, true)
+                client.channels.cache.get(channel).send({ embeds: [embed] })
+            }
             let embed = new Discord.MessageEmbed()
                 .setTitle(`🤬 BAD WORD 🤬`)
                 .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
