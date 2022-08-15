@@ -13,7 +13,7 @@ module.exports = {
             let keyword;
             let content = message.embeds[0]?.description
             let bestemmia = false
-            console.log(message.embeds[0]?.fields)
+
             message.embeds[0]?.fields?.forEach(f => {
                 if (f.name == `channel_id`) {
                     channel = f.value
