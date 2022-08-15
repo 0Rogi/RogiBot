@@ -9,6 +9,14 @@ module.exports = {
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
 
         if (interaction.customId == `SuggestAccept` || interaction.customId == `SuggestRefuse`) {
+            if (!interaction.member.roles.cache.has(`966265476193861673`) && !interaction.member.roles.cache.has(`966265909075402812`)) {
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`Non hai il permesso`)
+                    .setDescription(`Devi essere almeno <@&966265909075402812> per accettare/rifiutare un suggerimento`)
+                    .setColor(`RED`)
+                interaction.reply({ embeds: [embed], ephemeral: true })
+                return
+            }
             let embed = interaction.message.embeds[0]
             if (!embed) return interaction.deferUpdate()
             let embed1 = new Discord.MessageEmbed()
