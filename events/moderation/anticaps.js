@@ -9,7 +9,7 @@ module.exports = {
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
 
         if (!message.guild || message.guild != config.idServer.idServer) return
-        if (message.member.roles.cache.has(config.idruoli.staff)) return
+        if (message.member.roles.cache.has(config.idruoli.staff) || message.author.bot) return
         if (!message.content) return
 
         let content = message.content
