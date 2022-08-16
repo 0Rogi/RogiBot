@@ -20,7 +20,7 @@ module.exports = {
 
             let server = client.guilds.cache.get(config.idServer.idServer)
 
-            let channel = await server.channels.create(interaction.user.username, {
+            let channel = await server.channels.create(`—͟͞͞❓】${interaction.user.username}`, {
                 type: `GUILD_TEXT`,
                 parent: config.idcanali.helpparent,
                 permissionOverwrites: [
