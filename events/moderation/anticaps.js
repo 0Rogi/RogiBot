@@ -9,6 +9,7 @@ module.exports = {
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
 
         if (!message.guild || message.guild != config.idServer.idServer) return
+        if (!message.author || !message.member) return
         if (message.member.roles.cache.has(config.idruoli.staff) || message.author.bot) return
         if (!message.content) return
         if (message.content.length < 10) return
@@ -38,7 +39,7 @@ module.exports = {
                 .setColor(`RED`)
             let embedGUILD = new Discord.MessageEmbed()
                 .setTitle(`${phrases[Math.floor(Math.random() * phrases.length)]}`)
-                .setDescription(`${message.author.toString()} ha **urlato** 😡:\n\n${content.length > 100 ? `${content.toString().slice(1, 100)}...` : content.toString()}`)
+                .setDescription(`${message.author.toString()} ha **urlato** 😡:\n\n${content.length > 100 ? `${content.toString().toLowerCase().slice(1, 100)}...` : content.toString().toLowerCase()}`)
                 .setColor(`YELLOW`)
             let embedLOG = new Discord.MessageEmbed()
                 .setTitle(`😡 ANTI-CAPS 😡`)
