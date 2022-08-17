@@ -13,6 +13,7 @@ const updateuserindb = require(`${process.cwd()}/functions/general/updateuserind
 const membercounter = require(`${process.cwd()}/functions/general/membercounter.js`)
 const events = require(`${process.cwd()}/functions/general/events.js`)
 const databasebackup = require(`${process.cwd()}/functions/moderation/databasebackup.js`)
+const nightSecurity = require(`${process.cwd()}/functions/moderation/nightsecurity.js`)
 
 module.exports = {
     name: `ready`,
@@ -64,6 +65,6 @@ module.exports = {
         setInterval(subscribercounter, 1000 * 60)
         setInterval(membercounter, 1000 * 60)
         setInterval(setpermissions, 1000 * 60 * 2)
-
+        setInterval(nightSecurity, 1000 * 60)
     }
 }

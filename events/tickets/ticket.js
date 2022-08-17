@@ -11,6 +11,15 @@ module.exports = {
 
         if (interaction.guild != config.idServer.idServer) return
         if (!interaction.isButton()) return
+
+        if (interaction.customId == `LOCKEDTickets`) {
+            let embed = new Discord.MessageEmbed()
+                .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                .setDescription(`I ticket si possono aprire dalle **08:00 alle 22:30**, attualmente sono **chiusi**\n\nPotrai riaprirli nuovamente alle **08:00**, mi spiace.`)
+                .setColor(`RED`)
+            interaction.reply({ embeds: [embed], ephemeral: true })
+            return
+        }
         if (interaction.customId == `Tickets`) {
 
             if (serverstats.tickets.find(ticket => ticket.userid == interaction.user.id)) {
