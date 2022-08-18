@@ -65,6 +65,13 @@ module.exports = {
         setInterval(subscribercounter, 1000 * 60)
         setInterval(membercounter, 1000 * 60)
         setInterval(setpermissions, 1000 * 60 * 2)
-        setInterval(nightSecurity, 1000 * 60)
+        setInterval(() => {
+            if (new Date().getHours() == 22 && new Date().getMinutes() == 30 && new Date().getSeconds() == 0) {
+                nightSecurity(true)
+            }
+            if (new Date().getHours() == 8 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) {
+                nightSecurity(false)
+            }
+        }, 1000)
     }
 }
