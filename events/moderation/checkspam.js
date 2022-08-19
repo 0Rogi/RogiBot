@@ -18,7 +18,7 @@ module.exports = {
         if (message.channel == config.idcanali.nsfw) return
         if (checkspam.has(message.author.id)) {
             let user = checkspam.get(message.author.id)
-            if (message.createdTimestamp - user.lastmsg <= 4000) {
+            if (message.createdTimestamp - user.lastmsg <= 4000 && message.channel.rateLimitPerUser <= 2 || message.createdTimestamp - user.lastmsg <= 7000 && message.channel.rateLimitPerUser > 2) {
                 if (user.msg >= 5) {
                     setpermissions()
                     database.collection(`UserStats`).find({ id: message.author.id }).toArray(function (err, result) {
