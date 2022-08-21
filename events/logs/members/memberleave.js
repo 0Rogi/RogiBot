@@ -54,11 +54,12 @@ module.exports = {
                 database.collection(`ServerStats`).updateOne({}, { $pull: { "partnerships": { user: member.user.id } } });
                 let moderator = await client.users.fetch(foundpartnership.executor);
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`PARTNERSHIP ANNULLATA`)
+                    .setTitle(`❌ PARTNERSHIP ANNULLATA ❌`)
                     .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
                     .addField(`👤 Utente:`, `Nome: **${member.user.username}** - ID: **${member.user.id}**\n||${member.toString()}||`)
                     .addField(`🔨 Moderatore:`, `Nome: **${moderator.username}** - ID: **${moderator.id}**\n||${moderator.toString()}||`)
-                    .addField(`🏠 Server:`, foundpartnership.server)
+                    .addField(`🏠 Server:`, `**${foundpartnership.server.toUpperCase()}**`)
+                    .setThumbnail(interction.member.displayAvatarURL({ dynamic: true }))
                     .setColor(`RED`);
                 client.channels.cache.get(config.idcanali.logs.partnership.leftedpartnership).send({ embeds: [embed] });
             }

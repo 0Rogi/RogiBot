@@ -88,6 +88,7 @@ module.exports = {
             .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
             .addField(`🔨 Moderatore:`, `Nome: **${interaction.user.username}** - ID: **${interaction.user.id}**\n||${interaction.user.toString()}||`)
             .addField(`👤 Utente:`, `Nome: **${user.username}** - ID: **${user.id}**\n||${user.toString()}||`)
+            .addField(`🏠 Server:`, `**${server.toUpperCase()}**`)
             .setThumbnail(interaction.member.displayAvatarURL({ dynamic: true }))
             .setColor(`GREEN`);
         client.channels.cache.get(config.idcanali.logs.partnership.newpartnership).send({ embeds: [embedlog] });
