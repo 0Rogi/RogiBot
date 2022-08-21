@@ -32,7 +32,7 @@ module.exports = {
             interaction.deferReply({ ephemeral: true }).then(() => {
                 let embed = new Discord.MessageEmbed()
                     .setColor(`RED`)
-                    .setDescription(`Devi essere almeno <@&${config.idruoli.helper}>\nper eseguire il comando \`/${command.name}\``)
+                    .setDescription(`Devi essere almeno <@&${config.idruoli.partnermanager}>\nper eseguire il comando \`/partnership\``)
                     .setTitle(`Non hai il permesso!`)
                     .setThumbnail(config.images.rogierror);
                 interaction.editReply({ embeds: [embed], ephemeral: true });
