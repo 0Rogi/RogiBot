@@ -3,7 +3,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `guildMemberRemove`,
-    execute(member) {
+    async execute(member) {
         if (member.guild != config.idServer.idServer) return
 
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(member.id)) return
@@ -37,5 +37,32 @@ module.exports = {
                 })
             }
         })
+
+        let found = false;
+        let foundpartnership;
+        serverstats?.partnerships?.forEach(p => {
+            if (p.user == member.user.id) {
+                found = true;
+                foundpartnership = p
+            }
+        })
+
+        if (foundpartnership) {
+            if (foundpartnership.user == member.user.id) {
+                client.channels.cache.get(config.idcanali.partnership).messages.fetch(foundpartnership.message1).then(m => m.delete());
+                client.channels.cache.get(config.idcanali.partnership).messages.fetch(foundpartnership.message2).then(m => m.delete());
+                database.collection(`ServerStats`).updateOne({}, { $pull: { "partnerships": { user: member.user.id } } });
+                let moderator = await client.users.fetch(foundpartnership.executor);
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`PARTNERSHIP ANNULLATA`)
+                    .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                    .addField(`👤 Utente:`, `Nome: **${member.user.username}** - ID: **${member.user.id}**\n||${member.toString()}||`)
+                    .addField(`🔨 Moderatore:`, `Nome: **${moderator.username}** - ID: **${moderator.id}**\n||${moderator.toString()}||`)
+                    .addField(`🏠 Server:`, foundpartnership.server)
+                    .setColor(`RED`);
+                client.channels.cache.get(config.idcanali.logs.partnership.leftedpartnership).send({ embeds: [embed] });
+            }
+        }
+
     }
 }
