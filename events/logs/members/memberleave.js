@@ -38,11 +38,9 @@ module.exports = {
             }
         })
 
-        let found = false;
         let foundpartnership;
         serverstats?.partnerships?.forEach(p => {
             if (p.user == member.user.id) {
-                found = true;
                 foundpartnership = p
             }
         })
@@ -59,7 +57,7 @@ module.exports = {
                     .addField(`👤 Utente:`, `Nome: **${member.user.username}** - ID: **${member.user.id}**\n||${member.toString()}||`)
                     .addField(`🔨 Moderatore:`, `Nome: **${moderator.username}** - ID: **${moderator.id}**\n||${moderator.toString()}||`)
                     .addField(`🏠 Server:`, `**${foundpartnership.server.toUpperCase()}**`)
-                    .setThumbnail(interction.member.displayAvatarURL({ dynamic: true }))
+                    .setThumbnail(member.displayAvatarURL({ dynamic: true }))
                     .setColor(`RED`);
                 client.channels.cache.get(config.idcanali.logs.partnership.leftedpartnership).send({ embeds: [embed] });
             }
