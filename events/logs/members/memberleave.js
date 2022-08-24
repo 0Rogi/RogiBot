@@ -41,7 +41,6 @@ module.exports = {
         let foundpartnership;
         serverstats?.partnerships?.forEach(p => {
             if (p.user == member.user.id) {
-                found = true;
                 foundpartnership = p
             }
         })
