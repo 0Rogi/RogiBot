@@ -30,7 +30,8 @@ module.exports = {
                                     reason: `Rilevazione Spam`,
                                     time: 1000 * 60 * 10
                                 },
-                                leavedAt: 0
+                                leavedAt: 0,
+                                levelling: {}
                             })
                             message.member.roles.add(config.idruoli.tempmuted)
                         }

@@ -32,7 +32,8 @@ module.exports = {
                                     reason: `Bestemmia`,
                                     time: 1000 * 60 * 60 * 60
                                 },
-                                leavedAt: 0
+                                leavedAt: 0,
+                                levelling: {}
                             })
                             guildmember.roles.add(config.idruoli.tempmuted)
                         }

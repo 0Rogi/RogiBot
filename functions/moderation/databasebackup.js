@@ -2,7 +2,7 @@ const fs = require(`fs`)
 const config = require(`${process.cwd()}/JSON/config.json`)
 const moment = require(`moment`)
 
-module.exports = async function deleteUserFromDb(manual) {
+module.exports = async function databaseBackup(manual) {
     if (!manual && new Date().getHours() == 0 && new Date().getMinutes() == 0 || manual) {
         await database.collection(`UserStats`).find().toArray(function (err, result) {
             if (!result) return

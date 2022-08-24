@@ -107,7 +107,8 @@ module.exports = {
                                 moderator: interaction.user.id,
                                 reason: reason
                             },
-                            leavedAt: 0
+                            leavedAt: 0,
+                            levelling: {}
                         })
                     }
                     if (result[0]) {

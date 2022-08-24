@@ -128,7 +128,8 @@ module.exports = {
                                 reason: reason,
                                 time: time
                             },
-                            leavedAt: 0
+                            leavedAt: 0,
+                            levelling: {}
                         })
                         guildmember.roles.add(config.idruoli.tempmuted)
                     }

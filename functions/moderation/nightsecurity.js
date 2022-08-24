@@ -32,6 +32,10 @@ module.exports = async function nightSecurity(enable) {
 
         msg.edit({ components: [row] })
 
+        //? Disable threads
+        let everyone = client.guilds.cache.get(config.idServer.idServer).roles.cache.find(r => r.name === `@everyone`);
+        everyone.setPermissions([`SEND_MESSAGES`, `VIEW_CHANNEL`, `READ_MESSAGE_HISTORY`, `CONNECT`, `SPEAK`, `USE_VAD`, `STREAM`, `USE_EXTERNAL_EMOJIS`]);
+
         //? Grants helpers to timeout members
         client.guilds.cache.get(config.idServer.idServer).roles.cache.find(x => x.id == config.idruoli.helper).setPermissions([`MANAGE_NICKNAMES`, `MANAGE_MESSAGES`, `MODERATE_MEMBERS`])
 
@@ -71,6 +75,10 @@ module.exports = async function nightSecurity(enable) {
             .addComponents(button)
 
         msg.edit({ components: [row] })
+
+        //? Enable Threads
+        let everyone = client.guilds.cache.get(config.idServer.idServer).roles.cache.find(r => r.name === `@everyone`);
+        everyone.setPermissions([`SEND_MESSAGES`, `VIEW_CHANNEL`, `READ_MESSAGE_HISTORY`, `CONNECT`, `SPEAK`, `USE_VAD`, `STREAM`, `USE_EXTERNAL_EMOJIS`, `SEND_MESSAGES_IN_THREADS`]);
 
         //? Remove helpers permission to timeout members
         client.guilds.cache.get(config.idServer.idServer).roles.cache.find(x => x.id == config.idruoli.helper).setPermissions([`MANAGE_NICKNAMES`, `MANAGE_MESSAGES`])

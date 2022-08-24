@@ -23,7 +23,7 @@ module.exports = {
         database.collection(`UserStats`).find({ id: member.id }).toArray(function (err, result) {
             if (!result[0]) {
                 database.collection(`UserStats`).insertOne({
-                    username: member.user.username, id: member.id, roles: member._roles, moderation: {}, leaveAt: new Date().getTime()
+                    username: member.user.username, id: member.id, roles: member._roles, moderation: {}, leaveAt: new Date().getTime(), levelling: {}
                 })
             } else if (result[0]) {
                 if (member._roles.includes(config.idruoli.unverified)) {
@@ -38,7 +38,6 @@ module.exports = {
             }
         })
 
-        let found = false;
         let foundpartnership;
         serverstats?.partnerships?.forEach(p => {
             if (p.user == member.user.id) {
@@ -59,7 +58,7 @@ module.exports = {
                     .addField(`👤 Utente:`, `Nome: **${member.user.username}** - ID: **${member.user.id}**\n||${member.toString()}||`)
                     .addField(`🔨 Moderatore:`, `Nome: **${moderator.username}** - ID: **${moderator.id}**\n||${moderator.toString()}||`)
                     .addField(`🏠 Server:`, `**${foundpartnership.server.toUpperCase()}**`)
-                    .setThumbnail(interction.member.displayAvatarURL({ dynamic: true }))
+                    .setThumbnail(member.displayAvatarURL({ dynamic: true }))
                     .setColor(`RED`);
                 client.channels.cache.get(config.idcanali.logs.partnership.leftedpartnership).send({ embeds: [embed] });
             }
