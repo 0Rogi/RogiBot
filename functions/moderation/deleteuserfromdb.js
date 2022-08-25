@@ -1,4 +1,5 @@
 const fs = require("fs");
+const moment = require("moment")
 
 module.exports = async function deleteUserFromDB() {
     database.collection(`UserStats`).find().toArray(function (err, result) {
