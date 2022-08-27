@@ -41,7 +41,7 @@ module.exports = {
                         .setTitle(`<:CopperCraft:965902219067138069> CopperCraft <:CopperCraft:965902219067138069>`)
                         .addField(`<:online:966385817327132723> Player Online: ${response.players.online}`, `${text}`)
                         .addField(`🎞️ Server IP:`, response.srvRecord.host)
-                        .addField(`⌨️ Versione:`, `1.19`)
+                        .addField(`⌨️ Versione:`, `1.19.2`)
                         .setColor(`YELLOW`)
                         .setThumbnail(`https://i.imgur.com/U4TvwrV.png`)
                     interaction.editReply({ embeds: [embed] })
