@@ -15,6 +15,8 @@ module.exports = {
 		],
 	},
 	permissionlevel: 0,
+	allowedchannels: [config.idcanali.commands],
+	requirement: `none`,
 	execute(interaction) {
 		interaction.deferReply().then(() => {
 			let suggestion = interaction.options.getString(`suggerimento`)

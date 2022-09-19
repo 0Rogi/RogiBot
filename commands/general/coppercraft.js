@@ -7,6 +7,8 @@ module.exports = {
         description: `Mostra informazioni sulla coppercraft`,
     },
     permissionlevel: 0,
+    allowedchannels: [`ALL`],
+    requirement: `none`,
     execute(interaction) {
         interaction.deferReply().then(() => {
             try {

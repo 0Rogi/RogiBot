@@ -1,3 +1,5 @@
+const config = require(`${process.cwd()}/JSON/config.json`)
+
 module.exports = {
 	name: `time`,
 	data: {
@@ -5,6 +7,8 @@ module.exports = {
 		description: `Mostra l'ora attuale`,
 	},
 	permissionlevel: 0,
+	allowedchannels: [config.idcanali.commands],
+	requirement: `none`,
 	execute(interaction) {
 		interaction.deferReply().then(() => {
 			let date = new Date()

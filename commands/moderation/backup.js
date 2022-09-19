@@ -7,6 +7,7 @@ module.exports = {
         description: `Esegue il backup del database`
     },
     permissionlevel: 1,
+    allowedchannels: [`ALL`],
     async execute(interaction) {
         await interaction.deferReply()
         let embed = new Discord.MessageEmbed()

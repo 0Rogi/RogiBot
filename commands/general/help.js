@@ -14,6 +14,8 @@ module.exports = {
         ]
     },
     permissionlevel: 0,
+    allowedchannels: [config.idcanali.commands],
+    requirement: `none`,
     execute(interaction) {
         let command = interaction.options.getString(`comando`)
         command = client.commands.get(command)

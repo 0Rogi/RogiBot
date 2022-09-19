@@ -27,6 +27,8 @@ module.exports = {
             }
         ]
     },
+    permissionlevel: 0.5,
+    allowedchannels: [config.idcanali.partnermanager],
     async execute(interaction) {
         if (!interaction.member.roles.cache.has(config.idruoli.staff) && !interaction.member.roles.cache.has(config.idruoli.partnermanager)) {
             interaction.deferReply({ ephemeral: true }).then(() => {

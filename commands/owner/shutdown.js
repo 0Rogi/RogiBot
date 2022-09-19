@@ -7,6 +7,7 @@ module.exports = {
 		description: `Spegne il bot`,
 	},
 	permissionlevel: 4,
+	allowedchannels: [`ALL`],
 	execute(interaction) {
 		if (!interaction.member.roles.cache.has(config.idruoli.owner)) return;
 		interaction.deferReply().then(async () => {

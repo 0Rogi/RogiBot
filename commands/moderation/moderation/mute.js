@@ -23,6 +23,7 @@ module.exports = {
         ],
     },
     permissionlevel: 2,
+    allowedchannels: [`ALL`],
     execute(interaction) {
         interaction.deferReply().then(async () => {
             let user = interaction.options.getUser(`utente`)

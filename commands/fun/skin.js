@@ -1,5 +1,8 @@
+const config = require(`${process.cwd()}/JSON/config.json`);
+
 module.exports = {
     name: `skin`,
+    description: `Cerca la skin di un utente con minecraft premium`,
     data: {
         name: `skin`,
         description: `Mostra la skin di qualcuno`,
@@ -46,41 +49,47 @@ module.exports = {
         ]
     },
     permissionlevel: 0,
+    allowedchannels: [config.idcanali.commands],
+    requirement: `none`,
     async execute(interaction) {
-        await interaction.deferReply()
-        let command = interaction.options.getSubcommand()
-        let player = interaction.options.getString(`player`)
-        let image
-        let thumb
+        await interaction.deferReply();
+
+        let command = interaction.options.getSubcommand();
+        let player = interaction.options.getString(`player`);
+        let image;
+        let thumb;
+
         if (command == `face`) {
-            image = `https://minotar.net/helm/${player}/128.png`
-            thumb = `https://minotar.net/cube/${player}/64.png`
+            image = `https://minotar.net/helm/${player}/128.png`;
+            thumb = `https://minotar.net/cube/${player}/64.png`;
         } else if (command == `body`) {
-            image = `https://minotar.net/armor/body/${player}/128.png`
-            thumb = `https://minotar.net/armor/bust/${player}/64.png`
+            image = `https://minotar.net/armor/body/${player}/128.png`;
+            thumb = `https://minotar.net/armor/bust/${player}/64.png`;
         } else if (command == `skin`) {
-            image = `https://minotar.net/skin/${player}`
+            image = `https://minotar.net/skin/${player}`;
         }
         switch (command) {
             case `face`: command = `FACCIA DI ${player}`; break;
             case `body`: command = `CORPO DI ${player}`; break;
             case `skin`: command = `SKIN DI ${player}`; break;
         }
+
         let embed = new Discord.MessageEmbed()
             .setTitle(command)
             .setColor(`BLUE`)
             .setImage(image)
-            .setThumbnail(thumb)
+            .setThumbnail(thumb);
+
         if (!thumb) {
             let button = new Discord.MessageButton()
                 .setStyle(`LINK`)
                 .setLabel(`Scarica la Skin`)
-                .setURL(`https://minotar.net/download/${player}`)
+                .setURL(`https://minotar.net/download/${player}`);
             let row = new Discord.MessageActionRow()
-                .addComponents(button)
-            interaction.editReply({ embeds: [embed], components: [row] })
-            return
+                .addComponents(button);
+            interaction.editReply({ embeds: [embed], components: [row] });
+            return;
         }
-        interaction.editReply({ embeds: [embed] })
+        interaction.editReply({ embeds: [embed] });
     }
 }

@@ -15,6 +15,8 @@ module.exports = {
         ],
     },
     permissionlevel: 0,
+    allowedchannels: [`ALL`],
+    requirement: `none`,
     execute(interaction) {
         interaction.deferReply().then(() => {
             let bug = interaction.options.getString(`bug`)

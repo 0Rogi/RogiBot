@@ -16,6 +16,7 @@ module.exports = {
         ]
     },
     permissionlevel: 1,
+    allowedchannels: [`ALL`],
     async execute(interaction) {
         interaction.deferReply({ ephemeral: true }).then(() => {
             let count = interaction.options.getNumber(`quantità`)

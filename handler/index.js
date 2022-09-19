@@ -62,7 +62,7 @@ client.on(`messageCreate`, message => {
         message.reply({ embeds: [embed] }).catch(() => { })
     }
 })
-client.on(`interactionCreate`, interaction => {
+client.on(`interactionCreate`, async interaction => {
 
     if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(interaction.user.id)) return
     if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
@@ -72,70 +72,42 @@ client.on(`interactionCreate`, interaction => {
     if (!command) return
 
     if (command.name == `clear` && interaction.guild != config.idServer.idServer && interaction.member.permissions.has(`ADMINISTRATOR`)) return command.execute(interaction)
-    if (command.name == `test` && interaction.guild == config.idServer.idServerTest) return command.execute(interaction)
     if (command.name == `eval` && interaction.guild == config.idServer.idServerTest && interaction.member.permissions.has(`ADMINISTRATOR`)) return command.execute(interaction)
-    if (command.name == `say`) return command.execute(interaction)
-    if (command.name == `tclose`) return command.execute(interaction)
-    if (command.name == `tadd`) return command.execute(interaction)
-    if (command.name == `tremove`) return command.execute(interaction)
-    if (command.name == `porn`) return command.execute(interaction)
+    if (command.name == `test` && interaction.guild == config.idServer.idServerTest) return command.execute(interaction)
 
-    if (interaction.channel != config.idcanali.commands && interaction.channel != config.idcanali.helpparent && !interaction.member.roles.cache.has(config.idruoli.staff)) {
+    if (!command.allowedchannels.includes(`ALL`) && !command.allowedchannels.includes(interaction.channel.id) && !interaction.member.roles.cache.has(config.idruoli.staff) && interaction.channel != config.idcanali.testing) {
         interaction.deferReply({ ephemeral: true }).then(() => {
+            let text = ``;
+            command.allowedchannels.forEach(channel => {
+                text += `*-<#${channel}>*\n`
+            })
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Errore`)
                 .setColor(`RED`)
-                .setDescription(`*Tutti i comandi devono\nessere eseguiti in <#826014465186332682>*`)
-            interaction.editReply({ embeds: [embed], ephemeral: true })
+                .setDescription(`*Questo comando, puo' essere eseguito solo in:*\n${text}`);
+            interaction.editReply({ embeds: [embed], ephemeral: true });
         })
-        return
-    }
-    if (command.permissionlevel == 1 && !interaction.member.roles.cache.has(config.idruoli.owner) && !interaction.member.roles.cache.has(config.idruoli.srmoderator) && !interaction.member.roles.cache.has(config.idruoli.moderator) && !interaction.member.roles.cache.has(config.idruoli.helper)) {
-        interaction.deferReply({ ephemeral: true }).then(() => {
-            let embed = new Discord.MessageEmbed()
-                .setColor(`RED`)
-                .setDescription(`Devi essere almeno <@&${config.idruoli.helper}>\nper eseguire il comando \`/${command.name}\``)
-                .setTitle(`Non hai il permesso!`)
-                .setThumbnail(config.images.rogierror)
-            interaction.editReply({ embeds: [embed], ephemeral: true })
-        })
-        return
-    }
-    if (command.permissionlevel == 2 && !interaction.member.roles.cache.has(config.idruoli.owner) && !interaction.member.roles.cache.has(config.idruoli.srmoderator) && !interaction.member.roles.cache.has(config.idruoli.moderator)) {
-        interaction.deferReply({ ephemeral: true }).then(() => {
-            let embed = new Discord.MessageEmbed()
-                .setColor(`RED`)
-                .setDescription(`Devi essere almeno <@&${config.idruoli.moderator}>\nper eseguire il comando \`/${command.name}\``)
-                .setTitle(`Non hai il permesso!`)
-                .setThumbnail(config.images.rogierror)
-            interaction.editReply({ embeds: [embed], ephemeral: true })
-        })
-        return
-    }
-    if (command.permissionlevel == 3 && !interaction.member.roles.cache.has(config.idruoli.owner) && !interaction.member.roles.cache.has(config.idruoli.srmoderator)) {
-        interaction.deferReply({ ephemeral: true }).then(() => {
-            let embed = new Discord.MessageEmbed()
-                .setColor(`RED`)
-                .setDescription(`Devi essere almeno <@&${config.idruoli.srmoderator}>\nper eseguire il comando \`/${command.name}\``)
-                .setTitle(`Non hai il permesso!`)
-                .setThumbnail(config.images.rogierror)
-            interaction.editReply({ embeds: [embed], ephemeral: true })
-        })
-        return
-    }
-    if (command.permissionlevel == 4 && !interaction.member.roles.cache.has(config.idruoli.owner)) {
-        interaction.deferReply({ ephemeral: true }).then(() => {
-            let embed = new Discord.MessageEmbed()
-                .setColor(`RED`)
-                .setDescription(`Devi essere almeno <@&${config.idruoli.owner}>\nper eseguire il comando \`/${command.name}\``)
-                .setTitle(`Non hai il permesso!`)
-                .setThumbnail(config.images.rogierror)
-            interaction.editReply({ embeds: [embed], ephemeral: true })
-        })
-        return
+        return;
     }
 
-    command.execute(interaction)
+    const getUserPermissionLevel = require(`${process.cwd()}/functions/helper/getUserPermissionLevel.js`)
+
+    let userpermission = await getUserPermissionLevel(interaction.member)
+
+    if (command.permissionlevel > userpermission) {
+        interaction.deferReply({ ephemeral: true }).then(() => {
+            let embed = new Discord.MessageEmbed()
+                .setColor(`RED`)
+                .setDescription(`*Non hai abbastanza permessi,\nper eseguire il comando \`/${command.name}\`*`)
+                .setTitle(`Non hai il permesso!`)
+                .setThumbnail(config.images.rogierror);
+            interaction.editReply({ embeds: [embed], ephemeral: true });
+        })
+        return;
+    } else {
+        command.execute(interaction);
+    }
+
 })
 
 //! Events

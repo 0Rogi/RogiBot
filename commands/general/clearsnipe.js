@@ -7,6 +7,7 @@ module.exports = {
         description: `Elimina l'ultimo messaggio eliminato dallo snipe`,
     },
     permissionlevel: 1,
+    allowedchannels: [`ALL`],
     execute(interaction) {
         interaction.deferReply().then(() => {
             database.collection(`ServerStats`).updateOne({}, {

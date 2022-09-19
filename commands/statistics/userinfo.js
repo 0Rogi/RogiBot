@@ -1,4 +1,5 @@
 const moment = require(`moment`)
+const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `userinfo`,
@@ -15,6 +16,8 @@ module.exports = {
         ],
     },
     permissionlevel: 0,
+    allowedchannels: [config.idcanali.commands],
+    requirement: `none`,
     execute(interaction) {
         interaction.deferReply().then(() => {
             let user = interaction.guild.members.cache.find(x => x.id == interaction.options.getUser(`utente`)?.id) || interaction.member

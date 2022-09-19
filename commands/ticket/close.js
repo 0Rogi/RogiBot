@@ -10,6 +10,8 @@ module.exports = {
         description: `Chiude un ticket`,
     },
     permissionlevel: 0,
+    allowedchannels: [`ALL`],
+    requirement: `none`,
     execute(interaction) {
         interaction.deferReply().then(async () => {
             let ticket = await serverstats.tickets.find(ticket => ticket.channelid == interaction.channel.id)

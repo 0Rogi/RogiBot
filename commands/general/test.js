@@ -8,6 +8,8 @@ module.exports = {
         description: `Comando per vedere se il bot funziona`,
     },
     permissionlevel: 0,
+    allowedchannels: [config.idcanali.commands],
+    requirement: `none`,
     async execute(interaction) {
         interaction.deferReply().then(() => {
             let text = ``

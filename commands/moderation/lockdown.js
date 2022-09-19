@@ -8,6 +8,7 @@ module.exports = {
         description: `Attiva il sistema di lockdown del server`
     },
     permissionlevel: 1,
+    allowedchannels: [`ALL`],
     execute(interaction) {
         interaction.deferReply().then(() => {
             if (serverstats.lockdown == false) {

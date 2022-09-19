@@ -16,6 +16,7 @@ module.exports = {
         ]
     },
     permissionlevel: 2,
+    allowedchannels: [`ALL`],
     async execute(interaction) {
         interaction.deferReply().then(() => {
             let time = interaction.options.getString(`tempo`)

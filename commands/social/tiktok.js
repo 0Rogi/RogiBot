@@ -1,3 +1,5 @@
+const config = require(`${process.cwd()}/JSON/config.json`)
+
 module.exports = {
 	name: `tiktok`,
 	data: {
@@ -5,6 +7,8 @@ module.exports = {
 		description: `Mostra il profilo tiktok di Rogi`,
 	},
 	permissionlevel: 0,
+	allowedchannels: [config.idcanali.commands],
+	requirement: `none`,
 	execute(interaction) {
 		interaction.deferReply().then(() => {
 			let embed = new Discord.MessageEmbed()
