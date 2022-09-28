@@ -17,6 +17,7 @@ const databasebackup = require(`${process.cwd()}/functions/moderation/databaseba
 const deleteuserfromdb = require(`${process.cwd()}/functions/moderation/deleteuserfromdb.js`);
 const nightSecurity = require(`${process.cwd()}/functions/moderation/nightsecurity.js`);
 const statusUpdate = require(`${process.cwd()}/functions/general/statusupdate.js`);
+const leaveVoiceChannel = require(`${process.cwd()}/functions/general/leaveVoiceChannel.js`);
 
 module.exports = {
     name: `ready`,
@@ -78,5 +79,6 @@ module.exports = {
         }, 1000);
         setInterval(deleteuserfromdb, 1000 * 60 * 5);
         setInterval(statusUpdate, 1000 * 60 * 10);
+        setInterval(leaveVoiceChannel, 1000);
     }
 }
