@@ -30,23 +30,20 @@ module.exports = {
     permissionlevel: 0.5,
     allowedchannels: [config.idcanali.partnermanager],
     async execute(interaction) {
-        if (!interaction.member.roles.cache.has(config.idruoli.staff) && !interaction.member.roles.cache.has(config.idruoli.partnermanager)) {
-            interaction.deferReply({ ephemeral: true }).then(() => {
-                let embed = new Discord.MessageEmbed()
-                    .setColor(`RED`)
-                    .setDescription(`Devi essere almeno <@&${config.idruoli.partnermanager}>\nper eseguire il comando \`/partnership\``)
-                    .setTitle(`Non hai il permesso!`)
-                    .setThumbnail(config.images.rogierror);
-                interaction.editReply({ embeds: [embed], ephemeral: true });
-            })
-            return;
-        }
-
         await interaction.deferReply();
 
         let description = interaction.options.getString(`descrizione`);
         let user = interaction.options.getUser(`utente`);
         let server = interaction.options.getString(`server`);
+
+        if (interaction.guild.members.cache.find(x => x.id == user.id).roles.cache.has(config.idruoli.unverified)) {
+            let embed = new Discord.MessageEmbed()
+                .setTitle(`ERRORE`)
+                .setDescription(`*Questo utente non è verificato...*\n*Non puoi eseguire una partner con un utente non verificato!*`)
+                .setColor(`RED`);
+            interaction.editReply({ embeds: [embed] });
+            return;
+        }
 
         // let done = false;
         // let donepartnership;
@@ -71,7 +68,7 @@ module.exports = {
             id1 = m.id;
         })
         let id2;
-        await client.channels.cache.get(config.idcanali.partnership).send(`─────────────────\n🔷 Eseguita da: ${interaction.user.toString()}\n🔷 Eseguita con: ${user.toString()}\n─────────────────`).then(m => {
+        await client.channels.cache.get(config.idcanali.partnership).send(`─────────────────\n🔷 Eseguita da: ${interaction.user.toString()}\n🔷 Eseguita con: ${user.toString()}\n🔷 Nome Server: ${server.toString()}─────────────────`).then(m => {
             id2 = m.id;
         })
 
