@@ -1,5 +1,5 @@
-const config = require(`${process.cwd()}/JSON/config.json`)
-const moment = require(`moment`)
+const config = require(`${process.cwd()}/JSON/config.json`);
+const moment = require(`moment`);
 
 module.exports = {
     name: `partner`,

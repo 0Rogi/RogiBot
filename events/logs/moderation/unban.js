@@ -21,7 +21,7 @@ module.exports = {
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(executor.id)) return
 
         let embed = new Discord.MessageEmbed()
-            .setTitle(`📛 Unban Manuale 📛`)
+            .setTitle(`📛 UNBAN MANUALE 📛`)
             .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
             .addField(`🔨 Moderatore:`, `Nome: **${executor.username}**, ID: **${executor.id}**\n||${executor.toString()}||`)
             .addField(`👤 Utente:`, `Nome: **${target.username}**, ID: **${target.id}**\n||${target.toString()}||`)

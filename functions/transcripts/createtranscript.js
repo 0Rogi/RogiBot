@@ -1,8 +1,8 @@
 const fetchAllMessages = require(`${process.cwd()}/functions/transcripts/fetchmessages.js`)
 const moment = require(`moment`)
 
-module.exports = async function createTranscript(channelId) {
-    let messages = await fetchAllMessages(channelId)
+module.exports = async function createTranscript(channelId, messagesf) {
+    let messages = messagesf || await fetchAllMessages(channelId)
     let transcript = ``
 
     messages.forEach(msg => {

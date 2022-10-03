@@ -16,7 +16,6 @@ module.exports = {
 					.addField(`Thing to do:`, interaction.message.embeds[0].fields[1].value)
 				await interaction.update({ embeds: [embed] })
 				if (interaction.message.pinned) interaction.message.unpin()
-				client.channels.cache.get(config.idcanali.logs.other).send({ embeds: [embedlogs] })
 			}
 			if (interaction.values[0] == `Completed` || interaction.values[1] == `Completed`) {
 				let embed = new Discord.MessageEmbed()
