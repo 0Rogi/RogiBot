@@ -11,6 +11,16 @@ module.exports = {
         if (!interaction.isButton()) return;
 
         if (interaction.customId.startsWith(`AcceptManager`)) {
+
+            if (!interaction.member.roles.cache.has(`966265476193861673`) && !interaction.member.roles.cache.has(`966265909075402812`)) {
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`Non hai il permesso`)
+                    .setDescription(`Devi essere almeno <@&966265909075402812> per accettare/rifiutare un suggerimento`)
+                    .setColor(`RED`);
+                interaction.reply({ embeds: [embed], ephemeral: true });
+                return;
+            }
+
             let embed = interaction.message.embeds[0].setTitle(`✔ Candidatura ACCETTATA da ${interaction.user.username} ✔`).setColor(`GREEN`);
 
             await interaction.update({ embeds: [embed], components: [] });
@@ -32,6 +42,16 @@ module.exports = {
             guildMember.roles.add(config.idruoli.partnermanager);
 
         } else if (interaction.customId.startsWith(`RefuseManager`)) {
+
+            if (!interaction.member.roles.cache.has(`966265476193861673`) && !interaction.member.roles.cache.has(`966265909075402812`)) {
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`Non hai il permesso`)
+                    .setDescription(`Devi essere almeno <@&966265909075402812> per accettare/rifiutare un suggerimento`)
+                    .setColor(`RED`);
+                interaction.reply({ embeds: [embed], ephemeral: true });
+                return;
+            }
+
             let embed = interaction.message.embeds[0].setTitle(`❌ Candidatura RIFIUTATA da ${interaction.user.username} ❌`).setColor(`RED`);
             let user = client.users.cache.get(embed.footer.text.slice(9));
             let embeddm = new Discord.MessageEmbed()
