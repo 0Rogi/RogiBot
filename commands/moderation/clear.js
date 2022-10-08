@@ -114,9 +114,6 @@ module.exports = {
                     await client.channels.cache.get(config.idcanali.logs.moderation.clear).send({ embeds: [embed], files: [`${process.cwd()}/clear${interaction.user.id}.txt`] });
                     database.collection(`ServerStats`).updateOne({}, { $pull: { "tickets": { channelid: interaction.channel.id.toString() } } });
                     interaction.channel.bulkDelete(count, true);
-
-                    //! CONTROLLARE LOGS CLEAR UTENTE E SE NON HA SMINCHIATO I LOGS DEI TICKET
-
                 })
             })
         }
