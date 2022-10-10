@@ -60,7 +60,7 @@ module.exports = {
 
         });
 
-        setInterval(ytnotifier, 1000 * 5);
+        setInterval(ytnotifier, 1000 * 60 * 5);
         setInterval(unmute, 1000);
         setInterval(checkbans, 1000 * 60);
         setInterval(events, 1000);

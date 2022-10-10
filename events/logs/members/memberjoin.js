@@ -32,6 +32,7 @@ module.exports = {
                 embed.addField(`👔 Ruoli:`, roles)
                 embed.setTitle(`🎉 Utente Ritornato 🎉`)
                 client.channels.cache.get(config.idcanali.logs.members.join).send({ embeds: [embed] })
+                client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed] })
             }
         })
     }

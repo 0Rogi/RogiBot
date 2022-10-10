@@ -19,7 +19,7 @@ module.exports = {
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(executor.id)) return
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(executor.id)) return
 
-        if (executor.bot || logs.createdAt < kick.joinedAt || logs.target.id != kick.id || new Date().getTime() - logs.createdAt > 10000) return
+        if (new Date().getTime() - logs.createdAt.getTime() > 10000) return;
 
         if (reason == `` || !reason) reason = `Nessun Motivo`
         let embed = new Discord.MessageEmbed()
@@ -36,5 +36,7 @@ module.exports = {
             .addField(`📖 Motivo:`, reason)
 
         client.channels.cache.get(config.idcanali.logs.moderation.kick).send({ embeds: [embed] })
+        client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed] })
+
     }
 }

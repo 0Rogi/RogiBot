@@ -114,6 +114,8 @@ module.exports = {
             if (dm == false) embed1.setDescription(`⚠️ **NON POSSO AVVISARE** QUESTO UTENTE IN DM ⚠️`);
 
             client.channels.cache.get(config.idcanali.logs.moderation.mute).send({ embeds: [embed3] });
+            client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed3] });
+
             interaction.editReply({ embeds: [embed1] });
             guildMember.roles.add(config.idruoli.muted);
 

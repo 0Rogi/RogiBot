@@ -91,6 +91,8 @@ module.exports = {
         if (dm == false) embed1.setDescription(`⚠️ **NON POSSO AVVISARE** QUESTO UTENTE IN DM ⚠️`);
 
         client.channels.cache.get(config.idcanali.logs.moderation.kick).send({ embeds: [embed3] });
+        client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed3] });
+
         interaction.editReply({ embeds: [embed1] });
         guildMember.kick({ reason: reason });
 

@@ -138,6 +138,8 @@ module.exports = {
             if (dm == false) embed1.setDescription(`⚠️ **NON POSSO AVVISARE** QUESTO UTENTE IN DM ⚠️`);
 
             client.channels.cache.get(config.idcanali.logs.moderation.tempmute).send({ embeds: [embed3] });
+            client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed3] });
+
             interaction.editReply({ embeds: [embed1] });
 
             database.collection(`UserStats`).find({ id: user.id }).toArray(function (err, result) {

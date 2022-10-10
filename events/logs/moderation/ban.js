@@ -37,5 +37,7 @@ module.exports = {
             .addField(`📖 Motivo:`, reason)
 
         client.channels.cache.get(config.idcanali.logs.moderation.bans).send({ embeds: [embed] })
+        client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed] })
+
     }
 }
