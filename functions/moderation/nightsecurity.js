@@ -40,7 +40,7 @@ module.exports = async function nightSecurity(enable) {
         client.guilds.cache.get(config.idServer.idServer).roles.cache.find(x => x.id == config.idruoli.helper).setPermissions([`MANAGE_NICKNAMES`, `MANAGE_MESSAGES`, `MODERATE_MEMBERS`])
 
         //? Send message
-        let phrases = [`Buonanotte a tutti!`, `Notte!`, `Ed anche questo giorno è passato..., buonanotte!`]
+        let phrases = [`Buonanotte a tutti!`, `Notte!`, `Ed anche questo giorno è passato..., buonanotte!`, `Oggi sono stanchissimo, buonanotte!`, `Oggi mi avete fatto lavorare davvero molto... vado a dormire ora, buonanotte!`]
         client.channels.cache.get(config.idcanali.generaltxt).send(phrases[Math.floor(Math.random() * phrases.length)])
         client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **abilitata** 🔒`)
 
@@ -84,8 +84,8 @@ module.exports = async function nightSecurity(enable) {
         client.guilds.cache.get(config.idServer.idServer).roles.cache.find(x => x.id == config.idruoli.helper).setPermissions([`MANAGE_NICKNAMES`, `MANAGE_MESSAGES`])
 
         //? Send the message
-        let phrases = [`Buongiorno a tutti, come va?`, `Salve mondo! Come va la vita oggi?`, `Buongiornissimo! Come state?`, `Buongiorno guys, tutto bene?`, `Salve! Tutto bene?`]
-        if (new Date().getDay() == 7) phrases = [`Buongiorno e buona domenica a tutti! Come state?`, `Salve e buona domenica a tutti quanti! Come va la vita?`, `Ciao, buona domenica a tutti! Cosa fare di bello oggi?`]
+        let phrases = [`Buongiorno a tutti, come va?`, `Salve mondo! Come va la vita oggi?`, `Buongiornissimo! Come state?`, `Buongiorno guys||...and girls||, tutto bene?`, `Salve! Tutto bene?`]
+        if (new Date().getDay() == 0) phrases = [`Buongiorno e buona domenica a tutti! Come state?`, `Salve e buona domenica a tutti quanti! Come va la vita?`, `Ciao, buona domenica a tutti! Cosa fare di bello oggi?`]
         client.channels.cache.get(config.idcanali.generaltxt).send(phrases[Math.floor(Math.random() * phrases.length)])
         client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`)
 
