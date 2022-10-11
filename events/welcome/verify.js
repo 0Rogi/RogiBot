@@ -31,7 +31,7 @@ module.exports = {
 
         }
 
-        if (interaction.customId.startsWith(`SuspiciousVerifyModal`)) {
+        if (interaction.customId?.startsWith(`SuspiciousVerifyModal`)) {
             let answer = interaction.fields.getTextInputValue(`SuspiciousVerifyModalInput`)
 
             //? Check if the answer is correct
@@ -117,7 +117,7 @@ module.exports = {
             }
 
             //? Check if the verify is suspect
-            if (new Date().getHours() >= 22 || new Date().getHours() <= 8 || serverstats?.lockdown || new Date().getTime() - interaction.member.createdAt >= 1814400049 || interaction.member == "601308178482855956") {
+            if (new Date().getHours() >= 22 || new Date().getHours() <= 8 || serverstats?.lockdown || new Date().getTime() - interaction.member.createdAt >= 1814400049) {
 
                 //? Write all the reason for the suspect verify
                 let reasons = ``;
