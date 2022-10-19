@@ -150,8 +150,7 @@ module.exports = {
         }
 
         const embed = new Discord.MessageEmbed()
-            .setTitle(`ciao`)
-            .setColor(`GREEN`)
+            .setColor(`YELLOW`)
             .setImage(image);
         interaction.editReply({ embeds: [embed] });
 
