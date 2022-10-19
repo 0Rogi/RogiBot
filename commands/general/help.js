@@ -22,7 +22,7 @@ module.exports = {
         if (!command) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`🤖 Tutti i comandi del Bot 🤖`)
-                .setDescription(`Usa il **menu** qui sotto per scegliere la categoria di comandi da vedere!\n\n🎡 **GENERAL**\n*Comandi generali*\n😂 **FUN**\n*Comandi di divertimento*\n🔨 **MODERATION**\n*Comandi di moderazione*\n👑 **OWNER**\n*Comandi per l'owner*\n📈 **STATISTICS**\n*Comandi per mostrare statistiche*\n🎫 **TICKET**\n*Comandi dei ticket*`)
+                .setDescription(`Usa il **menu** qui sotto per scegliere la categoria di comandi da vedere!\n\n🎡 **GENERAL**\n*Comandi generali*\n😂 **FUN**\n*Comandi di divertimento*\n🔨 **MODERATION**\n*Comandi di moderazione*\n👑 **OWNER**\n*Comandi per l'owner*\n📈 **STATISTICS**\n*Comandi per mostrare statistiche*\n🎫 **TICKET**\n*Comandi dei ticket*\n\n**🔗 TAGS:**\n<:StaffTag:1032334168371245136> Comando utilizzabile solo dallo **STAFF**\n<:LevellingTag:1032335296332832779> Comando utilizzabile solo dopo **un certo livello**`)
                 .setColor(`YELLOW`)
                 .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
             let row = new Discord.MessageActionRow().addComponents(
@@ -58,6 +58,11 @@ module.exports = {
                             label: `Ticket`,
                             value: `ticket`,
                             emoji: `🎫`
+                        },
+                        {
+                            label: `Private Rooms`,
+                            value: `prooms`,
+                            emoji: `🔐`
                         },
                     ])
             )

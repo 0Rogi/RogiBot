@@ -25,6 +25,15 @@ module.exports = {
 
             //? If the user is the owner or an admin
             if (owner || interaction.member.roles.cache.has(config.idruoli.admin)) {
+                //? Check if the user is at least level 30
+                if (!interaction.member.roles.cache.has(config.idruoli.level30) && !interaction.member.roles.cache.has(config.idruoli.level30) && !interaction.member.roles.cache.has(config.idruoli.level40) && !interaction.member.roles.cache.has(config.idruoli.level50) && !interaction.member.roles.cache.has(config.idruoli.level60) && !interaction.member.roles.cache.has(config.idruoli.level70) && !interaction.member.roles.cache.has(config.idruoli.level80) && !interaction.member.roles.cache.has(config.idruoli.level90) && !interaction.member.roles.cache.has(config.idruoli.level100) && !interaction.member.roles.cache.has(config.idruoli.serverbooster) && !interaction.member.permissions.has(`ADMINISTRATOR`)) {
+                    let embed = new Discord.MessageEmbed()
+                        .setTitle(`❌ ERRORE ❌`)
+                        .setDescription(`Hai bisogno almeno del livello 30 per rendere la tua chat NSFW :disappointed:`)
+                        .setColor(`RED`);
+                    interaction.reply({ embeds: [embed], ephemeral: true });
+                    return;
+                }
                 //? Check if the channel is NSFW or not
                 if (interaction.channel.nsfw) {
                     //? Unset the channel as NSFW
@@ -233,7 +242,12 @@ module.exports = {
 
             //? If the user is the owner or an admin
             if (owner || interaction.member.roles.cache.has(config.idruoli.admin)) {
-                await interaction.deferReply();
+                //? Reply to interaction
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`📃 CREAZIONE TRANSCRIPT`)
+                    .setDescription(`<a:loading:998616752781008986> **Creazione** del **transcript** in corso <a:loading:998616752781008986>`)
+                    .setColor(`YELLOW`);
+                await interaction.reply({ embeds: [embed] });
                 //? Create and send the transcript
                 let transcript = await createTranscript(interaction.channel.id);
                 fs.writeFile(`transcript${interaction.user.id}.txt`, transcript, async function (err) {
@@ -243,7 +257,6 @@ module.exports = {
                         .setColor(`YELLOW`);
                     await interaction.editReply({ embeds: [embed], files: [`${process.cwd()}/transcript${interaction.user.id}.txt`] });
                 })
-
             }
 
             //? Deny the user isn't the owner or an admin
