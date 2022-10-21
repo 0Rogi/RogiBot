@@ -28,7 +28,7 @@ module.exports = {
         ]
     },
     permissionlevel: 0.5,
-    allowedchannels: [config.idcanali.partnermanager],
+    allowedchannels: ["1004763105647132743"],
     async execute(interaction) {
         await interaction.deferReply();
 
