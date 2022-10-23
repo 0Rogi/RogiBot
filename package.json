@@ -28,6 +28,6 @@
     "yt-channel-info": "^2.2.0"
   },
   "engines": {
-        "node": "10.16.0"
+        "node": "17.2.0"
       }
 }
