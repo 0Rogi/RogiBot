@@ -26,5 +26,8 @@
     "pornhub.js": "^0.2.4",
     "translate-google": "^1.5.0",
     "yt-channel-info": "^2.2.0"
-  }
+  },
+  "engines": {
+        "node": "10.16.0"
+      }
 }
