@@ -68,7 +68,7 @@ module.exports = {
             id1 = m.id;
         })
         let id2;
-        await client.channels.cache.get(config.idcanali.partnership).send(`─────────────────\n🔷 Eseguita da: ${interaction.user.toString()}\n🔷 Eseguita con: ${user.toString()}\n🔷 Nome Server: ${server.toString()}─────────────────`).then(m => {
+        await client.channels.cache.get(config.idcanali.partnership).send(`─────────────────\n🔷 Eseguita da: ${interaction.user.toString()}\n🔷 Eseguita con: ${user.toString()}\n🔷 Nome Server: ${server.toString()}\n─────────────────`).then(m => {
             id2 = m.id;
         })
 
