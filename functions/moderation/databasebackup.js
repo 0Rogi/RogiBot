@@ -3,7 +3,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 const moment = require(`moment`)
 
 module.exports = async function databaseBackup(manual) {
-    if (!manual && new Date().getHours() == 0 && new Date().getMinutes() == 0 || manual) {
+    if (!manual && new Date().getHours() == 4 && new Date().getMinutes() == 0 || !manual && new Date().getHours() == 8 && new Date().getMinutes() == 0 || !manual && new Date().getHours() == 12 && new Date().getMinutes() == 0 || !manual && new Date().getHours() == 16 && new Date().getMinutes() == 0 || !manual && new Date().getHours() == 20 && new Date().getMinutes() == 0 || !manual && new Date().getHours() == 0 && new Date().getMinutes() == 0 || manual) {
         await database.collection(`UserStats`).find().toArray(function (err, result) {
             if (!result) return
             result = JSON.stringify(result, null, `\t`)
