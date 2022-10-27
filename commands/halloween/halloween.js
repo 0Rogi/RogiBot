@@ -336,7 +336,7 @@ module.exports = {
                         .setTitle(`❌ ERRORE ❌`)
                         .setDescription(`_Non hai mai partecipato all'evento di halloween_`)
                         .setColor(`RED`);
-                    interaction.editRepl({ embeds: [embed] });
+                    interaction.editReply({ embeds: [embed] });
                     return;
                 }
 
