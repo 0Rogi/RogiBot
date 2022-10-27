@@ -15,12 +15,11 @@ module.exports = {
         let emojiid = reaction._emoji.id
         if (emojiname == `skeleton1` || emojiname == `skeleton2` || emojiname == `skeleton3`) {
             if (emojiid == `1033385939491373177` || emojiid == `1033385937125773433` || emojiid == `1033385935674552400`) {
-
                 //? Find userstats
                 let userstats;
-                serverstats.halloweenevent.forEach(user => {
-                    if (user.id == user.id) {
-                        userstats = user;
+                serverstats.halloweenevent.forEach(user1 => {
+                    if (user1.id == user.id) {
+                        userstats = user1;
                     }
                 })
 
