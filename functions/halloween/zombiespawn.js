@@ -6,6 +6,7 @@ module.exports = async function zombiespawn() {
         //? Choose the channel where the zombie will spawn
         let channels = [`813470597135728752`, `1011675545819435161`, `826014465186332682`, `974971851526770688`, `987725484064395365`];
         let channel = channels[Math.floor(Math.random() * channels.length)];
+        channel = client.channels.cache.get(channel);
 
         //? Choose the zombie to send
         let zombies = [`https://i.imgur.com/ZXkUX19.png`, `https://i.imgur.com/MmrSxEr.png`, `https://i.imgur.com/M9CbyUL.png`, `https://i.imgur.com/42VmNDc.png`, `https://i.imgur.com/GMU6gZV.png`, `https://i.imgur.com/eHongPH.png`];
