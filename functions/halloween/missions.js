@@ -55,7 +55,7 @@ module.exports = function missions() {
             serverstats.halloweenevent.forEach(async user => {
                 let skeletonsfound = user.skeletons.found;
                 if (skeletonsfound > 0) {
-                    user.points = user.points + (100 * skeletonsfound);
+                    user.points = user.points + (20 * skeletonsfound);
                     user.missioncompleted = user.missioncompleted + 1;
                     await database.collection(`ServerStats`).updateOne({}, { $pull: { "halloweenevent": { id: user.id } } })
                     database.collection(`ServerStats`).updateOne({}, { $push: { "halloweenevent": user } });
