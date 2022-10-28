@@ -2,7 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = async function zombiespawn() {
     //? When Zombie Can Spawn
-    if (new Date().getHours() > 10 && new Date().getDate() != 26) {
+    if (new Date().getHours() >= 10 && new Date().getDate() != 2) {
         //? Choose the channel where the zombie will spawn
         let channels = [`813470597135728752`, `1011675545819435161`, `826014465186332682`, `974971851526770688`, `987725484064395365`];
         let channel = channels[Math.floor(Math.random() * channels.length)];
