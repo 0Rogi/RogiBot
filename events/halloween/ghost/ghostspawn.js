@@ -15,7 +15,7 @@ module.exports = {
             //? Check if the channel is the correct one
             if (message.channel.parent == `1031223455015776347`) {
                 //? Generate a chance to spawn
-                let spawned = [false, false, false, true];
+                let spawned = [false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
                 spawned = spawned[Math.floor(Math.random() * spawned.length)];
                 //? If the ghost is spawned
                 if (spawned) {
