@@ -21,6 +21,7 @@ const leaveVoiceChannel = require(`${process.cwd()}/functions/general/leaveVoice
 //? Halloween
 let zombiespawn = require(`${process.cwd()}/functions/halloween/zombiespawn.js`);
 let missions = require(`${process.cwd()}/functions/halloween/missions.js`);
+let halloweenannounce = require(`${process.cwd()}/functions/halloween/halloweenannounce.js`);
 
 module.exports = {
     name: `ready`,
@@ -87,5 +88,6 @@ module.exports = {
         //? Halloween
         setInterval(zombiespawn, 1000 * 60 * 30)
         setInterval(missions, 1000);
+        setInterval(halloweenannounce, 1000)
     }
 }
