@@ -33,7 +33,7 @@ module.exports = function missions() {
         if (new Date().getDate() == 31) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Nuova Missione`)
-                .setDescription(`La vostra missione di oggi è:\n||**Craftare 3 pozioni**||.\n\nPer poter craftare le 3 pozioni, sarà necessario utilizare il comando \`/halloween potion\`. Prima di craftare queste pozioni però, saranno necessario 2 oggetti che si potranno ottenere casualmente entrando in vocale _(con \`/halloween inventory\` è possibile vedere l'inventario)_. Una volta che anche la 3 pozione sarà craftata, avrete completato la missione!`)
+                .setDescription(`La vostra missione di oggi è:\n||**Craftare 3 pozioni**||.\n\nPer poter craftare le 3 pozioni, sarà necessario utilizare il comando \`/halloween potion\`. Prima di craftare queste pozioni però, saranno necessario 2 oggetti che si potranno ottenere casualmente entrando in vocale, il bot vi avviserà in DM se troverete qualcosa _(con \`/halloween inventory\` è possibile vedere l'inventario)_. Una volta che anche la 3 pozione sarà craftata, avrete completato la missione!`)
                 .setColor(`ORANGE`);
             client.channels.cache.get(config.idcanali.generaltxt).send({ embeds: [embed], content: `<@&1033320600271323227>`, allowedMentions: { users: [], roles: [`1033320600271323227`] } });
         }
