@@ -182,7 +182,7 @@ module.exports = {
                         //? If pumpkins are 3, complete the mission
                         if (userstats.pumpkins == 3) {
                             userstats.missioncompleted = userstats.missioncompleted + 1;
-                            userstats.points = userstats.missioncompleted + 200;
+                            userstats.points = userstats.points + 200;
                             let embed = new Discord.MessageEmbed()
                                 .setTitle(`Missione Completata!`)
                                 .setDescription(`Hai raccolto la tua **3 zucca**!\n\n_Hai completato la missione guadagnando ben **200 punti!**_`)
