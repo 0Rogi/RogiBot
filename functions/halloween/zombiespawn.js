@@ -26,6 +26,10 @@ module.exports = async function zombiespawn() {
         let row = new Discord.MessageActionRow()
             .addComponents(button);
         //? Send the message
-        channel.send({ embeds: [embed], components: [row], content: `<@&1033320608060153997> un nuovo **zombie** è **comparso**! <:zombie1:1033321687959216208>`, allowedMentions: { users: [], roles: [`1033320608060153997`] } });
+        client.channels.cache.get("813470597135728752").send({ embeds: [embed], components: [row], content: `<@&1033320608060153997> un nuovo **zombie** è **comparso**! <:zombie1:1033321687959216208>`, allowedMentions: { users: [], roles: [`1033320608060153997`] } });
+        client.channels.cache.get("1011675545819435161").send({ embeds: [embed], components: [row], content: `<@&1033320608060153997> un nuovo **zombie** è **comparso**! <:zombie1:1033321687959216208>`, allowedMentions: { users: [], roles: [`1033320608060153997`] } });
+        client.channels.cache.get("826014465186332682").send({ embeds: [embed], components: [row], content: `<@&1033320608060153997> un nuovo **zombie** è **comparso**! <:zombie1:1033321687959216208>`, allowedMentions: { users: [], roles: [`1033320608060153997`] } });
+        client.channels.cache.get("974971851526770688").send({ embeds: [embed], components: [row], content: `<@&1033320608060153997> un nuovo **zombie** è **comparso**! <:zombie1:1033321687959216208>`, allowedMentions: { users: [], roles: [`1033320608060153997`] } });
+        client.channels.cache.get("987725484064395365").send({ embeds: [embed], components: [row], content: `<@&1033320608060153997> un nuovo **zombie** è **comparso**! <:zombie1:1033321687959216208>`, allowedMentions: { users: [], roles: [`1033320608060153997`] } });
     }
 }
