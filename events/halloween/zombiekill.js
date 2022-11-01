@@ -87,10 +87,11 @@ module.exports = {
                 if (userstats.killedzombies6 == 5) {
                     let embed = new Discord.MessageEmbed()
                         .setTitle(`Missione Completata!`)
-                        .setDescription(`Hai completato con successo la missione, guadagnando 50 punti!`)
+                        .setDescription(`Hai completato con successo la missione, guadagnando **50 punti**!`)
                         .setColor(`ORANGE`);
-                    interaction.editReply({ embeds: [embed] });
+                    interaction.followUp({ embeds: [embed], ephemeral: true });
                     userstats.points = userstats.points + 50;
+                    userstats.missioncompleted = userstats.missioncompleted + 1;
                 }
 
                 userstats.points = userstats.points + points;
