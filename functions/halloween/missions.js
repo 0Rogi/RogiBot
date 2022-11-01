@@ -40,7 +40,7 @@ module.exports = function missions() {
         if (new Date().getDate() == 1) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Nuova Missione`)
-                .setDescription(`La vostra missione di oggi è:\n||**Uccidere 10 zombie**||.\n\nLa missione di oggi, è molto semplice, gli zombie che di solito compaiono, beh, oggi se ne uccidete ben 10, completerete la missione!`)
+                .setDescription(`La vostra missione di oggi è:\n||**Uccidere 5 zombie**||.\n\nLa missione di oggi, è molto semplice, gli zombie che di solito compaiono, beh, oggi se ne uccidete ben 5, completerete la missione!\n\n||*Oggi per facilitarvi questa missione... gli zombie compariranno ogni 15 minuti anzichè ogni 30 minuti :)*||`)
                 .setColor(`ORANGE`);
             client.channels.cache.get(config.idcanali.generaltxt).send({ embeds: [embed], content: `<@&1033320600271323227>`, allowedMentions: { users: [], roles: [`1033320600271323227`] } });
         }
@@ -94,7 +94,7 @@ module.exports = function missions() {
         if (new Date().getDate() == 2) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Fine Missione`)
-                .setDescription(`La **sesta _(ed ultima)_ missione**  è **terminata**.\n\nSe siete riusciti a uccidere i **10 zombie**, avrete ottenuto 50 punti!\n\n*Potete vedere le vostre statistice con \`/halloween stats\`.*`)
+                .setDescription(`La **sesta _(ed ultima)_ missione**  è **terminata**.\n\nSe siete riusciti a uccidere i **5 zombie**, avrete ottenuto 50 punti!\n\n*Potete vedere le vostre statistice con \`/halloween stats\`.*`)
                 .setColor(`ORANGE`);
             client.channels.cache.get(config.idcanali.generaltxt).send({ embeds: [embed] });
         }

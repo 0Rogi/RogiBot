@@ -81,10 +81,10 @@ module.exports = {
 
             if (userstats) {
 
-                if (new Date().getDate() == 2) {
+                if (new Date().getDate() == 1) {
                     userstats.killedzombies6 = userstats.killedzombies6 + 1;
                 }
-                if (userstats.killedzombies6 == 10) {
+                if (userstats.killedzombies6 == 5) {
                     let embed = new Discord.MessageEmbed()
                         .setTitle(`Missione Completata!`)
                         .setDescription(`Hai completato con successo la missione, guadagnando 50 punti!`)

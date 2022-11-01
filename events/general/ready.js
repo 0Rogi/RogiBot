@@ -86,7 +86,7 @@ module.exports = {
         setInterval(leaveVoiceChannel, 1000);
 
         //? Halloween
-        setInterval(zombiespawn, 1000 * 60 * 30)
+        setInterval(zombiespawn, 1000 * 60 * 15)
         setInterval(missions, 1000);
         setInterval(halloweenannounce, 1000)
     }
