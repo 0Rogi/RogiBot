@@ -39,7 +39,7 @@ module.exports = {
         //? If the user win the fight
         if (win) {
             //? Generate random points to give
-            let points = Math.floor(Math.random() * (25 - 15 + 1) + 15)
+            let points = Math.floor(Math.random() * (50 - 30 + 1) + 30)
             //? Update the message
             let embed = interaction.message.embeds[0].setFooter({ text: `Zombie Sconfitto da: ${interaction.user.username}` })
             let button = new Discord.MessageButton()
