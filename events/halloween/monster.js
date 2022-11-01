@@ -10,6 +10,7 @@ module.exports = {
         //? Check if the button is the correct one
         if (!interaction.isButton()) return;
         if (interaction.customId == `HalloweenPumpkinAnnounce`) {
+            if (new Date().getDate() == 2) return;
             //? Create 2 random rows, with 6 buttons
             let button1 = new Discord.MessageButton()
                 .setStyle(`SECONDARY`)
