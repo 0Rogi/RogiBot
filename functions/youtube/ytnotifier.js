@@ -6,7 +6,7 @@ module.exports = function ytnotifier() {
     if (serverstats?.maintenance) return;
 
     //? Rogi's Videos
-    getChannelVideos(`UCw7lKb-XBW4ApE0puSbJLFQ`, `newest`).then(async response => {
+    getChannelVideos(`UCw7lKb-XBW4ApE0puSbJLFQ`, `newest`)?.then(async response => {
         let idVideo = response?.items[0]?.videoId;
 
         if (!idVideo) return;
@@ -30,7 +30,7 @@ module.exports = function ytnotifier() {
     })
 
     //? Xen's Video
-    getChannelVideos(`UCIDmKXFhLEZby8F05TFN96Q`, `newest`).then(async response => {
+    getChannelVideos(`UCIDmKXFhLEZby8F05TFN96Q`, `newest`)?.then(async response => {
         let idVideo = response?.items[0]?.videoId;
 
         if (!idVideo) return;
@@ -54,7 +54,7 @@ module.exports = function ytnotifier() {
     })
 
     //? Gabvys's Video
-    getChannelVideos(`UCOE36p_HdqyLMg9TzLZmPpw`, `newest`).then(async response => {
+    getChannelVideos(`UCOE36p_HdqyLMg9TzLZmPpw`, `newest`)?.then(async response => {
         let idVideo = response?.items[0]?.videoId;
 
         if (!idVideo) return;
