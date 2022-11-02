@@ -18,10 +18,6 @@ const deleteuserfromdb = require(`${process.cwd()}/functions/moderation/deleteus
 const nightSecurity = require(`${process.cwd()}/functions/moderation/nightsecurity.js`);
 const statusUpdate = require(`${process.cwd()}/functions/general/statusupdate.js`);
 const leaveVoiceChannel = require(`${process.cwd()}/functions/general/leaveVoiceChannel.js`);
-//? Halloween
-let zombiespawn = require(`${process.cwd()}/functions/halloween/zombiespawn.js`);
-let missions = require(`${process.cwd()}/functions/halloween/missions.js`);
-let halloweenannounce = require(`${process.cwd()}/functions/halloween/halloweenannounce.js`);
 
 module.exports = {
     name: `ready`,
@@ -84,10 +80,5 @@ module.exports = {
         setInterval(deleteuserfromdb, 1000 * 60 * 5);
         setInterval(statusUpdate, 1000 * 60 * 10);
         setInterval(leaveVoiceChannel, 1000);
-
-        //? Halloween
-        setInterval(zombiespawn, 1000 * 60 * 15)
-        setInterval(missions, 1000);
-        setInterval(halloweenannounce, 1000)
     }
 }
