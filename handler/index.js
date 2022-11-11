@@ -27,7 +27,7 @@ client.on(`ready`, async () => {
     let guild = client.guilds.cache.get(config.idServer.idServer)
     client.commands.forEach(command => {
         if (!command.data) return
-        guild.commands.create(command.data)
+
         if (command.name == `clear`) {
             guild = client.guilds.cache.get(config.idServer.idServerLogs)
             guild.commands.create(command.data)
@@ -38,6 +38,8 @@ client.on(`ready`, async () => {
             guild.commands.create(command.data)
             guild = client.guilds.cache.get(config.idServer.idServer)
         }
+        if (command.name == `ping`) return;
+        guild.commands.create(command.data)
     })
 })
 
@@ -71,6 +73,7 @@ client.on(`interactionCreate`, async interaction => {
     let command = client.commands.get(interaction.commandName)
     if (!command) return
 
+    if (command.name == `ping`) return command.execute(interaction);
     if (command.name == `clear` && interaction.guild != config.idServer.idServer && interaction.member.permissions.has(`ADMINISTRATOR`)) return command.execute(interaction)
     if (command.name == `eval` && interaction.guild == config.idServer.idServerTest && interaction.member.permissions.has(`ADMINISTRATOR`)) return command.execute(interaction)
     if (command.name == `test` && interaction.guild == config.idServer.idServerTest) return command.execute(interaction)

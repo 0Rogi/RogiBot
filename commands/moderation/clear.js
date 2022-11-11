@@ -85,7 +85,6 @@ module.exports = {
                 if (interaction.channel != `966262681621381170`) {
                     await client.channels.cache.get(config.idcanali.logs.moderation.clear).send({ embeds: [embed], files: [`${process.cwd()}/clear${interaction.user.id}.txt`] });
                 }
-                database.collection(`ServerStats`).updateOne({}, { $pull: { "tickets": { channelid: interaction.channel.id.toString() } } });
                 interaction.channel.bulkDelete(count, true);
             })
 
@@ -113,8 +112,9 @@ module.exports = {
                         .addField(`🔨 Moderatore:`, `Nome: **${interaction.member.user.username}** - ID: **${interaction.member.user.id}**\n||${interaction.member.toString()}||`)
                         .addField(`⚓ Canale`, `Nome: **#${interaction.channel.name}** - ID: **${interaction.channel.id}**\n||${interaction.channel.toString()}||`)
                         .setColor(`RED`);
-                    await client.channels.cache.get(config.idcanali.logs.moderation.clear).send({ embeds: [embed], files: [`${process.cwd()}/clear${interaction.user.id}.txt`] });
-                    database.collection(`ServerStats`).updateOne({}, { $pull: { "tickets": { channelid: interaction.channel.id.toString() } } });
+                    if (interaction.channel != `966262681621381170`) {
+                        await client.channels.cache.get(config.idcanali.logs.moderation.clear).send({ embeds: [embed], files: [`${process.cwd()}/clear${interaction.user.id}.txt`] });
+                    }
                     interaction.channel.bulkDelete(count, true);
                 })
             })
