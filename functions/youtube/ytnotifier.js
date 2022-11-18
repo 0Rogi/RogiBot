@@ -1,9 +1,9 @@
-const { getChannelVideos } = require(`yt-channel-info`)
+const { getChannelVideos, getChannelCommunityPosts } = require(`yt-channel-info`)
 const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = function ytnotifier() {
 
-    if (serverstats?.maintenance) return;
+    // if (serverstats?.maintenance) return;
 
     //? Rogi's Videos
     const payload1 = { channelId: `UCw7lKb-XBW4ApE0puSbJLFQ`, channelIdType: 0, sortBy: `newest` };
@@ -30,8 +30,72 @@ module.exports = function ytnotifier() {
         });
     })
 
+    //? Rogi's Posts
+    getChannelCommunityPosts(payload1)?.then(async response => {
+        let postId = response?.items[0]?.postId;
+
+        if (!postId) return;
+
+        client.channels.cache.get("1043234320183197777").messages.fetch().then(async messages => {
+            let sent = false;
+            await messages.forEach(msg => {
+                if (msg.content.includes(postId)) sent = true;
+            })
+
+            if (!sent) {
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`NUOVO POST`)
+                    .setDescription(`**Rogi** ha appena pubblicato un **nuovo post** nel suo canale!\n\nPremi il pulsante qui sotto per vederlo!`)
+                    .setThumbnail(`https:` + response?.items[0].authorThumbnails[1].url)
+                    .setColor(`#FFFF00`);
+                let row = new Discord.MessageActionRow()
+                    .addComponents(
+                        new Discord.MessageButton()
+                            .setLabel(`VEDI POST`)
+                            .setStyle(`LINK`)
+                            .setURL(`https://youtube.com/post/${postId}`)
+                    )
+                client.channels.cache.get(config.idcanali.generaltxt).send({ embeds: [embed], components: [row] });
+                client.channels.cache.get("1043234320183197777").send(postId);
+            }
+        })
+
+    })
+
     //? Xen's Video
     const payload2 = { channelId: `UCIDmKXFhLEZby8F05TFN96Q`, channelIdType: 1, sortBy: `newest` };
+
+    getChannelCommunityPosts(payload2)?.then(async response => {
+        let postId = response?.items[0]?.postId;
+
+        if (!postId) return;
+
+        client.channels.cache.get("1043234320183197777").messages.fetch().then(async messages => {
+            let sent = false;
+            await messages.forEach(msg => {
+                if (msg.content.includes(postId)) sent = true;
+            })
+
+            if (!sent) {
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`NUOVO POST`)
+                    .setDescription(`**XenKys** ha appena pubblicato un **nuovo post** nel suo canale!\n\nPremi il pulsante qui sotto per vederlo!`)
+                    .setThumbnail(`https:` + response?.items[0].authorThumbnails[1].url)
+                    .setColor(`#0000FF`);
+                let row = new Discord.MessageActionRow()
+                    .addComponents(
+                        new Discord.MessageButton()
+                            .setLabel(`VEDI POST`)
+                            .setStyle(`LINK`)
+                            .setURL(`https://youtube.com/post/${postId}`)
+                    )
+                client.channels.cache.get(config.idcanali.generaltxt).send({ embeds: [embed], components: [row] });
+                client.channels.cache.get("1043234320183197777").send(postId);
+            }
+        })
+    })
+
+    //? Xen's Posts
     getChannelVideos(payload2)?.then(async response => {
         let idVideo = response?.items[0]?.videoId;
 
@@ -78,6 +142,38 @@ module.exports = function ytnotifier() {
             }
 
         });
+    })
+
+    //? Gabvy's Posts
+    getChannelCommunityPosts(payload3)?.then(async response => {
+        let postId = response?.items[0]?.postId;
+
+        if (!postId) return;
+
+        client.channels.cache.get("1043234320183197777").messages.fetch().then(async messages => {
+            let sent = false;
+            await messages.forEach(msg => {
+                if (msg.content.includes(postId)) sent = true;
+            })
+
+            if (!sent) {
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(`NUOVO POST`)
+                    .setDescription(`**Gabvy** ha appena pubblicato un **nuovo post** nel suo canale!\n\nPremi il pulsante qui sotto per vederlo!`)
+                    .setThumbnail(`https:` + response?.items[0].authorThumbnails[1].url)
+                    .setColor("#00FFFF")
+                let row = new Discord.MessageActionRow()
+                    .addComponents(
+                        new Discord.MessageButton()
+                            .setLabel(`VEDI POST`)
+                            .setStyle(`LINK`)
+                            .setURL(`https://youtube.com/post/${postId}`)
+                    )
+                client.channels.cache.get(config.idcanali.generaltxt).send({ embeds: [embed], components: [row] });
+                client.channels.cache.get("1043234320183197777").send(postId);
+            }
+        })
+
     })
 
 }
