@@ -9,10 +9,30 @@ module.exports = {
 		description: `Fa dire qualcosa al bot - Disponibile solo boostando il server`,
 		options: [
 			{
-				name: `testo`,
-				description: `Il testo da trasformare che il bot deve dire`,
-				type: `STRING`,
-				required: true
+				name: `normal`,
+				description: `Fa dire qualcosa al bot - Disponibile solo boostando il server`,
+				type: `SUB_COMMAND`,
+				options: [
+					{
+						name: `testo`,
+						description: `Il testo che il bot deve scrivere`,
+						type: `STRING`,
+						required: true
+					}
+				]
+			},
+			{
+				name: `reverse`,
+				description: `Fa dire qualcosa al bot, al contrario - Disponibile solo boostando il server`,
+				type: `SUB_COMMAND`,
+				options: [
+					{
+						name: `testo`,
+						description: `Il testo che il bot deve scrivere al contrario`,
+						type: `STRING`,
+						required: true
+					}
+				]
 			}
 		]
 	},
@@ -20,7 +40,7 @@ module.exports = {
 	allowedchannels: [`ALL`],
 	requirement: `Server Booster`,
 	execute(interaction) {
-		if (!interaction.member.roles.cache.has(config.idruoli.serverbooster) && !interaction.member.permissions.has(`ADMINISTRATOR`)) {
+		if (!interaction.member.roles.cache.has(config.idruoli.serverbooster) && !interaction.member.permissions.has(`ADMINISTRATOR`) && !interaction.member.roles.cache.has(config.idruoli.allrewards)) {
 			let embed = new Discord.MessageEmbed()
 				.setTitle(`Errore`)
 				.setDescription(`*Devi boostare il server per usare questo comando!*`)
@@ -69,12 +89,19 @@ module.exports = {
 				.setDescription(`Il tuo messaggio **è stato mandato** con successo!`)
 				.setColor(`GREEN`);
 			let embedlog = new Discord.MessageEmbed()
-				.setTitle(`/SAY`)
+				.setTitle(`/SAY NORMAL`)
 				.addField(`👤 Utente:`, `Nome: ${interaction.user.username}, ID: ${interaction.user.id}\n||${interaction.user.toString()}||`)
 				.addField(`📖 Contenuto:`, text.toString())
 				.addField(`⚓ Canale:`, interaction.channel.toString())
 				.setThumbnail(interaction.member.displayAvatarURL({ dynamic: true }))
 				.setColor(`YELLOW`);
+			if (interaction.options.getSubcommand() == `reverse`) {
+				let array = text.split("");
+				array = array.reverse();
+				text = ``;
+				array.forEach(c => { text += c });
+				embedlog.setTitle(`/SAY REVERSE`);
+			}
 			interaction.channel.send(text);
 			interaction.editReply({ embeds: [embed], ephemeral: true });
 			client.channels.cache.get(config.idcanali.logs.messages.say).send({ embeds: [embedlog] });

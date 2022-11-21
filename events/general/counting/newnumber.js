@@ -73,25 +73,6 @@ module.exports = {
                 }
             }
         })
-        if (new Date().getDate() == 28 && new Date().getHours() >= 10) {
-            let spawned = [false, false, true, false];
-            spawned = spawned[Math.floor(Math.random() * spawned.length)];
-            if (spawned) {
-                let embed = new Discord.MessageEmbed()
-                    .setTitle(`Pipistrello Spawnato`)
-                    .setDescription(`È **spawnato** un **pipistrello**!\n\nPremi il pulsante prima degli altri per ucciderlo!`)
-                    .setColor(`YELLOW`)
-                    .setImage(`https://i.imgur.com/r4XWz5t.png`)
-                    .setFooter({ text: `Pipistrello Ancora Non Ucciso` });
-                let button = new Discord.MessageButton()
-                    .setLabel(`Uccidi Pipistrello`)
-                    .setStyle(`SUCCESS`)
-                    .setCustomId(`HalloweenPipistrelloKill`);
-                let row = new Discord.MessageActionRow()
-                    .addComponents(button)
-                message.channel.send({ embeds: [embed], components: [row] });
-            }
-        }
         if (number == 69) return message.react(`😏`)
         if (number == 100) return message.react(`💯`)
         if (oldbestnumber < number) return message.react(`☑️`)

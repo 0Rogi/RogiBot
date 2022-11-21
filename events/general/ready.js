@@ -19,6 +19,8 @@ const nightSecurity = require(`${process.cwd()}/functions/moderation/nightsecuri
 const statusUpdate = require(`${process.cwd()}/functions/general/statusupdate.js`);
 const leaveVoiceChannel = require(`${process.cwd()}/functions/general/leaveVoiceChannel.js`);
 
+const christmascountdown = require(`${process.cwd()}/functions/christmascountdown.js`);
+
 module.exports = {
     name: `ready`,
     async execute() {
@@ -80,5 +82,7 @@ module.exports = {
         setInterval(deleteuserfromdb, 1000 * 60 * 5);
         setInterval(statusUpdate, 1000 * 60 * 10);
         setInterval(leaveVoiceChannel, 1000);
+
+        setInterval(christmascountdown, 1000 * 60 * 5)
     }
 }
