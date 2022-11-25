@@ -11,7 +11,8 @@ module.exports = async function nightSecurity(enable) {
         client.channels.cache.get(config.idcanali.commands).setRateLimitPerUser(5)
         client.channels.cache.get(config.idcanali.counting).setRateLimitPerUser(5)
         client.channels.cache.get(config.idcanali.countingextreme).setRateLimitPerUser(5)
-        client.channels.cache.get(`997201717038944337`).setRateLimitPerUser(5)
+        client.channels.cache.get(config.idcanali.countinginfinity).setRateLimitPerUser(5)
+
 
         //? Set limit to voice channels
         client.channels.cache.get(config.idcanali.generalvc).setUserLimit(15)
@@ -55,7 +56,7 @@ module.exports = async function nightSecurity(enable) {
         client.channels.cache.get(config.idcanali.commands).setRateLimitPerUser(1)
         client.channels.cache.get(config.idcanali.counting).setRateLimitPerUser(1)
         client.channels.cache.get(config.idcanali.countingextreme).setRateLimitPerUser(1)
-        client.channels.cache.get(`997201717038944337`).setRateLimitPerUser(1)
+        client.channels.cache.get(config.idcanali.countinginfinity).setRateLimitPerUser(1)
 
         //? Remove the limit from voice channels
         client.channels.cache.get(config.idcanali.generalvc).setUserLimit(0)

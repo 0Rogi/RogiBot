@@ -3,7 +3,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = function ytnotifier() {
 
-    // if (serverstats?.maintenance) return;
+    if (serverstats?.maintenance) return;
 
     //? Rogi's Videos
     const payload1 = { channelId: `UCw7lKb-XBW4ApE0puSbJLFQ`, channelIdType: 0, sortBy: `newest` };
@@ -62,7 +62,7 @@ module.exports = function ytnotifier() {
 
     })
 
-    //? Xen's Video
+    //? Xen's Posts
     const payload2 = { channelId: `UCIDmKXFhLEZby8F05TFN96Q`, channelIdType: 1, sortBy: `newest` };
 
     getChannelCommunityPosts(payload2)?.then(async response => {
@@ -81,7 +81,7 @@ module.exports = function ytnotifier() {
                     .setTitle(`NUOVO POST`)
                     .setDescription(`**XenKys** ha appena pubblicato un **nuovo post** nel suo canale!\n\nPremi il pulsante qui sotto per vederlo!`)
                     .setThumbnail(`https:` + response?.items[0].authorThumbnails[1].url)
-                    .setColor(`#0000FF`);
+                    .setColor(`#53bbde`);
                 let row = new Discord.MessageActionRow()
                     .addComponents(
                         new Discord.MessageButton()
@@ -95,7 +95,7 @@ module.exports = function ytnotifier() {
         })
     })
 
-    //? Xen's Posts
+    //? Xen's Video
     getChannelVideos(payload2)?.then(async response => {
         let idVideo = response?.items[0]?.videoId;
 
