@@ -15,7 +15,6 @@
     "discord.js": "^13.11.0",
     "dotenv": "^16.0.1",
     "expr-eval": "^2.0.2",
-    "ffmpeg-binaries": "^3.2.2-3",
     "ffmpeg-static": "^5.1.0",
     "google-tts-api": "^2.0.2",
     "https": "^1.0.0",
