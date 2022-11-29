@@ -3,6 +3,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `slowmode`,
+    description: `Cambia la slowmode di un canale`,
     data: {
         name: `slowmode`,
         description: `Imposta la slowmode di un canale`,

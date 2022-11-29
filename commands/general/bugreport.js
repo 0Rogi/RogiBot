@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `bugreport`,
+    description: `Segnala un bug allo staff`,
     data: {
         name: `bugreport`,
         description: `Segnala un bug`,

@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `suggestion`,
+	description: `Fai un suggerimento al server/a Rogi in generale`,
 	data: {
 		name: `suggestion`,
 		description: `Fai un suggerimento`,

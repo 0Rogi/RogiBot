@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `eval`,
+	description: `Esegue un qualsiasi codice javascript sul momento`,
 	data: {
 		name: `eval`,
 		description: `Esegue un codice javascript`,

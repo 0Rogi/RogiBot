@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
     name: `videonotification`,
+    description: `Aggiunge/Rimuove il ruolo <@&1028664506391466024>`,
     data: {
         name: `videonotification`,
         description: `Aggiungi/Rimuovi il ruolo video notification`

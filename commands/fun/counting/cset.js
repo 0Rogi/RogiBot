@@ -2,7 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
     name: `cset`,
-    description: `Modifica il numero attuale di <${config.idcanali.counting}>`,
+    description: `Modifica il numero attuale di <#${config.idcanali.counting}>`,
     data: {
         name: `cset`,
         description: `Imposta un numero in counting`,

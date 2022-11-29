@@ -13,6 +13,8 @@ module.exports = {
 
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
+        if (message.guild != config.idServer.idServer) return;
+        if (message.member.roles.cache.has(config.idruoli.muted) || message.member.roles.cache.has(config.idruoli.tempmuted)) return;
 
         if (message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.member.permissions.has(`ADMINISTRATOR`)) return
         if (message.channel == config.idcanali.nsfw) return
@@ -81,6 +83,7 @@ module.exports = {
                     message.author.send({ embeds: [embed3] }).catch(() => { })
                     client.channels.cache.get(config.idcanali.logs.moderation.spam).send({ embeds: [embed2] })
                     client.channels.cache.get(config.idcanali.logs.moderation.tempmute).send({ embeds: [embed4] })
+                    client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed4] })
                     checkspam.delete(message.author.id)
                     return
                 }

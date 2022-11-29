@@ -4,6 +4,7 @@ const getUserPermissionLevel = require(`${process.cwd()}/functions/helper/getUse
 
 module.exports = {
     name: `unmute`,
+    description: `Smuta un utente nel server`,
     data: {
         name: `unmute`,
         description: `Smuta un utente`,

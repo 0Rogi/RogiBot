@@ -3,6 +3,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `userinfo`,
+    description: `Mostra le informazioni di un utente nel server`,
     data: {
         name: `userinfo`,
         description: `Mostra le informazioni di un utente`,

@@ -4,6 +4,7 @@ const getUserPermissionLevel = require(`${process.cwd()}/functions/helper/getUse
 
 module.exports = {
     name: `unban`,
+    description: `Sbandisce un utente dal server`,
     data: {
         name: `unban`,
         description: `Sbandisce un utente dal server`,

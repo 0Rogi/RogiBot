@@ -1,5 +1,6 @@
 module.exports = {
     name: `lock`,
+    description: `Toglie/Consente a @everyone il permesso di scrivere in un canale`,
     data: {
         name: `lock`,
         description: `Blocca un canale per non far scrivere nessuno`,

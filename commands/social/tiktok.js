@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `tiktok`,
+	description: `Mostra il profilo tiktok di Rogi`,
 	data: {
 		name: `tiktok`,
 		description: `Mostra il profilo tiktok di Rogi`,

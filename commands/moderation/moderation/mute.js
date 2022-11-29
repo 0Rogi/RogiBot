@@ -5,6 +5,7 @@ const getUserPermissionLevel = require(`${process.cwd()}/functions/helper/getUse
 
 module.exports = {
     name: `mute`,
+    description: `Muta permanentemente un utente nel server`,
     data: {
         name: `mute`,
         description: `Muta un utente`,

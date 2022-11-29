@@ -3,6 +3,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
     name: `lockdown`,
+    description: `Attiva/Disattiva il sistema di lockdown del server`,
     data: {
         name: `lockdown`,
         description: `Attiva il sistema di lockdown del server`

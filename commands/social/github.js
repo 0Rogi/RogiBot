@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `github`,
+	description: `Mostra il profilo github di Rogi`,
 	data: {
 		name: `github`,
 		description: `Mostra il profilo github di Rogi`,

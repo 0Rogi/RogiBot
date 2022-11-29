@@ -1,5 +1,6 @@
 module.exports = {
     name: `emojify`,
+    description: `Trasforma il messaggio in emoji`,
     data: {
         name: `emojify`,
         description: `Trasforma il testo in emoji`,

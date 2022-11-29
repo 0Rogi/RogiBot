@@ -4,6 +4,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
     name: `pornhub`,
+    description: `Cerca video 18+`,
     data: {
         name: `pornhub`,
         description: `test`,

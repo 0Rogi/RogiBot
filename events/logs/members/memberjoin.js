@@ -20,6 +20,7 @@ module.exports = {
         database.collection(`UserStats`).find({ id: member.id }).toArray(async function (err, result) {
             if (!result[0]) {
                 client.channels.cache.get(config.idcanali.logs.members.join).send({ embeds: [embed] })
+                client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed] })
             } else if (result[0]) {
                 let roles = ``
                 await result[0].roles.forEach(role => {

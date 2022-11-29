@@ -4,6 +4,7 @@ const DiscordVoice = require(`@discordjs/voice`);
 
 module.exports = {
     name: `tts`,
+    description: `Parla con il bot in vocale`,
     data: {
         name: `tts`,
         description: `Permette di far parlare il bot in vocale`,

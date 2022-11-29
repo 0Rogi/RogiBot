@@ -14,7 +14,7 @@ module.exports = function unmute() {
                     user.roles.remove(config.idruoli.tempmuted)
                     let embed3 = new Discord.MessageEmbed()
                         .setTitle(`🔊 UNMUTE 🔊`)
-                        .setColor(`RED`)
+                        .setColor(`GREEN`)
                         .setThumbnail(user.displayAvatarURL({ dynamic: true, format: `png`, size: 512 }))
                         .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
                         .addField(`🔨 Moderatore:`, `Nome: **${client.user.username}**, ID: **${client.user.id}**\n||${client.user.toString()}||`)

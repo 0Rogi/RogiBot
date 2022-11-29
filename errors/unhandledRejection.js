@@ -4,10 +4,11 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 module.exports = {
     name: `unhandledRejection`,
     async execute(err) {
+        if (err.stack.toLowerCase().includes(`yt-channel-info`)) return;
         let embed = new Discord.MessageEmbed()
-            .setTitle(`⚠️ERRORE⚠️`)
-            .addField(`⏰Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-            .addField(`📛Errore:`, err.stack ? `${err.stack.slice(0, 900)}` : `${err.slice(0, 900)}`)
+            .setTitle(`⚠️ ERRORE ⚠️`)
+            .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+            .addField(`📛 Errore:`, err.stack ? `${err.stack.slice(0, 900)}` : `${err.slice(0, 900)}`)
             .setThumbnail(`https://i.imgur.com/ULYfVp2.png`)
             .setColor(`RED`)
         let button = new Discord.MessageButton()

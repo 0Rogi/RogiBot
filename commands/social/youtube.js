@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `youtube`,
+	description: `Mostra il canale youtube di Rogi`,
 	data: {
 		name: `youtube`,
 		description: `Mostra il canale youtube di Rogi`,

@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `time`,
+	description: `Mostra l'ora attuale`,
 	data: {
 		name: `time`,
 		description: `Mostra l'ora attuale`,

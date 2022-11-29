@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `invite`,
+	description: `Mostra l'invito del server`,
 	data: {
 		name: `invite`,
 		description: `Mostra l'invito del server`,

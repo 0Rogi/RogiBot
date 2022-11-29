@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `snipe`,
+    description: `Mostra l'ultimo messaggio eliminato all'interno del server`,
     data: {
         name: `snipe`,
         description: `Mostra l'ultimo messaggio eliminato nel servere - Disponibile dal livello 30`,

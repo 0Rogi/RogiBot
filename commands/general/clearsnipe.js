@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `clearsnipe`,
+    description: `Nasconde dal comando /snipe l'ultimo messaggio eliminato`,
     data: {
         name: `clearsnipe`,
         description: `Elimina l'ultimo messaggio eliminato dallo snipe`,

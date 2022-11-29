@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `tadd`,
+    description: `Aggiunge un utente al ticker`,
     data: {
         name: `tadd`,
         description: `Aggiunge un utente al ticket`,

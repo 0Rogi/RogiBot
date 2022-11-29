@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
     name: `ptopic`,
+    descritpion: `Cambia la descrizione di un tuo canale privato`,
     data: {
         name: `ptopic`,
         description: `Modifica la descrizione del canale testuale`,

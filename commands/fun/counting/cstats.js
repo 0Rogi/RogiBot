@@ -2,7 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
     name: `cstats`,
-    description: `Mostra le statistiche generali del server, di counting`,
+    description: `Mostra le statistiche generali del server, di <#${config.idcanali.counting}>`,
     data: {
         name: `cstats`,
         description: `Mostra le statistiche del server sul counting`

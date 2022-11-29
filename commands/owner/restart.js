@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `restart`,
+	descritpion: `Riavvia il bot`,
 	data: {
 		name: `restart`,
 		description: `Restarta il bot`,

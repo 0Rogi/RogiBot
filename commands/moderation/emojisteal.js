@@ -1,5 +1,6 @@
 module.exports = {
     name: `emojisteal`,
+    description: `"Ruba" un emoji da un altro server attraverso l'ID`,
     data: {
         name: `emojisteal`,
         description: `Ruba un'emoji dall'ID`,

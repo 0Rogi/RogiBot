@@ -7,7 +7,9 @@ module.exports = {
 
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
-
+        if (message.guild != config.idServer.idServer) return;
+        if (message.member.roles.cache.has(config.idruoli.muted) || message.member.roles.cache.has(config.idruoli.tempmuted)) return;
+        
         if (message.embeds[0]?.type == `auto_moderation_message`) {
             let channel;
             let keyword;
@@ -62,6 +64,17 @@ module.exports = {
                     .addField(`⏰ Tempo:`, `10 minuti`, true)
                     .addField(`\u200b`, `\u200b`, true)
                     .addField(`📖 Motivo:`, `Bestemmia`, true)
+                let embed2 = new Discord.MessageEmbed()
+                    .setTitle(`🔇 TEMPMUTE 🔇`)
+                    .setColor(`RED`)
+                    .setThumbnail(message.member.displayAvatarURL({ dynamic: true, format: `png`, size: 512 }))
+                    .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
+                    .addField(`🔨 Moderatore:`, `Nome: **${client.user.username}**, ID: **${client.user.id}**\n||${client.user.toString()}||`)
+                    .addField(`👤 Utente:`, `Nome: **${message.author.username}**, ID: **${message.author.id}**\n||${message.member.toString()}||`)
+                    .addField(`⏰ Tempo:`, `10 minuti`)
+                    .addField(`📖 Motivo:`, `Bestemmia`)
+                client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed2] })
+                client.channels.cache.get(config.idcanali.logs.moderation.tempmute).send({ embeds: [embed2] })
                 client.channels.cache.get(channel).send({ embeds: [embed] })
             }
             let embed = new Discord.MessageEmbed()
@@ -74,7 +87,6 @@ module.exports = {
                 .setColor(`RED`)
                 .setThumbnail(message.member.displayAvatarURL({ dynamic: true }))
             client.channels.cache.get(config.idcanali.logs.moderation.badwords).send({ embeds: [embed] })
-            // message.delete()
         }
     }
 }

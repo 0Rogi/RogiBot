@@ -5,6 +5,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
     name: `porn`,
+    description: `Fa vedere contenuti 18+`,
     data: {
         name: `porn`,
         description: `Comandi nsfw`,

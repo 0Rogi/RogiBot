@@ -2,6 +2,7 @@ const databasebackup = require(`${process.cwd()}/functions/moderation/databaseba
 
 module.exports = {
     name: `backup`,
+    description: `Esegue il backup di tutto il database`,
     data: {
         name: `backup`,
         description: `Esegue il backup del database`

@@ -4,6 +4,7 @@ const getUserPermissionLevel = require(`${process.cwd()}/functions/helper/getUse
 
 module.exports = {
     name: `kick`,
+    description: `Espelle un utente dal server`,
     data: {
         name: `kick`,
         description: `Espelle un utente dal server`,

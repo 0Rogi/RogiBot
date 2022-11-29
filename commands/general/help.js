@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `help`,
+    description: `Mostra tutti i comandi del bot`,
     data: {
         name: `help`,
         description: `Mostra i comandi del bot`,
@@ -73,6 +74,9 @@ module.exports = {
             case 0: {
                 command.permissionlevel = `_Tutti Possono Usarlo_`
             } break
+            case 0.5: {
+                command.permissionlevel = `Almeno <@&${config.idruoli.partnermanager}>`
+            } break
             case 1: {
                 command.permissionlevel = `Almeno <@&${config.idruoli.helper}>`
             } break
@@ -86,12 +90,21 @@ module.exports = {
                 command.permissionlevel = `Almeno <@&${config.idruoli.owner}>`
             } break
         }
+        let channels = ``;
+        command.allowedchannels.forEach(c => {
+            channels += `<#${c}>\n`
+        })
+        if (command.requirement == `none`) command.requirement = `_Nessun Requisito Necessario_`
+        if (command.allowedchannels.includes(`ALL`)) channels = `_Tutti i Canali_`
         let embed = new Discord.MessageEmbed()
             .setTitle(`/${command.name}`)
             .setColor(`YELLOW`)
-            .addField(`⚔️ Livello di Permesso:`, command.permissionlevel, true)
+            .addField(`📋 Utilizzo:`, command.description || `_Nessuna Descrizione_`, true)
             .addField(`\u200b`, `\u200b`, true)
-            .addField(`📋 Utilizzo:`, command.data.description.toString() || "a", true)
-        interaction.reply({ embeds: [embed] })
+            .addField(`⚔️ Livello di Permesso:`, command.permissionlevel || `_Tutti Possono Usarlo_`, true)
+            .addField(`🚨 Requisito Necessario:`, command.requirement || `_Nessun Requisito Necessario_`, true)
+            .addField(`\u200b`, `\u200b`, true)
+            .addField(`⚓ Canali Concessi`, channels || `_Tutti i Canali_`, true);
+        interaction.reply({ embeds: [embed] });
     }
 }

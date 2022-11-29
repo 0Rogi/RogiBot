@@ -6,6 +6,7 @@ const getUserPermissionLevel = require(`${process.cwd()}/functions/helper/getUse
 
 module.exports = {
     name: `tempmute`,
+    description: `Muta temporaneamente un utente nel server`,
     data: {
         name: `tempmute`,
         description: `Muta temporaneamente un utente`,

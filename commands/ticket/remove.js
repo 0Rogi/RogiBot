@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `tremove`,
+    description: `Rimuove un utente dal ticket`,
     data: {
         name: `tremove`,
         description: `Rimuove un utente dal ticket`,

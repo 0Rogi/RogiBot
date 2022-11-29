@@ -5,6 +5,7 @@ const createTranscript = require(`${process.cwd()}/functions/transcripts/createt
 
 module.exports = {
     name: `clear`,
+    description: `Cancella dei messaggi contemporaneamente, anche di un solo utente specifico`,
     data: {
         name: `clear`,
         description: `Cancella dei messaggi`,
@@ -82,15 +83,14 @@ module.exports = {
                     .addField(`⚓ Canale`, `Nome: **#${interaction.channel.name}** - ID: **${interaction.channel.id}**\n||${interaction.channel.toString()}||`)
                     .addField(`👤 Utente:`, `Nome: **${user.username}** - ID: **${user.id}**\n||${user.toString()}||`)
                     .setColor(`RED`);
-                if (interaction.channel != `966262681621381170`) {
+                if (interaction.channel != config.idcanali.logs.errors) {
                     await client.channels.cache.get(config.idcanali.logs.moderation.clear).send({ embeds: [embed], files: [`${process.cwd()}/clear${interaction.user.id}.txt`] });
                 }
-                interaction.channel.bulkDelete(count, true);
             })
 
             let embed = new Discord.MessageEmbed()
                 .setAuthor({ name: `[CLEAR] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
-                .setDescription(`**${i.toString()} messaggi di ${user.toString()}** sono stati **eliminati**, all'interno degli **ultimi ${count.toString()} messaggi** di questo canale`)
+                .setDescription(`**${messagesfound.length.toString()} messaggi di ${user.toString()}** sono stati **eliminati**, all'interno degli **ultimi ${count.toString()} messaggi** di questo canale`)
                 .setColor(`PURPLE`);
             interaction.editReply({ embeds: [embed] });
             return;
@@ -112,7 +112,7 @@ module.exports = {
                         .addField(`🔨 Moderatore:`, `Nome: **${interaction.member.user.username}** - ID: **${interaction.member.user.id}**\n||${interaction.member.toString()}||`)
                         .addField(`⚓ Canale`, `Nome: **#${interaction.channel.name}** - ID: **${interaction.channel.id}**\n||${interaction.channel.toString()}||`)
                         .setColor(`RED`);
-                    if (interaction.channel != `966262681621381170`) {
+                    if (interaction.channel != config.idcanali.logs.errors) {
                         await client.channels.cache.get(config.idcanali.logs.moderation.clear).send({ embeds: [embed], files: [`${process.cwd()}/clear${interaction.user.id}.txt`] });
                     }
                     interaction.channel.bulkDelete(count, true);

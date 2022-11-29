@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `maintenance`,
+    description: `Attiva/Disattiva lo stato di manutenzione`,
     data: {
         name: `maintenance`,
         description: `Imposta lo stato di manutenzione del bot`,

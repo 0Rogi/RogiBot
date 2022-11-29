@@ -3,6 +3,7 @@ const moment = require(`moment`);
 
 module.exports = {
     name: `partner`,
+    description: `Esegue una partenrship`,
     data: {
         name: `partner`,
         description: `Esegue una partnership`,

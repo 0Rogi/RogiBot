@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `roleinfo`,
+	description: `Mostra informazioni su un ruolo del server`,
 	data: {
 		name: `roleinfo`,
 		description: `Mostra informazioni su un ruolo`,

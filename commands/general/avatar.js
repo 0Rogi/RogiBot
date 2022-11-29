@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `avatar`,
+    description: `Mostra l'avatar e il banner di un utente`,
     data: {
         name: `avatar`,
         description: `Mostra l'avatar di un utente`,

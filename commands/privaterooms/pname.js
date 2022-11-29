@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
     name: `pname`,
+    description: `Cambia il nome di un tuo canale privato`,
     data: {
         name: `pname`,
         description: `Imposta il nome del tuo canale privato`,

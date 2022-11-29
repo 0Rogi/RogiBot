@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `shutdown`,
+	description: `Spegne il bot`,
 	data: {
 		name: `shutdown`,
 		description: `Spegne il bot`,

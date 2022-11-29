@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `channelinfo`,
+	description: `Mostra informazioni su un canale del server`,
 	data: {
 		name: `channelinfo`,
 		description: `Mostra informazioni su un canale`,

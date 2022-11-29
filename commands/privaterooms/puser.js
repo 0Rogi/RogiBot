@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
     name: `puser`,
+    description: `Aggiunge/Rimuove un utente dal tuo canale privato`,
     data: {
         name: `puser`,
         description: `Aggiunge/Rimuove un utente dalla tua stanza privata`,

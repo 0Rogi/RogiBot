@@ -3,6 +3,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `ping`,
+    description: `Mostra alcune informazioni sul bot`,
     data: {
         name: `ping`,
         description: `Comando per vedere informazioni sul bot`,

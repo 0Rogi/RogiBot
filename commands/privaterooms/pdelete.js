@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
     name: `pdelete`,
+    description: `Elimina tutti i tuoi canali privati`,
     data: {
         name: `pdelete`,
         description: `Elimina i tuoi canali privati`

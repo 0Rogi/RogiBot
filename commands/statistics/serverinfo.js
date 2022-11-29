@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `serverinfo`,
+	description: `Mostra informazioni su questo server`,
 	data: {
 		name: `serverinfo`,
 		description: `Mostra informazioni sul server`,

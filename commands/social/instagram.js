@@ -2,6 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
 	name: `instagram`,
+	description: `Mostra il profilo instagram di Rogi`,
 	data: {
 		name: `instagram`,
 		description: `Mostra il profilo instagram di Rogi`,

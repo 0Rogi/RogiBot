@@ -5,6 +5,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = {
     name: `tclose`,
+    description: `Chiude un ticket`,
     data: {
         name: `tclose`,
         description: `Chiude un ticket`,
