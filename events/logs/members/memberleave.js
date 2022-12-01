@@ -4,22 +4,22 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 module.exports = {
     name: `guildMemberRemove`,
     async execute(member) {
-        if (member.guild != config.idServer.idServer) return
+        if (member.guild != config.idServer.idServer) return;
 
-        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(member.id)) return
-        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(member.id)) return
+        if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(member.id)) return;
+        if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(member.id)) return;
 
         let embed = new Discord.MessageEmbed()
             .setTitle(`🙁 Utente Uscito 🙁`)
             .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
             .addField(`👤 Utente:`, `Nome: **${member.user.username}**, ID: **${member.id}**\n||${member.toString()}||`)
             .addField(`👀 Account creato il:`, `${moment(member.user.createdAt).format(`ddd DD MMM YYYY`)}`)
-            .addField(`📥 Entrato il:`, `${moment(member.user.joinAt).format(`ddd DD MMM YYYY`)}`)
+            .addField(`📥 Entrato il:`, `${moment(member.joinedAt).format(`ddd DD MMM YYYY`)}`)
             .setThumbnail(member.displayAvatarURL({ dynamic: true }))
-            .setColor(`RED`)
+            .setColor(`RED`);
 
-        client.channels.cache.get(config.idcanali.logs.members.leave).send({ embeds: [embed] })
-        client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed] })
+        client.channels.cache.get(config.idcanali.logs.members.leave).send({ embeds: [embed] });
+        client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed] });
 
         database.collection(`UserStats`).find({ id: member.id }).toArray(function (err, result) {
             if (!result[0]) {

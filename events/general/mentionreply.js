@@ -7,6 +7,7 @@ module.exports = {
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return;
 
         if (message.guild != config.idServer.idServer) return;
+        if (message.author.bot) return;
 
         let mention = false;
         if (message.mentions) {
@@ -26,7 +27,7 @@ module.exports = {
                     message.channel.send({ content: message.author.toString(), allowedMentions: { users: [message.author.id], roles: [] } });
                     message.channel.send({ content: message.author.toString(), allowedMentions: { users: [message.author.id], roles: [] } });
                     message.channel.send({ content: message.author.toString(), allowedMentions: { users: [message.author.id], roles: [] } });
-                }, 1000 * 5)
+                }, 1000 * 5);
             }
 
             message.reply(replies[random]);

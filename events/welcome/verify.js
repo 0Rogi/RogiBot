@@ -70,6 +70,7 @@ module.exports = {
                         database.collection(`UserStats`).insertOne({
                             username: interaction.member.user.username, id: interaction.member.id, roles: interaction.member._roles, moderation: {}, leavedAt: 0, levelling: {}
                         })
+                        interaction.member.roles.add(config.idruoli.videonotification);
                     } else if (result[0]) {
                         result[0].roles.forEach(role => {
                             if (role == config.idruoli.serverbooster || role == config.idruoli.unverified) return;
@@ -170,6 +171,7 @@ module.exports = {
                     database.collection(`UserStats`).insertOne({
                         username: interaction.member.user.username, id: interaction.member.id, roles: interaction.member._roles, moderation: {}, leavedAt: 0, levelling: {}
                     })
+                    interaction.member.roles.add(config.idruoli.videonotification);
                 } else if (result[0]) {
                     result[0].roles.forEach(role => {
                         if (role == config.idruoli.serverbooster || role == config.idruoli.unverified) return;

@@ -20,20 +20,22 @@ module.exports = {
 	requirement: `none`,
 	execute(interaction) {
 		interaction.deferReply().then(() => {
-			let role = interaction.options.getRole(`ruolo`)
+			let role = interaction.options.getRole(`ruolo`);
+
 			let embed = new Discord.MessageEmbed()
 				.setTitle(role.name)
 				.setColor(role.hexColor ? role.hexColor : `YELLOW`)
-				.addField(`📛Nome:`, role.name, true)
+				.addField(`📛 Nome:`, role.name, true)
 				.addField(`\u200b`, `\u200b`, true)
-				.addField(`🚨ID:`, role.id.toString(), true)
+				.addField(`🚨 ID:`, role.id.toString(), true)
 			let button1 = new Discord.MessageButton()
 				.setLabel(`Più Informazioni`)
 				.setStyle(`PRIMARY`)
 				.setEmoji(`⬇️`)
-				.setCustomId(`roleinfoplus,${interaction.member.id}`)
-			let row = new Discord.MessageActionRow().addComponents(button1)
-			interaction.editReply({ embeds: [embed], components: [row] })
+				.setCustomId(`roleinfoplus,${interaction.member.id}`);
+			let row = new Discord.MessageActionRow().addComponents(button1);
+
+			interaction.editReply({ embeds: [embed], components: [row] });
 		})
 	}
 } 
