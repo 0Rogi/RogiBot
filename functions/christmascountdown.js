@@ -1,6 +1,9 @@
 module.exports = function christmascountdown() {
 
     let date = new Date().getTime();
+
+    if (new Date().getFullYear() != 2022) return;
+
     let Christmas = new Date(`December 25 2022 00:00:00`).getTime();
 
     let remainingtime = Christmas - date;
