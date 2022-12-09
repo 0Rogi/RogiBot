@@ -8,8 +8,9 @@ module.exports = {
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
         if (message.guild != config.idServer.idServer) return;
+        if (!message.member || !message.author) return;
         if (message.member.roles.cache.has(config.idruoli.muted) || message.member.roles.cache.has(config.idruoli.tempmuted)) return;
-        
+
         if (message.embeds[0]?.type == `auto_moderation_message`) {
             let channel;
             let keyword;

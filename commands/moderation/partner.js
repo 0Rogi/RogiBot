@@ -37,7 +37,18 @@ module.exports = {
         let user = interaction.options.getUser(`utente`);
         let server = interaction.options.getString(`server`);
 
-        if (interaction.guild.members.cache.find(x => x.id == user.id).roles.cache.has(config.idruoli.unverified)) {
+        let member = interaction.guild.members.cache.find(x => x.id == user.id);
+
+        if (!member) {
+            let embed = new Discord.MessageEmbed()
+                .setTitle(`ERRORE`)
+                .setDescription(`*Questo utente non è nel server...*\n*Non puoi eseguire una partner con un utente non nel server!*`)
+                .setColor(`RED`);
+            interaction.editReply({ embeds: [embed] });
+            return;
+        }
+
+        if (member.roles.cache.has(config.idruoli.unverified)) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`ERRORE`)
                 .setDescription(`*Questo utente non è verificato...*\n*Non puoi eseguire una partner con un utente non verificato!*`)
