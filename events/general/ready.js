@@ -83,9 +83,6 @@ module.exports = {
         setInterval(deleteuserfromdb, 1000 * 60 * 5);
         setInterval(statusUpdate, 1000 * 60 * 10);
         setInterval(leaveVoiceChannel, 1000);
-
-        checkBadges();
-
         setInterval(checkBadges, 1000 * 60 * 10);
 
         setInterval(christmascountdown, 1000 * 60 * 5);

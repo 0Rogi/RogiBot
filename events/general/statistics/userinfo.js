@@ -174,7 +174,7 @@ module.exports = {
 
                         database.collection(`UserStats`).updateOne({ id: interaction.customId.split(`,`)[2] }, {
                             $inc: {
-                                'customprofile?.likes': -1
+                                'customprofile.likes': -1
                             }
                         });
 
@@ -188,7 +188,7 @@ module.exports = {
 
                         database.collection(`UserStats`).updateOne({ id: interaction.member.user.id }, {
                             $set: {
-                                'customprofile?.likeduser': newarray,
+                                'customprofile.likeduser': newarray,
                             }
                         });
                     } else {
@@ -200,7 +200,7 @@ module.exports = {
 
                         database.collection(`UserStats`).updateOne({ id: interaction.customId.split(`,`)[2] }, {
                             $inc: {
-                                'customprofile?.likes': 1
+                                'customprofile.likes': 1
                             }
                         });
 
@@ -209,7 +209,7 @@ module.exports = {
 
                         database.collection(`UserStats`).updateOne({ id: interaction.member.user.id }, {
                             $set: {
-                                'customprofile?.likeduser': newarray,
+                                'customprofile.likeduser': newarray,
                             }
                         });
                     }
