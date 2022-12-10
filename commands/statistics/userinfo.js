@@ -27,8 +27,8 @@ module.exports = {
                 .setTitle(user.user.tag)
                 .setThumbnail(user.displayAvatarURL({ dynamic: true }))
                 .setColor(!user?.displayHexColor || user?.displayHexColor == "#000000" ? "#ffffff" : user?.displayHexColor);
-            
-                let status = user.presence?.activities;
+
+            let status = user.presence?.activities;
             if (status?.[0]) {
                 if (status[0]?.emoji?.name && status[0]?.state) {
                     embed.setDescription(`${status[0]?.emoji.id ? `<:${status[0]?.emoji?.name}:${status[0]?.emoji.id}>` : status[0]?.emoji?.name ? status[0]?.emoji?.name : ``} ${status[0]?.state}`);
@@ -63,13 +63,23 @@ module.exports = {
 
             let roles = ``;
             user._roles.forEach(r => {
-                if (r == `947935270622351390` || r == `947935224812158997` || r == `956939692857753720` || r == `848596250730823741` || r == `839456022925541376` || r == `741616767079809024` || r == `813840229152063540` || r == `814568422431522817`) return
-                roles += `<@&${r}>`;
+                roles += `<@&${r}> - `;
             });
 
+            if (roles != ``) roles = roles.slice(0, -3);
+
             if (roles == `` || !roles) roles = `_Nessun Ruolo_`;
-            embed.addField(`🎯Ruoli:`, roles);
-            interaction.editReply({ embeds: [embed] });
+            embed.addField(`🎯 Ruoli:`, roles);
+
+            const row = new Discord.MessageActionRow()
+                .addComponents(
+                    new Discord.MessageButton()
+                        .setLabel(`Altra Pagina`)
+                        .setEmoji(`➡️`)
+                        .setStyle(`PRIMARY`)
+                        .setCustomId(`UserInfoOtherPage,${interaction.user.id},${user.user.id}`)
+                )
+            interaction.editReply({ embeds: [embed], components: [row] });
         })
     }
 }

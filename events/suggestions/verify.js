@@ -28,6 +28,13 @@ module.exports = {
                 embed1.setColor(`GREEN`)
                 client.channels.cache.get(config.idcanali.suggest)
                 let userid = embed.footer.text.slice(9)
+
+                database.collection(`UserStats`).updateOne({ id: userid }, {
+                    $inc: {
+                        acceptedsuggests: 1,
+                    }
+                })
+
                 let user = client.users.cache.get(userid)
                 if (!user) return
                 let embeduser = new Discord.MessageEmbed()

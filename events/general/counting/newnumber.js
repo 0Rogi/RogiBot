@@ -73,6 +73,13 @@ module.exports = {
                 }
             }
         })
+
+        database.collection(`UserStats`).updateOne({ id: message.member.id }, {
+            $inc: {
+                countingcorrect: 1,
+            }
+        })
+
         if (number == 69) return message.react(`😏`)
         if (number == 100) return message.react(`💯`)
         if (oldbestnumber < number) return message.react(`☑️`)

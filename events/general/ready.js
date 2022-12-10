@@ -18,6 +18,7 @@ const deleteuserfromdb = require(`${process.cwd()}/functions/moderation/deleteus
 const nightSecurity = require(`${process.cwd()}/functions/moderation/nightsecurity.js`);
 const statusUpdate = require(`${process.cwd()}/functions/general/statusupdate.js`);
 const leaveVoiceChannel = require(`${process.cwd()}/functions/general/leaveVoiceChannel.js`);
+const checkBadges = require(`${process.cwd()}/functions/general/checkbadges.js`);
 
 const christmascountdown = require(`${process.cwd()}/functions/christmascountdown.js`);
 
@@ -83,6 +84,10 @@ module.exports = {
         setInterval(statusUpdate, 1000 * 60 * 10);
         setInterval(leaveVoiceChannel, 1000);
 
-        setInterval(christmascountdown, 1000 * 60 * 5)
+        checkBadges();
+
+        setInterval(checkBadges, 1000 * 60 * 10);
+
+        setInterval(christmascountdown, 1000 * 60 * 5);
     }
 }
