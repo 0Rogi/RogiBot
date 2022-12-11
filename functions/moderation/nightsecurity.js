@@ -38,7 +38,7 @@ module.exports = async function nightSecurity(enable) {
         everyone.setPermissions([`SEND_MESSAGES`, `VIEW_CHANNEL`, `READ_MESSAGE_HISTORY`, `CONNECT`, `SPEAK`, `USE_VAD`, `STREAM`, `USE_EXTERNAL_EMOJIS`]);
 
         //? Grants helpers to timeout members
-        client.guilds.cache.get(config.idServer.idServer).roles.cache.find(x => x.id == config.idruoli.helper).setPermissions([`MANAGE_NICKNAMES`, `MANAGE_MESSAGES`, `MODERATE_MEMBERS`])
+        // client.guilds.cache.get(config.idServer.idServer).roles.cache.find(x => x.id == config.idruoli.helper).setPermissions([`MANAGE_NICKNAMES`, `MANAGE_MESSAGES`, `MODERATE_MEMBERS`])
 
         //? Send message
         let phrases = [`Buonanotte a tutti!`, `Notte!`, `Ed anche questo giorno è passato..., buonanotte!`, `Oggi sono stanchissimo, buonanotte!`, `Oggi mi avete fatto lavorare davvero molto... vado a dormire ora, buonanotte!`]
@@ -82,7 +82,7 @@ module.exports = async function nightSecurity(enable) {
         everyone.setPermissions([`SEND_MESSAGES`, `VIEW_CHANNEL`, `READ_MESSAGE_HISTORY`, `CONNECT`, `SPEAK`, `USE_VAD`, `STREAM`, `USE_EXTERNAL_EMOJIS`, `SEND_MESSAGES_IN_THREADS`]);
 
         //? Remove helpers permission to timeout members
-        client.guilds.cache.get(config.idServer.idServer).roles.cache.find(x => x.id == config.idruoli.helper).setPermissions([`MANAGE_NICKNAMES`, `MANAGE_MESSAGES`])
+        // client.guilds.cache.get(config.idServer.idServer).roles.cache.find(x => x.id == config.idruoli.helper).setPermissions([`MANAGE_NICKNAMES`, `MANAGE_MESSAGES`])
 
         //? Send the message
         let phrases = [`Buongiorno a tutti, come va?`, `Salve mondo! Come va la vita oggi?`, `Buongiornissimo! Come state?`, `Buongiorno guys||...and girls||, tutto bene?`, `Salve! Tutto bene?`]

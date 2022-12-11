@@ -32,7 +32,7 @@ module.exports = {
             }
             if (ticket) {
                 let user = interaction.guild.members.cache.find(x => x.id == interaction.options.getUser(`utente`)?.id)
-                if (user.roles.cache.has(config.idruoli.staff)) {
+                if (user.permissions.has(`MANAGE_MESSAGES`)) {
                     let embed = new Discord.MessageEmbed()
                         .setTitle(`Errore`)
                         .setColor(`RED`)

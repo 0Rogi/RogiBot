@@ -14,7 +14,7 @@ module.exports = {
 
             if (interaction.customId != `CandidaturaPartnerManager`) return;
 
-            if (interaction.member.roles.cache.has(`741616767079809024`)) return interaction.reply({ content: `Vuoi essere depexato a <@&985910805730054154> 🤨`, ephemeral: true });
+            if (interaction.member.permissions.has(`MANAGE_MESSAGES`)) return interaction.reply({ content: `Vuoi essere depexato a <@&985910805730054154> 🤨`, ephemeral: true });
             if (interaction.member.roles.cache.has(`985910805730054154`)) return interaction.reply({ content: `Ma... sei già partner manager...`, ephemeral: true });
 
             const modal = new Discord.Modal()

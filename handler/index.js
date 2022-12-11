@@ -78,7 +78,7 @@ client.on(`interactionCreate`, async interaction => {
     if (command.name == `eval` && interaction.guild == config.idServer.idServerTest && interaction.member.permissions.has(`ADMINISTRATOR`)) return command.execute(interaction)
     if (command.name == `test` && interaction.guild == config.idServer.idServerTest) return command.execute(interaction)
 
-    if (!command.allowedchannels.includes(`ALL`) && !command.allowedchannels.includes(interaction.channel.id) && !interaction.member.roles.cache.has(config.idruoli.staff) && interaction.channel != config.idcanali.testing) {
+    if (!command.allowedchannels.includes(`ALL`) && !command.allowedchannels.includes(interaction.channel.id) && !interaction.permissions.has(`MANAGE_MESSAGES`) && interaction.channel != config.idcanali.testing) {
         interaction.deferReply({ ephemeral: true }).then(() => {
             let text = ``;
             command.allowedchannels.forEach(channel => {

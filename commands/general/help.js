@@ -78,7 +78,7 @@ module.exports = {
                 command.permissionlevel = `Almeno <@&${config.idruoli.partnermanager}>`
             } break
             case 1: {
-                command.permissionlevel = `Almeno <@&${config.idruoli.helper}>`
+                command.permissionlevel = `Almeno <@&${config.idruoli.moderator}>`
             } break
             case 2: {
                 command.permissionlevel = `Almeno <@&${config.idruoli.moderator}>`

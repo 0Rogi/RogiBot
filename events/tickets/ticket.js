@@ -111,7 +111,7 @@ module.exports = {
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         },
                         {
-                            id: config.idruoli.staff,
+                            id: config.idruoli.moderator,
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         }
                     ])
@@ -126,7 +126,7 @@ module.exports = {
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         },
                         {
-                            id: config.idruoli.staff,
+                            id: config.idruoli.moderator,
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         },
                         {

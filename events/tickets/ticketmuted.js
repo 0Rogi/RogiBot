@@ -69,7 +69,7 @@ module.exports = {
                 interaction.reply({ content: `<a:error:966371274853089280> Hai già un ticket aperto! Non puoi aprirne due! ${interaction.guild.channels.cache.find(x => x.id == ticket.channelid)?.toString()}`, ephemeral: true })
             }
         } else if (interaction.customId == `TicketsMutedAccept`) {
-            if (!interaction.member.roles.cache.has(config.idruoli.staff)) return interaction.reply({ content: `<a:error:966371274853089280> Solo lo staff puo' accettare i ticket di supporto!`, ephemeral: true })
+            if (!interaction.member.permissions.has(`MANAGE_MESSAGES`)) return interaction.reply({ content: `<a:error:966371274853089280> Solo lo staff puo' accettare i ticket di supporto!`, ephemeral: true })
             let ticket = await serverstats.tickets.find(ticket => ticket.channelid == interaction.channel.id)
             if (ticket) {
                 interaction.channel.permissionOverwrites.create(interaction.guild.members.cache.find(x => x.id == ticket.userid), { SEND_MESSAGES: true, VIEW_CHANNEL: true, ATTACH_FILES: true })

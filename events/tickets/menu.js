@@ -66,7 +66,7 @@ module.exports = {
                             },
                             {
                                 label: `Posso far parte dello staff?`,
-                                description: `Chiedi di diventare Mod o Helper`,
+                                description: `Chiedi di diventare Staffer`,
                                 value: `wantstaff`,
                                 emoji: `🔹`
                             },
@@ -165,8 +165,8 @@ module.exports = {
                         .setTitle(`👥 Domande allo staff\n🔨 Diventare uno staffer`)
                         .setDescription(`🧠 Prima di parlare con lo staff, cerca di risolvere il tuo problema da solo\nEcco dei piccoli consigli **che possono** aiutarti prima di aprire il ticket`)
                         .setColor(`YELLOW`)
-                        .addField(`__❗ Vuoi diventare un helper?__`, `Se desideri diventare un helper, appena ci sarà bisogno di un nuovo staffer, potrai fare la candidatura!`)
-                        .addField(`__🛡️ Vuoi diventare moderatore?__`, `Per poter diventare moderatore, devi prima essere helper, dopo di che se Rogi lo vorrà, potrai essere un moderatore`)
+                        .addField(`__❗ Vuoi diventare un moderatore?__`, `Se desideri diventare un moderatore, appena ci sarà bisogno di un nuovo staffer, potrai fare la candidatura!`)
+                        .addField(`__🛡️ Vuoi diventare admin?__`, `Per poter diventare admin, devi prima essere moderatore, dopo di che se Rogi lo vorrà, potrai essere un admin`)
                         .addField(`😩 Non hai ancora risolto il tuo problema?`, `Se non hai ancora risolto il problema, premi il **pulsante** qui sotto e apri effettivamente il ticket per parlare con lo staff`)
                     let button1 = new Discord.MessageButton()
                         .setStyle(`DANGER`)
@@ -231,7 +231,7 @@ module.exports = {
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         },
                         {
-                            id: config.idruoli.staff,
+                            id: config.idruoli.moderator,
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         }
                     ])

@@ -16,7 +16,7 @@ module.exports = {
         if (message.guild != config.idServer.idServer) return;
         if (message.member.roles.cache.has(config.idruoli.muted) || message.member.roles.cache.has(config.idruoli.tempmuted)) return;
 
-        if (message.author.bot || message.member.roles.cache.has(config.idruoli.staff) || message.member.permissions.has(`ADMINISTRATOR`)) return
+        if (message.author.bot || message.member.permissions.has(`MANAGE_MESSAGES`) || message.member.permissions.has(`ADMINISTRATOR`)) return
         if (message.channel == config.idcanali.nsfw) return
         if (checkspam.has(message.author.id)) {
             let user = checkspam.get(message.author.id)

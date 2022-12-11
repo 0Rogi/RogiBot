@@ -19,7 +19,7 @@ module.exports = function checkbadges() {
             memberbadges.push(`friend`);
         }
 
-        if (member.roles.cache.has(config.idruoli.staff)) {
+        if (member.permissions.has(`MANAGE_MESSAGES`)) {
             memberbadges.push(`staff`);
         }
 
