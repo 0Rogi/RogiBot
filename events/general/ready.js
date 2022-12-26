@@ -20,7 +20,7 @@ const statusUpdate = require(`${process.cwd()}/functions/general/statusupdate.js
 const leaveVoiceChannel = require(`${process.cwd()}/functions/general/leaveVoiceChannel.js`);
 const checkBadges = require(`${process.cwd()}/functions/general/checkbadges.js`);
 
-const christmascountdown = require(`${process.cwd()}/functions/christmascountdown.js`);
+const newyearcountdown = require(`${process.cwd()}/functions/newyearcountdown.js`);
 
 module.exports = {
     name: `ready`,
@@ -85,6 +85,6 @@ module.exports = {
         setInterval(leaveVoiceChannel, 1000);
         setInterval(checkBadges, 1000 * 60 * 10);
 
-        setInterval(christmascountdown, 1000 * 60 * 5);
+        setInterval(newyearcountdown, 1000 * 60 * 5);
     }
 }
