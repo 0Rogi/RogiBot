@@ -68,9 +68,9 @@ module.exports = async function events() {
 
     if (date.getMonth() == 0 && date.getDate() == 1 && date.getHours() == 0 && date.getMinutes() == 0) {
         let embed = new Discord.MessageEmbed()
-            .setTitle(`🎉 BUON ${date.getFullYear.toString()} 🎊`)
+            .setTitle(`🎉 BUON ${date.getFullYear().toString()} 🎊`)
             .setColor(`YELLOW`)
-            .setDescription(`Un altro anno è passato... Buon **${date.getFullYear.toString()}** a tutti!`);
+            .setDescription(`Un altro anno è passato... Buon **${date.getFullYear().toString()}** a tutti!`);
         client.channels.cache.get(config.idcanali.generaltxt).send({ embeds: [embed] });
     }
 }
