@@ -1,4 +1,5 @@
 const moment = require(`moment`);
+const getUserPermissionLevel = require("../../../functions/helper/getUserPermissionLevel");
 
 module.exports = {
     name: `interactionCreate`,
@@ -50,6 +51,8 @@ module.exports = {
                     if (customprofile?.socialmedia?.reddit) socialmediatext += `<:reddit:1050834465322192978> [Apri Profilo](https://reddit.com/users/${customprofile?.socialmedia?.reddit})\n`;
 
                     if (socialmediatext == ``) socialmediatext = `_Nessun Social Media Impostato_`;
+                    permissionlevel = getUserPermissionLevel(client.guilds.cache.get(`602019987279839274`).members.cache.find(x => x.id == interaction.customId.split(`,`)[2]));
+                    if (!client.guilds.cache.get(`602019987279839274`).members.cache.find(x => x.id == interaction.customId.split(`,`)[2]).roles.cache.has(`853313137737596998`) && !permissionlevel >= 2) socialmediatext = `_Nessun Social Media Impostato_`;
 
                     const embed = new Discord.MessageEmbed()
                         .setTitle(member.user.tag)
