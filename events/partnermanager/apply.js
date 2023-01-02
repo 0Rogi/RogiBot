@@ -14,7 +14,7 @@ module.exports = {
 
             if (interaction.customId != `CandidaturaPartnerManager`) return;
 
-            if (interaction.member.permissions.has(`MANAGE_MESSAGES`)) return interaction.reply({ content: `Vuoi essere depexato a <@&985910805730054154> 🤨`, ephemeral: true });
+            // if (interaction.member.permissions.has(`MANAGE_MESSAGES`)) return interaction.reply({ content: `Vuoi essere depexato a <@&985910805730054154> 🤨`, ephemeral: true });
             if (interaction.member.roles.cache.has(`985910805730054154`)) return interaction.reply({ content: `Ma... sei già partner manager...`, ephemeral: true });
 
             const modal = new Discord.Modal()
@@ -24,27 +24,37 @@ module.exports = {
                 .setCustomId(`question1`)
                 .setLabel(`Quanti anni hai?`)
                 .setStyle(`SHORT`)
-                .setRequired(true);
+                .setRequired(true)
+                .setMinLength(1)
+                .setMaxLength(1024);
             let question2 = new Discord.TextInputComponent()
                 .setCustomId(`question2`)
                 .setLabel(`Quanto tempo hai da dedicare al server?`)
                 .setStyle(`SHORT`)
-                .setRequired(true);
+                .setRequired(true)
+                .setMinLength(1)
+                .setMaxLength(1024);
             let question3 = new Discord.TextInputComponent()
                 .setCustomId(`question3`)
                 .setLabel(`Quante partner faresti in media?`)
                 .setStyle(`SHORT`)
-                .setRequired(true);
+                .setRequired(true)
+                .setMinLength(1)
+                .setMaxLength(1024);
             let question4 = new Discord.TextInputComponent()
                 .setCustomId(`question4`)
                 .setLabel(`Perchè dovremmo accettare proprio te?`)
                 .setStyle(`SHORT`)
-                .setRequired(true);
+                .setRequired(true)
+                .setMinLength(1)
+                .setMaxLength(1024);
             let question5 = new Discord.TextInputComponent()
                 .setCustomId(`question5`)
                 .setLabel(`Parlaci un po' di te (facoltativo)`)
                 .setStyle(`PARAGRAPH`)
-                .setRequired(false);
+                .setRequired(false)
+                .setMinLength(1)
+                .setMaxLength(1024);
 
             let row1 = new Discord.MessageActionRow().addComponents(question1);
             let row2 = new Discord.MessageActionRow().addComponents(question2);
@@ -59,11 +69,20 @@ module.exports = {
         if (interaction.isModalSubmit()) {
             if (interaction.customId == `partnermanagerapply`) {
 
-                let question1 = interaction.fields.getTextInputValue(`question1`);
-                let question2 = interaction.fields.getTextInputValue(`question2`);
-                let question3 = interaction.fields.getTextInputValue(`question3`);
-                let question4 = interaction.fields.getTextInputValue(`question4`);
-                let question5 = interaction.fields.getTextInputValue(`question5`) || `_Nessuna Risposta_`;
+                let question1 = interaction.fields.getTextInputValue(`question1`).trim();
+                let question2 = interaction.fields.getTextInputValue(`question2`).trim();
+                let question3 = interaction.fields.getTextInputValue(`question3`).trim();
+                let question4 = interaction.fields.getTextInputValue(`question4`).trim();
+                let question5 = interaction.fields.getTextInputValue(`question5`).trim() || `_Nessuna Risposta_`;
+
+                if (question1.length <= 0 || question2.length <= 0 || question3.length <= 0 || question4.length <= 0 || question5.length <= 0) {
+                    const embed = new Discord.MessageEmbed()
+                        .setTitle(`❌ ERRORE ❌`)
+                        .setDescription(`_Hai inserito delle risposte non valide_`)
+                        .setColor(`RED`);
+                    interaction.reply({ embeds: [embed], ephemeral: true });
+                    return;
+                }
 
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`🔗 NUOVA CANDIDATURA 🔗`)
