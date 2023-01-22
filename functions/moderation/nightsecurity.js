@@ -17,9 +17,9 @@ module.exports = async function nightSecurity(enable) {
         //? Set limit to voice channels
         client.channels.cache.get(config.idcanali.generalvc).setUserLimit(15)
 
-        //? Disable Members and Subscribers join
-        client.channels.cache.get(config.idcanali.membri).permissionOverwrites.create(config.idServer.idServer, { CONNECT: false })
-        client.channels.cache.get(config.idcanali.iscritti).permissionOverwrites.create(config.idServer.idServer, { CONNECT: false })
+        // //? Disable Members and Subscribers join
+        // client.channels.cache.get(config.idcanali.membri).permissionOverwrites.create(config.idServer.idServer, { CONNECT: false })
+        // client.channels.cache.get(config.idcanali.iscritti).permissionOverwrites.create(config.idServer.idServer, { CONNECT: false })
 
         //? Disable tickets
         let msg = await client.channels.cache.get(config.idcanali.needhelp).messages.fetch(`993212657924579420`)
@@ -61,9 +61,9 @@ module.exports = async function nightSecurity(enable) {
         //? Remove the limit from voice channels
         client.channels.cache.get(config.idcanali.generalvc).setUserLimit(0)
 
-        //? Enable Members and Subscribers join
-        client.channels.cache.get(config.idcanali.membri).permissionOverwrites.create(config.idServer.idServer, { CONNECT: true, SEND_MESSAGES: false })
-        client.channels.cache.get(config.idcanali.iscritti).permissionOverwrites.create(config.idServer.idServer, { CONNECT: true, SEND_MESSAGES: false })
+        // //? Enable Members and Subscribers join
+        // client.channels.cache.get(config.idcanali.membri).permissionOverwrites.create(config.idServer.idServer, { CONNECT: true, SEND_MESSAGES: false })
+        // client.channels.cache.get(config.idcanali.iscritti).permissionOverwrites.create(config.idServer.idServer, { CONNECT: true, SEND_MESSAGES: false })
 
         //? Enable tickets
         let msg = await client.channels.cache.get(config.idcanali.needhelp).messages.fetch(`993212657924579420`)

@@ -82,8 +82,14 @@ module.exports = {
                 //? Give fan role and remove unverified
                 interaction.member.roles.remove(config.idruoli.unverified);
                 interaction.member.roles.add(config.idruoli.fan);
-                return;
 
+                //? DM Member
+                const embeddm = new Discord.MessageEmbed()
+                    .setTitle(`TI SEI VERIFICATO`)
+                    .setDescription(`Ti sei verificato all'interno di **Rogi Discord**.\n\nTi è stato **automaticamente assegnato** il ruolo *@Video Notification* per essere **menzionato ad ogni nuovo video** in <#813375357428170792>, puoi **rimuoverti questo ruolo** attraverso il comando \`/videonotification\`.\n\nInoltre, puoi **customizzare il tuo profilo** attraverso il comando \`/editprofile\``)
+                    .setColor(`GREEN`);
+                interaction.user.send({ embeds: [embeddm] }).catch(() => { });
+                return;
             } else {
 
                 //? Replying to interaction
@@ -184,6 +190,12 @@ module.exports = {
             interaction.member.roles.remove(config.idruoli.unverified);
             interaction.member.roles.add(config.idruoli.fan);
 
+            //? DM Member
+            const embeddm = new Discord.MessageEmbed()
+                .setTitle(`TI SEI VERIFICATO`)
+                .setDescription(`Ti sei verificato all'interno di **Rogi Discord**.\n\nTi è stato **automaticamente assegnato** il ruolo *@Video Notification* per essere **menzionato ad ogni nuovo video** in <#813375357428170792>, puoi **rimuoverti questo ruolo** attraverso il comando \`/videonotification\`.\n\nInoltre, puoi **customizzare il tuo profilo** attraverso il comando \`/editprofile\``)
+                .setColor(`GREEN`);
+            interaction.user.send({ embeds: [embeddm] }).catch(() => { });
         }
     }
 }

@@ -57,23 +57,23 @@ module.exports = {
             return;
         }
 
-        // let done = false;
-        // let donepartnership;
-        // await serverstats?.partnerships?.forEach(p => {
-        //     if (p.user == user.id) {
-        //         done = true;
-        //         donepartnership = p;
-        //     }
-        // });
+        let done = false;
+        let donepartnership;
+        await serverstats?.partnerships?.forEach(p => {
+            if (p.user == user.id) {
+                done = true;
+                donepartnership = p;
+            }
+        });
 
-        // if (done) {
-        //     let embed = new Discord.MessageEmbed()
-        //         .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
-        //         .setDescription(`Una partnership con questo utente è stata **già effettuata**!\n\n[${donepartnership.server}](https://discord.com/channels/602019987279839274/915647768943542312/${donepartnership.message1})`)
-        //         .setColor(`RED`);
-        //     interaction.editReply({ embeds: [embed] });
-        //     return;
-        // }
+        if (done) {
+            let embed = new Discord.MessageEmbed()
+                .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                .setDescription(`Una partnership con questo utente è stata **già effettuata**!\n\n[${donepartnership.server}](https://discord.com/channels/602019987279839274/915647768943542312/${donepartnership.message1})`)
+                .setColor(`RED`);
+            interaction.editReply({ embeds: [embed] });
+            return;
+        }
 
         let id1;
         await client.channels.cache.get(config.idcanali.partnership).send(description).then(m => {

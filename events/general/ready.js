@@ -19,6 +19,7 @@ const nightSecurity = require(`${process.cwd()}/functions/moderation/nightsecuri
 const statusUpdate = require(`${process.cwd()}/functions/general/statusupdate.js`);
 const leaveVoiceChannel = require(`${process.cwd()}/functions/general/leaveVoiceChannel.js`);
 const checkBadges = require(`${process.cwd()}/functions/general/checkbadges.js`);
+const checkpartnerships = require(`${process.cwd()}/functions/moderation/checkpartnerships.js`);
 
 module.exports = {
     name: `ready`,
@@ -82,5 +83,8 @@ module.exports = {
         setInterval(statusUpdate, 1000 * 60 * 10);
         setInterval(leaveVoiceChannel, 1000);
         setInterval(checkBadges, 1000 * 60 * 10);
+        setInterval(checkpartnerships, 1000 * 60 * 10);
+
+
     }
 }

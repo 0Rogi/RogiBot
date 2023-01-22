@@ -21,7 +21,7 @@ module.exports = {
 				new Discord.MessageButton()
 					.setLabel(`Vedi Canale`)
 					.setStyle(`LINK`)
-					.setURL(`https://youtube.com/c/RodariRogi23`)
+					.setURL(`youtube.com/@0Rogi`)
 					.setEmoji(`<:youtube:959490799177977866>`)
 			)
 			interaction.editReply({ embeds: [embed], components: [row] })

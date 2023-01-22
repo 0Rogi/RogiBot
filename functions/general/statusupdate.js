@@ -3,5 +3,5 @@ module.exports = function statusUpdate() {
     let random = Math.floor(Math.random() * status.length);
 
     client.user.setActivity(status[random]);
-    client.user.setStatus(`idle`);
+    client.user.setStatus(`online`);
 }
