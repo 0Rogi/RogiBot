@@ -13,6 +13,18 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply();
 
+        database.collection(`Staff`).find({ id: interaction.user.id }).toArray(function (err, result) {
+            if (!result[0]) {
+                database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, partnerships: 0, actions: 1 });
+            } else if (result[0]) {
+                database.collection(`Staff`).updateOne({ id: interaction.user.id }, {
+                    $inc: {
+                        actions: 1,
+                    }
+                })
+            }
+        })
+
         if (serverstats.lockdown == false) {
             //? Enable Lockdown
             let everyone = interaction.guild.roles.cache.find(r => r.name === `@everyone`);

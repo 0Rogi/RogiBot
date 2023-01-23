@@ -110,5 +110,17 @@ module.exports = {
             .setColor(`YELLOW`);
         interaction.editReply({ embeds: [embed] });
 
+        database.collection(`Staff`).find({ id: interaction.user.id }).toArray(function (err, result) {
+            if (!result[0]) {
+                database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, partnerships: 1, actions: 0 });
+            } else if (result[0]) {
+                database.collection(`Staff`).updateOne({ id: interaction.user.id }, {
+                    $inc: {
+                        partnerships: 1,
+                    }
+                })
+            }
+        })
+
     }
 }

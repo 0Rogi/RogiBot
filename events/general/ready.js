@@ -20,6 +20,7 @@ const statusUpdate = require(`${process.cwd()}/functions/general/statusupdate.js
 const leaveVoiceChannel = require(`${process.cwd()}/functions/general/leaveVoiceChannel.js`);
 const checkBadges = require(`${process.cwd()}/functions/general/checkbadges.js`);
 const checkpartnerships = require(`${process.cwd()}/functions/moderation/checkpartnerships.js`);
+const addStaffInDB = require(`${process.cwd()}/functions/helper/addStaffInDB.js`);
 
 module.exports = {
     name: `ready`,
@@ -85,6 +86,38 @@ module.exports = {
         setInterval(checkBadges, 1000 * 60 * 10);
         setInterval(checkpartnerships, 1000 * 60 * 10);
 
+        setInterval(() => {
+            database.collection(`Staff`).find().toArray(async function (err, result) {
+                if (result.length <= 0) {
+                    addStaffInDB();
+                }
+            })
+        }, 1000 * 60 * 60);
 
+        setInterval(() => {
+            if (new Date().getDay() == 0 && new Date().getHours() == 23 && new Date().getMinutes() == 59 && new Date().getSeconds() == 0) {
+                database.collection(`Staff`).find().toArray(function (err, result) {
+                    if (!result) return;
+
+                    result.forEach(async r => {
+                        const user = await client.users.fetch(r.id)
+                        const embed = new Discord.MessageEmbed()
+                            .setTitle(`Statistiche di ${user.username}`)
+                            .setThumbnail(user.displayAvatarURL({ dynamic: true }))
+                            .setColor(`YELLOW`)
+                            .addField(`Messaggi Questa Settimana:`, r.messages.toString(), true)
+                            .addField(`\u200b`, `\u200b`, true)
+                            .addField(`\u200b`, `\u200b`, true)
+                            .addField(`Partnership`, r.partnerships.toString())
+                            .addField(`\u200b`, `\u200b`, true)
+                            .addField(`Azioni da Staffer`, r.actions.toString());
+                        client.channels.cache.get(config.idcanali.staffstats).send({ embeds: [embed] });
+                        database.collection(`Staff`).deleteOne({ id: r.id });
+                    });
+
+                    addStaffInDB();
+                })
+            }
+        }, 1000)
     }
 }

@@ -93,6 +93,17 @@ module.exports = {
                 .setDescription(`**${messagesfound.length.toString()} messaggi di ${user.toString()}** sono stati **eliminati**, all'interno degli **ultimi ${count.toString()} messaggi** di questo canale`)
                 .setColor(`PURPLE`);
             interaction.editReply({ embeds: [embed] });
+            database.collection(`Staff`).find({ id: interaction.user.id }).toArray(function (err, result) {
+                if (!result[0]) {
+                    database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, partnerships: 0, actions: 1 });
+                } else if (result[0]) {
+                    database.collection(`Staff`).updateOne({ id: interaction.user.id }, {
+                        $inc: {
+                            actions: 1,
+                        }
+                    })
+                }
+            })
             return;
         }
 
@@ -116,6 +127,17 @@ module.exports = {
                         await client.channels.cache.get(config.idcanali.logs.moderation.clear).send({ embeds: [embed], files: [`${process.cwd()}/clear${interaction.user.id}.txt`] });
                     }
                     interaction.channel.bulkDelete(count, true);
+                    database.collection(`Staff`).find({ id: interaction.user.id }).toArray(function (err, result) {
+                        if (!result[0]) {
+                            database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, partnerships: 0, actions: 1 });
+                        } else if (result[0]) {
+                            database.collection(`Staff`).updateOne({ id: interaction.user.id }, {
+                                $inc: {
+                                    actions: 1,
+                                }
+                            })
+                        }
+                    })
                 })
             })
         }

@@ -26,6 +26,18 @@ module.exports = {
 
         await interaction.deferReply();
 
+        database.collection(`Staff`).find({ id: interaction.user.id }).toArray(function (err, result) {
+            if (!result[0]) {
+                database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, partnerships: 0, actions: 1 });
+            } else if (result[0]) {
+                database.collection(`Staff`).updateOne({ id: interaction.user.id }, {
+                    $inc: {
+                        actions: 1,
+                    }
+                })
+            }
+        })
+
         let channel = interaction.options.getChannel(`channel`);
         if (!channel) channel = interaction.channel;
 
