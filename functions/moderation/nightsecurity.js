@@ -13,13 +13,8 @@ module.exports = async function nightSecurity(enable) {
         client.channels.cache.get(config.idcanali.countingextreme).setRateLimitPerUser(5)
         client.channels.cache.get(config.idcanali.countinginfinity).setRateLimitPerUser(5)
 
-
         //? Set limit to voice channels
         client.channels.cache.get(config.idcanali.generalvc).setUserLimit(15)
-
-        // //? Disable Members and Subscribers join
-        // client.channels.cache.get(config.idcanali.membri).permissionOverwrites.create(config.idServer.idServer, { CONNECT: false })
-        // client.channels.cache.get(config.idcanali.iscritti).permissionOverwrites.create(config.idServer.idServer, { CONNECT: false })
 
         //? Disable tickets
         let msg = await client.channels.cache.get(config.idcanali.needhelp).messages.fetch(`993212657924579420`)
@@ -36,9 +31,6 @@ module.exports = async function nightSecurity(enable) {
         //? Disable threads
         let everyone = client.guilds.cache.get(config.idServer.idServer).roles.cache.find(r => r.name === `@everyone`);
         everyone.setPermissions([`SEND_MESSAGES`, `VIEW_CHANNEL`, `READ_MESSAGE_HISTORY`, `CONNECT`, `SPEAK`, `USE_VAD`, `STREAM`, `USE_EXTERNAL_EMOJIS`]);
-
-        //? Grants helpers to timeout members
-        // client.guilds.cache.get(config.idServer.idServer).roles.cache.find(x => x.id == config.idruoli.helper).setPermissions([`MANAGE_NICKNAMES`, `MANAGE_MESSAGES`, `MODERATE_MEMBERS`])
 
         //? Send message
         let phrases = [`Buonanotte a tutti!`, `Notte!`, `Ed anche questo giorno è passato..., buonanotte!`, `Oggi sono stanchissimo, buonanotte!`, `Oggi mi avete fatto lavorare davvero molto... vado a dormire ora, buonanotte!`]
@@ -61,10 +53,6 @@ module.exports = async function nightSecurity(enable) {
         //? Remove the limit from voice channels
         client.channels.cache.get(config.idcanali.generalvc).setUserLimit(0)
 
-        // //? Enable Members and Subscribers join
-        // client.channels.cache.get(config.idcanali.membri).permissionOverwrites.create(config.idServer.idServer, { CONNECT: true, SEND_MESSAGES: false })
-        // client.channels.cache.get(config.idcanali.iscritti).permissionOverwrites.create(config.idServer.idServer, { CONNECT: true, SEND_MESSAGES: false })
-
         //? Enable tickets
         let msg = await client.channels.cache.get(config.idcanali.needhelp).messages.fetch(`993212657924579420`)
 
@@ -81,12 +69,46 @@ module.exports = async function nightSecurity(enable) {
         let everyone = client.guilds.cache.get(config.idServer.idServer).roles.cache.find(r => r.name === `@everyone`);
         everyone.setPermissions([`SEND_MESSAGES`, `VIEW_CHANNEL`, `READ_MESSAGE_HISTORY`, `CONNECT`, `SPEAK`, `USE_VAD`, `STREAM`, `USE_EXTERNAL_EMOJIS`, `SEND_MESSAGES_IN_THREADS`]);
 
-        //? Remove helpers permission to timeout members
-        // client.guilds.cache.get(config.idServer.idServer).roles.cache.find(x => x.id == config.idruoli.helper).setPermissions([`MANAGE_NICKNAMES`, `MANAGE_MESSAGES`])
-
         //? Send the message
         let phrases = [`Buongiorno a tutti, come va?`, `Salve mondo! Come va la vita oggi?`, `Buongiornissimo! Come state?`, `Buongiorno guys||...and girls||, tutto bene?`, `Salve! Tutto bene?`]
         if (new Date().getDay() == 0) phrases = [`Buongiorno e buona domenica a tutti! Come state?`, `Salve e buona domenica a tutti quanti! Come va la vita?`, `Ciao, buona domenica a tutti! Cosa fare di bello oggi?`]
+
+        if (new Date().getMonth() == 0 && new Date().getDate() == 1) {
+            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno e **buon ${new Date().getFullYear()}** a tutti quanti! 🎉`);
+            client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
+            return;
+        }
+
+        if (new Date().getMonth() == 0 && new Date().getDate() == 6) {
+            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno, **buona epifania**! 🧙‍♀️`);
+            client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
+            return;
+        }
+
+        if (new Date().getMonth() == 1 && new Date().getDate() == 14) {
+            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno e **buon San Valentino** a tutti i fidanzati!`);
+            client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
+            return;
+        }
+
+        if (new Date().getMonth() == 3 && new Date().getDate() == 1) {
+            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno e **buon Pesce d'Aprile** a tutti! 👀`);
+            client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
+            return;
+        }
+
+        if (new Date().getMonth() == 9 && new Date().getDate() == 31) {
+            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno, **buon Halloween**! 🎃`);
+            client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
+            return;
+        }
+
+        if (new Date().getMonth() == 11 && new Date().getDate() == 25) {
+            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno e **buon Natale** a tutti!`);
+            client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
+            return;
+        }
+
         client.channels.cache.get(config.idcanali.generaltxt).send(phrases[Math.floor(Math.random() * phrases.length)])
         client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`)
 

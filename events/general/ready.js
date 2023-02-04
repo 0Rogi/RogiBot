@@ -66,7 +66,6 @@ module.exports = {
         setInterval(ytnotifier, 1000 * 60 * 5);
         setInterval(unmute, 1000);
         setInterval(checkbans, 1000 * 60);
-        setInterval(events, 1000 * 60);
         setInterval(() => { databasebackup(false) }, 1000 * 60);
         setInterval(updateuserindb, 1000 * 60);
         setInterval(subscribercounter, 1000 * 60);
@@ -85,6 +84,53 @@ module.exports = {
         setInterval(leaveVoiceChannel, 1000);
         setInterval(checkBadges, 1000 * 60 * 10);
         setInterval(checkpartnerships, 1000 * 60 * 10);
+
+        setInterval(() => {
+            if (new Date().getMonth() == 1 && new Date().getDate() == 14 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) {
+                events(`SaintValentine`);
+                return;
+            }
+
+            if (new Date().getMonth() == 3 && new Date().getDate() == 1 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) {
+                events(`AprilFool`);
+                return;
+            }
+
+            if (new Date().getMonth() == 3 && new Date().getDate() == 25 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) {
+                events(`ItalyFlag`);
+                return;
+            }
+
+            if (new Date().getMonth() == 4 && new Date().getDate() == 1 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) {
+                events(`ItalyFlag`);
+                return;
+            }
+
+            if (new Date().getMonth() == 5 && new Date().getDate() == 2 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) {
+                events(`ItalyFlag`);
+                return;
+            }
+
+            if (new Date().getMonth() == 6 && new Date().getDate() == 1 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) {
+                events(`Summer`);
+                return;
+            }
+
+            if (new Date().getMonth() == 9 && new Date().getDate() == 1 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) {
+                events(`Halloween`);
+                return;
+            }
+
+            if (new Date().getMonth() == 11 && new Date().getDate() == 1 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) {
+                events(`Christmas`);
+                return;
+            }
+
+            if ((new Date().getMonth() == 1 && new Date().getDate() == 15 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) || (new Date().getMonth() == 3 && new Date().getDate() == 2 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) || (new Date().getMonth() == 3 && new Date().getDate() == 26 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) || (new Date().getMonth() == 4 && new Date().getDate() == 2 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) || (new Date().getMonth() == 5 && new Date().getDate() == 3 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) || (new Date().getMonth() == 8 && new Date().getDate() == 1 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) || (new Date().getMonth() == 10 && new Date().getDate() == 3 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) || (new Date().getMonth() == 0 && new Date().getDate() == 7 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0)) {
+                events(`Reset`);
+                return;
+            }
+        }, 1000);
 
         setInterval(() => {
             database.collection(`Staff`).find().toArray(async function (err, result) {
