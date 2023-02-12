@@ -26,9 +26,8 @@ module.exports = {
 
         let user = await client.users.fetch(id).catch((err) => {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`Errore`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                 .setDescription(`*Non riesco a trovare quest'utente.\nInserisci un utente valido*`)
-                .setThumbnail(config.images.rogierror)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
             return;
@@ -39,7 +38,7 @@ module.exports = {
         database.collection(`UserStats`).find({ id: user.id }).toArray(async function (err, result) {
             if (!result[0]) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`Errore`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`*Questo utente non ha uno stato di moderazione*`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
@@ -48,7 +47,7 @@ module.exports = {
 
             if (result[0]?.moderation.type != `banned`) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`Errore`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`*Questo utente non è bannato*`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
@@ -70,7 +69,6 @@ module.exports = {
 
             let embed1 = new Discord.MessageEmbed()
                 .setAuthor({ name: `[UNBAN] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
-                .setThumbnail(config.images.rogiban)
                 .setColor(`PURPLE`)
                 .addField(`👤 Utente:`, `Nome: ${user.username} - ID: ${user.id}\n||${user.toString()}||`);
 
@@ -81,7 +79,7 @@ module.exports = {
                 .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
                 .addField(`🔨 Moderatore:`, `Nome: **${interaction.member.user.username}** - ID: **${interaction.member.user.id}**\n||${interaction.member.toString()}||`)
                 .addField(`👤 Utente:`, `Nome: **${user.username}** - ID: **${user.id}**\n||${user.toString()}||`);
-            client.channels.cache.get(config.idcanali.logs.moderation.unbans).send({ embeds: [embed3] });
+            client.channels.cache.get(config.channelsid.logs.moderation.unbans).send({ embeds: [embed3] });
             interaction.editReply({ embeds: [embed1] });
 
             if (result[0]) {

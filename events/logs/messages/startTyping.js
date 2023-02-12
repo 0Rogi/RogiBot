@@ -9,7 +9,7 @@ module.exports = {
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(typing.user.id)) return
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(typing.user.id)) return
 
-        let msg = await client.channels.cache.get(config.idcanali.logs.messages.typingstart).messages.fetch({ limit: 1 })
+        let msg = await client.channels.cache.get(config.channelsid.logs.messages.typingstart).messages.fetch({ limit: 1 })
         msg = msg.first()
         if (msg?.embeds[0]?.footer?.text.slice(9) == typing.user.id && msg?.embeds[0]?.description.includes(typing.channel.name)) return
         let embed = new Discord.MessageEmbed()
@@ -19,6 +19,6 @@ module.exports = {
             .setThumbnail(typing.user.displayAvatarURL({ dynamic: true }))
             .setFooter({ text: `User ID: ${typing.user.id}` })
             .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-        client.channels.cache.get(config.idcanali.logs.messages.typingstart).send({ embeds: [embed] })
+        client.channels.cache.get(config.channelsid.logs.messages.typingstart).send({ embeds: [embed] })
     }
 }

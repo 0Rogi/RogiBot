@@ -9,7 +9,7 @@ module.exports = {
 		description: `Mostra un meme casuale da Reddit`,
 	},
 	permissionlevel: 0,
-	allowedchannels: [config.idcanali.commands],
+	allowedchannels: [config.channelsid.commands],
 	requirement: `none`,
 	execute(interaction) {
 		interaction.deferReply().then(() => {

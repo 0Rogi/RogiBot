@@ -5,7 +5,7 @@ module.exports = {
     name: `messageDelete`,
     async execute(message) {
         if (!message || !message.author || !message.guild || message.guild != config.idServer.idServer) return
-        if (message.author?.bot || message.channel == config.idcanali.thingstodo || message.channel == config.idcanali.suggests) return
+        if (message.author?.bot || message.channel == config.channelsid.thingstodo || message.channel == config.channelsid.suggests) return
 
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
@@ -58,6 +58,6 @@ module.exports = {
                 embed.addField(`🔗 Rispondendo:`, `[Message link](https://discord.com/channels/${msg.guild.id}/${msg.channel.id}/${msg.id})`)
             })
         }
-        client.channels.cache.get(config.idcanali.logs.messages.deleted).send({ embeds: [embed] })
+        client.channels.cache.get(config.channelsid.logs.messages.deleted).send({ embeds: [embed] })
     }
 }

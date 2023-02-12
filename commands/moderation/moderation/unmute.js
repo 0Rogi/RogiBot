@@ -27,9 +27,8 @@ module.exports = {
 
         if (!guildMember) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`Errore`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                 .setDescription(`*Non riesco a trovare quest'utente.\nInserisci un utente valido*`)
-                .setThumbnail(config.images.rogierror)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
             return;
@@ -59,7 +58,6 @@ module.exports = {
             let embed1 = new Discord.MessageEmbed()
                 .setAuthor({ name: `[UNMUTE] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
                 .setDescription(`⚠️ **HO AVVISATO** QUEST'UTENTE IN DM ⚠️`)
-                .setThumbnail(config.images.rogimute)
                 .setColor(`PURPLE`)
                 .addField(`Utente:`, `Nome: ${user.username} - ID: ${user.id}\n||${user.toString()}||`);
 
@@ -83,11 +81,11 @@ module.exports = {
             if (dm == false) embed3.setDescription(`⚠️ L'utente **non è stato** avvisato nei dm`);
             if (dm == false) embed1.setDescription(`⚠️ **NON POSSO AVVISARE** QUESTO UTENTE IN DM ⚠️`);
 
-            client.channels.cache.get(config.idcanali.logs.moderation.unmute).send({ embeds: [embed3] });
+            client.channels.cache.get(config.channelsid.logs.moderation.unmute).send({ embeds: [embed3] });
             interaction.editReply({ embeds: [embed1] });
 
-            guildMember.roles.remove(config.idruoli.muted);
-            guildMember.roles.remove(config.idruoli.tempmuted);
+            guildMember.roles.remove(config.rolesid.muted);
+            guildMember.roles.remove(config.rolesid.tempmuted);
             database.collection(`Staff`).find({ id: interaction.user.id }).toArray(function (err, result) {
                 if (!result[0]) {
                     database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, partnerships: 0, actions: 1 });

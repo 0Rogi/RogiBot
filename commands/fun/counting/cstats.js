@@ -2,13 +2,13 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
     name: `cstats`,
-    description: `Mostra le statistiche generali del server, di <#${config.idcanali.counting}>`,
+    description: `Mostra le statistiche generali del server, di <#${config.channelsid.counting}>`,
     data: {
         name: `cstats`,
         description: `Mostra le statistiche del server sul counting`
     },
     permissionlevel: 0,
-    allowedchannels: [config.idcanali.counting, config.idcanali.commands],
+    allowedchannels: [config.channelsid.counting, config.channelsid.commands],
     requirement: `none`,
     execute(interaction) {
         interaction.deferReply().then(async () => {

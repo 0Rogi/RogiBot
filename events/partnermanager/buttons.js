@@ -39,7 +39,7 @@ module.exports = {
                 interaction.followUp({ content: `Quest'utente è uscito dal server 😐`, ephemeral: true });
                 return;
             }
-            guildMember.roles.add(config.idruoli.partnermanager);
+            guildMember.roles.add(config.rolesid.partnermanager);
 
         } else if (interaction.customId.startsWith(`RefuseManager`)) {
 

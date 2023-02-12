@@ -8,7 +8,7 @@ module.exports = {
         description: `Elimina i tuoi canali privati`
     },
     permissionlevel: 0,
-    allowedchannels: [config.idcanali.commands],
+    allowedchannels: [config.channelsid.commands],
     requirement: `none`,
     async execute(interaction) {
         //? Fa pensare l'interazione

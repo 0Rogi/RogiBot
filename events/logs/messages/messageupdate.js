@@ -89,6 +89,6 @@ module.exports = {
                 size: 512
             }))
             .setColor(`YELLOW`)
-        client.channels.cache.get(config.idcanali.logs.messages.updated).send({ embeds: [embed] })
+        client.channels.cache.get(config.channelsid.logs.messages.updated).send({ embeds: [embed] })
     }
 }

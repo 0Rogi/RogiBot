@@ -19,12 +19,12 @@ module.exports = {
 
         database.collection(`UserStats`).find({ id: member.id }).toArray(async function (err, result) {
             if (!result[0]) {
-                client.channels.cache.get(config.idcanali.logs.members.join).send({ embeds: [embed] })
-                client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed] })
+                client.channels.cache.get(config.channelsid.logs.members.join).send({ embeds: [embed] })
+                client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed] })
             } else if (result[0]) {
                 let roles = ``
                 await result[0].roles.forEach(role => {
-                    if (role == config.idruoli.serverbooster) return
+                    if (role == config.rolesid.serverbooster) return
                     role = client.guilds.cache.get(config.idServer.idServer).roles.cache.find(r => r.id == role)
                     if (!role) return
                     roles += `${role.name}\n`
@@ -32,8 +32,8 @@ module.exports = {
                 if (roles == ``) roles = `_Nessun Ruolo_`
                 embed.addField(`👔 Ruoli:`, roles)
                 embed.setTitle(`🎉 Utente Ritornato 🎉`)
-                client.channels.cache.get(config.idcanali.logs.members.join).send({ embeds: [embed] })
-                client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed] })
+                client.channels.cache.get(config.channelsid.logs.members.join).send({ embeds: [embed] })
+                client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed] })
             }
         })
     }

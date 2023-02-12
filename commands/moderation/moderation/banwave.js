@@ -135,7 +135,7 @@ module.exports = {
                 .addField(`🔨 Moderatore:`, `Nome: **${interaction.member.user.username}** - ID: **${interaction.member.user.id}**\n||${interaction.member.toString()}||`)
                 .addField(`📖 Motivo:`, reason)
                 .setColor(`RED`);
-            client.channels.cache.get(config.idcanali.logs.moderation.banwave).send({ embeds: [embed] });
+            client.channels.cache.get(config.channelsid.logs.moderation.banwave).send({ embeds: [embed] });
             database.collection(`Staff`).find({ id: interaction.user.id }).toArray(function (err, result) {
                 if (!result[0]) {
                     database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, partnerships: 0, actions: 1 });

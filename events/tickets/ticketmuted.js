@@ -13,8 +13,8 @@ module.exports = {
         if (interaction.customId == `TicketsMuted`) {
             let ticket = await serverstats.tickets.find(ticket => ticket.userid == interaction.user.id)
             if (!ticket) {
-                interaction.guild.channels.create(`—͟͞͞⛔】ticket-${interaction.user.username}`, { type: `GUILD_TEXT`, parent: config.idcanali.helpparent }).then(async ch => {
-                    ch.setParent(config.idcanali.helpparent)
+                interaction.guild.channels.create(`—͟͞͞⛔】ticket-${interaction.user.username}`, { type: `GUILD_TEXT`, parent: config.channelsid.ticketsparent }).then(async ch => {
+                    ch.setParent(config.channelsid.ticketsparent)
                     ch.permissionOverwrites.set([
                         {
                             id: interaction.guild.id,
@@ -25,7 +25,7 @@ module.exports = {
                             allow: [`VIEW_CHANNEL`]
                         },
                         {
-                            id: config.idruoli.moderator,
+                            id: config.rolesid.moderator,
                             allow: [`VIEW_CHANNEL`]
                         }
                     ])
@@ -61,7 +61,7 @@ module.exports = {
                         .addField(`📘 Categoria:`, ticket.category, true)
                         .addField(`\u200b`, `\u200b`, true)
                         .addField(`📖 Sottocategoria:`, ticket.subcategory, true)
-                    client.channels.cache.get(config.idcanali.logs.ticket).send({ embeds: [embedlog] })
+                    client.channels.cache.get(config.channelsid.logs.ticket).send({ embeds: [embedlog] })
                     interaction.deferUpdate()
                 })
             }
@@ -73,7 +73,7 @@ module.exports = {
             let ticket = await serverstats.tickets.find(ticket => ticket.channelid == interaction.channel.id)
             if (ticket) {
                 interaction.channel.permissionOverwrites.create(interaction.guild.members.cache.find(x => x.id == ticket.userid), { SEND_MESSAGES: true, VIEW_CHANNEL: true, ATTACH_FILES: true })
-                interaction.channel.permissionOverwrites.create(config.idruoli.moderator, { SEND_MESSAGES: true, VIEW_CHANNEL: true, ATTACH_FILES: true })
+                interaction.channel.permissionOverwrites.create(config.rolesid.moderator, { SEND_MESSAGES: true, VIEW_CHANNEL: true, ATTACH_FILES: true })
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`Ticket Accettato`)
                     .setDescription(`Il tuo ticket di supporto in **${interaction.guild.name}**, è stato accettato.\n\nOra puoi **parlare con lo staff**.`)

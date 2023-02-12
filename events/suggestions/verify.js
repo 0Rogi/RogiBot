@@ -26,7 +26,7 @@ module.exports = {
             if (interaction.customId == `SuggestAccept`) {
                 embed1.addField(`📉Stato:`, `🟢Accettato da ${interaction.member.toString()}`)
                 embed1.setColor(`GREEN`)
-                client.channels.cache.get(config.idcanali.suggest)
+                client.channels.cache.get(config.channelsid.suggest)
                 let userid = embed.footer.text.slice(9)
 
                 database.collection(`UserStats`).updateOne({ id: userid }, {
@@ -48,7 +48,7 @@ module.exports = {
                     .setDescription(`**Suggerimento:** ${interaction.message.embeds[0].fields[1].value.toString()}`)
                     .setThumbnail(embed.thumbnail.url)
                     .setColor(`#2f3136`)
-                client.channels.cache.get(config.idcanali.suggestions).send({ embeds: [embedsuggestion] }).then(msg => {
+                client.channels.cache.get(config.channelsid.suggestions).send({ embeds: [embedsuggestion] }).then(msg => {
                     msg.react(`👍`)
                     msg.react(`👎`)
                 })

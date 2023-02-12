@@ -8,7 +8,7 @@ module.exports = {
 		description: `Mostra l'invito del server`,
 	},
 	permissionlevel: 0,
-	allowedchannels: [config.idcanali.commands],
+	allowedchannels: [config.channelsid.commands],
 	requirement: `none`,
 	execute(interaction) {
 		interaction.deferReply().then(() => {

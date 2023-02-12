@@ -1,10 +1,10 @@
 const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = async function addStaffInDB() {
-    const owners = await client.guilds.cache.get(`602019987279839274`).members.cache.filter(x => x.roles.cache.has(config.idruoli.owner));
-    const admins = await client.guilds.cache.get(`602019987279839274`).members.cache.filter(x => x.roles.cache.has(config.idruoli.srmoderator));
-    const moderators = await client.guilds.cache.get(`602019987279839274`).members.cache.filter(x => x.roles.cache.has(config.idruoli.moderator));
-    const partnermanager = await client.guilds.cache.get(`602019987279839274`).members.cache.filter(x => x.roles.cache.has(config.idruoli.partnermanager));
+    const owners = await client.guilds.cache.get(`602019987279839274`).members.cache.filter(x => x.roles.cache.has(config.rolesid.owner));
+    const admins = await client.guilds.cache.get(`602019987279839274`).members.cache.filter(x => x.roles.cache.has(config.rolesid.admin));
+    const moderators = await client.guilds.cache.get(`602019987279839274`).members.cache.filter(x => x.roles.cache.has(config.rolesid.moderator));
+    const partnermanager = await client.guilds.cache.get(`602019987279839274`).members.cache.filter(x => x.roles.cache.has(config.rolesid.partnermanager));
 
     owners.forEach(owner => {
         database.collection(`Staff`).insertOne({ username: owner.user.username, id: owner.id, rank: `Owner`, messages: 0, vctime: 0, partnerships: 0, actions: 0 });

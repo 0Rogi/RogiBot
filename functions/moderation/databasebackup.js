@@ -17,7 +17,7 @@ module.exports = async function databaseBackup(manual) {
                             .setDescription(`📦 Backup del database 📦`)
                             .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
                             .setColor(`YELLOW`)
-                        client.channels.cache.get(config.idcanali.logs.backups).send({ embeds: [embed], files: [`${process.cwd()}/ServerStatsBackup.json`, `${process.cwd()}/UserStatsBackup.json`] })
+                        client.channels.cache.get(config.channelsid.logs.backups).send({ embeds: [embed], files: [`${process.cwd()}/ServerStatsBackup.json`, `${process.cwd()}/UserStatsBackup.json`] })
                     })
                 })
             })

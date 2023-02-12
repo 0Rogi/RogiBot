@@ -3,7 +3,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 module.exports = {
     name: `messageUpdate`,
     async execute(oldMessage, newMessage) {
-        if (newMessage.channel != config.idcanali.counting) return
+        if (newMessage.channel != config.channelsid.counting) return
         if (newMessage.author?.bot) return
         if (!oldMessage || !newMessage) return
 

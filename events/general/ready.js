@@ -32,7 +32,7 @@ module.exports = {
             .setColor(`GREEN`)
             .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
             .addField(`🟢 Online`, `<:RogiBot:1003320534811033600> Rogi Bot Online!`);
-        client.channels.cache.get(config.idcanali.logs.online).send({ embeds: [embed] });
+        client.channels.cache.get(config.channelsid.logs.online).send({ embeds: [embed] });
         console.log(`LOADING...`);
         let db = await MongoClient.connect(process.env.mongodburl, { useNewUrlParser: true, useUnifiedTopology: true });
         database = await db.db(`RogiDiscordDB`);
@@ -64,7 +64,7 @@ module.exports = {
         });
 
         setInterval(ytnotifier, 1000 * 60 * 5);
-        setInterval(unmute, 1000);
+        setInterval(unmute, 1000 * 60);
         setInterval(checkbans, 1000 * 60);
         setInterval(() => { databasebackup(false) }, 1000 * 60);
         setInterval(updateuserindb, 1000 * 60);
@@ -157,7 +157,7 @@ module.exports = {
                             .addField(`Partnership`, r.partnerships.toString())
                             .addField(`\u200b`, `\u200b`, true)
                             .addField(`Azioni da Staffer`, r.actions.toString());
-                        client.channels.cache.get(config.idcanali.staffstats).send({ embeds: [embed] });
+                        client.channels.cache.get(config.channelsid.staffstats).send({ embeds: [embed] });
                         database.collection(`Staff`).deleteOne({ id: r.id });
                     });
 

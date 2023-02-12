@@ -125,7 +125,7 @@ module.exports = {
 
                     const permissionlevel = await getUserPermissionLevel(interaction.member);
 
-                    if (!interaction.member.roles.cache.has(config.idruoli.serverbooster) && permissionlevel < 3) {
+                    if (!interaction.member.roles.cache.has(config.rolesid.serverbooster) && permissionlevel < 3) {
 
                         const embed = new Discord.MessageEmbed()
                             .setTitle(`❌ ERRORE ❌`)

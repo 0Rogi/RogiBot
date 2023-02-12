@@ -8,7 +8,7 @@ module.exports = {
         description: `Imposta le informazioni sul tuo profilo`,
     },
     permissionlevel: 0,
-    allowedchannels: [config.idcanali.commands],
+    allowedchannels: [config.channelsid.commands],
     requirement: `none`,
     async execute(interaction) {
         await interaction.deferReply();

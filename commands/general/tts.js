@@ -18,7 +18,7 @@ module.exports = {
         ]
     },
     permissionlevel: 0,
-    allowedchannels: [config.idcanali.nomicchat, config.idcanali.generalvc],
+    allowedchannels: [config.channelsid.nomicchat, config.channelsid.generalvc],
     async execute(interaction) {
         await interaction.deferReply();
 
@@ -26,7 +26,7 @@ module.exports = {
 
         if (!channel) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`ERRORE`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                 .setDescription(`*Non sei in un canale vocale*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });

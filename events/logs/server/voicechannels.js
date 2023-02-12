@@ -16,7 +16,7 @@ module.exports = {
                 .addField(`👥 Utente:`, `Nome: ${client.users.cache.get(newState.id).toString()} ID: **${newState.id}**`)
                 .addField(`🔊 Canale:`, client.channels.cache.get(newState.channelId).name || newState.id)
                 .setColor(`YELLOW`)
-            client.channels.cache.get(config.idcanali.logs.server.voicechannels).send({ embeds: [embed] })
+            client.channels.cache.get(config.channelsid.logs.server.voicechannels).send({ embeds: [embed] })
             return
         }
         if (oldState.channelId && !newState.channelId) {
@@ -30,7 +30,7 @@ module.exports = {
                 .addField(`👥 Utente:`, `Nome: ${client.users.cache.get(oldState.id).toString()} ID: **${oldState.id}**`)
                 .addField(`🔊 Canale:`, client.channels.cache.get(oldState.channelId).name || oldState.id)
                 .setColor(`ORANGE`)
-            client.channels.cache.get(config.idcanali.logs.server.voicechannels).send({ embeds: [embed] })
+            client.channels.cache.get(config.channelsid.logs.server.voicechannels).send({ embeds: [embed] })
             return
         }
         if (oldState.channelId != newState.channelId) {
@@ -45,7 +45,7 @@ module.exports = {
                 .addField(`🔊 Vecchio Canale:`, client.channels.cache.get(oldState.channelId).name ? `#${client.channels.cache.get(oldState.channelId).name}` : oldState.channelId)
                 .addField(`🔊 Nuovo Canale:`, client.channels.cache.get(newState.channelId).name ? `#${client.channels.cache.get(newState.channelId).name}` : newState.channelId)
                 .setColor(`ORANGE`)
-            client.channels.cache.get(config.idcanali.logs.server.voicechannels).send({ embeds: [embed] })
+            client.channels.cache.get(config.channelsid.logs.server.voicechannels).send({ embeds: [embed] })
         }
     }
 }

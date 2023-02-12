@@ -3,7 +3,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 module.exports = {
     name: `messageCreate`,
     execute(message) {
-        if (message.channel.id == config.idcanali.suggests && message.guild == config.idServer.idServerLogs) {
+        if (message.channel.id == config.channelsid.suggests && message.guild == config.idServer.idServerLogs) {
             if (message.author.bot) return
 
             if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return

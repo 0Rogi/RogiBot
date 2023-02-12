@@ -35,8 +35,8 @@ module.exports = {
             .addField(`👤 Utente:`, `Nome: **${target.username}**, ID: **${target.id}**\n||${target.toString()}||`)
             .addField(`📖 Motivo:`, reason)
 
-        client.channels.cache.get(config.idcanali.logs.moderation.kick).send({ embeds: [embed] })
-        client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed] })
+        client.channels.cache.get(config.channelsid.logs.moderation.kick).send({ embeds: [embed] })
+        client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed] })
 
     }
 }

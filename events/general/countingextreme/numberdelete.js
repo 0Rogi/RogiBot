@@ -4,7 +4,7 @@ module.exports = {
     name: `messageDelete`,
     execute(message) {
         if (message.author?.bot) return
-        if (message.channel != config.idcanali.countingextreme) return
+        if (message.channel != config.channelsid.countingextreme) return
 
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return

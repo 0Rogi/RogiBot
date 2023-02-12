@@ -7,15 +7,15 @@ module.exports = function checkbadges() {
 
         let memberbadges = [];
 
-        if (member.roles.cache.has(config.idruoli.vip)) {
+        if (member.roles.cache.has(config.rolesid.vip)) {
             memberbadges.push(`vip`);
         }
 
-        if (member.roles.cache.has(config.idruoli.serverbooster)) {
+        if (member.roles.cache.has(config.rolesid.serverbooster)) {
             memberbadges.push(`booster`);
         }
 
-        if (member.roles.cache.has(config.idruoli.friend)) {
+        if (member.roles.cache.has(config.rolesid.friend)) {
             memberbadges.push(`friend`);
         }
 
@@ -23,11 +23,11 @@ module.exports = function checkbadges() {
             memberbadges.push(`staff`);
         }
 
-        if (member.roles.cache.has(config.idruoli.level50) || member.roles.cache.has(config.idruoli.level60) || member.roles.cache.has(config.idruoli.level70) || member.roles.cache.has(config.idruoli.level80) || member.roles.cache.has(config.idruoli.level90) || member.roles.cache.has(config.idruoli.level100)) {
+        if (member.roles.cache.has(config.rolesid.level50) || member.roles.cache.has(config.rolesid.level60) || member.roles.cache.has(config.rolesid.level70) || member.roles.cache.has(config.rolesid.level80) || member.roles.cache.has(config.rolesid.level90) || member.roles.cache.has(config.rolesid.level100)) {
             memberbadges.push(`level50`);
         }
 
-        if (member.roles.cache.has(config.idruoli.level100)) {
+        if (member.roles.cache.has(config.rolesid.level100)) {
             memberbadges.push(`level100`);
         }
 

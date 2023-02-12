@@ -29,6 +29,6 @@ module.exports = {
             .addField(`👁️ Tipo:`, channel.type, true)
             .addField(`🔢 Posizione:`, channel.rawPosition.toString(), true)
             .setColor(`RED`)
-        client.channels.cache.get(config.idcanali.logs.server.channels).send({ embeds: [embed] })
+        client.channels.cache.get(config.channelsid.logs.server.channels).send({ embeds: [embed] })
     }
 }

@@ -12,7 +12,7 @@ module.exports = function ytnotifier() {
 
         if (!idVideo) return;
 
-        client.channels.cache.get(config.idcanali.lastvideo).messages.fetch().then(async messages => {
+        client.channels.cache.get(config.channelsid.lastvideo).messages.fetch().then(async messages => {
 
             let sent = false;
             await messages.forEach(msg => {
@@ -24,7 +24,7 @@ module.exports = function ytnotifier() {
                 let sentences = [`🎬 Hey <@&1028664506391466024>, **${response?.items[0].author}** ha finalmente pubblicato un nuovo video:\n**${response?.items[0].title}**!\nCorri a vederlo!\n\n`, `È uscito finalmente un nuovo video sul canale di **${response?.items[0].author}** 🤩\n<@&1028664506391466024> Correte a vedere "**${response?.items[0].title}**"!\n\n`, `**${response?.items[0].title}** è uscito sul canale di **${response?.items[0].author}** 👀.\n<@&1028664506391466024> cosa aspettate? Andate a vederlo!\n\n`, `<@&1028664506391466024> lo so che stavate aspettando un nuovo video di **${response?.items[0].author}** 😏, beh sappi che è appena uscito **${response?.items[0].title}**\n\n`];
                 let random = Math.floor(Math.random() * sentences.length);
 
-                client.channels.cache.get(config.idcanali.lastvideo).send({ content: `${sentences[random]} https://www.youtube.com/watch?v=${idVideo}`, allowedMentions: { users: [], roles: [`1028664506391466024`] } }).then(m => m.crosspost().catch(() => { }));
+                client.channels.cache.get(config.channelsid.lastvideo).send({ content: `${sentences[random]} https://www.youtube.com/watch?v=${idVideo}`, allowedMentions: { users: [], roles: [`1028664506391466024`] } }).then(m => m.crosspost().catch(() => { }));
             }
 
         });
@@ -55,7 +55,7 @@ module.exports = function ytnotifier() {
                             .setStyle(`LINK`)
                             .setURL(`https://youtube.com/post/${postId}`)
                     )
-                client.channels.cache.get(config.idcanali.generaltxt).send({ embeds: [embed], components: [row] });
+                client.channels.cache.get(config.channelsid.generaltxt).send({ embeds: [embed], components: [row] });
                 client.channels.cache.get("1043234320183197777").send(postId);
             }
         })

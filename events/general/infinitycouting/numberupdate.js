@@ -3,7 +3,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 module.exports = {
     name: `messageDelete`,
     execute(message) {
-        if (message.channel != config.idcanali.countinginfinity) return
+        if (message.channel != config.channelsid.countinginfinity) return
         if (message.author?.bot) return
 
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return

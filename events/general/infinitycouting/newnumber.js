@@ -5,7 +5,7 @@ module.exports = {
     name: `messageCreate`,
     async execute(message) {
         if (message.author.bot) return;
-        if (message.channel != config.idcanali.countinginfinity) return;
+        if (message.channel != config.channelsid.countinginfinity) return;
 
         if (message.content.includes(`\"`) || message.content.includes(`\'`) || message.content.startsWith(`!`) || message.content == `cos` || message.content == `E` || message.content.startsWith(`\\`)) return;
 

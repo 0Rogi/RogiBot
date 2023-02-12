@@ -29,6 +29,6 @@ module.exports = {
             .addField(`👔 Ruolo:`, role.name)
             .setColor(`ORANGE`)
 
-        client.channels.cache.get(config.idcanali.logs.members.roles).send({ embeds: [embed] })
+        client.channels.cache.get(config.channelsid.logs.members.roles).send({ embeds: [embed] })
     }
 }

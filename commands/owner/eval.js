@@ -18,7 +18,7 @@ module.exports = {
 	permissionlevel: 4,
 	allowedchannels: [`ALL`],
 	execute(interaction) {
-		if (!interaction.member.roles.cache.has(config.idruoli.owner) && interaction.guild == config.idServer.idServer) return
+		if (!interaction.member.roles.cache.has(config.rolesid.owner) && interaction.guild == config.idServer.idServer) return
 		if (interaction.guild == config.idServer.idServerTest && !interaction.member.roles.cache.has(`954438340801884261`)) return
 		interaction.deferReply().then(async () => {
 			let command = interaction.options.getString(`codice`)
@@ -35,7 +35,7 @@ module.exports = {
 				interaction.editReply({ embeds: [embed], components: [row] })
 			} catch (err) {
 				let embed = new Discord.MessageEmbed()
-					.setTitle(`Errore`)
+					.setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
 					.addField(`Entrata:`, `\`\`\`js\n${command}\`\`\``)
 					.addField(`Errore:`, `\`\`\`js\n${err}\`\`\``)
 					.setColor(`RED`)

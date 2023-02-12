@@ -24,9 +24,9 @@ module.exports = {
             })
 
             //? If the user is the owner or an admin
-            if (owner || interaction.member.roles.cache.has(config.idruoli.admin)) {
+            if (owner || interaction.member.roles.cache.has(config.rolesid.admin)) {
                 //? Check if the user is at least level 30
-                if (!interaction.member.roles.cache.has(config.idruoli.level30) && !interaction.member.roles.cache.has(config.idruoli.level30) && !interaction.member.roles.cache.has(config.idruoli.level40) && !interaction.member.roles.cache.has(config.idruoli.level50) && !interaction.member.roles.cache.has(config.idruoli.level60) && !interaction.member.roles.cache.has(config.idruoli.level70) && !interaction.member.roles.cache.has(config.idruoli.level80) && !interaction.member.roles.cache.has(config.idruoli.level90) && !interaction.member.roles.cache.has(config.idruoli.level100) && !interaction.member.roles.cache.has(config.idruoli.serverbooster) && !interaction.member.permissions.has(`ADMINISTRATOR`) && !interaction.member.roles.cache.has(config.idruoli.allrewards)) {
+                if (!interaction.member.roles.cache.has(config.rolesid.level30) && !interaction.member.roles.cache.has(config.rolesid.level30) && !interaction.member.roles.cache.has(config.rolesid.level40) && !interaction.member.roles.cache.has(config.rolesid.level50) && !interaction.member.roles.cache.has(config.rolesid.level60) && !interaction.member.roles.cache.has(config.rolesid.level70) && !interaction.member.roles.cache.has(config.rolesid.level80) && !interaction.member.roles.cache.has(config.rolesid.level90) && !interaction.member.roles.cache.has(config.rolesid.level100) && !interaction.member.roles.cache.has(config.rolesid.serverbooster) && !interaction.member.permissions.has(`ADMINISTRATOR`) && !interaction.member.roles.cache.has(config.rolesid.passallrewards)) {
                     let embed = new Discord.MessageEmbed()
                         .setTitle(`❌ ERRORE ❌`)
                         .setDescription(`Hai bisogno almeno del livello 30 per rendere la tua chat NSFW :disappointed:`)
@@ -59,9 +59,9 @@ module.exports = {
             }
 
             //? Deny the user isn't the owner
-            if (!owner && !interaction.member.roles.cache.has(config.idruoli.admin)) {
+            if (!owner && !interaction.member.roles.cache.has(config.rolesid.admin)) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`ERRORE`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`<a:error:966371274853089280> Non sei l'owner di questo canale privato`)
                     .setColor(`RED`);
                 interaction.reply({ embeds: [embed], ephemeral: true });
@@ -79,7 +79,7 @@ module.exports = {
             })
 
             //? If the user is the owner or an admin
-            if (owner || interaction.member.roles.cache.has(config.idruoli.admin)) {
+            if (owner || interaction.member.roles.cache.has(config.rolesid.admin)) {
                 //? Send a menu to choose the the slomode time
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`🐌 SLOWMODE`)
@@ -146,9 +146,9 @@ module.exports = {
             }
 
             //? Deny the user isn't the owner or an admin
-            if (!owner && !interaction.member.roles.cache.has(config.idruoli.admin)) {
+            if (!owner && !interaction.member.roles.cache.has(config.rolesid.admin)) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`ERRORE`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`<a:error:966371274853089280> Non sei l'owner di questo canale privato`)
                     .setColor(`RED`);
                 interaction.reply({ embeds: [embed], ephemeral: true });
@@ -165,7 +165,7 @@ module.exports = {
             })
 
             //? If the user is the owner or an admin
-            if (owner || interaction.member.roles.cache.has(config.idruoli.admin)) {
+            if (owner || interaction.member.roles.cache.has(config.rolesid.admin)) {
                 //? Send a menu to choose the limit
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`👥 LIMITE DI UTENTI`)
@@ -222,9 +222,9 @@ module.exports = {
             }
 
             //? Deny the user isn't the owner or an admin
-            if (!owner && !interaction.member.roles.cache.has(config.idruoli.admin)) {
+            if (!owner && !interaction.member.roles.cache.has(config.rolesid.admin)) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`ERRORE`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`<a:error:966371274853089280> Non sei l'owner di questo canale privato`)
                     .setColor(`RED`);
                 interaction.reply({ embeds: [embed], ephemeral: true });
@@ -241,7 +241,7 @@ module.exports = {
             })
 
             //? If the user is the owner or an admin
-            if (owner || interaction.member.roles.cache.has(config.idruoli.admin)) {
+            if (owner || interaction.member.roles.cache.has(config.rolesid.admin)) {
                 //? Reply to interaction
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`📃 CREAZIONE TRANSCRIPT`)
@@ -260,9 +260,9 @@ module.exports = {
             }
 
             //? Deny the user isn't the owner or an admin
-            if (!owner && !interaction.member.roles.cache.has(config.idruoli.admin)) {
+            if (!owner && !interaction.member.roles.cache.has(config.rolesid.admin)) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`ERRORE`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`<a:error:966371274853089280> Non sei l'owner di questo canale privato`)
                     .setColor(`RED`);
                 interaction.reply({ embeds: [embed], ephemeral: true });

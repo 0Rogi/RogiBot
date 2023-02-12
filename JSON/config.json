@@ -1,24 +1,17 @@
 {
-    "idbot": {
-        "rogidiscordbot": "813439444417773639",
-        "rogifunbot": "846690950931021874",
-        "rogimusicbot": "839093486728773653",
-        "rogitestbot": "873207194420662322"
-    },
-    "idcanali": {
+    "channelsid": {
         "announcement": "942473357931192391",
-        "becamestaff": "947915938043428885",
-        "botparent": "813469244792373268",
-        "bugs": "966262781592625172",
+        "automodlogs": "1029437629617405962",
+        "becamemanager": "1011673883260231742",
+        "bots": "997205988832706570",
         "commands": "826014465186332682",
-        "coppersupport": "1013058942143840296",
         "counting": "974971851526770688",
         "countingextreme": "987725484064395365",
         "countinginfinity": "1043934595361546301",
+        "funparent": "973316445444390973",
         "generalparent": "813470546363678783",
         "generaltxt": "813470597135728752",
         "generalvc": "813470668149751839",
-        "helpparent": "621004883184844810",
         "info": "813476709731008532",
         "infopartnership": "915647801533300767",
         "iscritti": "862009685087748117",
@@ -26,18 +19,14 @@
         "levels": "813842478972272710",
         "lockdown": "854667622199984159",
         "logs": {
+            "backups": "998606461905145978",
+            "bugs": "966262781592625172",
+            "errors": "1047194214125027388",
             "members": {
                 "join": "966264040361955380",
                 "leave": "966264073262100490",
                 "nicknames": "966264148726005800",
                 "roles": "966264097421275236"
-            },
-            "messages": {
-                "deleted": "966264594324664360",
-                "dm": "966644331983298580",
-                "say": "991399476096938074",
-                "typingstart": "975823621224267886",
-                "updated": "975824236251844638"
             },
             "moderation": {
                 "anticaps": "1008767272682278973",
@@ -52,59 +41,63 @@
                 "unbans": "966263210367930368",
                 "unmute": "966263080264802344"
             },
+            "messages": {
+                "deleted": "966264594324664360",
+                "dm": "966644331983298580",
+                "say": "991399476096938074",
+                "typingstart": "975823621224267886",
+                "updated": "975824236251844638"
+            },
+            "online": "966262653557276712",
             "partnership": {
                 "applies": "1011674099703099442",
-                "newpartnership": "1010576853683159142",
-                "leftedpartnership": "1010835760678699120"
+                "leftedpartnership": "1010835760678699120",
+                "newpartnership": "1010576853683159142"
             },
             "server": {
                 "channels": "966263670394986526",
                 "serverupdate": "966263638409228318",
                 "voicechannels": "966263827807211520"
             },
-            "backups": "998606461905145978",
-            "online": "966262653557276712",
-            "errors": "1047194214125027388",
             "ticket": "966741203162918993"
         },
         "membri": "814829205904424980",
         "minecraftupdates": "862003693250412574",
-        "moderationparent": "863041329196957706",
         "music": "641309954212495385",
         "muted": "855444441564446731",
-        "needhelp": "699201556016529428",
         "nomicchat": "1011675545819435161",
         "nsfw": "997620229104472164",
         "partnermanager": "1004763105647132743",
         "partnership": "915647768943542312",
         "partnershiparent": "915647151994966096",
+        "publiclogs": "1011673830286164090",
         "proomschannel": "991643168275697734",
         "proomsparent": "1031223455015776347",
-        "publiclogs": "1011673830286164090",
-        "rogidiscordparent": "621276633462079501",
-        "rogifunbot": "851026952277458984",
-        "rules": "698178808011948032",
-        "staffstats": "1067046351147389058",
-        "staff": "698929057932378172",
-        "staffguide": "867026680299782195",
-        "staffparent": "621003103734333440",
-        "suggestions": "955819810346913792",
-        "suggests": "966262814316580875",
-        "testing": "1005494659117752391",
-        "testualeyt": "621723864854167552",
-        "thingstodo": "945655162750509106",
-        "verify": "934439038948102225",
-        "rogisfriendparent": "621264959342510081",
-        "welcome": "813375425056342036",
-        "serverbooster": "993967714416730132"
+        "securityparent": "863041329196957706",
+        "serverdescription": "985912784166457364",
+        "tickets": "699201556016529428",
+        "ticketsparent": "621004883184844810",
+        "openticketparent": "813469244792373268",
+        "moderationparent": "1011673742491013200",
+        "rogidiscordparent": "621276633462079501"
     },
-    "idruoli": {
-        "allrewards": "1044313273568350268",
+    "idbot": {
+        "eventsbot": "1052147174223388732",
+        "rogidiscordbot": "813439444417773639",
+        "rogitestbot": "873207194420662322"
+    },
+    "idServer": {
+        "idServer": "602019987279839274",
+        "idServerLogs": "966008697677557770",
+        "idServerTest": "854065814218997800"
+    },
+    "rolesid": {
+        "admin": "945393889672589312",
         "bot": "704647749034967040",
         "easter": "964920474343731270",
         "fan": "704646594506653791",
         "friend": "823969594670186546",
-        "level5": "813843750773063741",
+        "level100": "947065707768721428",
         "level10": "813844426283548693",
         "level15": "857262474989404201",
         "level20": "857263832657428530",
@@ -112,43 +105,23 @@
         "level30": "935138884201898034",
         "level40": "947065471092527114",
         "level50": "947065527296200724",
+        "level5": "813843750773063741",
         "level60": "947065560112435250",
         "level70": "947065599002046564",
         "level80": "947065640743759912",
         "level90": "947065673249587271",
-        "level100": "947065707768721428",
         "moderator": "621002745024872461",
         "muted": "623513180156723211",
         "owner": "621001109149974529",
+        "passallrewards": "1044313273568350268",
+        "passnsfw": "997937746343637085",
+        "passrogisfriends": "1027334415048773754",
+        "passtesting": "1027336881123364894",
         "partnermanager": "985910805730054154",
         "serverbooster": "853313137737596998",
-        "snowballevent": "921323310904651797",
-        "srmoderator": "945393889672589312",
         "tempmuted": "961287135414067230",
         "unverified": "963853288351084586",
-        "vip": "1006249710417346600",
-        "videonotification": "1028664506391466024"
-    },
-    "idServer": {
-        "idServer": "602019987279839274",
-        "idServerLogs": "966008697677557770",
-        "idServerTest": "854065814218997800"
-    },
-    "images": {
-        "becamestaffer": "https://i.imgur.com/NEyDPBo.png",
-        "rogiban": "https://i.imgur.com/D854icT.png",
-        "rogiclosing": "https://i.imgur.com/SdQ8Yno.png",
-        "rogierror": "https://i.imgur.com/iYXbEvc.png",
-        "rogikick": "https://i.imgur.com/gsdiE2l.png",
-        "rogilockdownoff": "https://i.imgur.com/EazNiNs.png",
-        "rogilockdownon": "https://i.imgur.com/zk8EDow.png",
-        "rogimute": "https://i.imgur.com/fuzJb34.png",
-        "roginotfound": "https://i.imgur.com/BpBqe8T.png",
-        "rogirestart": "https://i.imgur.com/QVVlcAG.png",
-        "rogishutdown": "https://i.imgur.com/sTZRSdF.png",
-        "rogislowmode": "https://i.imgur.com/0nxhXTO.png",
-        "rogitimeout": "https://i.imgur.com/DN6K8cj.png"
-    },
-    "rogialt": "853927926680911913",
-    "rogi": "601308178482855956"
+        "videonotification": "1028664506391466024",
+        "xpboost": "1053719384662749274"
+    }
 }

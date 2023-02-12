@@ -33,9 +33,8 @@ module.exports = {
 
         if (!guildMember) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`Errore`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                 .setDescription(`*Non riesco a trovare quest'utente.\nInserisci un utente valido*`)
-                .setThumbnail(config.images.rogierror)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
             return;
@@ -48,7 +47,7 @@ module.exports = {
 
             if (userpermission >= staffpermission) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`ERRORE`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`*Non hai il permesso per kickare quest'utente*`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
@@ -62,7 +61,6 @@ module.exports = {
         let embed1 = new Discord.MessageEmbed()
             .setAuthor({ name: `[KICK] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
             .setDescription(`⚠️**HO AVVISATO** QUEST'UTENTE IN DM ⚠️`)
-            .setThumbnail(config.images.rogikick)
             .setColor(`PURPLE`)
             .addField(`👤 Utente:`, `Nome: ${user.username} - ID: ${user.id}\n||${user.toString()}||`)
             .addField(`📖 Motivo:`, reason.toString());
@@ -91,8 +89,8 @@ module.exports = {
         if (dm == false) embed3.setDescription(`⚠️ L'utente **non è stato** avvisato nei dm`);
         if (dm == false) embed1.setDescription(`⚠️ **NON POSSO AVVISARE** QUESTO UTENTE IN DM ⚠️`);
 
-        client.channels.cache.get(config.idcanali.logs.moderation.kick).send({ embeds: [embed3] });
-        client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed3] });
+        client.channels.cache.get(config.channelsid.logs.moderation.kick).send({ embeds: [embed3] });
+        client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed3] });
 
         interaction.editReply({ embeds: [embed1] });
         guildMember.kick({ reason: reason });

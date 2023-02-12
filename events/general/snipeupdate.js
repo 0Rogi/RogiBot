@@ -14,7 +14,7 @@ module.exports = {
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
 
         let update = true
-        if (message.channel.parent == config.idcanali.staffparent) update = false
+        if (message.channel.parent == config.channelsid.staffparent) update = false
         await badwords.forEach(b => {
             if (message.content.toLowerCase().includes(b)) update = false
         })

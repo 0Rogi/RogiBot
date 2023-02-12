@@ -23,10 +23,9 @@ module.exports = {
             let bug = interaction.options.getString(`bug`)
             if (bug.length > 1024) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`Errore`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`*Testo troppo lungo!\npuoi usare massimo 1024 caratteri!*`)
-                    .setColor(`RED`)
-                    .setThumbnail(config.images.rogierror)
+                    .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] })
                 return
             }
@@ -43,7 +42,7 @@ module.exports = {
                 .addField(`🪲Bug:`, bug.toString())
                 .setThumbnail(interaction.member.displayAvatarURL({ dynamic: true }))
                 .setColor(`YELLOW`)
-            client.channels.cache.get(config.idcanali.bugs).send({ embeds: [embed1] })
+            client.channels.cache.get(config.channelsid.logs.bugs).send({ embeds: [embed1] })
             interaction.editReply({ embeds: [embed2] })
         })
     }

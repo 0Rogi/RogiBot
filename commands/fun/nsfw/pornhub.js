@@ -38,14 +38,14 @@ module.exports = {
         ]
     },
     permissionlevel: 0,
-    allowedchannels: [config.idcanali.nsfw],
+    allowedchannels: [config.channelsid.nsfw],
     requirement: `none`,
     async execute(interaction) {
 
-        if (interaction.channel != config.idcanali.nsfw) {
+        if (interaction.channel != config.channelsid.nsfw) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`ERRORE`)
-                .setDescription(`*Puoi usare questo comando, SOLO in <#${config.idcanali.nsfw}> 😦*`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setDescription(`*Puoi usare questo comando, SOLO in <#${config.channelsid.nsfw}> 😦*`)
                 .setColor(`RED`);
             interaction.reply({ embeds: [embed], ephemeral: true });
             return;
@@ -77,7 +77,7 @@ module.exports = {
 
             pornhub.search('Video', interaction.options.getString(`video`)).catch(() => {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`ERRORE`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`*Non ho trovato nessun video, cercando \`${interaction.options.getString(`video`)}\` 🙁*`)
                     .setColor(`RED`)
                 interaction.editReply({ embeds: [embed] })
@@ -116,7 +116,7 @@ module.exports = {
 
             pornhub.video(interaction.options.getString(`url`)).catch(() => {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`ERRORE`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`*Inserisci un link di un video su pornhub, che sia valido...*`)
                     .setColor(`RED`)
                 interaction.editReply({ embeds: [embed] })

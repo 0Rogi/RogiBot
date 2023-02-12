@@ -51,6 +51,6 @@ module.exports = {
         })
 
         embed.addField(`✏️ Cambiamenti:`, text)
-        client.channels.cache.get(config.idcanali.logs.members.roles).send({ embeds: [embed] })
+        client.channels.cache.get(config.channelsid.logs.members.roles).send({ embeds: [embed] })
     }
 }

@@ -31,7 +31,7 @@ module.exports = {
 
             let channel = await server.channels.create(`—͟͞͞❓】${interaction.user.username}`, {
                 type: `GUILD_TEXT`,
-                parent: config.idcanali.helpparent,
+                parent: config.channelsid.ticketsparent,
                 permissionOverwrites: [
                     {
                         id: config.idServer.idServer,
@@ -111,7 +111,7 @@ module.exports = {
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         },
                         {
-                            id: config.idruoli.moderator,
+                            id: config.rolesid.moderator,
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         }
                     ])
@@ -126,7 +126,7 @@ module.exports = {
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         },
                         {
-                            id: config.idruoli.moderator,
+                            id: config.rolesid.moderator,
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         },
                         {
@@ -143,7 +143,7 @@ module.exports = {
                     .addField(`📘 Categoria:`, ticket.category, true)
                     .addField(`\u200b`, `\u200b`, true)
                     .addField(`📖 Sottocategoria:`, ticket.subcategory, true)
-                client.channels.cache.get(config.idcanali.logs.ticket).send({ embeds: [embedlog] })
+                client.channels.cache.get(config.channelsid.logs.ticket).send({ embeds: [embedlog] })
             }, 1000)
         } else if (interaction.customId == `TicketClose` || interaction.customId == `TicketSolved`) {
             let ticket = await serverstats.tickets.find(ticket => ticket.channelid == interaction.channel.id)
@@ -190,7 +190,7 @@ module.exports = {
 
                                 let transcript = await createTranscript(interaction.channel.id)
                                 fs.writeFile(`transcript${ticket.userid}.txt`, transcript, async function (err) {
-                                    await client.channels.cache.get(config.idcanali.logs.ticket).send({ embeds: [embedlog], files: [`${process.cwd()}/transcript${ticket.userid}.txt`] })
+                                    await client.channels.cache.get(config.channelsid.logs.ticket).send({ embeds: [embedlog], files: [`${process.cwd()}/transcript${ticket.userid}.txt`] })
                                     database.collection(`ServerStats`).updateOne({}, { $pull: { "tickets": { channelid: interaction.channel.id.toString() } } })
                                     interaction.channel.delete()
                                 })

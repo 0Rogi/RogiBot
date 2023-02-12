@@ -2,7 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
     name: `cset`,
-    description: `Modifica il numero attuale di <#${config.idcanali.counting}>`,
+    description: `Modifica il numero attuale di <#${config.channelsid.counting}>`,
     data: {
         name: `cset`,
         description: `Imposta un numero in counting`,
@@ -16,7 +16,7 @@ module.exports = {
         ],
     },
     permissionlevel: 1,
-    allowedchannels: [config.idcanali.counting],
+    allowedchannels: [config.channelsid.counting],
     execute(interaction) {
         interaction.deferReply().then(async () => {
             let number = interaction.options.getNumber(`numero`);
@@ -24,7 +24,7 @@ module.exports = {
 
             if (number < 0) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`Errore`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`*Il numero deve essere maggiore o uguale a 0*`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
@@ -47,14 +47,14 @@ module.exports = {
                 .setColor(`YELLOW`);
             interaction.editReply({ embeds: [embed] });
 
-            if (interaction.channel == config.idcanali.counting) {
-                client.channels.cache.get(config.idcanali.counting).send(number.toString()).then(msg => {
+            if (interaction.channel == config.channelsid.counting) {
+                client.channels.cache.get(config.channelsid.counting).send(number.toString()).then(msg => {
                     msg.react(`✅`);
                 })
-            } else if (interaction.channel != config.idcanali.counting) {
+            } else if (interaction.channel != config.channelsid.counting) {
                 embed.setDescription(`${interaction.user.toString()} ha modificato il numero corrente in **${number}**`);
-                client.channels.cache.get(config.idcanali.counting).send({ embeds: [embed] });
-                client.channels.cache.get(config.idcanali.counting).send(number.toString()).then(msg => {
+                client.channels.cache.get(config.channelsid.counting).send({ embeds: [embed] });
+                client.channels.cache.get(config.channelsid.counting).send(number.toString()).then(msg => {
                     msg.react(`✅`);
                 })
             }

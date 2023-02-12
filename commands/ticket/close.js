@@ -18,10 +18,9 @@ module.exports = {
             let ticket = await serverstats.tickets.find(ticket => ticket.channelid == interaction.channel.id)
             if (!ticket) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`Errore`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setColor(`RED`)
-                    .setDescription(`*Questo canale non è un ticket*`)
-                    .setThumbnail(config.images.rogierror)
+                    .setDescription(`*Questo canale non è un ticket*`);
                 interaction.editReply({ embeds: [embed] })
                 return
             }
@@ -69,7 +68,7 @@ module.exports = {
 
                                     let transcript = await createTranscript(interaction.channel.id)
                                     fs.writeFile(`transcript${ticket.userid}.txt`, transcript, async function (err) {
-                                        await client.channels.cache.get(config.idcanali.logs.ticket).send({ embeds: [embedlog], files: [`${process.cwd()}/transcript${ticket.userid}.txt`] })
+                                        await client.channels.cache.get(config.channelsid.logs.ticket).send({ embeds: [embedlog], files: [`${process.cwd()}/transcript${ticket.userid}.txt`] })
                                         database.collection(`ServerStats`).updateOne({}, { $pull: { "tickets": { channelid: interaction.channel.id.toString() } } })
                                         interaction.channel.delete()
                                     })

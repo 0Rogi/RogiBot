@@ -40,12 +40,11 @@ module.exports = {
 	allowedchannels: [`ALL`],
 	requirement: `Server Booster`,
 	execute(interaction) {
-		if (!interaction.member.roles.cache.has(config.idruoli.serverbooster) && !interaction.member.permissions.has(`ADMINISTRATOR`) && !interaction.member.roles.cache.has(config.idruoli.allrewards)) {
+		if (!interaction.member.roles.cache.has(config.rolesid.serverbooster) && !interaction.member.permissions.has(`ADMINISTRATOR`) && !interaction.member.roles.cache.has(config.rolesid.passallrewards)) {
 			let embed = new Discord.MessageEmbed()
-				.setTitle(`Errore`)
+				.setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
 				.setDescription(`*Devi boostare il server per usare questo comando!*`)
-				.setColor(`RED`)
-				.setThumbnail(config.images.rogierror);
+				.setColor(`RED`);
 			interaction.reply({ embeds: [embed], ephemeral: true });
 			return;
 		}
@@ -54,10 +53,9 @@ module.exports = {
 			let text = interaction.options.getString(`testo`)
 			if (text.length > 2000) {
 				let embed = new Discord.MessageEmbed()
-					.setTitle(`Errore`)
+					.setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
 					.setDescription(`*Testo troppo lungo!\npuoi usare massimo 2000 caratteri!*`)
-					.setColor(`RED`)
-					.setThumbnail(config.images.rogierror);
+					.setColor(`RED`);
 				interaction.editReply({ embeds: [embed] });
 				return;
 			}
@@ -74,10 +72,9 @@ module.exports = {
 
 			if (!send) {
 				let embed = new Discord.MessageEmbed()
-					.setTitle(`Errore`)
+					.setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
 					.setDescription(`*Non puoi mandare parolacce con /say!\nRicorda di rispettare le regole!*`)
-					.setColor(`RED`)
-					.setThumbnail(config.images.rogierror);
+					.setColor(`RED`);
 				interaction.editReply({ embeds: [embed] });
 				return;
 			}
@@ -104,7 +101,7 @@ module.exports = {
 			}
 			interaction.channel.send(text);
 			interaction.editReply({ embeds: [embed], ephemeral: true });
-			client.channels.cache.get(config.idcanali.logs.messages.say).send({ embeds: [embedlog] });
+			client.channels.cache.get(config.channelsid.logs.messages.say).send({ embeds: [embedlog] });
 		})
 	}
 }

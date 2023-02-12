@@ -41,16 +41,16 @@ module.exports = {
 
         if (!member) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`ERRORE`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                 .setDescription(`*Questo utente non è nel server...*\n*Non puoi eseguire una partner con un utente non nel server!*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
             return;
         }
 
-        if (member.roles.cache.has(config.idruoli.unverified)) {
+        if (member.roles.cache.has(config.rolesid.unverified)) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`ERRORE`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                 .setDescription(`*Questo utente non è verificato...*\n*Non puoi eseguire una partner con un utente non verificato!*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
@@ -76,11 +76,11 @@ module.exports = {
         }
 
         let id1;
-        await client.channels.cache.get(config.idcanali.partnership).send(description).then(m => {
+        await client.channels.cache.get(config.channelsid.partnership).send(description).then(m => {
             id1 = m.id;
         })
         let id2;
-        await client.channels.cache.get(config.idcanali.partnership).send(`─────────────────\n🔷 Eseguita da: ${interaction.user.toString()}\n🔷 Eseguita con: ${user.toString()}\n🔷 Nome Server: ${server.toString()}\n─────────────────`).then(m => {
+        await client.channels.cache.get(config.channelsid.partnership).send(`─────────────────\n🔷 Eseguita da: ${interaction.user.toString()}\n🔷 Eseguita con: ${user.toString()}\n🔷 Nome Server: ${server.toString()}\n─────────────────`).then(m => {
             id2 = m.id;
         })
 
@@ -102,7 +102,7 @@ module.exports = {
             .addField(`🏠 Server:`, `**${server.toUpperCase()}**`)
             .setThumbnail(interaction.member.displayAvatarURL({ dynamic: true }))
             .setColor(`GREEN`);
-        client.channels.cache.get(config.idcanali.logs.partnership.newpartnership).send({ embeds: [embedlog] });
+        client.channels.cache.get(config.channelsid.logs.partnership.newpartnership).send({ embeds: [embedlog] });
 
         let embed = new Discord.MessageEmbed()
             .setTitle(`Partnership Effettuata`)

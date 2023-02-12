@@ -231,7 +231,7 @@ module.exports = {
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         },
                         {
-                            id: config.idruoli.moderator,
+                            id: config.rolesid.moderator,
                             allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
                         }
                     ])
@@ -243,7 +243,7 @@ module.exports = {
                         .addField(`📖 Categoria:`, ticket.category, true)
                         .addField(`\u200b`, `\u200b`, true)
                         .addField(`Sottocategoria:`, `Altro...`, true)
-                    client.channels.cache.get(config.idcanali.logs.ticket).send({ embeds: [embedlog] })
+                    client.channels.cache.get(config.channelsid.logs.ticket).send({ embeds: [embedlog] })
                 }
             }
         }

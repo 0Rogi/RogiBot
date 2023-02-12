@@ -24,6 +24,6 @@ module.exports = {
             .setColor(`YELLOW`)
             .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
             .setFooter({ text: `User ID: ${message.author.id}` })
-        client.channels.cache.get(config.idcanali.logs.messages.dm).send({ embeds: [embed] })
+        client.channels.cache.get(config.channelsid.logs.messages.dm).send({ embeds: [embed] })
     }
 }

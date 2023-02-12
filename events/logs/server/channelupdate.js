@@ -42,6 +42,6 @@ module.exports = {
             .addField(`😀 Nome:`, newChannel.name, true)
             .addField(`✏️ Cambiamenti:`, text)
             .setColor(`YELLOW`)
-        client.channels.cache.get(config.idcanali.logs.server.channels).send({ embeds: [embed] })
+        client.channels.cache.get(config.channelsid.logs.server.channels).send({ embeds: [embed] })
     }
 }

@@ -78,14 +78,14 @@ module.exports = {
         ]
     },
     permissionlevel: 0,
-    allowedchannels: [config.idcanali.nsfw],
+    allowedchannels: [config.channelsid.nsfw],
     requirement: `none`,
     async execute(interaction) {
 
-        if (interaction.channel != config.idcanali.nsfw) {
+        if (interaction.channel != config.channelsid.nsfw) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`ERRORE`)
-                .setDescription(`*Puoi usare questo comando, SOLO in <#${config.idcanali.nsfw}> 😦*`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setDescription(`*Puoi usare questo comando, SOLO in <#${config.channelsid.nsfw}> 😦*`)
                 .setColor(`RED`);
             interaction.reply({ embeds: [embed], ephemeral: true });
             return;

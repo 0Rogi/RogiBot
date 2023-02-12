@@ -4,7 +4,7 @@ module.exports = {
     name: `messageUpdate`,
     execute(oldMessage, newMessage) {
         if (newMessage.author?.bot) return
-        if (newMessage.channel != config.idcanali.countingextreme) return
+        if (newMessage.channel != config.channelsid.countingextreme) return
 
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(newMessage.author.id)) return
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(newMessage.author.id)) return

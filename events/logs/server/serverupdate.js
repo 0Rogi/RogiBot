@@ -69,6 +69,6 @@ module.exports = {
             .addField(`👥 Moderatore:`, executor.toString())
             .addField(`✏️ Cambiamenti:`, text)
             .setColor(`ORANGE`)
-        client.channels.cache.get(config.idcanali.logs.server.serverupdate).send({ embeds: [embed] })
+        client.channels.cache.get(config.channelsid.logs.server.serverupdate).send({ embeds: [embed] })
     }
 }

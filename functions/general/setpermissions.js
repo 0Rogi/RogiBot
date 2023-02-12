@@ -4,10 +4,10 @@ module.exports = function setpermissions() {
     let guild = client.guilds.cache.get(config.idServer.idServer)
     guild.channels.cache.forEach(channel => {
         try {
-            if (channel == config.idcanali.testing) return
-            if (channel != config.idcanali.muted) {
-                let role1 = guild.roles.cache.find(role => role.id == config.idruoli.muted);
-                let role2 = guild.roles.cache.find(role => role.id == config.idruoli.tempmuted);
+            if (channel == config.channelsid.testing) return
+            if (channel != config.channelsid.muted) {
+                let role1 = guild.roles.cache.find(role => role.id == config.rolesid.muted);
+                let role2 = guild.roles.cache.find(role => role.id == config.rolesid.tempmuted);
                 channel.permissionOverwrites.edit(role2, {
                     VIEW_CHANNEL: false,
                     SEND_MESSAGES: false
@@ -17,9 +17,9 @@ module.exports = function setpermissions() {
                     SEND_MESSAGES: false
                 }).catch(() => { });
             }
-            if (channel == config.idcanali.muted) {
-                let role1 = guild.roles.cache.find(role => role.id == config.idruoli.muted);
-                let role2 = guild.roles.cache.find(role => role.id == config.idruoli.tempmuted);
+            if (channel == config.channelsid.muted) {
+                let role1 = guild.roles.cache.find(role => role.id == config.rolesid.muted);
+                let role2 = guild.roles.cache.find(role => role.id == config.rolesid.tempmuted);
                 channel.permissionOverwrites.edit(role1, {
                     VIEW_CHANNEL: true
                 }).catch(() => { })
@@ -27,14 +27,14 @@ module.exports = function setpermissions() {
                     VIEW_CHANNEL: true
                 }).catch(() => { });
             }
-            if (channel != config.idcanali.verify) {
-                let role = guild.roles.cache.find(role => role.id == config.idruoli.unverified);
+            if (channel != config.channelsid.verify) {
+                let role = guild.roles.cache.find(role => role.id == config.rolesid.unverified);
                 channel.permissionOverwrites.edit(role, {
                     VIEW_CHANNEL: false
                 }).catch(() => { });
             }
-            if (channel == config.idcanali.verify) {
-                let role = guild.roles.cache.find(role => role.id == config.idruoli.unverified);
+            if (channel == config.channelsid.verify) {
+                let role = guild.roles.cache.find(role => role.id == config.rolesid.unverified);
                 channel.permissionOverwrites.edit(role, {
                     VIEW_CHANNEL: true
                 }).catch(() => { });

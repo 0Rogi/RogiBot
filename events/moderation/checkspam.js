@@ -14,10 +14,10 @@ module.exports = {
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
         if (message.guild != config.idServer.idServer) return;
-        if (message.member.roles.cache.has(config.idruoli.muted) || message.member.roles.cache.has(config.idruoli.tempmuted)) return;
+        if (message.member.roles.cache.has(config.rolesid.muted) || message.member.roles.cache.has(config.rolesid.tempmuted)) return;
 
         if (message.author.bot || message.member.permissions.has(`MANAGE_MESSAGES`) || message.member.permissions.has(`ADMINISTRATOR`)) return
-        if (message.channel == config.idcanali.nsfw) return
+        if (message.channel == config.channelsid.nsfw) return
         if (checkspam.has(message.author.id)) {
             let user = checkspam.get(message.author.id)
             if (message.createdTimestamp - user.lastmsg <= 4000 && message.channel.rateLimitPerUser <= 2 || message.createdTimestamp - user.lastmsg <= 7000 && message.channel.rateLimitPerUser > 2) {
@@ -30,12 +30,12 @@ module.exports = {
                                     type: `tempmuted`,
                                     moderator: client.user.id,
                                     reason: `Rilevazione Spam`,
-                                    time: 1000 * 60 * 10
+                                    time: new Date().getTime() + (1000 * 60 * 10)
                                 },
                                 leavedAt: 0,
                                 levelling: {}
                             })
-                            message.member.roles.add(config.idruoli.tempmuted)
+                            message.member.roles.add(config.rolesid.tempmuted)
                         }
                         if (result[0]) {
                             database.collection(`UserStats`).updateOne({ id: message.author.id }, {
@@ -44,16 +44,15 @@ module.exports = {
                                         type: `tempmuted`,
                                         moderator: client.user.id,
                                         reason: `Rilevazione Spam`,
-                                        time: 1000 * 60 * 10
+                                        time: new Date().getTime() + (1000 * 60 * 10)
                                     }
                                 }
                             })
                         }
                     })
-                    message.member.roles.add(config.idruoli.tempmuted)
+                    message.member.roles.add(config.rolesid.tempmuted)
                     let embed = new Discord.MessageEmbed()
                         .setAuthor({ name: `[TEMPMUTE] ${message.member.user.tag}`, iconURL: message.member.displayAvatarURL({ dynamic: true }) })
-                        .setThumbnail(config.images.rogimute)
                         .setColor(`PURPLE`)
                         .addField(`👤 Utente:`, `Nome: ${message.author.username}, ID: ${message.author.id}\n||${message.member.toString()}||`)
                         .addField(`⏰ Tempo:`, `10 minuti`, true)
@@ -81,9 +80,9 @@ module.exports = {
                         .addField(`📖 Motivo:`, `Rilevazione Spam`)
                     message.channel.send({ embeds: [embed] })
                     message.author.send({ embeds: [embed3] }).catch(() => { })
-                    client.channels.cache.get(config.idcanali.logs.moderation.spam).send({ embeds: [embed2] })
-                    client.channels.cache.get(config.idcanali.logs.moderation.tempmute).send({ embeds: [embed4] })
-                    client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed4] })
+                    client.channels.cache.get(config.channelsid.logs.moderation.spam).send({ embeds: [embed2] })
+                    client.channels.cache.get(config.channelsid.logs.moderation.tempmute).send({ embeds: [embed4] })
+                    client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed4] })
                     checkspam.delete(message.author.id)
                     return
                 }

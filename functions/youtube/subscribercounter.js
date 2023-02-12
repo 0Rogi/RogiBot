@@ -4,7 +4,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 module.exports = function subscribercounter() {
     const payload = { channelId: `UCw7lKb-XBW4ApE0puSbJLFQ`, channelIdType: 0 };
     getChannelInfo(payload).then((response) => {
-        let canaleyoutube = client.channels.cache.get(config.idcanali.iscritti)
+        let canaleyoutube = client.channels.cache.get(config.channelsid.iscritti)
         canaleyoutube.setName(`—͟͞͞🎬】Subscribers: ${response?.subscriberCount}`)
     })
 }

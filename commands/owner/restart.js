@@ -10,13 +10,12 @@ module.exports = {
 	permissionlevel: 4,
 	allowedchannels: [`ALL`],
 	execute(interaction) {
-		if (!interaction.member.roles.cache.has(config.idruoli.owner)) return;
+		if (!interaction.member.roles.cache.has(config.rolesid.owner)) return;
 		interaction.deferReply().then(async () => {
 			let embed = new Discord.MessageEmbed()
 				.setTitle(`Restart`)
 				.setDescription(`Il bot è in fase di **restart**!!\nA breve tornerà online!`)
-				.setColor(`RED`)
-				.setThumbnail(config.images.rogirestart)
+				.setColor(`RED`);
 			console.clear()
 			console.error(`Restart del bot...`)
 			await interaction.editReply({ embeds: [embed] })

@@ -5,8 +5,8 @@ module.exports = function checkpartnerships() {
     serverstats.partnerships.forEach(async p => {
         const user = client.guilds.cache.get(config.idServer.idServer).members.cache.find(x => x.id == p.user);
         if (!user) {
-            client.channels.cache.get(config.idcanali.partnership).messages.fetch(p.message1).then(m => m.delete());
-            client.channels.cache.get(config.idcanali.partnership).messages.fetch(p.message2).then(m => m.delete());
+            client.channels.cache.get(config.channelsid.partnership).messages.fetch(p.message1).then(m => m.delete());
+            client.channels.cache.get(config.channelsid.partnership).messages.fetch(p.message2).then(m => m.delete());
             database.collection(`ServerStats`).updateOne({}, { $pull: { "partnerships": { user: p.user } } });
             let moderator = await client.users.fetch(p.executor);
             let embed = new Discord.MessageEmbed()
@@ -17,7 +17,7 @@ module.exports = function checkpartnerships() {
                 .addField(`🏠 Server:`, `**${p.server.toUpperCase()}**`)
                 .setThumbnail(p.user.displayAvatarURL({ dynamic: true }))
                 .setColor(`RED`);
-            client.channels.cache.get(config.idcanali.logs.partnership.leftedpartnership).send({ embeds: [embed] });
+            client.channels.cache.get(config.channelsid.logs.partnership.leftedpartnership).send({ embeds: [embed] });
         }
     })
 }

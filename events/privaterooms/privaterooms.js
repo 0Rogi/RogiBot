@@ -7,7 +7,7 @@ module.exports = {
         if (oldState.guild != config.idServer.idServer || newState.guild != config.idServer.idServer) return;
 
         //? Check if the channel is the private rooms channel
-        if (newState.channelId == config.idcanali.proomschannel) {
+        if (newState.channelId == config.channelsid.proomschannel) {
 
             //? Get the server and the guildMember
             let server = client.guilds.cache.get(config.idServer.idServer);
@@ -25,9 +25,8 @@ module.exports = {
 
             if (found) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`Errore`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`*Hai già aperto una stanza privata!*`)
-                    .setThumbnail(config.images.rogierror)
                     .setColor(`RED`);
                 member.send({ embeds: [embed] }).catch(() => { });
                 member.voice.disconnect();
@@ -41,7 +40,7 @@ module.exports = {
 
             await newState.guild.channels.create(`—͟͞͞💬】text-${member.user.username}`, {
                 type: `GUILD_TEXT`,
-                parent: config.idcanali.proomsparent,
+                parent: config.channelsid.proomsparent,
                 nsfw: false,
                 topic: `Canale di ${member.user.username}`,
                 rateLimitPerUser: 1,
@@ -55,7 +54,7 @@ module.exports = {
                         allow: [`VIEW_CHANNEL`]
                     },
                     {
-                        id: config.idruoli.moderator,
+                        id: config.rolesid.moderator,
                         allow: [`VIEW_CHANNEL`]
                     }
                 ]
@@ -65,7 +64,7 @@ module.exports = {
 
             await newState.guild.channels.create(`—͟͞͞🔊】voice-${member.user.username}`, {
                 type: `GUILD_VOICE`,
-                parent: config.idcanali.proomsparent,
+                parent: config.channelsid.proomsparent,
                 permissionOverwrites: [
                     {
                         id: config.idServer.idServer,
@@ -76,7 +75,7 @@ module.exports = {
                         allow: [`VIEW_CHANNEL`]
                     },
                     {
-                        id: config.idruoli.moderator,
+                        id: config.rolesid.moderator,
                         allow: [`VIEW_CHANNEL`]
                     }
                 ]

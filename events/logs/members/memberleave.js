@@ -18,8 +18,8 @@ module.exports = {
             .setThumbnail(member.displayAvatarURL({ dynamic: true }))
             .setColor(`RED`);
 
-        client.channels.cache.get(config.idcanali.logs.members.leave).send({ embeds: [embed] });
-        client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed] });
+        client.channels.cache.get(config.channelsid.logs.members.leave).send({ embeds: [embed] });
+        client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed] });
 
         database.collection(`UserStats`).find({ id: member.id }).toArray(function (err, result) {
             if (!result[0]) {
@@ -27,7 +27,7 @@ module.exports = {
                     username: member.user.username, id: member.id, roles: member._roles, moderation: {}, leaveAt: new Date().getTime(), levelling: {}
                 })
             } else if (result[0]) {
-                if (member.roles.cache.has(config.idruoli.unverified)) {
+                if (member.roles.cache.has(config.rolesid.unverified)) {
                     database.collection(`UserStats`).updateOne({ id: member.id }, {
                         $set: { leavedAt: new Date().getTime() }
                     })
@@ -49,8 +49,8 @@ module.exports = {
 
         if (foundpartnership) {
             if (foundpartnership.user == member.user.id) {
-                client.channels.cache.get(config.idcanali.partnership).messages.fetch(foundpartnership.message1).then(m => m.delete());
-                client.channels.cache.get(config.idcanali.partnership).messages.fetch(foundpartnership.message2).then(m => m.delete());
+                client.channels.cache.get(config.channelsid.partnership).messages.fetch(foundpartnership.message1).then(m => m.delete());
+                client.channels.cache.get(config.channelsid.partnership).messages.fetch(foundpartnership.message2).then(m => m.delete());
                 database.collection(`ServerStats`).updateOne({}, { $pull: { "partnerships": { user: member.user.id } } });
                 let moderator = await client.users.fetch(foundpartnership.executor);
                 let embed = new Discord.MessageEmbed()
@@ -61,7 +61,7 @@ module.exports = {
                     .addField(`🏠 Server:`, `**${foundpartnership.server.toUpperCase()}**`)
                     .setThumbnail(member.displayAvatarURL({ dynamic: true }))
                     .setColor(`RED`);
-                client.channels.cache.get(config.idcanali.logs.partnership.leftedpartnership).send({ embeds: [embed] });
+                client.channels.cache.get(config.channelsid.logs.partnership.leftedpartnership).send({ embeds: [embed] });
             }
         }
 

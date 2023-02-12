@@ -3,21 +3,21 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 module.exports = async function nightSecurity(enable) {
 
     if (enable) {
-        client.channels.cache.get(config.idcanali.generaltxt).sendTyping()
+        client.channels.cache.get(config.channelsid.generaltxt).sendTyping()
 
         //? Set slowmode in all channels
-        client.channels.cache.get(config.idcanali.generaltxt).setRateLimitPerUser(5)
-        client.channels.cache.get(config.idcanali.serverbooster).setRateLimitPerUser(5)
-        client.channels.cache.get(config.idcanali.commands).setRateLimitPerUser(5)
-        client.channels.cache.get(config.idcanali.counting).setRateLimitPerUser(5)
-        client.channels.cache.get(config.idcanali.countingextreme).setRateLimitPerUser(5)
-        client.channels.cache.get(config.idcanali.countinginfinity).setRateLimitPerUser(5)
+        client.channels.cache.get(config.channelsid.generaltxt).setRateLimitPerUser(5)
+        client.channels.cache.get(config.channelsid.serverbooster).setRateLimitPerUser(5)
+        client.channels.cache.get(config.channelsid.commands).setRateLimitPerUser(5)
+        client.channels.cache.get(config.channelsid.counting).setRateLimitPerUser(5)
+        client.channels.cache.get(config.channelsid.countingextreme).setRateLimitPerUser(5)
+        client.channels.cache.get(config.channelsid.countinginfinity).setRateLimitPerUser(5)
 
         //? Set limit to voice channels
-        client.channels.cache.get(config.idcanali.generalvc).setUserLimit(15)
+        client.channels.cache.get(config.channelsid.generalvc).setUserLimit(15)
 
         //? Disable tickets
-        let msg = await client.channels.cache.get(config.idcanali.needhelp).messages.fetch(`993212657924579420`)
+        let msg = await client.channels.cache.get(config.channelsid.tickets).messages.fetch(`993212657924579420`)
 
         let button = new Discord.MessageButton()
             .setLabel(`Apri Ticket`)
@@ -34,27 +34,27 @@ module.exports = async function nightSecurity(enable) {
 
         //? Send message
         let phrases = [`Buonanotte a tutti!`, `Notte!`, `Ed anche questo giorno è passato..., buonanotte!`, `Oggi sono stanchissimo, buonanotte!`, `Oggi mi avete fatto lavorare davvero molto... vado a dormire ora, buonanotte!`]
-        client.channels.cache.get(config.idcanali.generaltxt).send(phrases[Math.floor(Math.random() * phrases.length)])
-        client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **abilitata** 🔒`)
+        client.channels.cache.get(config.channelsid.generaltxt).send(phrases[Math.floor(Math.random() * phrases.length)])
+        client.channels.cache.get(config.channelsid.generaltxt).send(`La sicurezza notturna è stata **abilitata** 🔒`)
 
     }
 
     if (!enable) {
-        client.channels.cache.get(config.idcanali.generaltxt).sendTyping()
+        client.channels.cache.get(config.channelsid.generaltxt).sendTyping()
 
         //? Reset slowmode in all channels
-        client.channels.cache.get(config.idcanali.generaltxt).setRateLimitPerUser(1)
-        client.channels.cache.get(config.idcanali.serverbooster).setRateLimitPerUser(0)
-        client.channels.cache.get(config.idcanali.commands).setRateLimitPerUser(1)
-        client.channels.cache.get(config.idcanali.counting).setRateLimitPerUser(1)
-        client.channels.cache.get(config.idcanali.countingextreme).setRateLimitPerUser(1)
-        client.channels.cache.get(config.idcanali.countinginfinity).setRateLimitPerUser(1)
+        client.channels.cache.get(config.channelsid.generaltxt).setRateLimitPerUser(1)
+        client.channels.cache.get(config.channelsid.serverbooster).setRateLimitPerUser(0)
+        client.channels.cache.get(config.channelsid.commands).setRateLimitPerUser(1)
+        client.channels.cache.get(config.channelsid.counting).setRateLimitPerUser(1)
+        client.channels.cache.get(config.channelsid.countingextreme).setRateLimitPerUser(1)
+        client.channels.cache.get(config.channelsid.countinginfinity).setRateLimitPerUser(1)
 
         //? Remove the limit from voice channels
-        client.channels.cache.get(config.idcanali.generalvc).setUserLimit(0)
+        client.channels.cache.get(config.channelsid.generalvc).setUserLimit(0)
 
         //? Enable tickets
-        let msg = await client.channels.cache.get(config.idcanali.needhelp).messages.fetch(`993212657924579420`)
+        let msg = await client.channels.cache.get(config.channelsid.tickets).messages.fetch(`993212657924579420`)
 
         let button = new Discord.MessageButton()
             .setLabel(`Apri Ticket`)
@@ -74,43 +74,43 @@ module.exports = async function nightSecurity(enable) {
         if (new Date().getDay() == 0) phrases = [`Buongiorno e buona domenica a tutti! Come state?`, `Salve e buona domenica a tutti quanti! Come va la vita?`, `Ciao, buona domenica a tutti! Cosa fare di bello oggi?`]
 
         if (new Date().getMonth() == 0 && new Date().getDate() == 1) {
-            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno e **buon ${new Date().getFullYear()}** a tutti quanti! 🎉`);
-            client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
+            client.channels.cache.get(config.channelsid.generaltxt).send(`Buongiorno e **buon ${new Date().getFullYear()}** a tutti quanti! 🎉`);
+            client.channels.cache.get(config.channelsid.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
             return;
         }
 
         if (new Date().getMonth() == 0 && new Date().getDate() == 6) {
-            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno, **buona epifania**! 🧙‍♀️`);
-            client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
+            client.channels.cache.get(config.channelsid.generaltxt).send(`Buongiorno, **buona epifania**! 🧙‍♀️`);
+            client.channels.cache.get(config.channelsid.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
             return;
         }
 
         if (new Date().getMonth() == 1 && new Date().getDate() == 14) {
-            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno e **buon San Valentino** a tutti i fidanzati!`);
-            client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
+            client.channels.cache.get(config.channelsid.generaltxt).send(`Buongiorno e **buon San Valentino** a tutti i fidanzati!`);
+            client.channels.cache.get(config.channelsid.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
             return;
         }
 
         if (new Date().getMonth() == 3 && new Date().getDate() == 1) {
-            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno e **buon Pesce d'Aprile** a tutti! 👀`);
-            client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
+            client.channels.cache.get(config.channelsid.generaltxt).send(`Buongiorno e **buon Pesce d'Aprile** a tutti! 👀`);
+            client.channels.cache.get(config.channelsid.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
             return;
         }
 
         if (new Date().getMonth() == 9 && new Date().getDate() == 31) {
-            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno, **buon Halloween**! 🎃`);
-            client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
+            client.channels.cache.get(config.channelsid.generaltxt).send(`Buongiorno, **buon Halloween**! 🎃`);
+            client.channels.cache.get(config.channelsid.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
             return;
         }
 
         if (new Date().getMonth() == 11 && new Date().getDate() == 25) {
-            client.channels.cache.get(config.idcanali.generaltxt).send(`Buongiorno e **buon Natale** a tutti!`);
-            client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
+            client.channels.cache.get(config.channelsid.generaltxt).send(`Buongiorno e **buon Natale** a tutti!`);
+            client.channels.cache.get(config.channelsid.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`);
             return;
         }
 
-        client.channels.cache.get(config.idcanali.generaltxt).send(phrases[Math.floor(Math.random() * phrases.length)])
-        client.channels.cache.get(config.idcanali.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`)
+        client.channels.cache.get(config.channelsid.generaltxt).send(phrases[Math.floor(Math.random() * phrases.length)])
+        client.channels.cache.get(config.channelsid.generaltxt).send(`La sicurezza notturna è stata **disabilitata** 🔓`)
 
     }
 }

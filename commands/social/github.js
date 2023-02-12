@@ -8,7 +8,7 @@ module.exports = {
 		description: `Mostra il profilo github di Rogi`,
 	},
 	permissionlevel: 0,
-	allowedchannels: [config.idcanali.commands],
+	allowedchannels: [config.channelsid.commands],
 	requirement: `none`,
 	execute(interaction) {
 		interaction.deferReply().then(() => {

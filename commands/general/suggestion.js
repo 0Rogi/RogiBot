@@ -16,17 +16,16 @@ module.exports = {
 		],
 	},
 	permissionlevel: 0,
-	allowedchannels: [config.idcanali.commands],
+	allowedchannels: [config.channelsid.commands],
 	requirement: `none`,
 	execute(interaction) {
 		interaction.deferReply().then(() => {
 			let suggestion = interaction.options.getString(`suggerimento`)
 			if (suggestion.length > 1024) {
 				let embed = new Discord.MessageEmbed()
-					.setTitle(`Errore`)
+					.setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
 					.setDescription(`*Testo troppo lungo!\npuoi usare massimo 1024 caratteri!*`)
-					.setColor(`RED`)
-					.setThumbnail(config.images.rogierror)
+					.setColor(`RED`);
 				interaction.editReply({ embeds: [embed] })
 				return
 			}
@@ -55,7 +54,7 @@ module.exports = {
 				.setCustomId(`SuggestRefuse`)
 				.setStyle(`DANGER`)
 			let row = new Discord.MessageActionRow().addComponents(button1, button2)
-			client.channels.cache.get(config.idcanali.suggests).send({ embeds: [embed1], components: [row] })
+			client.channels.cache.get(config.channelsid.suggests).send({ embeds: [embed1], components: [row] })
 			interaction.editReply({ embeds: [embed2] })
 		})
 	}

@@ -41,9 +41,8 @@ module.exports = {
 
         if (!guildMember) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`Errore`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                 .setDescription(`*Non riesco a trovare quest'utente.\nInserisci un utente valido*`)
-                .setThumbnail(config.images.rogierror)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
             return;
@@ -56,7 +55,7 @@ module.exports = {
 
             if (userpermission >= staffpermission) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`ERRORE`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`*Non hai il permesso per mutare temporaneamente quest'utente*`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
@@ -107,7 +106,6 @@ module.exports = {
             let embed1 = new Discord.MessageEmbed()
                 .setAuthor({ name: `[TEMPMUTE] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
                 .setDescription(`⚠️ **HO AVVISATO** QUEST'UTENTE IN DM ⚠️`)
-                .setThumbnail(config.images.rogimute)
                 .setColor(`PURPLE`)
                 .addField(`👤 Utente:`, `Nome: ${user.username} - ID: ${user.id}\n||${user.toString()}||`)
                 .addField(`⏰ Tempo:`, timeembed.toString(), true)
@@ -138,8 +136,8 @@ module.exports = {
             if (dm == false) embed3.setDescription(`⚠️ L'utente **non è stato** avvisato nei dm`);
             if (dm == false) embed1.setDescription(`⚠️ **NON POSSO AVVISARE** QUESTO UTENTE IN DM ⚠️`);
 
-            client.channels.cache.get(config.idcanali.logs.moderation.tempmute).send({ embeds: [embed3] });
-            client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed3] });
+            client.channels.cache.get(config.channelsid.logs.moderation.tempmute).send({ embeds: [embed3] });
+            client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed3] });
 
             interaction.editReply({ embeds: [embed1] });
 
@@ -150,12 +148,12 @@ module.exports = {
                             type: `tempmuted`,
                             moderator: interaction.user.id,
                             reason: reason,
-                            time: time
+                            time: new Date().getTime() + time
                         },
                         leavedAt: 0,
                         levelling: {}
                     })
-                    guildMember.roles.add(config.idruoli.tempmuted);
+                    guildMember.roles.add(config.rolesid.tempmuted);
                 }
                 if (result[0]) {
                     database.collection(`UserStats`).updateOne({ id: user.id }, {
@@ -164,13 +162,13 @@ module.exports = {
                                 type: `tempmuted`,
                                 moderator: interaction.user.id,
                                 reason: reason,
-                                time: time
+                                time: new Date().getTime() + time
                             }
                         }
                     })
                 }
             })
-            guildMember.roles.add(config.idruoli.tempmuted);
+            guildMember.roles.add(config.rolesid.tempmuted);
             database.collection(`Staff`).find({ id: interaction.user.id }).toArray(function (err, result) {
                 if (!result[0]) {
                     database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, partnerships: 0, actions: 1 });

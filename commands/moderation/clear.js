@@ -31,28 +31,25 @@ module.exports = {
         let count = interaction.options.getNumber(`quantità`)
         if (!count) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`Errore`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                 .setDescription(`*Inserisci un numero valido*`)
-                .setColor(`RED`)
-                .setThumbnail(config.images.rogierror)
+                .setColor(`RED`);
             interaction.editReply({ embeds: [embed], ephemeral: true })
             return
         }
         if (count > 100) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`Errore`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                 .setDescription(`*Posso cancellare solo 100 messaggi per volta*`)
-                .setColor(`RED`)
-                .setThumbnail(config.images.rogierror)
+                .setColor(`RED`);
             interaction.editReply({ embeds: [embed], ephemeral: true })
             return
         }
         if (count < 1) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`Errore`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                 .setDescription(`*Devi inserire un numero maggiore o uguale a 1*`)
-                .setColor(`RED`)
-                .setThumbnail(config.images.rogierror)
+                .setColor(`RED`);
             interaction.editReply({ embeds: [embed], ephemeral: true })
             return
         }
@@ -83,8 +80,8 @@ module.exports = {
                     .addField(`⚓ Canale`, `Nome: **#${interaction.channel.name}** - ID: **${interaction.channel.id}**\n||${interaction.channel.toString()}||`)
                     .addField(`👤 Utente:`, `Nome: **${user.username}** - ID: **${user.id}**\n||${user.toString()}||`)
                     .setColor(`RED`);
-                if (interaction.channel != config.idcanali.logs.errors) {
-                    await client.channels.cache.get(config.idcanali.logs.moderation.clear).send({ embeds: [embed], files: [`${process.cwd()}/clear${interaction.user.id}.txt`] });
+                if (interaction.channel != config.channelsid.logs.errors) {
+                    await client.channels.cache.get(config.channelsid.logs.moderation.clear).send({ embeds: [embed], files: [`${process.cwd()}/clear${interaction.user.id}.txt`] });
                 }
             })
 
@@ -123,8 +120,8 @@ module.exports = {
                         .addField(`🔨 Moderatore:`, `Nome: **${interaction.member.user.username}** - ID: **${interaction.member.user.id}**\n||${interaction.member.toString()}||`)
                         .addField(`⚓ Canale`, `Nome: **#${interaction.channel.name}** - ID: **${interaction.channel.id}**\n||${interaction.channel.toString()}||`)
                         .setColor(`RED`);
-                    if (interaction.channel != config.idcanali.logs.errors) {
-                        await client.channels.cache.get(config.idcanali.logs.moderation.clear).send({ embeds: [embed], files: [`${process.cwd()}/clear${interaction.user.id}.txt`] });
+                    if (interaction.channel != config.channelsid.logs.errors) {
+                        await client.channels.cache.get(config.channelsid.logs.moderation.clear).send({ embeds: [embed], files: [`${process.cwd()}/clear${interaction.user.id}.txt`] });
                     }
                     interaction.channel.bulkDelete(count, true);
                     database.collection(`Staff`).find({ id: interaction.user.id }).toArray(function (err, result) {

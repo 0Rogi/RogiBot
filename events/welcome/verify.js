@@ -62,7 +62,7 @@ module.exports = {
                     .setDescription(`👋🏻 Ciao ${interaction.member.toString()}, benvenuto in ${interaction.member.guild.name} \n👀 Sei il nostro **${users}** membro!\n📜 Leggi le <#698178808011948032> e rispettale 😉\n🌐 Puoi vedere tutte le info del sever in <#813476709731008532>`)
                     .setImage(`attachment://Welcome.png`)
                     .setColor(`YELLOW`);
-                await client.channels.cache.get(config.idcanali.welcome).send({ embeds: [embed], files: [new Discord.MessageAttachment(canvas.toBuffer(), `Welcome.png`)] });
+                await client.channels.cache.get(config.channelsid.welcome).send({ embeds: [embed], files: [new Discord.MessageAttachment(canvas.toBuffer(), `Welcome.png`)] });
 
                 //? Check if the user had some other roles and if yes, assign it
                 database.collection(`UserStats`).find({ id: interaction.member.id }).toArray(function (err, result) {
@@ -70,18 +70,18 @@ module.exports = {
                         database.collection(`UserStats`).insertOne({
                             username: interaction.member.user.username, id: interaction.member.id, roles: interaction.member._roles, moderation: {}, leavedAt: 0, levelling: {}
                         })
-                        interaction.member.roles.add(config.idruoli.videonotification);
+                        interaction.member.roles.add(config.rolesid.videonotification);
                     } else if (result[0]) {
                         result[0].roles.forEach(role => {
-                            if (role == config.idruoli.serverbooster || role == config.idruoli.unverified) return;
+                            if (role == config.rolesid.serverbooster || role == config.rolesid.unverified) return;
                             interaction.member.roles.add(role);
                         })
                     }
                 })
 
                 //? Give fan role and remove unverified
-                interaction.member.roles.remove(config.idruoli.unverified);
-                interaction.member.roles.add(config.idruoli.fan);
+                interaction.member.roles.remove(config.rolesid.unverified);
+                interaction.member.roles.add(config.rolesid.fan);
 
                 //? DM Member
                 const embeddm = new Discord.MessageEmbed()
@@ -118,7 +118,7 @@ module.exports = {
 
         if (interaction.customId == `Verify`) {
             //? Check if the user is already verified
-            if (!interaction.member.roles.cache.has(config.idruoli.unverified)) {
+            if (!interaction.member.roles.cache.has(config.rolesid.unverified)) {
                 interaction.reply({ content: `<a:error:966371274853089280> Sei già verificato!`, ephemeral: true })
                 return
             }
@@ -169,7 +169,7 @@ module.exports = {
                 .setDescription(`👋🏻 Ciao ${interaction.member.toString()}, benvenuto in ${interaction.member.guild.name} \n👀 Sei il nostro **${users}** membro!\n📜 Leggi le <#698178808011948032> e rispettale 😉\n🌐 Puoi vedere tutte le info del sever in <#813476709731008532>`)
                 .setImage(`attachment://Welcome.png`)
                 .setColor(`YELLOW`);
-            await client.channels.cache.get(config.idcanali.welcome).send({ embeds: [embed], files: [new Discord.MessageAttachment(canvas.toBuffer(), `Welcome.png`)] });
+            await client.channels.cache.get(config.channelsid.welcome).send({ embeds: [embed], files: [new Discord.MessageAttachment(canvas.toBuffer(), `Welcome.png`)] });
 
             //? Check if the user had some other roles and if yes, assign it
             database.collection(`UserStats`).find({ id: interaction.member.id }).toArray(function (err, result) {
@@ -177,18 +177,18 @@ module.exports = {
                     database.collection(`UserStats`).insertOne({
                         username: interaction.member.user.username, id: interaction.member.id, roles: interaction.member._roles, moderation: {}, leavedAt: 0, levelling: {}
                     })
-                    interaction.member.roles.add(config.idruoli.videonotification);
+                    interaction.member.roles.add(config.rolesid.videonotification);
                 } else if (result[0]) {
                     result[0].roles.forEach(role => {
-                        if (role == config.idruoli.serverbooster || role == config.idruoli.unverified) return;
+                        if (role == config.rolesid.serverbooster || role == config.rolesid.unverified) return;
                         interaction.member.roles.add(role);
                     })
                 }
             })
 
             //? Give fan role and remove unverified
-            interaction.member.roles.remove(config.idruoli.unverified);
-            interaction.member.roles.add(config.idruoli.fan);
+            interaction.member.roles.remove(config.rolesid.unverified);
+            interaction.member.roles.add(config.rolesid.fan);
 
             //? DM Member
             const embeddm = new Discord.MessageEmbed()

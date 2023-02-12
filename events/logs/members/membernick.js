@@ -30,7 +30,7 @@ module.exports = {
                 .addField(`💋 Vecchio Nick: `, oldMember.nickname ? oldMember.nickname : `_Nessun Nick_`)
                 .addField(`💋 Nuovo Nick:`, newMember.nickname ? newMember.nickname : `_Nessun Nick_`)
                 .setColor(`BLUE`)
-            client.channels.cache.get(config.idcanali.logs.members.nicknames).send({ embeds: [embed] })
+            client.channels.cache.get(config.channelsid.logs.members.nicknames).send({ embeds: [embed] })
         } else if (executor != target) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`📝 Nickname Modificato 📝`)
@@ -40,7 +40,7 @@ module.exports = {
                 .addField(`💋 Vecchio Nick: `, oldMember.nickname ? oldMember.nickname : `_Nessun Nick_`)
                 .addField(`💋 Nuovo Nick:`, newMember.nickname ? newMember.nickname : `_Nessun Nick_`)
                 .setColor(`BLUE`)
-            client.channels.cache.get(config.idcanali.logs.members.nicknames).send({ embeds: [embed] })
+            client.channels.cache.get(config.channelsid.logs.members.nicknames).send({ embeds: [embed] })
         }
     }
 }

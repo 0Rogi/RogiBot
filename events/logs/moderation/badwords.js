@@ -9,7 +9,7 @@ module.exports = {
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
         if (message.guild != config.idServer.idServer) return;
         if (!message.member || !message.author) return;
-        if (message.member.roles.cache.has(config.idruoli.muted) || message.member.roles.cache.has(config.idruoli.tempmuted)) return;
+        if (message.member.roles.cache.has(config.rolesid.muted) || message.member.roles.cache.has(config.rolesid.tempmuted)) return;
 
         if (message.embeds[0]?.type == `auto_moderation_message`) {
             let channel;
@@ -25,7 +25,7 @@ module.exports = {
                     keyword = f.value
                 }
                 if (f.name == `rule_name` && f.value == `Bestemmie`) {
-                    message.member.roles.add(config.idruoli.tempmuted)
+                    message.member.roles.add(config.rolesid.tempmuted)
                     database.collection(`UserStats`).find({ id: message.author.id }).toArray(function (err, result) {
                         if (!result[0]) {
                             database.collection(`UserStats`).insertOne({
@@ -33,12 +33,12 @@ module.exports = {
                                     type: `tempmuted`,
                                     moderator: client.user.id,
                                     reason: `Bestemmia`,
-                                    time: 1000 * 60 * 60 * 60
+                                    time: new Date().getTIme() + (1000 * 60 * 60 * 60)
                                 },
                                 leavedAt: 0,
                                 levelling: {}
                             })
-                            guildmember.roles.add(config.idruoli.tempmuted)
+                            guildmember.roles.add(config.rolesid.tempmuted)
                         }
                         if (result[0]) {
                             database.collection(`UserStats`).updateOne({ id: message.author.id }, {
@@ -47,7 +47,7 @@ module.exports = {
                                         type: `tempmuted`,
                                         moderator: client.user.id,
                                         reason: `Bestemmia`,
-                                        time: 1000 * 60 * 10
+                                        time: new Date().getTime() + (1000 * 60 * 10)
                                     }
                                 }
                             })
@@ -59,7 +59,6 @@ module.exports = {
             if (bestemmia) {
                 let embed = new Discord.MessageEmbed()
                     .setAuthor({ name: `[TEMPMUTE] ${message.author.tag}`, iconURL: message.member.displayAvatarURL({ dynamic: true }) })
-                    .setThumbnail(config.images.rogimute)
                     .setColor(`PURPLE`)
                     .addField(`👤 Utente:`, `Nome: ${message.author.username}, ID: ${message.author.id}\n||${message.author.toString()}||`)
                     .addField(`⏰ Tempo:`, `10 minuti`, true)
@@ -74,8 +73,8 @@ module.exports = {
                     .addField(`👤 Utente:`, `Nome: **${message.author.username}**, ID: **${message.author.id}**\n||${message.member.toString()}||`)
                     .addField(`⏰ Tempo:`, `10 minuti`)
                     .addField(`📖 Motivo:`, `Bestemmia`)
-                client.channels.cache.get(config.idcanali.publiclogs).send({ embeds: [embed2] })
-                client.channels.cache.get(config.idcanali.logs.moderation.tempmute).send({ embeds: [embed2] })
+                client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed2] })
+                client.channels.cache.get(config.channelsid.logs.moderation.tempmute).send({ embeds: [embed2] })
                 client.channels.cache.get(channel).send({ embeds: [embed] })
             }
             let embed = new Discord.MessageEmbed()
@@ -87,7 +86,7 @@ module.exports = {
                 .addField(`💬 Messaggio:`, content, true)
                 .setColor(`RED`)
                 .setThumbnail(message.member.displayAvatarURL({ dynamic: true }))
-            client.channels.cache.get(config.idcanali.logs.moderation.badwords).send({ embeds: [embed] })
+            client.channels.cache.get(config.channelsid.logs.moderation.badwords).send({ embeds: [embed] })
         }
     }
 }

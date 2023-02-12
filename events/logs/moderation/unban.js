@@ -28,6 +28,6 @@ module.exports = {
             .setColor(`GREEN`)
             .setThumbnail(target.displayAvatarURL({ dynamic: true }))
 
-        client.channels.cache.get(config.idcanali.logs.moderation.unbans).send({ embeds: [embed] })
+        client.channels.cache.get(config.channelsid.logs.moderation.unbans).send({ embeds: [embed] })
     }
 }

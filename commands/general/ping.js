@@ -9,7 +9,7 @@ module.exports = {
         description: `Comando per vedere informazioni sul bot`,
     },
     permissionlevel: 0,
-    allowedchannels: [config.idcanali.commands],
+    allowedchannels: [config.channelsid.commands],
     requirement: `none`,
     async execute(interaction) {
         if (!interaction.guild) {

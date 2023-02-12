@@ -36,7 +36,7 @@ module.exports = {
         ]
     },
     permissionlevel: 0,
-    allowedchannels: [config.idcanali.commands],
+    allowedchannels: [config.channelsid.commands],
     requirement: `none`,
     async execute(interaction) {
         //? Fa pensare l'interazione
@@ -97,7 +97,7 @@ module.exports = {
                 let textchannel = client.channels.cache.get(channel.text);
 
                 //? Controlla se l'utente non è un mod o un bot
-                if (user.roles.cache.has(config.idruoli.moderator) || user.permissions.has(`ADMINISTRATOR`) || user.bot) {
+                if (user.roles.cache.has(config.rolesid.moderator) || user.permissions.has(`ADMINISTRATOR`) || user.bot) {
                     //? Risponde all'interazione
                     let embed = new Discord.MessageEmbed()
                         .setTitle(`❌ ERRORE ❌`)
@@ -129,7 +129,7 @@ module.exports = {
                 //? Rimuove l'utente e lo espelle dalla vc
                 textchannel.permissionOverwrites.create(user.id, { VIEW_CHANNEL: false });
                 client.channels.cache.get(channel.vc).permissionOverwrites.create(user.id, { VIEW_CHANNEL: false });
-                if (user.voice.channel == channel.vc) user.voice.setChannel(config.idcanali.generalvc);
+                if (user.voice.channel == channel.vc) user.voice.setChannel(config.channelsid.generalvc);
             }
         }
     }

@@ -28,30 +28,27 @@ module.exports = {
 
             if (!time) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`Errore`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`*Inserisci un tempo valido*`)
-                    .setColor(`RED`)
-                    .setThumbnail(config.images.rogierror);
+                    .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
                 return;
             }
 
             if (time > 21600000) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`Errore`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`*Puoi impostare un massimo di 6 ore di slowmode*`)
-                    .setColor(`RED`)
-                    .setThumbnail(config.images.rogierror);
+                    .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
                 return;
             }
 
             if (time < 1 * 1000) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`Errore`)
+                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                     .setDescription(`*Puoi impostare un minimo di 1 secondo di slowmode*`)
-                    .setColor(`RED`)
-                    .setThumbnail(config.images.rogierror);
+                    .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
                 return;
             }
@@ -72,7 +69,6 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed()
             .setAuthor({ name: `[SLOWMODE] ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
-            .setThumbnail(config.images.rogislowmode)
             .setColor(`PURPLE`)
             .addField(`⚓ Canale:`, `Nome: ${interaction.channel.name} - ID: ${interaction.channel.id}\n||${interaction.channel.toString()}||`);
         if (time == 0) {

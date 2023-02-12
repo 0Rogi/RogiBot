@@ -3,7 +3,7 @@ const config = require(`${process.cwd()}/JSON/config.json`);
 module.exports = {
 	name: `messageCreate`,
 	async execute(message) {
-		if (message.channel == config.idcanali.thingstodo && message.guild == config.idServer.idServer) {
+		if (message.channel == config.channelsid.thingstodo && message.guild == config.idServer.idServer) {
 			if (message.author.bot || !message.content || message.reference) return
 
 			if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return

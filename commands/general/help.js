@@ -15,7 +15,7 @@ module.exports = {
         ]
     },
     permissionlevel: 0,
-    allowedchannels: [config.idcanali.commands],
+    allowedchannels: [config.channelsid.commands],
     requirement: `none`,
     execute(interaction) {
         let command = interaction.options.getString(`comando`)
@@ -75,19 +75,19 @@ module.exports = {
                 command.permissionlevel = `_Tutti Possono Usarlo_`
             } break
             case 0.5: {
-                command.permissionlevel = `Almeno <@&${config.idruoli.partnermanager}>`
+                command.permissionlevel = `Almeno <@&${config.rolesid.partnermanager}>`
             } break
             case 1: {
-                command.permissionlevel = `Almeno <@&${config.idruoli.moderator}>`
+                command.permissionlevel = `Almeno <@&${config.rolesid.moderator}>`
             } break
             case 2: {
-                command.permissionlevel = `Almeno <@&${config.idruoli.moderator}>`
+                command.permissionlevel = `Almeno <@&${config.rolesid.moderator}>`
             } break
             case 3: {
-                command.permissionlevel = `Almeno <@&${config.idruoli.srmoderator}>`
+                command.permissionlevel = `Almeno <@&${config.rolesid.admin}>`
             } break
             case 4: {
-                command.permissionlevel = `Almeno <@&${config.idruoli.owner}>`
+                command.permissionlevel = `Almeno <@&${config.rolesid.owner}>`
             } break
         }
         let channels = ``;

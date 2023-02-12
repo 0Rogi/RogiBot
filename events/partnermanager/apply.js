@@ -107,7 +107,7 @@ module.exports = {
                     .setCustomId(`RefuseManager`);
                 let row = new Discord.MessageActionRow()
                     .addComponents(button1, button2);
-                client.channels.cache.get(config.idcanali.logs.partnership.applies).send({ embeds: [embed], components: [row] });
+                client.channels.cache.get(config.channelsid.logs.partnership.applies).send({ embeds: [embed], components: [row] });
 
                 interaction.reply({ content: `<a:checkmark:970022827866611762> La tua candidatura è stata **consegnata allo staff** con successo!`, ephemeral: true });
             }

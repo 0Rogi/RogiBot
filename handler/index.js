@@ -46,7 +46,7 @@ client.on(`ready`, async () => {
 //! Commands Execution
 client.on(`messageCreate`, message => {
     let prefix = `!`
-    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild || message.content.startsWith(`${prefix}${prefix}`) || message.content == prefix || message.guild != config.idServer.idServer || message.channel == config.idcanali.thingstodo || message.channel == config.idcanali.suggests) return
+    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild || message.content.startsWith(`${prefix}${prefix}`) || message.content == prefix || message.guild != config.idServer.idServer || message.channel == config.channelsid.thingstodo || message.channel == config.channelsid.suggests) return
 
     if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return
     if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return
@@ -57,10 +57,9 @@ client.on(`messageCreate`, message => {
 
     if (command) {
         let embed = new Discord.MessageEmbed()
-            .setTitle(`Errore`)
+            .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
             .setDescription(`I comandi sono ora in **slash commands**!\nDigita **/** per visualizzare la **lista di tutti i comandi**!`)
-            .setColor(`RED`)
-            .setThumbnail(config.images.rogierror)
+            .setColor(`RED`);
         message.reply({ embeds: [embed] }).catch(() => { })
     }
 })
@@ -78,14 +77,14 @@ client.on(`interactionCreate`, async interaction => {
     if (command.name == `eval` && interaction.guild == config.idServer.idServerTest && interaction.member.permissions.has(`ADMINISTRATOR`)) return command.execute(interaction)
     if (command.name == `test` && interaction.guild == config.idServer.idServerTest) return command.execute(interaction)
 
-    if (!command.allowedchannels.includes(`ALL`) && !command.allowedchannels.includes(interaction.channel.id) && !interaction.member.permissions.has(`MANAGE_MESSAGES`) && interaction.channel != config.idcanali.testing) {
+    if (!command.allowedchannels.includes(`ALL`) && !command.allowedchannels.includes(interaction.channel.id) && !interaction.member.permissions.has(`MANAGE_MESSAGES`) && interaction.channel != config.channelsid.testing) {
         interaction.deferReply({ ephemeral: true }).then(() => {
             let text = ``;
             command.allowedchannels.forEach(channel => {
                 text += `*-<#${channel}>*\n`
             })
             let embed = new Discord.MessageEmbed()
-                .setTitle(`Errore`)
+                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                 .setColor(`RED`)
                 .setDescription(`*Questo comando, puo' essere eseguito solo in:*\n${text}`);
             interaction.editReply({ embeds: [embed], ephemeral: true });
@@ -102,8 +101,7 @@ client.on(`interactionCreate`, async interaction => {
             let embed = new Discord.MessageEmbed()
                 .setColor(`RED`)
                 .setDescription(`*Non hai abbastanza permessi,\nper eseguire il comando \`/${command.name}\`*`)
-                .setTitle(`Non hai il permesso!`)
-                .setThumbnail(config.images.rogierror);
+                .setTitle(`Non hai il permesso!`);
             interaction.editReply({ embeds: [embed], ephemeral: true });
         })
         return;
