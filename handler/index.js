@@ -100,7 +100,7 @@ client.on(`interactionCreate`, async interaction => {
         interaction.deferReply({ ephemeral: true }).then(() => {
             let embed = new Discord.MessageEmbed()
                 .setColor(`RED`)
-                .setDescription(`*Non hai abbastanza permessi,\nper eseguire il comando \`/${command.name}\`*`)
+                .setDescription(`*Non hai abbastanza permessi\nper eseguire il comando \`/${command.name}\`*`)
                 .setTitle(`Non hai il permesso!`);
             interaction.editReply({ embeds: [embed], ephemeral: true });
         })
