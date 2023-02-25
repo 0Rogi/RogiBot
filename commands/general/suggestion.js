@@ -54,7 +54,7 @@ module.exports = {
 				.setCustomId(`SuggestRefuse`)
 				.setStyle(`DANGER`)
 			let row = new Discord.MessageActionRow().addComponents(button1, button2)
-			client.channels.cache.get(config.channelsid.suggests).send({ embeds: [embed1], components: [row] })
+			client.channels.cache.get(config.channelsid.logs.suggestions).send({ embeds: [embed1], components: [row] })
 			interaction.editReply({ embeds: [embed2] })
 		})
 	}

@@ -7,10 +7,6 @@ module.exports = function checkbadges() {
 
         let memberbadges = [];
 
-        if (member.roles.cache.has(config.rolesid.vip)) {
-            memberbadges.push(`vip`);
-        }
-
         if (member.roles.cache.has(config.rolesid.serverbooster)) {
             memberbadges.push(`booster`);
         }
