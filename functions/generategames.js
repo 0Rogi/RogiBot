@@ -24,7 +24,7 @@ module.exports = function generateGames() {
                 .setTitle(`🎮 Nuovo Minigioco 🎮`)
                 .setDescription(`Il primo che scriverà la parola:\n||\`${word}\`||\nriceverà **10 RogiBucks** 🤑🤑`)
                 .setColor(`YELLOW`);
-            client.channels.cache.get(config.channelsid.testing).send({ embeds: [embed] }); //! Cambiare l'id di testing con general
+            client.channels.cache.get(config.channelsid.generaltxt).send({ embeds: [embed] });
         });
 
     } else if (game == 2) {
@@ -41,7 +41,7 @@ module.exports = function generateGames() {
         const row = new Discord.MessageActionRow()
             .addComponents(button)
 
-        client.channels.cache.get(config.channelsid.testing).send({ embeds: [embed], components: [row] }).then(m => { //! Cambiare l'id di testing con general
+        client.channels.cache.get(config.channelsid.generaltxt).send({ embeds: [embed], components: [row] }).then(m => {
             database.collection(`ServerStats`).updateOne({}, {
                 $set: {
                     'game2.messageId': m.id,
@@ -51,7 +51,7 @@ module.exports = function generateGames() {
         });
 
     } else if (game == 3) {
-        
+
         let word = randomWord();
         console.log(word)
         translate(word, { to: `it` }).then(async w => {
@@ -70,7 +70,7 @@ module.exports = function generateGames() {
                 .setTitle(`🎮 Nuovo Minigioco 🎮`)
                 .setDescription(`Il primo che indovina la parola mescolata:\n||\`${messWord}\`||\nriceverà **15 RogiBucks** 🤑🤑`)
                 .setColor(`YELLOW`);
-            client.channels.cache.get(config.channelsid.testing).send({ embeds: [embed] }); //! Cambiare l'id di testing con general
+            client.channels.cache.get(config.channelsid.generaltxt).send({ embeds: [embed] });
         });
     }
 }

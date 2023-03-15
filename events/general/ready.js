@@ -95,7 +95,7 @@ module.exports = {
         setInterval(() => {
 
             if (new Date().getTime() >= serverstats?.game2?.expireDate) {
-                client.channels.cache.get("1005494659117752391").messages.fetch(serverstats?.game2?.messageId).then(m => { //! Cambiare l'id di testing con general
+                client.channels.cache.get("813470597135728752").messages.fetch(serverstats?.game2?.messageId).then(m => {
                     const button = new Discord.MessageButton()
                         .setLabel(`Gira la Ruota`)
                         .setCustomId(`SpinWheel`)

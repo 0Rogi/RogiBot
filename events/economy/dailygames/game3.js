@@ -6,7 +6,7 @@ module.exports = {
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return;
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return;
 
-        if (message.channel != config.channelsid.testing) return; //! Cambiare l'id di testing con general
+        if (message.channel != config.channelsid.generaltxt) return;
 
         const word = serverstats.economyGame3Word;
 
