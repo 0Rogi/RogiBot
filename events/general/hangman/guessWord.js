@@ -11,7 +11,7 @@ module.exports = {
         if (serverstats.maintenance && process.env.local && !serverstats.testers?.includes(message.author.id)) return;
         if (serverstats.maintenance && !process.env.local && serverstats.testers?.includes(message.author.id)) return;
 
-        if (message.content.length > 1) return message.react(`❌`);
+        if (message.content.length > 1 || message.author.bot) return;
 
         if (serverstats.hangman.wordarray?.includes(message.content)) {
 

@@ -28,7 +28,7 @@ module.exports = {
                 .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
                 .setDescription(`*Devi avere almeno il livello 15 per usare questo comando!*`)
                 .setColor(`RED`);
-            interaction.reply({ embeds: [embed], ephemeral: true });
+            interaction.editReply({ embeds: [embed], ephemeral: true });
             return;
         }
 
