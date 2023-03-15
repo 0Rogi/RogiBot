@@ -23,7 +23,7 @@ module.exports = {
                 }
             })
 
-            let sentences = [` si sente simpatico a modificare i numeri 🤡`, `? Perchè modifichi i numeri? 🤨`, ` ma cosa modifichi i numeri..? 🤦‍♂️`, ` a quanto pare non hai di meglio da fare se sei qui a modificare i numer 😌`, ` il bro modifica i numeri 🗿`, ` AHAHAHAHAHHAHAHAHAHHAHAH, proprio divertente lo scherzo di modificare i numeri 😂😂😂🤣🤣🤣`];
+            let sentences = [` si sente simpatico a modificare i numeri 🤡`, `? Perchè modifichi i numeri? 🤨`, ` ma cosa modifichi i numeri..? 🤦‍♂️`, ` a quanto pare non hai di meglio da fare se sei qui a modificare i numeri 😌`, ` il bro modifica i numeri 🗿`, ` AHAHAHAHAHHAHAHAHAHHAHAH, proprio divertente lo scherzo di modificare i numeri 😂😂😂🤣🤣🤣`];
             let random = Math.floor(Math.random() * sentences.length);
             newMessage.channel.send(`${newMessage.author.toString()}${sentences[random]}`);
             newMessage.channel.send(serverstats.countinginfinity.currentnumber.toString()).then(msg => {
