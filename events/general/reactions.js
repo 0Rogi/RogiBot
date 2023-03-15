@@ -1,9 +1,13 @@
+const config = require(`../../JSON/config.json`);
+
 module.exports = {
     name: `messageCreate`,
     execute(message) {
 
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return;
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return;
+
+        if(message.channel.parent == config.channelsid.funparent) return;
 
         content = message.content.toLowerCase();
 

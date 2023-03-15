@@ -23,7 +23,7 @@ module.exports = {
         if (!command) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`🤖 Tutti i comandi del Bot 🤖`)
-                .setDescription(`Usa il **menu** qui sotto per scegliere la categoria di comandi da vedere!\n\n🎡 **GENERAL**\n*Comandi generali*\n😂 **FUN**\n*Comandi di divertimento*\n🔨 **MODERATION**\n*Comandi di moderazione*\n👑 **OWNER**\n*Comandi per l'owner*\n📈 **STATISTICS**\n*Comandi per mostrare statistiche*\n🎫 **TICKET**\n*Comandi dei ticket*\n🔐 **PRIVATE ROOMS**\n*Comandi delle stanze private*\n\n**🔗 TAGS:**\n<:StaffTag:1032334168371245136> Comando utilizzabile solo dallo **STAFF**\n<:LevellingTag:1032335296332832779> Comando utilizzabile solo dopo **un certo livello**`)
+                .setDescription(`Usa il **menu** qui sotto per scegliere la categoria di comandi da vedere!\n\n🎡 **GENERAL**\n*Comandi generali*\n😂 **FUN**\n*Comandi di divertimento*\n🤖 **ARTIFICIAL INTELLIGENCE**\n*Comandi con cui poter utilizzare l'intelligenza artificiale qui su discord*\n🤑 **ECONOMY**\n*Comandi relativi al sistema di economia*\n📈 **STATISTICS**\n*Comandi per mostrare statistiche*\n🎫 **TICKET**\n*Comandi dei ticket*\n🔐 **PRIVATE ROOMS**\n*Comandi delle stanze private*\n🔨 **MODERATION**\n*Comandi di moderazione*\n👑 **OWNER**\n*Comandi per l'owner*\n\n**🔗 TAGS:**\n<:StaffTag:1032334168371245136> Comando utilizzabile solo dallo **STAFF**\n<:LevellingTag:1032335296332832779> Comando utilizzabile solo dopo **un certo livello**`)
                 .setColor(`YELLOW`)
                 .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
             let row = new Discord.MessageActionRow().addComponents(
@@ -41,14 +41,14 @@ module.exports = {
                             emoji: `😂`
                         },
                         {
-                            label: `Moderation`,
-                            value: `moderation`,
-                            emoji: `🔨`
+                            label: `Artificial Intelligence`,
+                            value: `ai`,
+                            emoji: `🤖`
                         },
                         {
-                            label: `Owner`,
-                            value: `owner`,
-                            emoji: `👑`
+                            label: `Economy`,
+                            value: `economy`,
+                            emoji: `🤑`,
                         },
                         {
                             label: `Statistics`,
@@ -65,6 +65,16 @@ module.exports = {
                             value: `prooms`,
                             emoji: `🔐`
                         },
+                        {
+                            label: `Moderation`,
+                            value: `moderation`,
+                            emoji: `🔨`
+                        },
+                        {
+                            label: `Owner`,
+                            value: `owner`,
+                            emoji: `👑`
+                        },
                     ])
             )
             interaction.reply({ embeds: [embed], components: [row] })
@@ -73,22 +83,16 @@ module.exports = {
         switch (command.permissionlevel) {
             case 0: {
                 command.permissionlevel = `_Tutti Possono Usarlo_`
-            } break
-            case 0.5: {
-                command.permissionlevel = `Almeno <@&${config.rolesid.partnermanager}>`
-            } break
+            } break;
             case 1: {
                 command.permissionlevel = `Almeno <@&${config.rolesid.moderator}>`
-            } break
+            } break;
             case 2: {
-                command.permissionlevel = `Almeno <@&${config.rolesid.moderator}>`
-            } break
-            case 3: {
                 command.permissionlevel = `Almeno <@&${config.rolesid.admin}>`
-            } break
-            case 4: {
+            } break;
+            case 3: {
                 command.permissionlevel = `Almeno <@&${config.rolesid.owner}>`
-            } break
+            } break;
         }
         let channels = ``;
         command.allowedchannels.forEach(c => {

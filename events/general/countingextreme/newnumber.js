@@ -113,7 +113,23 @@ module.exports = {
                         messageid: message.id
                     }
                 }
-            })
+            });
+
+            const gaveMoney = Math.round(Math.random());
+
+            if (gaveMoney == 1) {
+                const money = Math.floor(Math.random() * (4 - 1) + 1);
+
+                database.collection(`UserStats`).updateOne({ id: message.author.id }, {
+                    $inc: {
+                        'economy.money': money,
+                    }
+                });
+
+                message.react(`💵`);
+
+            }
+
         }
 
     }

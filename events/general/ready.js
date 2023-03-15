@@ -19,8 +19,8 @@ const nightSecurity = require(`${process.cwd()}/functions/moderation/nightsecuri
 const statusUpdate = require(`${process.cwd()}/functions/general/statusupdate.js`);
 const leaveVoiceChannel = require(`${process.cwd()}/functions/general/leaveVoiceChannel.js`);
 const checkBadges = require(`${process.cwd()}/functions/general/checkbadges.js`);
-const checkpartnerships = require(`${process.cwd()}/functions/moderation/checkpartnerships.js`);
 const addStaffInDB = require(`${process.cwd()}/functions/helper/addStaffInDB.js`);
+const generateGame = require(`../../functions/generategames`);
 
 module.exports = {
     name: `ready`,
@@ -83,7 +83,55 @@ module.exports = {
         setInterval(statusUpdate, 1000 * 60 * 10);
         setInterval(leaveVoiceChannel, 1000);
         setInterval(checkBadges, 1000 * 60 * 10);
-        setInterval(checkpartnerships, 1000 * 60 * 10);
+
+        setInterval(() => {
+            if (new Date().getHours() == 17 && new Date().getMinutes() == 0) {
+                if (serverstats?.maintenance) return;
+
+                generateGame();
+            }
+        }, 1000 * 60);
+
+        setInterval(() => {
+
+            if (new Date().getTime() >= serverstats?.game2?.expireDate) {
+                client.channels.cache.get("1005494659117752391").messages.fetch(serverstats?.game2?.messageId).then(m => { //! Cambiare l'id di testing con general
+                    const button = new Discord.MessageButton()
+                        .setLabel(`Gira la Ruota`)
+                        .setCustomId(`SpinWheel`)
+                        .setStyle(`PRIMARY`)
+                        .setDisabled();
+                    const row = new Discord.MessageActionRow()
+                        .addComponents(button);
+                    m.edit({ components: [row] });
+
+                    database.collection(`ServerStats`).updateOne({}, {
+                        $unset: {
+                            'game2': ""
+                        }
+                    });
+
+                });
+            }
+
+            database.collection(`UserStats`).find().toArray(function (err, result) {
+                if (err || !result) return;
+
+                result.forEach(u => {
+                    if (!u.economy?.xpboost) return;
+
+                    if (new Date().getTime() >= u.economy?.xpboost) {
+                        client.guilds.cache.get(config.idServer.idServer).members.cache.find(x => x.id == u.id).roles.remove(`1053719384662749274`);
+                        database.collection(`UserStats`).updateOne({ id: u.id }, {
+                            $unset: {
+                                'economy.xpboost': ""
+                            }
+                        });
+                    }
+                })
+            });
+
+        }, 1000 * 60);
 
         setInterval(() => {
             if (new Date().getMonth() == 1 && new Date().getDate() == 14 && new Date().getHours() == 0 && new Date().getMinutes() == 0 && new Date().getSeconds() == 0) {
@@ -154,7 +202,6 @@ module.exports = {
                             .addField(`Messaggi Questa Settimana:`, r.messages.toString(), true)
                             .addField(`\u200b`, `\u200b`, true)
                             .addField(`\u200b`, `\u200b`, true)
-                            .addField(`Partnership`, r.partnerships.toString())
                             .addField(`\u200b`, `\u200b`, true)
                             .addField(`Azioni da Staffer`, r.actions.toString());
                         client.channels.cache.get(config.channelsid.staffstats).send({ embeds: [embed] });

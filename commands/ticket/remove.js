@@ -15,7 +15,7 @@ module.exports = {
             }
         ],
     },
-    permissionlevel: 0.5,
+    permissionlevel: 1,
     allowedchannels: [`ALL`],
     requirement: `none`,
     execute(interaction) {

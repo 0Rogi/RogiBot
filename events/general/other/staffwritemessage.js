@@ -8,7 +8,7 @@ module.exports = {
         if (permissionlevel > 0) {
             database.collection(`Staff`).find({ id: message.author.id }).toArray(function (err, result) {
                 if (!result[0]) {
-                    database.collection(`Staff`).insertOne({ username: message.author.username, id: message.author.id, rank: ``, messages: 1, vctime: 0, partnerships: 0, actions: 0 });
+                    database.collection(`Staff`).insertOne({ username: message.author.username, id: message.author.id, rank: ``, messages: 1, vctime: 0, actions: 0 });
                 } else if (result[0]) {
                     database.collection(`Staff`).updateOne({ id: message.author.id }, {
                         $inc: {

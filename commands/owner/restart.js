@@ -7,7 +7,7 @@ module.exports = {
 		name: `restart`,
 		description: `Restarta il bot`,
 	},
-	permissionlevel: 4,
+	permissionlevel: 3 ,
 	allowedchannels: [`ALL`],
 	execute(interaction) {
 		if (!interaction.member.roles.cache.has(config.rolesid.owner)) return;

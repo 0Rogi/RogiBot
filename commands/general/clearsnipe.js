@@ -19,7 +19,7 @@ module.exports = {
                 }
             })
             let embed = new Discord.MessageEmbed()
-                .setTitle(`<a:checkmark:970022827866611762>Snipe Cancellato`)
+                .setTitle(`<a:checkmark:1083310732285853766>Snipe Cancellato`)
                 .setDescription(`L'ultimo messaggio eliminato, è stato nascosto.`)
                 .setColor(`GREEN`)
             interaction.editReply({ embeds: [embed] })

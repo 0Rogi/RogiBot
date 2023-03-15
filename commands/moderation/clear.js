@@ -87,12 +87,12 @@ module.exports = {
 
             let embed = new Discord.MessageEmbed()
                 .setAuthor({ name: `[CLEAR] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
-                .setDescription(`**${messagesfound.length.toString()} messaggi di ${user.toString()}** sono stati **eliminati**, all'interno degli **ultimi ${count.toString()} messaggi** di questo canale`)
+                .setDescription(`**${messagesfound.length.toString()} messaggi di ${user.toString()}** sono stati **eliminati** all'interno degli **ultimi ${count.toString()} messaggi** di questo canale`)
                 .setColor(`PURPLE`);
             interaction.editReply({ embeds: [embed] });
             database.collection(`Staff`).find({ id: interaction.user.id }).toArray(function (err, result) {
                 if (!result[0]) {
-                    database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, partnerships: 0, actions: 1 });
+                    database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, actions: 1 });
                 } else if (result[0]) {
                     database.collection(`Staff`).updateOne({ id: interaction.user.id }, {
                         $inc: {
@@ -107,7 +107,7 @@ module.exports = {
         if (!user) {
             let embed = new Discord.MessageEmbed()
                 .setAuthor({ name: `[CLEAR] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
-                .setDescription(`**${count.toString()} messaggi** sono stati **eliminati**, all'interno di questo canale`)
+                .setDescription(`**${count.toString()} messaggi** sono stati **eliminati** all'interno di questo canale`)
                 .setColor(`PURPLE`);
             interaction.editReply({ embeds: [embed] });
             interaction.channel.messages.fetch({ limit: count }).then(async messages => {
@@ -126,7 +126,7 @@ module.exports = {
                     interaction.channel.bulkDelete(count, true);
                     database.collection(`Staff`).find({ id: interaction.user.id }).toArray(function (err, result) {
                         if (!result[0]) {
-                            database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, partnerships: 0, actions: 1 });
+                            database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, actions: 1 });
                         } else if (result[0]) {
                             database.collection(`Staff`).updateOne({ id: interaction.user.id }, {
                                 $inc: {

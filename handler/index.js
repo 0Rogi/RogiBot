@@ -25,8 +25,23 @@ for (const folder of commandsFolder) {
 //! Commands Creation
 client.on(`ready`, async () => {
     let guild = client.guilds.cache.get(config.idServer.idServer)
+
+    guild.commands.create(
+        {
+            name: 'Report',
+            type: 'MESSAGE',
+        }
+    );
+
+    guild.commands.create(
+        {
+            name: 'Report',
+            type: 'MESSAGE',
+        }
+    );
+
     client.commands.forEach(command => {
-        if (!command.data) return
+        if (!command.data) return;
 
         if (command.name == `clear`) {
             guild = client.guilds.cache.get(config.idServer.idServerLogs)
@@ -77,7 +92,7 @@ client.on(`interactionCreate`, async interaction => {
     if (command.name == `eval` && interaction.guild == config.idServer.idServerTest && interaction.member.permissions.has(`ADMINISTRATOR`)) return command.execute(interaction)
     if (command.name == `test` && interaction.guild == config.idServer.idServerTest) return command.execute(interaction)
 
-    if (!command.allowedchannels.includes(`ALL`) && !command.allowedchannels.includes(interaction.channel.id) && !interaction.member.permissions.has(`MANAGE_MESSAGES`) && interaction.channel != config.channelsid.testing) {
+    if (!command.allowedchannels?.includes(`ALL`) && !command.allowedchannels.includes(interaction.channel.id) && !interaction.member.permissions.has(`MANAGE_MESSAGES`) && interaction.channel != config.channelsid.testing) {
         interaction.deferReply({ ephemeral: true }).then(() => {
             let text = ``;
             command.allowedchannels.forEach(channel => {

@@ -21,7 +21,7 @@ module.exports = {
                 if (err || !result[0]) return;
 
                 if (result[0]) {
-                    const customprofile = result[0].customprofile;
+                    const customprofile = result[0]?.customprofile;
 
                     // if (!customprofile) return;
 

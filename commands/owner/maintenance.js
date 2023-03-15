@@ -15,7 +15,7 @@ module.exports = {
             }
         ]
     },
-    permissionlevel: 4,
+    permissionlevel: 3 ,
     allowedchannels: [`ALL`],
     execute(interaction) {
         if (!interaction.member.roles.cache.has(config.rolesid.owner) && interaction.guild == config.idServer.idServer) return

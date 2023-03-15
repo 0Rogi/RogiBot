@@ -9,6 +9,8 @@ module.exports = {
         if (message.guild != config.idServer.idServer) return;
         if (message.author.bot) return;
 
+        if (message.channel == config.channelsid.thingstodo) return;
+
         let mention = false;
         if (message.mentions) {
             message.mentions.users.forEach(m => {

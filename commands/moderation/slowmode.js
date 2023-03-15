@@ -16,7 +16,7 @@ module.exports = {
             }
         ]
     },
-    permissionlevel: 2,
+    permissionlevel: 1,
     allowedchannels: [`ALL`],
     async execute(interaction) {
         await interaction.deferReply();
@@ -80,7 +80,7 @@ module.exports = {
 
         database.collection(`Staff`).find({ id: interaction.user.id }).toArray(function (err, result) {
             if (!result[0]) {
-                database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, partnerships: 0, actions: 1 });
+                database.collection(`Staff`).insertOne({ username: interaction.user.username, id: interaction.user.id, rank: ``, messages: 0, vctime: 0, actions: 1 });
             } else if (result[0]) {
                 database.collection(`Staff`).updateOne({ id: interaction.user.id }, {
                     $inc: {

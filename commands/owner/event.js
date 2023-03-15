@@ -53,7 +53,7 @@ module.exports = {
             }
         ]
     },
-    permissionlevel: 4,
+    permissionlevel: 3 ,
     allowedchannels: [`ALL`],
     async execute(interaction) {
         await interaction.deferReply();
@@ -63,13 +63,13 @@ module.exports = {
 
 
         const embed = new Discord.MessageEmbed()
-            .setTitle(`<a:checkmark:970022827866611762> Evento Impostato <a:checkmark:970022827866611762>`)
+            .setTitle(`<a:checkmark:1083310732285853766> Evento Impostato <a:checkmark:1083310732285853766>`)
             .setColor(`YELLOW`);
 
         switch (event) {
             case `Reset`: {
                 embed
-                    .setTitle(`<a:checkmark:970022827866611762> Eventi Resettati <a:checkmark:970022827866611762>`)
+                    .setTitle(`<a:checkmark:1083310732285853766> Eventi Resettati <a:checkmark:1083310732285853766>`)
                     .setDescription(`:+1: Il server è tornato normale`)
                     .setThumbnail(`https://i.imgur.com/7raQOYl.gif`);
             } break;

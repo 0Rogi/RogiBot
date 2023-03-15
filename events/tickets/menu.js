@@ -190,7 +190,6 @@ module.exports = {
                         .setColor(`YELLOW`)
                         .addField(`__🔴 Voglio far parte di un video di Rogi__`, `Se desideri far parte di un video di Rogi, sappi che fa entrare nei suoi video solo i suoi amici, quindi è difficile che tu riesca ad entrare nei video`)
                         .addField(`__🛡️ Voglio fare una proposta a Rogi__`, `Vuoi fare una proposta a Rogi di qualunque tipo? Allora apri pure il ticket`)
-                        .addField(`__💜 Voglio fare partnership con questo server__`, `Vuoi fare partner con questo server? Allora apri il ticket e manda la tua descrizione, dopo aspetta che un <@&985910805730054154> risponda!`)
                         .addField(`😩 Non hai ancora risolto il tuo problema?`, `Se non hai ancora risolto il problema, premi il **pulsante** qui sotto e apri effettivamente il ticket per parlare con lo staff`)
                     let button1 = new Discord.MessageButton()
                         .setStyle(`DANGER`)

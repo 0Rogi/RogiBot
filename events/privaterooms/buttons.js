@@ -273,7 +273,7 @@ module.exports = {
         if (interaction.customId == `pslowmodemenu`) {
             //? Get the choosen time
             let time = interaction.values[0];
-            interaction.reply({ content: `<a:checkmark:970022827866611762> Slowmode cambiata in **${time}**`, ephemeral: true });
+            interaction.reply({ content: `<a:checkmark:1083310732285853766> Slowmode cambiata in **${time}**`, ephemeral: true });
 
             //? Edit the slowmode
             time = ms(time) / 1000;
@@ -284,7 +284,7 @@ module.exports = {
         if (interaction.customId == `plimitmenu`) {
             //? Get the user limit
             let limit = interaction.values[0];
-            interaction.reply({ content: `<a:checkmark:970022827866611762> Limite di utenti cambiato in **${limit}**`, ephemeral: true });
+            interaction.reply({ content: `<a:checkmark:1083310732285853766> Limite di utenti cambiato in **${limit}**`, ephemeral: true });
 
             //? Edit the user limit
             serverstats.privaterooms.forEach(room => {

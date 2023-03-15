@@ -7,7 +7,7 @@ module.exports = {
 		name: `shutdown`,
 		description: `Spegne il bot`,
 	},
-	permissionlevel: 4,
+	permissionlevel: 3 ,
 	allowedchannels: [`ALL`],
 	execute(interaction) {
 		if (!interaction.member.roles.cache.has(config.rolesid.owner)) return;

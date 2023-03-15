@@ -1,0 +1,301 @@
+{
+    "technology": [
+        {
+
+            "object": "telefono",
+            "buyprice": 100,
+            "sellprice": 70,
+            "emoji": "📱"
+        },
+        {
+            "object": "tablet",
+            "buyprice": 150,
+            "sellprice": 100,
+            "emoji": "📝"
+        },
+        {
+            "object": "portatile",
+            "buyprice": 300,
+            "sellprice": 200,
+            "emoji": "💻"
+        },
+        {
+            "object": "cuffie",
+            "buyprice": 50,
+            "sellprice": 30,
+            "emoji": "🎧"
+        },
+        {
+            "object": "autoparlante",
+            "buyprice": 80,
+            "sellprice": 50,
+            "emoji": "🎵"
+        },
+        {
+            "object": "tastiera",
+            "buyprice": 40,
+            "sellprice": 25,
+            "emoji": "⌨️"
+        },
+        {
+            "object": "mouse",
+            "buyprice": 30,
+            "sellprice": 20,
+            "emoji": "🖱️"
+        },
+        {
+            "object": "webcam",
+            "buyprice": 60,
+            "sellprice": 40,
+            "emoji": "📷"
+        },
+        {
+            "object": "smartwatch",
+            "buyprice": 120,
+            "sellprice": 80,
+            "emoji": "⌚"
+        },
+        {
+            "object": "mouse da gaming",
+            "buyprice": 60,
+            "sellprice": 45,
+            "emoji": "🎮"
+        }
+    ],
+    "food": [
+        {
+            "object": "snack",
+            "buyprice": 5,
+            "sellprice": 3,
+            "emoji": "🍪"
+        },
+        {
+            "object": "caramella",
+            "buyprice": 3,
+            "sellprice": 2,
+            "emoji": "🍬"
+        },
+        {
+            "object": "cioccolata",
+            "buyprice": 8,
+            "sellprice": 5,
+            "emoji": "🍫"
+        },
+        {
+            "object": "biscotto",
+            "buyprice": 6,
+            "sellprice": 4,
+            "emoji": "🍪"
+        },
+        {
+            "object": "te",
+            "buyprice": 10,
+            "sellprice": 7,
+            "emoji": "🍵"
+        },
+        {
+            "object": "caffè",
+            "buyprice": 15,
+            "sellprice": 10,
+            "emoji": "☕"
+        },
+        {
+            "object": "succo di frutta",
+            "buyprice": 12,
+            "sellprice": 8,
+            "emoji": "🍹"
+        },
+        {
+            "object": "soda",
+            "buyprice": 7,
+            "sellprice": 4,
+            "emoji": "🥤"
+        },
+        {
+            "object": "sandwich",
+            "buyprice": 20,
+            "sellprice": 15,
+            "emoji": "🥪"
+        },
+        {
+            "object": "pizza",
+            "buyprice": 25,
+            "sellprice": 18,
+            "emoji": "🍕"
+        }
+    ],
+    "house": [
+        {
+            "object": "tappeto",
+            "buyprice": 50,
+            "sellprice": 35,
+            "emoji": "🧶"
+        },
+        {
+            "object": "cuscino",
+            "buyprice": 20,
+            "sellprice": 14,
+            "emoji": "🛋️"
+        },
+        {
+            "object": "coperta",
+            "buyprice": 30,
+            "sellprice": 20,
+            "emoji": "🛏️"
+        },
+        {
+            "object": "candela odorante",
+            "buyprice": 15,
+            "sellprice": 10,
+            "emoji": "🕯️"
+        },
+        {
+            "object": "quadro",
+            "buyprice": 100,
+            "sellprice": 70,
+            "emoji": "🖼️"
+        },
+        {
+            "object": "pianta",
+            "buyprice": 25,
+            "sellprice": 17,
+            "emoji": "🌿"
+        },
+        {
+            "object": "posate",
+            "buyprice": 15,
+            "sellprice": 10,
+            "emoji": "🍴"
+        },
+        {
+            "object": "piatto",
+            "buyprice": 20,
+            "sellprice": 14,
+            "emoji": "🍽️"
+        },
+        {
+            "object": "tazza",
+            "buyprice": 10,
+            "sellprice": 7,
+            "emoji": "🥤"
+        },
+        {
+            "object": "bicchiere",
+            "buyprice": 12,
+            "sellprice": 8,
+            "emoji": "🥂"
+        }
+    ],
+    "games": [
+        {
+            "object": "dado",
+            "buyprice": 30,
+            "sellprice": 20,
+            "emoji": "🎲"
+        },
+        {
+            "object": "carte da uno",
+            "buyprice": 10,
+            "sellprice": 7,
+            "emoji": "🃏"
+        },
+        {
+            "object": "videogioco",
+            "buyprice": 60,
+            "sellprice": 40,
+            "emoji": "🎮"
+        },
+        {
+            "object": "puzzle",
+            "buyprice": 20,
+            "sellprice": 15,
+            "emoji": "🧩"
+        },
+        {
+            "object": "dardo",
+            "buyprice": 40,
+            "sellprice": 30,
+            "emoji": "🎯"
+        },
+        {
+            "object": "pallone da calcio",
+            "buyprice": 80,
+            "sellprice": 60,
+            "emoji": "⚽️"
+        },
+        {
+            "object": "ping-pong",
+            "buyprice": 100,
+            "sellprice": 70,
+            "emoji": "🏓"
+        },
+        {
+            "object": "biliardo",
+            "buyprice": 150,
+            "sellprice": 100,
+            "emoji": "🎱"
+        }
+    ],
+    "others": [
+        {
+            "object": "libro",
+            "buyprice": 10,
+            "sellprice": 7,
+            "emoji": "📚"
+        },
+        {
+            "object": "quaderno",
+            "buyprice": 5,
+            "sellprice": 3,
+            "emoji": "📓"
+        },
+        {
+            "object": "penna",
+            "buyprice": 2,
+            "sellprice": 1,
+            "emoji": "✒️"
+        },
+        {
+            "object": "bottiglia d'acqua",
+            "buyprice": 10,
+            "sellprice": 7,
+            "emoji": "🍼"
+        },
+        {
+            "object": "ombrello",
+            "buyprice": 25,
+            "sellprice": 17,
+            "emoji": "☂️"
+        },
+        {
+            "object": "zaino",
+            "buyprice": 40,
+            "sellprice": 30,
+            "emoji": "🎒"
+        },
+        {
+            "object": "occhiali da sole",
+            "buyprice": 20,
+            "sellprice": 15,
+            "emoji": "🕶️"
+        },
+        {
+            "object": "orologio",
+            "buyprice": 30,
+            "sellprice": 20,
+            "emoji": "⌚"
+        },
+        {
+            "object": "cuffie da gaming",
+            "buyprice": 40,
+            "sellprice": 25,
+            "emoji": "🎧"
+        },
+        {
+            "object": "cover",
+            "buyprice": 15,
+            "sellprice": 10,
+            "emoji": "📱"
+        }
+    ]
+}

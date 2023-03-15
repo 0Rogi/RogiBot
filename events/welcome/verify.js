@@ -41,7 +41,7 @@ module.exports = {
             if (answer == number1 + number2) {
 
                 //? Replying to interaction
-                await interaction.reply({ content: `<a:checkmark:970022827866611762> Sei stato verificato!`, ephemeral: true });
+                await interaction.reply({ content: `<a:checkmark:1083310732285853766> Sei stato verificato!`, ephemeral: true });
 
                 //? Create the welcome card
                 let bots = client.guilds.cache.get(config.idServer.idServer).members.cache.filter(member => member.user.bot).size;
@@ -148,7 +148,7 @@ module.exports = {
             }
 
             //? Replying to interaction
-            await interaction.reply({ content: `<a:checkmark:970022827866611762> Sei stato verificato!`, ephemeral: true });
+            await interaction.reply({ content: `<a:checkmark:1083310732285853766> Sei stato verificato!`, ephemeral: true });
 
             //? Create the welcome card
             let bots = client.guilds.cache.get(config.idServer.idServer).members.cache.filter(member => member.user.bot).size;
