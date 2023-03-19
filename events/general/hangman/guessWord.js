@@ -13,7 +13,7 @@ module.exports = {
 
         if (message.content.length > 1 || message.author.bot) return;
 
-        if (serverstats.hangman.wordarray?.includes(message.content)) {
+        if (serverstats.hangman.wordarray?.includes(message.content.toLowerCase())) {
 
             if (serverstats.hangman.foundletters?.includes(message.content)) return message.react(`😐`);
 

@@ -18,7 +18,7 @@ module.exports = {
             let ticket = await serverstats.tickets.find(ticket => ticket.channelid == interaction.channel.id)
             if (!ticket) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                     .setColor(`RED`)
                     .setDescription(`*Questo canale non è un ticket*`);
                 interaction.editReply({ embeds: [embed] })
@@ -26,7 +26,7 @@ module.exports = {
             }
             if (ticket) {
                 if (ticket.closing) {
-                    interaction.editReply({ content: `<a:error:966371274853089280> Questo ticket è già in chiusura` })
+                    interaction.editReply({ content: `<a:error:1086952752892092416> Questo ticket è già in chiusura` })
                     return
                 }
                 let embed = new Discord.MessageEmbed()

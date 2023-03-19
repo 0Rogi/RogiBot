@@ -7,7 +7,7 @@ module.exports = {
 
         if (interaction.isButton() && interaction.customId.startsWith(`Workgame2`)) {
 
-            if (!interaction.customId.includes(interaction.user.id)) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante`, ephemeral: true });
+            if (!interaction.customId.includes(interaction.user.id)) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante`, ephemeral: true });
 
             const currentWord = parseInt(interaction.message.embeds[0].footer.text.slice(15, 16));
 
@@ -59,7 +59,7 @@ module.exports = {
                 });
 
                 const embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> RISPOSTA SBAGLIATA <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> RISPOSTA SBAGLIATA <a:error:1086952752892092416>`)
                     .setDescription(`Hai risposto in modo sbagliato 😕`)
                     .setColor(`RED`);
 

@@ -74,7 +74,7 @@ module.exports = {
             database.collection(`UserStats`).find({ id: interaction.user.id }).toArray(async function (err, result) {
                 if (!result[0] || err) {
                     const embed = new Discord.MessageEmbed()
-                        .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                        .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                         .setDescription(`_Non hai abbastanza RogiBucks!_\n_Non puoi comprare quest'oggetto, non hai abbastanza RogiBucks!_`)
                         .setColor(`RED`);
                     interaction.editReply({ embeds: [embed] });
@@ -84,7 +84,7 @@ module.exports = {
 
                     if (objectPrice > userMoney) {
                         const embed = new Discord.MessageEmbed()
-                            .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                            .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                             .setDescription(`_Non hai abbastanza RogiBucks!_\n_Non puoi comprare quest'oggetto, non hai abbastanza RogiBucks!_`)
                             .setColor(`RED`);
                         interaction.editReply({ embeds: [embed] });
@@ -153,7 +153,7 @@ module.exports = {
 
         } else {
             const embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                 .setDescription(`_Non ho trovato l'oggetto_\n_Inserisci un oggetto valido!_`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });

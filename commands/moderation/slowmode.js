@@ -28,7 +28,7 @@ module.exports = {
 
             if (!time) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                     .setDescription(`*Inserisci un tempo valido*`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
@@ -37,7 +37,7 @@ module.exports = {
 
             if (time > 21600000) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                     .setDescription(`*Puoi impostare un massimo di 6 ore di slowmode*`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
@@ -46,7 +46,7 @@ module.exports = {
 
             if (time < 1 * 1000) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                     .setDescription(`*Puoi impostare un minimo di 1 secondo di slowmode*`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });

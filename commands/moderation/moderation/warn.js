@@ -89,7 +89,7 @@ module.exports = {
 
                 if (!user) {
                     let embed = new Discord.MessageEmbed()
-                        .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                        .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                         .setDescription(`*Non riesco a trovare quest'utente.\nInserisci un utente valido*`)
                         .setColor(`RED`);
                     interaction.editReply({ embeds: [embed] });
@@ -101,7 +101,7 @@ module.exports = {
 
                 if (userpermission >= staffpermission) {
                     let embed = new Discord.MessageEmbed()
-                        .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                        .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                         .setDescription(`*Non hai il permesso per avvisare quest'utente*`)
                         .setColor(`RED`);
                     interaction.editReply({ embeds: [embed] });
@@ -176,7 +176,7 @@ module.exports = {
                 database.collection(`UserStats`).find({ id: user.id }).toArray(function (err, result) {
                     if (err || !result[0]) {
                         const embed = new Discord.MessageEmbed()
-                            .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                            .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                             .setDescription(`_Quest'utente non è nel database, quindi non ha mai ricevuto avvertimenti..._`)
                             .setColor(`RED`);
                         interaction.editReply({ embeds: [embed] });
@@ -220,7 +220,7 @@ module.exports = {
                         client.channels.cache.get(config.channelsid.logs.moderation.warn).send({ embeds: [embedLogs] });
                     } else {
                         const embed = new Discord.MessageEmbed()
-                            .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                            .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                             .setDescription(`_Non ho trovato l'avvertimento con il codice \`${code}\` fra gli avvertimenti di ${user.toString()}!_\n_Inserisci un codice di un avvertimento valido!_`)
                             .setColor(`RED`);
                         interaction.editReply({ embeds: [embed] });
@@ -236,7 +236,7 @@ module.exports = {
                 database.collection(`UserStats`).find({ id: user.id }).toArray(function (err, result) {
                     if (err || !result[0]) {
                         const embed = new Discord.MessageEmbed()
-                            .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                            .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                             .setDescription(`_Quest'utente non è nel database, quindi non ha mai ricevuto avvertimenti..._`)
                             .setColor(`RED`);
                         interaction.editReply({ embeds: [embed] });
@@ -302,7 +302,7 @@ module.exports = {
                         client.channels.cache.get(config.channelsid.logs.moderation.warn).send({ embeds: [embedLogs] });
                     } else {
                         const embed = new Discord.MessageEmbed()
-                            .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                            .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                             .setDescription(`_Non ho trovato l'avvertimento con il codice \`${code}\`!_\n_Inserisci un codice di un avvertimento valido!_`)
                             .setColor(`RED`);
                         interaction.editReply({ embeds: [embed] });

@@ -12,7 +12,7 @@ module.exports = {
 
         if (interaction.customId.startsWith(`CategoryTicket`)) {
             if (interaction.member.id != interaction.customId.split(`,`)[1])
-                return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo menù!`, ephemeral: true })
+                return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo menù!`, ephemeral: true })
             switch (interaction.values[0]) {
                 case `serverissues`: {
                     let embed = new Discord.MessageEmbed()
@@ -91,7 +91,7 @@ module.exports = {
             }
         } else if (interaction.customId.startsWith(`SubcategoryTicket`)) {
             if (interaction.member.id != interaction.customId.split(`,`)[1])
-                return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo menù!`, ephemeral: true })
+                return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo menù!`, ephemeral: true })
             switch (interaction.values[0]) {
                 case `botbugs`: {
                     let embed = new Discord.MessageEmbed()

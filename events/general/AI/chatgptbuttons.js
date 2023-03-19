@@ -19,7 +19,7 @@ module.exports = {
 
         if (interaction.isButton() && interaction.customId.split(`,`)[0] == `RegenerateResponse`) {
 
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true })
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true })
 
             const row = new Discord.MessageActionRow()
                 .addComponents(
@@ -79,7 +79,7 @@ module.exports = {
                 interaction.message.edit({ embeds: [replyembed], components: [row] });
             } catch (e) {
                 const errorembed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                     .setDescription(`😕 Si è verificato un **errore**:\n\n${e.toString()}`)
                     .setColor(`RED`);
                 interaction.reply({ embeds: [errorembed], ephemeral: true })

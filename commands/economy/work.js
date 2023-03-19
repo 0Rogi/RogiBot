@@ -34,7 +34,7 @@ module.exports = {
 
             if (new Date().getTime() < cooldown) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Sei in cooldown <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> Sei in cooldown <a:error:1086952752892092416>`)
                     .setDescription(`Non puoi ancora lavorare, **sei in cooldown**!\n\nPotrai lavorare di nuovo alle \`${moment(cooldown).format(`hh:mm:ss A`)}\``)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });

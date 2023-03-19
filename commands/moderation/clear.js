@@ -31,7 +31,7 @@ module.exports = {
         let count = interaction.options.getNumber(`quantità`)
         if (!count) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Inserisci un numero valido*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed], ephemeral: true })
@@ -39,7 +39,7 @@ module.exports = {
         }
         if (count > 100) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Posso cancellare solo 100 messaggi per volta*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed], ephemeral: true })
@@ -47,7 +47,7 @@ module.exports = {
         }
         if (count < 1) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Devi inserire un numero maggiore o uguale a 1*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed], ephemeral: true })

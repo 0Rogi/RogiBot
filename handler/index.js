@@ -72,7 +72,7 @@ client.on(`messageCreate`, message => {
 
     if (command) {
         let embed = new Discord.MessageEmbed()
-            .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+            .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
             .setDescription(`I comandi sono ora in **slash commands**!\nDigita **/** per visualizzare la **lista di tutti i comandi**!`)
             .setColor(`RED`);
         message.reply({ embeds: [embed] }).catch(() => { })
@@ -99,7 +99,7 @@ client.on(`interactionCreate`, async interaction => {
                 text += `*-<#${channel}>*\n`
             })
             let embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setColor(`RED`)
                 .setDescription(`*Questo comando, puo' essere eseguito solo in:*\n${text}`);
             interaction.editReply({ embeds: [embed], ephemeral: true });

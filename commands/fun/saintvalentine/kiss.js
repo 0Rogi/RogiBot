@@ -15,7 +15,7 @@ module.exports = {
 
         if (!user) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Inserisci un utente valido*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
@@ -24,7 +24,7 @@ module.exports = {
 
         if (user == interaction.user) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Non puoi baciare te stesso!\nInserisci un utente valido*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] })

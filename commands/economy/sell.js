@@ -114,7 +114,7 @@ module.exports = {
                     interaction.editReply({ embeds: [embed] });
                 } else {
                     const embed = new Discord.MessageEmbed()
-                        .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                        .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                         .setDescription(`_Non hai quest'oggetto_\n_Inserisci un oggetto presente nel tuo inventario per venderlo!_`)
                         .setColor(`RED`);
                     interaction.editReply({ embeds: [embed] });

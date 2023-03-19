@@ -15,7 +15,7 @@ module.exports = {
 			}
 		]
 	},
-	permissionlevel: 3 ,
+	permissionlevel: 3,
 	allowedchannels: [`ALL`],
 	execute(interaction) {
 		if (!interaction.member.roles.cache.has(config.rolesid.owner) && interaction.guild == config.idServer.idServer) return
@@ -35,7 +35,7 @@ module.exports = {
 				interaction.editReply({ embeds: [embed], components: [row] })
 			} catch (err) {
 				let embed = new Discord.MessageEmbed()
-					.setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+					.setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
 					.addField(`Entrata:`, `\`\`\`js\n${command}\`\`\``)
 					.addField(`Errore:`, `\`\`\`js\n${err}\`\`\``)
 					.setColor(`RED`)

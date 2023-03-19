@@ -42,19 +42,19 @@ module.exports = {
             embed.addField(`\u200b`, `\u200b`, true);
             switch (user.presence?.status) {
                 case `online`: {
-                    embed.addField(`👌🏻 Stato`, `<:online:966385817327132723> Online`, true);
+                    embed.addField(`👌🏻 Stato`, `<:online:1086951506021986345> Online`, true);
                 } break;
                 case `dnd`: {
-                    embed.addField(`👌🏻 Stato`, `<:dnd:966385946385870948> Non Disturbare`, true);
+                    embed.addField(`👌🏻 Stato`, `<:dnd:1086952965811732551> Non Disturbare`, true);
                 } break;
                 case `idle`: {
-                    embed.addField(`👌🏻 Stato`, `<:idle:966385794237476955> Inattivo`, true);
+                    embed.addField(`👌🏻 Stato`, `<:idle:1086952329825243187> Inattivo`, true);
                 } break;
                 case `offline`: {
-                    embed.addField(`👌🏻 Stato`, `<:offline:966386018204913695> Offline`, true);
+                    embed.addField(`👌🏻 Stato`, `<:offline:1086951239197143091> Offline`, true);
                 } break;
                 case undefined: {
-                    embed.addField(`👌🏻 Stato`, `<:offline:966386018204913695> Offline`, true);
+                    embed.addField(`👌🏻 Stato`, `<:offline:1086951239197143091> Offline`, true);
                 } break;
             }
 

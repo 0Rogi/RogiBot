@@ -62,7 +62,7 @@ module.exports = {
 
                 } else {
                     let embed = new Discord.MessageEmbed()
-                        .setTitle(`<a:error:966371274853089280> Sei in cooldown <a:error:966371274853089280>`)
+                        .setTitle(`<a:error:1086952752892092416> Sei in cooldown <a:error:1086952752892092416>`)
                         .setDescription(`_Hai già riscattato i tuoi RogiBucks giornalieri nelle ultime 24 ore!_\n\n_Potrai riscattarli di nuovo il ${moment(dailyCooldown).format(`DD/MM/YYYY hh:mm:ss A`)}_`)
                         .setColor(`RED`);
                     interaction.editReply({ embeds: [embed] });

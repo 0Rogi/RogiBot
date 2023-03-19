@@ -68,7 +68,7 @@ module.exports = {
             }
         ]
     },
-    permissionlevel: 2 ,
+    permissionlevel: 2,
     allowedchannels: [`ALL`],
     requirement: `none`,
     async execute(interaction) {
@@ -82,7 +82,7 @@ module.exports = {
 
         if (!user) {
             const embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Non riesco a trovare quest'utente!\nInserisci un utente valido*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
@@ -94,7 +94,7 @@ module.exports = {
 
         if (moderatorPermLevel < 4 && userPermLevel >= moderatorPermLevel) {
             const embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Non hai il permesso per impostare i soldi a quest'utente*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });

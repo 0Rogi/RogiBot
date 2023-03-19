@@ -61,8 +61,8 @@ module.exports = {
             //? Deny the user isn't the owner
             if (!owner && !interaction.member.roles.cache.has(config.rolesid.admin)) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
-                    .setDescription(`<a:error:966371274853089280> Non sei l'owner di questo canale privato`)
+                    .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
+                    .setDescription(`<a:error:1086952752892092416> Non sei l'owner di questo canale privato`)
                     .setColor(`RED`);
                 interaction.reply({ embeds: [embed], ephemeral: true });
             }
@@ -148,8 +148,8 @@ module.exports = {
             //? Deny the user isn't the owner or an admin
             if (!owner && !interaction.member.roles.cache.has(config.rolesid.admin)) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
-                    .setDescription(`<a:error:966371274853089280> Non sei l'owner di questo canale privato`)
+                    .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
+                    .setDescription(`<a:error:1086952752892092416> Non sei l'owner di questo canale privato`)
                     .setColor(`RED`);
                 interaction.reply({ embeds: [embed], ephemeral: true });
             }
@@ -224,8 +224,8 @@ module.exports = {
             //? Deny the user isn't the owner or an admin
             if (!owner && !interaction.member.roles.cache.has(config.rolesid.admin)) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
-                    .setDescription(`<a:error:966371274853089280> Non sei l'owner di questo canale privato`)
+                    .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
+                    .setDescription(`<a:error:1086952752892092416> Non sei l'owner di questo canale privato`)
                     .setColor(`RED`);
                 interaction.reply({ embeds: [embed], ephemeral: true });
             }
@@ -245,7 +245,7 @@ module.exports = {
                 //? Reply to interaction
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`📃 CREAZIONE TRANSCRIPT`)
-                    .setDescription(`<a:loading:998616752781008986> **Creazione** del **transcript** in corso <a:loading:998616752781008986>`)
+                    .setDescription(`<a:loading:1026141957937967214> **Creazione** del **transcript** in corso <a:loading:1026141957937967214>`)
                     .setColor(`YELLOW`);
                 await interaction.reply({ embeds: [embed] });
                 //? Create and send the transcript
@@ -262,8 +262,8 @@ module.exports = {
             //? Deny the user isn't the owner or an admin
             if (!owner && !interaction.member.roles.cache.has(config.rolesid.admin)) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
-                    .setDescription(`<a:error:966371274853089280> Non sei l'owner di questo canale privato`)
+                    .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
+                    .setDescription(`<a:error:1086952752892092416> Non sei l'owner di questo canale privato`)
                     .setColor(`RED`);
                 interaction.reply({ embeds: [embed], ephemeral: true });
             }

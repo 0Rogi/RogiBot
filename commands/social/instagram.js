@@ -22,7 +22,7 @@ module.exports = {
 					.setLabel(`Vedi Profilo`)
 					.setStyle(`LINK`)
 					.setURL(`https://www.instagram.com/rogi23yt/`)
-					.setEmoji(`<:instagram:965929929147572274>`)
+					.setEmoji(`<:instagram:1086952178234699836>`)
 			)
 			interaction.editReply({ embeds: [embed], components: [row] })
 		})

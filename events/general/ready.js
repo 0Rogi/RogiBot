@@ -31,7 +31,7 @@ module.exports = {
             .setTitle(`✅ BOT ONLINE - ${process.env.local ? `Local` : `Host`}`)
             .setColor(`GREEN`)
             .addField(`⏰ Orario:`, `${moment(new Date().getTime()).format(`ddd DD MMM YYYY, HH:mm:ss`)}`)
-            .addField(`🟢 Online`, `<:RogiBot:1003320534811033600> Rogi Bot Online!`);
+            .addField(`🟢 Online`, `<:rogibot:1086953246708465664> Rogi Bot Online!`);
         client.channels.cache.get(config.channelsid.logs.online).send({ embeds: [embed] });
         console.log(`LOADING...`);
         let db = await MongoClient.connect(process.env.mongodburl, { useNewUrlParser: true, useUnifiedTopology: true });

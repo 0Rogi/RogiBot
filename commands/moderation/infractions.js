@@ -24,7 +24,7 @@ module.exports = {
         database.collection(`UserStats`).find({ id: user.user.id }).toArray(function (err, result) {
             if (err || !result[0]) {
                 const embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                     .setDescription(`_${user.toString()} non ha avvertimenti_`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
@@ -35,7 +35,7 @@ module.exports = {
 
             if (warns?.length <= 0) {
                 const embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                     .setDescription(`_${user.toString()} non ha avvertimenti_`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
@@ -85,7 +85,7 @@ module.exports = {
 
                 collector.on(`collect`, interaction => {
 
-                    if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo menù!`, ephemeral: true });
+                    if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo menù!`, ephemeral: true });
 
                     if (interaction.customId.startsWith(`WarnIndietro`)) {
                         page--;

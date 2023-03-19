@@ -23,7 +23,7 @@ module.exports = {
             let ticket = await serverstats.tickets.find(ticket => ticket.channelid == interaction.channel.id)
             if (!ticket) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                     .setColor(`RED`)
                     .setDescription(`*Questo canale non è un ticket*`);
                 interaction.editReply({ embeds: [embed] })
@@ -33,7 +33,7 @@ module.exports = {
                 let user = interaction.guild.members.cache.find(x => x.id == interaction.options.getUser(`utente`)?.id)
                 if (user.permissions.has(`MANAGE_MESSAGES`)) {
                     let embed = new Discord.MessageEmbed()
-                        .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                        .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                         .setColor(`RED`)
                         .setDescription(`*Non puoi rimuovere lo staff da un ticket*`);
                     interaction.editReply({ embeds: [embed] })
@@ -41,7 +41,7 @@ module.exports = {
                 }
                 if (user.user.bot) {
                     let embed = new Discord.MessageEmbed()
-                        .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                        .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                         .setColor(`RED`)
                         .setDescription(`*Non puoi rimuovere un bot da un ticket*`);
                     interaction.editReply({ embeds: [embed] })
@@ -49,7 +49,7 @@ module.exports = {
                 }
                 if (!interaction.channel.permissionsFor(user).has(`VIEW_CHANNEL`, true)) {
                     let embed = new Discord.MessageEmbed()
-                        .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                        .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                         .setColor(`RED`)
                         .setDescription(`*Questo utente non ha già accesso a questo ticket*`);
                     interaction.editReply({ embeds: [embed] })

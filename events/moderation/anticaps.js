@@ -31,11 +31,11 @@ module.exports = {
             message.delete()
             message.member.timeout(1000 * 3, `Urla`).catch(() => { })
 
-            let phrases = [`😌 Qualcuno ha bisogno di una camomilla <:chamomile:1008766551043887145>`, `A qualcuno piace proprio urlare 😡`, `Siamo dal pescivendolo? 🐟`, `Qualcuno ha perso il proprio controllo 🤬`, `${message.author.username}, immagina urlare 😳`]
+            let phrases = [`😌 Qualcuno ha bisogno di una camomilla <:chamomile:1086953483170758676>`, `A qualcuno piace proprio urlare 😡`, `Siamo dal pescivendolo? 🐟`, `Qualcuno ha perso il proprio controllo 🤬`, `${message.author.username}, immagina urlare 😳`]
 
             let embedDM = new Discord.MessageEmbed()
-                .setTitle(`<:chamomile:1008766551043887145> Hai bisogno di una camomilla? <:chamomile:1008766551043887145>`)
-                .setDescription(`Hey, **non urlare**, prenditi una bella camomilla <:chamomile:1008766551043887145> e poi torna a scrivere :)`)
+                .setTitle(`<:chamomile:1086953483170758676> Hai bisogno di una camomilla? <:chamomile:1086953483170758676>`)
+                .setDescription(`Hey, **non urlare**, prenditi una bella camomilla <:chamomile:1086953483170758676> e poi torna a scrivere :)`)
                 .setColor(`RED`)
             let embedGUILD = new Discord.MessageEmbed()
                 .setTitle(`${phrases[Math.floor(Math.random() * phrases.length)]}`)

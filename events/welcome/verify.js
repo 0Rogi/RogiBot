@@ -119,7 +119,7 @@ module.exports = {
         if (interaction.customId == `Verify`) {
             //? Check if the user is already verified
             if (!interaction.member.roles.cache.has(config.rolesid.unverified)) {
-                interaction.reply({ content: `<a:error:966371274853089280> Sei già verificato!`, ephemeral: true })
+                interaction.reply({ content: `<a:error:1086952752892092416> Sei già verificato!`, ephemeral: true })
                 return
             }
 

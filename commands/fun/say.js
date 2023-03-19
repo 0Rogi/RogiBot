@@ -42,7 +42,7 @@ module.exports = {
 	execute(interaction) {
 		if (!interaction.member.roles.cache.has(config.rolesid.serverbooster) && !interaction.member.permissions.has(`ADMINISTRATOR`) && !interaction.member.roles.cache.has(config.rolesid.passallrewards)) {
 			let embed = new Discord.MessageEmbed()
-				.setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+				.setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
 				.setDescription(`*Devi boostare il server per usare questo comando!*`)
 				.setColor(`RED`);
 			interaction.reply({ embeds: [embed], ephemeral: true });
@@ -53,7 +53,7 @@ module.exports = {
 			let text = interaction.options.getString(`testo`)
 			if (text.length > 2000) {
 				let embed = new Discord.MessageEmbed()
-					.setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+					.setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
 					.setDescription(`*Testo troppo lungo!\npuoi usare massimo 2000 caratteri!*`)
 					.setColor(`RED`);
 				interaction.editReply({ embeds: [embed] });
@@ -72,7 +72,7 @@ module.exports = {
 
 			if (!send) {
 				let embed = new Discord.MessageEmbed()
-					.setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+					.setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
 					.setDescription(`*Non puoi mandare parolacce con /say!\nRicorda di rispettare le regole!*`)
 					.setColor(`RED`);
 				interaction.editReply({ embeds: [embed] });

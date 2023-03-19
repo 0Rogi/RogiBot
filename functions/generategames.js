@@ -5,7 +5,6 @@ const translate = require(`translate-google`);
 module.exports = function generateGames() {
 
     game = Math.floor(Math.random() * (4 - 1) + 1);
-    game = 3;
 
     if (game == 1) {
 
@@ -53,16 +52,22 @@ module.exports = function generateGames() {
     } else if (game == 3) {
 
         let word = randomWord();
-        console.log(word)
         translate(word, { to: `it` }).then(async w => {
-            word = w;
-            let arr = word.split("")
-            arr.sort(() => Math.random() - 0.5);
-            let messWord = arr.join("")
+
+            const arr = w.split(``);
+
+            for (let i = arr.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                let temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+
+            const messWord = arr.join(``);
 
             database.collection(`ServerStats`).updateOne({}, {
                 $set: {
-                    'economyGame3Word': word,
+                    'economyGame3Word': w,
                 }
             });
 

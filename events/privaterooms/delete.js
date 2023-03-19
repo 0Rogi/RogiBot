@@ -13,7 +13,7 @@ module.exports = {
         if (!interaction.isButton()) return;
         if (interaction.customId.startsWith(`DeletePRoom`)) {
             //? Controlla se l'utente è chi ha fatto i l comando
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true });
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true });
 
             //? Modifica la risposta dell'interazione
             let embed = new Discord.MessageEmbed()

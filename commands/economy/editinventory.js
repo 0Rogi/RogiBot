@@ -76,7 +76,7 @@ module.exports = {
 
         if (!user) {
             const embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Non riesco a trovare quest'utente!\nInserisci un utente valido*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
@@ -88,7 +88,7 @@ module.exports = {
 
         if (moderatorPermLevel < 4 && userPermLevel >= moderatorPermLevel) {
             const embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Non hai il permesso per impostare i soldi a quest'utente*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
@@ -181,7 +181,7 @@ module.exports = {
 
                     if (err || !result[0]) {
                         const embed = new Discord.MessageEmbed()
-                            .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                            .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                             .setDescription(`_L'inventario di ${user.toString()} è vuoto!_`)
                             .setColor(`RED`);
                         interaction.editReply({ embeds: [embed] });
@@ -191,7 +191,7 @@ module.exports = {
 
                         if (!inventory) {
                             const embed = new Discord.MessageEmbed()
-                                .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                                .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                                 .setDescription(`_L'inventario di ${user.toString()} è vuoto!_`)
                                 .setColor(`RED`);
                             interaction.editReply({ embeds: [embed] });
@@ -211,7 +211,7 @@ module.exports = {
 
                             if (objectAmount > objectCount) {
                                 const embed = new Discord.MessageEmbed()
-                                    .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                                    .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                                     .setDescription(`_${user.toString()} non ha così tanti **${object}** nel suo inventario_`)
                                     .setColor(`RED`);
                                 interaction.editReply({ embeds: [embed] });
@@ -247,7 +247,7 @@ module.exports = {
                             interaction.editReply({ embeds: [embed] });
                         } else {
                             const embed = new Discord.MessageEmbed()
-                                .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                                .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                                 .setDescription(`_Quest'oggetto non è presente nell'inventario di ${user.toString()}_`)
                                 .setColor(`RED`);
                             interaction.editReply({ embeds: [embed] });

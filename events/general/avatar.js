@@ -10,7 +10,7 @@ module.exports = {
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
 
         if (interaction.customId.startsWith(`showbanner`)) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true })
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true })
 
             let banner
             let user = await client.api.users(interaction.customId.split(`,`)[2]).get()
@@ -48,7 +48,7 @@ module.exports = {
             interaction.update({ embeds: [embed], components: [row] })
         }
         if (interaction.customId.startsWith(`showavatar`)) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true })
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true })
             let user = client.users.cache.get(interaction.customId.split(`,`)[2]) || interaction.user
             let guildmember = interaction.guild.members.cache.find(x => x.id == interaction.customId.split(`,`)[2]) || interaction.member
             user.displayAvatarURL({ dynamic: true, size: 512 })

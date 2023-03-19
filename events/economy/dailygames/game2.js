@@ -14,7 +14,7 @@ module.exports = {
             database.collection(`UserStats`).find({ id: interaction.user.id }).toArray(async function (err, result) {
                 if (err || !result[0]) {
                     const embed = new Discord.MessageEmbed()
-                        .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                        .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                         .setDescription(`_Non hai abbastanza RogiBucks per girare la ruota della fortuna!_`)
                         .setColor(`RED`);
                     interaction.editReply({ embeds: [embed], ephemeral: true });
@@ -26,7 +26,7 @@ module.exports = {
 
                     if (20 > money) {
                         const embed = new Discord.MessageEmbed()
-                            .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                            .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                             .setDescription(`_Non hai abbastanza RogiBucks per girare la ruota della fortuna!_`)
                             .setColor(`RED`);
                         interaction.reply({ embeds: [embed], ephemeral: true });
@@ -35,7 +35,7 @@ module.exports = {
 
                     if (new Date().getTime() < result[0]?.economy?.game2cooldown) {
                         const embed = new Discord.MessageEmbed()
-                            .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                            .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                             .setDescription(`_Sei in **cooldown**!_\n_Potrai rigirare la ruota della fortuna il **${moment(result[0]?.economy?.game2cooldown).format(`DD/MM/YYYY hh:mm:ss A`)}**_`)
                             .setColor(`RED`);
                         interaction.reply({ embeds: [embed], ephemeral: true });

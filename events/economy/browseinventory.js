@@ -5,7 +5,7 @@ module.exports = {
     execute(interaction) {
 
         if (interaction.isSelectMenu() && interaction.customId.split(`,`)[0] == `ViewInventory`) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo menù!`, ephemeral: true });
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo menù!`, ephemeral: true });
 
             const userId = interaction.customId.split(`,`)[2];
             const category = interaction.values[0];
@@ -73,7 +73,7 @@ module.exports = {
 
                 if (err || !result[0]) {
 
-                    interaction.reply({ content: `<a:error:966371274853089280> Si è verificato un errore`, ephemeral: true });
+                    interaction.reply({ content: `<a:error:1086952752892092416> Si è verificato un errore`, ephemeral: true });
 
                 } else {
 

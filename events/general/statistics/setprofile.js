@@ -9,7 +9,7 @@ module.exports = {
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return;
 
         if (interaction.isButton() && interaction.customId.startsWith(`Profile`)) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true });
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true });
 
             switch (interaction.customId.split(`,`)[0]) {
                 case `ProfileName`: {
@@ -150,22 +150,22 @@ module.exports = {
                                         {
                                             label: `Youtube`,
                                             value: `youtube`,
-                                            emoji: `<:youtube:1050834469868806295>`
+                                            emoji: `<:youtube:1086951837808197672>`
                                         },
                                         {
                                             label: `TikTok`,
                                             value: `tiktok`,
-                                            emoji: `<:tiktok:1050834466811162634>`
+                                            emoji: `<:tiktok:1086951699282939964>`
                                         },
                                         {
                                             label: `Github`,
                                             value: `github`,
-                                            emoji: `<:github:1050834755349921843>`
+                                            emoji: `<:github:1086952560755212330>`
                                         },
                                         {
                                             label: `Instagram`,
                                             value: `instagram`,
-                                            emoji: `<:instagram:1050834472301494403>`
+                                            emoji: `<:instagram:1086952178234699836>`
                                         },
                                         {
                                             label: `Twitch`,
@@ -217,7 +217,7 @@ module.exports = {
         }
 
         if (interaction.isSelectMenu() && interaction.customId.startsWith(`MenuProfileGender`)) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo menù!`, ephemeral: true });
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo menù!`, ephemeral: true });
             database.collection(`UserStats`).find({ id: interaction.customId.split(`,`)[1] }).toArray(function (err, result) {
                 if (err) return console.error(err);
                 if (!result) return;
@@ -314,7 +314,7 @@ module.exports = {
         }
 
         if (interaction.isSelectMenu() && interaction.customId.startsWith(`MenuProfileSocial`)) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo menù!`, ephemeral: true });
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo menù!`, ephemeral: true });
 
             switch (interaction.values[0]) {
                 case `youtube`: {
@@ -536,7 +536,7 @@ module.exports = {
         }
 
         if (interaction.isButton() && interaction.customId.startsWith(`ProfileBack`)) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true });
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true });
 
             let embed = new Discord.MessageEmbed()
                 .setTitle(`CUSTOMIZZAZIONE DEL PROFILO`)

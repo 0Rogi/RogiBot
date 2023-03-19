@@ -13,7 +13,7 @@ module.exports = {
     execute(interaction) {
         if (!interaction.member.roles.cache.has(config.rolesid.level30) && !interaction.member.roles.cache.has(config.rolesid.level40) && !interaction.member.roles.cache.has(config.rolesid.level50) && !interaction.member.roles.cache.has(config.rolesid.level60) && !interaction.member.roles.cache.has(config.rolesid.level70) && !interaction.member.roles.cache.has(config.rolesid.level80) && !interaction.member.roles.cache.has(config.rolesid.level90) && !interaction.member.roles.cache.has(config.rolesid.level100) && !interaction.member.roles.cache.has(config.rolesid.serverbooster) && !interaction.member.permissions.has(`ADMINISTRATOR`) && !interaction.member.roles.cache.has(config.rolesid.passallrewards)) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Devi avere almeno il livello 30 per usare questo comando!*`)
                 .setColor(`RED`);
             interaction.reply({ embeds: [embed], ephemeral: true })
@@ -23,7 +23,7 @@ module.exports = {
             if (serverstats.snipe.cleared) {
                 let embed = new Discord.MessageEmbed()
                     .setTitle(`Snipe`)
-                    .setDescription(`<a:error:966371274853089280>L'ultimo messaggio eliminato, è stato **nascosto da un moderatore**!\n**Non è possibile vederlo**.`)
+                    .setDescription(`<a:error:1086952752892092416>L'ultimo messaggio eliminato, è stato **nascosto da un moderatore**!\n**Non è possibile vederlo**.`)
                     .setColor(`YELLOW`)
                 interaction.editReply({ embeds: [embed] })
                 return

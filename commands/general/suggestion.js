@@ -23,7 +23,7 @@ module.exports = {
 			let suggestion = interaction.options.getString(`suggerimento`)
 			if (suggestion.length > 1024) {
 				let embed = new Discord.MessageEmbed()
-					.setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+					.setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
 					.setDescription(`*Testo troppo lungo!\npuoi usare massimo 1024 caratteri!*`)
 					.setColor(`RED`);
 				interaction.editReply({ embeds: [embed] })

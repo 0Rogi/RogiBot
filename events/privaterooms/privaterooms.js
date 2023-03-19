@@ -25,7 +25,7 @@ module.exports = {
 
             if (found) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                     .setDescription(`*Hai già aperto una stanza privata!*`)
                     .setColor(`RED`);
                 member.send({ embeds: [embed] }).catch(() => { });

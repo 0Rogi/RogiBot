@@ -33,7 +33,7 @@ module.exports = {
 
         if (user == interaction.user) {
             const embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                 .setDescription(`_Non puoi pagare te stesso!_`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
@@ -43,7 +43,7 @@ module.exports = {
         database.collection(`UserStats`).find({ id: interaction.user.id }).toArray(async function (err, result) {
             if (err || !result[0]) {
                 const embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                     .setDescription(`_Non hai abbastanza RogiBucks per pagare \`${money}\` a ${user.toString()}!_`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
@@ -53,7 +53,7 @@ module.exports = {
 
                 if (userMoney < money) {
                     const embed = new Discord.MessageEmbed()
-                        .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                        .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                         .setDescription(`_Non hai abbastanza RogiBucks per pagare \`${money}\` a ${user.toString()}!_`)
                         .setColor(`RED`);
                     interaction.editReply({ embeds: [embed] });

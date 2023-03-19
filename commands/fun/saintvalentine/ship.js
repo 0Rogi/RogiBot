@@ -16,7 +16,7 @@ module.exports = {
 
         if (!user1 || !user2) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Inserisci due utenti validi*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
@@ -25,7 +25,7 @@ module.exports = {
 
         if (user2 == user1) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Non puoi controllare la percentuale d'amore fra le stesse persone!\nInserisci due utenti diversi*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });

@@ -9,7 +9,7 @@ module.exports = {
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return;
 
         if (interaction.isSelectMenu() && interaction.customId.startsWith(`Shop`)) {
-            if (!interaction.customId.includes(interaction.user.id)) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo menù`, ephemeral: true });
+            if (!interaction.customId.includes(interaction.user.id)) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo menù`, ephemeral: true });
 
             let category = interaction.values[0]
 

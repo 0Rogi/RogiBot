@@ -6,7 +6,7 @@ module.exports = {
 
         if (interaction.isButton() && interaction.customId.startsWith(`WorkRisolviCalcolo`)) {
 
-            if (!interaction.customId.includes(interaction.user.id)) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante`, ephemeral: true });
+            if (!interaction.customId.includes(interaction.user.id)) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante`, ephemeral: true });
 
             const number1 = Math.floor(Math.random() * (20 - 1) + 1);
             const number2 = Math.floor(Math.random() * (20 - 1) + 1);
@@ -57,7 +57,7 @@ module.exports = {
                 });
             } else {
                 const embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Risposta Errata <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> Risposta Errata <a:error:1086952752892092416>`)
                     .setDescription(`Sbagliato!\n\`${interaction.customId.split(`,`)[1]}\` è uguale a \`${correctResult}\` ma tu hai scritto \`${userResult}\` 😔`)
                     .setColor(`RED`);
                 const row = new Discord.MessageActionRow()

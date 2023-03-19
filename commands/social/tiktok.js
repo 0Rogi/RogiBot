@@ -22,7 +22,7 @@ module.exports = {
 					.setLabel(`Vedi Profilo`)
 					.setStyle(`LINK`)
 					.setURL(`https://www.tiktok.com/@rogi23yt?`)
-					.setEmoji(`<:tiktok:959490766747611166>`)
+					.setEmoji(`<:tiktok:1086951699282939964>`)
 			)
 			interaction.editReply({ embeds: [embed], components: [row] })
 		})

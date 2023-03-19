@@ -14,7 +14,7 @@ module.exports = {
 
         if (interaction.customId == `LOCKEDTickets`) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                 .setDescription(`I ticket si possono aprire dalle **08:00 alle 22:30**, attualmente sono **chiusi**\n\nPotrai riaprirli nuovamente alle **08:00**, mi spiace.`)
                 .setColor(`RED`)
             interaction.reply({ embeds: [embed], ephemeral: true })
@@ -23,7 +23,7 @@ module.exports = {
         if (interaction.customId == `Tickets`) {
 
             if (serverstats.tickets.find(ticket => ticket.userid == interaction.user.id)) {
-                interaction.reply({ content: `<a:error:966371274853089280> Hai già un ticket aperto! Non puoi aprirne due! <#${serverstats.tickets.find(ticket => ticket.userid == interaction.user.id).channelid}>`, ephemeral: true })
+                interaction.reply({ content: `<a:error:1086952752892092416> Hai già un ticket aperto! Non puoi aprirne due! <#${serverstats.tickets.find(ticket => ticket.userid == interaction.user.id).channelid}>`, ephemeral: true })
                 return
             }
 
@@ -85,7 +85,7 @@ module.exports = {
             channel.send({ embeds: [embed], components: [row] })
             interaction.deferUpdate()
         } else if (interaction.customId.startsWith(`TicketOpen`)) {
-            if (interaction.member.id != interaction.customId.split(`,`)[1]) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true })
+            if (interaction.member.id != interaction.customId.split(`,`)[1]) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true })
             let ticket
             setTimeout(async () => {
                 ticket = await serverstats.tickets.find(ticket => ticket.userid == interaction.user.id)
@@ -147,8 +147,8 @@ module.exports = {
             }, 1000)
         } else if (interaction.customId == `TicketClose` || interaction.customId == `TicketSolved`) {
             let ticket = await serverstats.tickets.find(ticket => ticket.channelid == interaction.channel.id)
-            if (!ticket) return interaction.reply({ content: `<a:error:966371274853089280> Questo canale non è un ticket`, ephemeral: true })
-            if (ticket.closing) return interaction.reply({ content: `<a:error:966371274853089280> Questo ticket è già in chiusura`, ephemeral: true })
+            if (!ticket) return interaction.reply({ content: `<a:error:1086952752892092416> Questo canale non è un ticket`, ephemeral: true })
+            if (ticket.closing) return interaction.reply({ content: `<a:error:1086952752892092416> Questo ticket è già in chiusura`, ephemeral: true })
 
             let embed = new Discord.MessageEmbed()
                 .setTitle(`Ticket in chiusura`)

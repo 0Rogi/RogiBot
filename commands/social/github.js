@@ -13,7 +13,7 @@ module.exports = {
 	execute(interaction) {
 		interaction.deferReply().then(() => {
 			let embed = new Discord.MessageEmbed()
-				.setTitle(`<:github:965343329913045042>Github`)
+				.setTitle(`<:github:1086952560755212330>Github`)
 				.setColor(`YELLOW`)
 				.setThumbnail(`https://i.imgur.com/SllkUVy.png`)
 				.setDescription(`Per aprire il profilo **github di Rogi**,\npremi il pulsante qui sotto`)
@@ -22,7 +22,7 @@ module.exports = {
 					.setLabel(`Vedi Profilo`)
 					.setStyle(`LINK`)
 					.setURL(`https://github.com/0Rogi`)
-					.setEmoji(`<:github:965343329913045042>`)
+					.setEmoji(`<:github:1086952560755212330>`)
 			)
 			interaction.editReply({ embeds: [embed], components: [row] })
 		})

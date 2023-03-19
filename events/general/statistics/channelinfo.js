@@ -14,7 +14,7 @@ module.exports = {
         if (interaction.customId.startsWith(`channelinfoplus`)) {
 
             let id = interaction.customId.split(`,`)[1];
-            if (interaction.member.id != id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true });
+            if (interaction.member.id != id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true });
 
             let channel = interaction.guild.channels.cache.find(c => c.id == interaction.message.embeds[0].fields[2].value);
 
@@ -140,7 +140,7 @@ module.exports = {
         if (interaction.customId.startsWith(`channelinfoless`)) {
 
             let id = interaction.customId.split(`,`)[1];
-            if (interaction.member.id != id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true });
+            if (interaction.member.id != id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true });
 
             let channel = interaction.guild.channels.cache.find(c => c.id == interaction.message.embeds[0].fields[2].value)
 

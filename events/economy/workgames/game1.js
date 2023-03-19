@@ -43,7 +43,7 @@ module.exports = {
                     .setTitle(`<a:checkmark:1083310732285853766> Risposta Corretta <a:checkmark:1083310732285853766>`)
                     .setDescription(`Bravo! Hai risposto **correttamente**!\n\nHai guadagnato \`${money}\` **RogiBucks** ! 🤑`)
                     .setColor(`GREEN`);
-                database.collection(`UserStats`).updateOne({id: interaction.user.id}, {
+                database.collection(`UserStats`).updateOne({ id: interaction.user.id }, {
                     $inc: {
                         'economy.money': money,
                     }
@@ -54,7 +54,7 @@ module.exports = {
             } else if (!interaction.customId.includes(`Correct`) && interaction.customId.includes(`Work`) && interaction.customId != `Workgame2` && !interaction.customId.startsWith(`WorkRisolviCalcolo`)) {
 
                 const embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Risposta Sbagliata <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> Risposta Sbagliata <a:error:1086952752892092416>`)
                     .setDescription(`Hai sbagliato... 😐`)
                     .setColor(`RED`);
 

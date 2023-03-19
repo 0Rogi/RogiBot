@@ -26,7 +26,7 @@ module.exports = {
 
         let user = await client.users.fetch(id).catch((err) => {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Non riesco a trovare quest'utente.\nInserisci un utente valido*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
@@ -38,7 +38,7 @@ module.exports = {
         database.collection(`UserStats`).find({ id: user.id }).toArray(async function (err, result) {
             if (!result[0]) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                     .setDescription(`*Questo utente non ha uno stato di moderazione*`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
@@ -47,7 +47,7 @@ module.exports = {
 
             if (result[0]?.moderation.type != `banned`) {
                 let embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> Errore <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                     .setDescription(`*Questo utente non è bannato*`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });

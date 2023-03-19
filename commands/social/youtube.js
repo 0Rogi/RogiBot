@@ -22,7 +22,7 @@ module.exports = {
 					.setLabel(`Vedi Canale`)
 					.setStyle(`LINK`)
 					.setURL(`youtube.com/@0Rogi`)
-					.setEmoji(`<:youtube:959490799177977866>`)
+					.setEmoji(`<:youtube:1086951837808197672>`)
 			)
 			interaction.editReply({ embeds: [embed], components: [row] })
 		})

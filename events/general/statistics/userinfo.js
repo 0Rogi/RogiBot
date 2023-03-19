@@ -10,7 +10,7 @@ module.exports = {
 
 
         if (interaction.isButton() && interaction.customId.startsWith(`UserInfoOtherPage`)) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true });
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true });
 
             await interaction.deferUpdate();
 
@@ -41,10 +41,10 @@ module.exports = {
                     if (badgetext == ``) badgetext = `_Nessun Badge_`;
 
                     let socialmediatext = ``;
-                    if (customprofile?.socialmedia?.youtube) socialmediatext += `<:youtube:1050834469868806295> [Apri Canale](https://youtube.com/channel/${customprofile?.socialmedia?.youtube})\n`;
-                    if (customprofile?.socialmedia?.tiktok) socialmediatext += `<:tiktok:1050834466811162634> [Apri Profilo](https://tiktok.com/@${customprofile?.socialmedia?.tiktok})\n`;
-                    if (customprofile?.socialmedia?.github) socialmediatext += `<:github:1050834755349921843> [Apri Profilo](https://github.com/${customprofile?.socialmedia?.github})\n`;
-                    if (customprofile?.socialmedia?.instagram) socialmediatext += `<:instagram:1050834472301494403> [Apri Profilo](https://instagram.com/${customprofile?.socialmedia?.instagram})\n`;
+                    if (customprofile?.socialmedia?.youtube) socialmediatext += `<:youtube:1086951837808197672> [Apri Canale](https://youtube.com/channel/${customprofile?.socialmedia?.youtube})\n`;
+                    if (customprofile?.socialmedia?.tiktok) socialmediatext += `<:tiktok:1086951699282939964> [Apri Profilo](https://tiktok.com/@${customprofile?.socialmedia?.tiktok})\n`;
+                    if (customprofile?.socialmedia?.github) socialmediatext += `<:github:1086952560755212330> [Apri Profilo](https://github.com/${customprofile?.socialmedia?.github})\n`;
+                    if (customprofile?.socialmedia?.instagram) socialmediatext += `<:instagram:1086952178234699836> [Apri Profilo](https://instagram.com/${customprofile?.socialmedia?.instagram})\n`;
                     if (customprofile?.socialmedia?.twitch) socialmediatext += `<:twitch:1050834468400812062> [Apri Profilo](https://twitch.tv/${customprofile?.socialmedia?.twitch})\n`;
                     if (customprofile?.socialmedia?.twitter) socialmediatext += `<:twitter:1050834473895346298> [Apri Profilo](https://twitter.com/${customprofile?.socialmedia?.twitter})\n`;
                     if (customprofile?.socialmedia?.reddit) socialmediatext += `<:reddit:1050834465322192978> [Apri Profilo](https://reddit.com/users/${customprofile?.socialmedia?.reddit})\n`;
@@ -90,7 +90,7 @@ module.exports = {
         }
 
         if (interaction.isButton() && interaction.customId.startsWith(`UserInfoBack`)) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true });
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true });
             let user = interaction.guild.members.cache.find(x => x.id == interaction.customId.split(`,`)[2]);
 
             let embed = new Discord.MessageEmbed()
@@ -112,19 +112,19 @@ module.exports = {
             embed.addField(`\u200b`, `\u200b`, true);
             switch (user.presence?.status) {
                 case `online`: {
-                    embed.addField(`👌🏻 Stato`, `<:online:966385817327132723> Online`, true);
+                    embed.addField(`👌🏻 Stato`, `<:online:1086951506021986345> Online`, true);
                 } break;
                 case `dnd`: {
-                    embed.addField(`👌🏻 Stato`, `<:dnd:966385946385870948> Non Disturbare`, true);
+                    embed.addField(`👌🏻 Stato`, `<:dnd:1086952965811732551> Non Disturbare`, true);
                 } break;
                 case `idle`: {
-                    embed.addField(`👌🏻 Stato`, `<:idle:966385794237476955> Inattivo`, true);
+                    embed.addField(`👌🏻 Stato`, `<:idle:1086952329825243187> Inattivo`, true);
                 } break;
                 case `offline`: {
-                    embed.addField(`👌🏻 Stato`, `<:offline:966386018204913695> Offline`, true);
+                    embed.addField(`👌🏻 Stato`, `<:offline:1086951239197143091> Offline`, true);
                 } break;
                 case undefined: {
-                    embed.addField(`👌🏻 Stato`, `<:offline:966386018204913695> Offline`, true);
+                    embed.addField(`👌🏻 Stato`, `<:offline:1086951239197143091> Offline`, true);
                 } break;
             }
 
@@ -153,7 +153,7 @@ module.exports = {
         }
 
         if (interaction.isButton() && interaction.customId.startsWith(`UserInfoLike`)) {
-            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true });
+            if (interaction.customId.split(`,`)[1] != interaction.user.id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true });
 
             if (interaction.customId.split(`,`)[2] == interaction.member.user.id) {
                 const embed = new Discord.MessageEmbed()

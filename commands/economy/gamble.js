@@ -27,7 +27,7 @@ module.exports = {
         database.collection(`UserStats`).find({ id: interaction.user.id }).toArray(function (err, result) {
             if (err || !result[0]) {
                 const embed = new Discord.MessageEmbed()
-                    .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                    .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                     .setDescription(`_Hai scommesso troppi soldi, non ne hai abbastanza!_`)
                     .setColor(`RED`);
                 interaction.editReply({ embeds: [embed] });
@@ -37,7 +37,7 @@ module.exports = {
 
                 if (moneyToBet > userMoney) {
                     const embed = new Discord.MessageEmbed()
-                        .setTitle(`<a:error:966371274853089280> ERRORE <a:error:966371274853089280>`)
+                        .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                         .setDescription(`_Hai scommesso troppi RogiBucks, non ne hai abbastanza!_`)
                         .setColor(`RED`);
                     interaction.editReply({ embeds: [embed] });

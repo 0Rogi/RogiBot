@@ -13,7 +13,7 @@ module.exports = {
         if (interaction.customId.startsWith(`serverinfoplus`)) {
 
             let id = interaction.customId.split(`,`)[1];
-            if (interaction.member.id != id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true });
+            if (interaction.member.id != id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true });
 
             let server = interaction.guild;
 
@@ -29,7 +29,7 @@ module.exports = {
                 .setColor(`YELLOW`)
                 .setDescription(server.description?.toString() || `_Nessuna Descrizione_`)
                 .addField(`👑 Owner:`, client.users.cache.get(server.ownerId).toString(), true)
-                .addField(`🟢 Utenti:`, `<:online:966385817327132723>**${server.members.cache.filter(member => member.presence?.status == `online`).size}**\n<:idle:966385794237476955>**${server.members.cache.filter(member => member.presence?.status == `idle`).size}**\n<:dnd:966385946385870948>**${server.members.cache.filter(member => member.presence?.status == `dnd`).size}**\n<:offline:966386018204913695>**${server.members.cache.filter(member => !member.presence?.status).size}**`, true)
+                .addField(`🟢 Utenti:`, `<:online:1086951506021986345>**${server.members.cache.filter(member => member.presence?.status == `online`).size}**\n<:idle:1086952329825243187>**${server.members.cache.filter(member => member.presence?.status == `idle`).size}**\n<:dnd:1086952965811732551>**${server.members.cache.filter(member => member.presence?.status == `dnd`).size}**\n<:offline:1086951239197143091>**${server.members.cache.filter(member => !member.presence?.status).size}**`, true)
                 .addField(`🚨 Server ID:`, server.id.toString(), true)
                 .addField(`🧾 Canali:`, `Testuali: **${server.channels.cache.filter(c => c.type == `GUILD_TEXT`).size}**\nVocali: **${server.channels.cache.filter(c => c.type == `GUILD_VOICE`).size}**\nCategorie: **${server.channels.cache.filter(c => c.type == `GUILD_CATEGORY`).size}**\nNews: **${server.channels.cache.filter(c => c.type == `GUILD_NEWS`).size}**`, true)
                 .addField(`🧑🏻‍🦱 Membri:`, `Totali: **${server.memberCount}**\nUtenti: **${server.memberCount - server.members.cache.filter(member => member.user.bot).size}**\nBot: **${server.members.cache.filter(member => member.user.bot).size}**`, true)
@@ -48,7 +48,7 @@ module.exports = {
         if (interaction.customId.startsWith(`serverinfoless`)) {
 
             let id = interaction.customId.split(`,`)[1];
-            if (interaction.member.id != id) return interaction.reply({ content: `<a:error:966371274853089280> Questo non è un tuo pulsante!`, ephemeral: true });
+            if (interaction.member.id != id) return interaction.reply({ content: `<a:error:1086952752892092416> Questo non è un tuo pulsante!`, ephemeral: true });
 
             let server = interaction.guild;
 
