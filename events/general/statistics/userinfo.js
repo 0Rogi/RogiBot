@@ -47,7 +47,7 @@ module.exports = {
                     if (customprofile?.socialmedia?.github) socialmediatext += `<:github:1086952560755212330> [Apri Profilo](https://github.com/${customprofile?.socialmedia?.github})\n`;
                     if (customprofile?.socialmedia?.instagram) socialmediatext += `<:instagram:1086952178234699836> [Apri Profilo](https://instagram.com/${customprofile?.socialmedia?.instagram})\n`;
                     if (customprofile?.socialmedia?.twitch) socialmediatext += `<:twitch:1050834468400812062> [Apri Profilo](https://twitch.tv/${customprofile?.socialmedia?.twitch})\n`;
-                    if (customprofile?.socialmedia?.twitter) socialmediatext += `<:twitter:1050834473895346298> [Apri Profilo](https://twitter.com/${customprofile?.socialmedia?.twitter})\n`;
+                    if (customprofile?.socialmedia?.twitter) socialmediatext += `<:twitter:1087850003185274941> [Apri Profilo](https://twitter.com/${customprofile?.socialmedia?.twitter})\n`;
                     if (customprofile?.socialmedia?.reddit) socialmediatext += `<:reddit:1050834465322192978> [Apri Profilo](https://reddit.com/users/${customprofile?.socialmedia?.reddit})\n`;
 
                     if (socialmediatext == ``) socialmediatext = `_Nessun Social Media Impostato_`;

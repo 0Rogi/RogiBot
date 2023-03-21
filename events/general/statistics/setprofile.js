@@ -175,7 +175,7 @@ module.exports = {
                                         {
                                             label: `Twitter`,
                                             value: `twitter`,
-                                            emoji: `<:twitter:1050834473895346298>`
+                                            emoji: `<:twitter:1087850003185274941>`
                                         },
                                         {
                                             label: `Reddit`,
