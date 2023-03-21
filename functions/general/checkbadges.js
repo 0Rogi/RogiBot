@@ -50,6 +50,10 @@ module.exports = function checkbadges() {
                     memberbadges.push(`suggests100`);
                 }
 
+                if (result[0].economy?.earlyrich) {
+                    memberbadges.push(`earlyrich`);
+                }
+
                 database.collection(`UserStats`).updateOne({ id: member.user.id }, {
                     $set: {
                         'customprofile.badges': memberbadges,

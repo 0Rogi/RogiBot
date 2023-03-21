@@ -1,4 +1,5 @@
 const config = require(`${process.cwd()}/JSON/config.json`);
+const moment = require(`moment`);
 
 module.exports = {
     name: `gamble`,
@@ -44,19 +45,50 @@ module.exports = {
                     return;
                 }
 
-                if (Math.round(Math.random()) == 1) {
+                let inCooldown = false;
+                let cooldown;
+                if (gambleCooldown.has(interaction.user.id)) {
+                    cooldown = gambleCooldown.get(interaction.user.id);
+                    new Date().getTime() > cooldown ? inCooldown = false : inCooldown = true;
+                }
 
-                    const wonMoney = moneyToBet * 2;
+                if (inCooldown) {
+                    const embed = new Discord.MessageEmbed()
+                        .setTitle(`<a:error:1086952752892092416> Sei in cooldown <a:error:1086952752892092416>`)
+                        .setDescription(`_Potrai usare di nuovo \`/gamble\` il ${moment(cooldown).format(`DD/MM/YYYY hh:mm:ss A`)}_`)
+                        .setColor(`RED`);
+                    interaction.editReply({ embeds: [embed] });
+                    return;
+                }
+
+                gambleCooldown.set(interaction.user.id, new Date().getTime() + 1000 * 60 * 30);
+
+                let won = false;
+                const random = Math.random();
+
+                if (moneyToBet >= 1 && moneyToBet <= 10 && random < 0.5) {
+                    won = true;
+                } else if (moneyToBet >= 11 && moneyToBet <= 50 && random < 0.1) {
+                    won = true;
+                } else if (moneyToBet >= 51 && moneyToBet <= 100 && random < 0.05) {
+                    won = true;
+                } else if (moneyToBet >= 101 && moneyToBet <= 999 && random < 0.01) {
+                    won = true;
+                } else if (moneyToBet >= 1000 && random < 0.005) {
+                    won = true;
+                }
+
+                if (won) {
 
                     database.collection(`UserStats`).updateOne({ id: interaction.user.id }, {
                         $inc: {
-                            'economy.money': wonMoney,
+                            'economy.money': moneyToBet,
                         }
                     });
 
                     const embed = new Discord.MessageEmbed()
                         .setTitle(`🥳 Hai Vinto 🥳`)
-                        .setDescription(`👏 Complimenti!\nHai **vinto** \`${wonMoney}\``)
+                        .setDescription(`👏 Complimenti!\nHai **vinto** \`${moneyToBet}\` RogiBucks`)
                         .setColor(`YELLOW`);
                     interaction.editReply({ embeds: [embed] });
 

@@ -86,7 +86,7 @@ module.exports = {
         const userPermLevel = await getUserPermissionlevel(user);
         const moderatorPermLevel = await getUserPermissionlevel(interaction.member);
 
-        if (moderatorPermLevel < 4 && userPermLevel >= moderatorPermLevel) {
+        if (moderatorPermLevel < 3 && userPermLevel >= moderatorPermLevel) {
             const embed = new Discord.MessageEmbed()
                 .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
                 .setDescription(`*Non hai il permesso per impostare i soldi a quest'utente*`)

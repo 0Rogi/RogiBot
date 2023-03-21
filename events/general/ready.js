@@ -1,6 +1,7 @@
 const MongoClient = require(`mongodb`).MongoClient;
 global.database;
 global.serverstats = false;
+global.gambleCooldown = new Map();
 const moment = require(`moment`);
 const fs = require(`fs`);
 const config = require(`${process.cwd()}/JSON/config.json`);

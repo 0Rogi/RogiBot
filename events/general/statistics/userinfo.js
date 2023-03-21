@@ -37,6 +37,7 @@ module.exports = {
                     if (customprofile?.badges?.includes(`staff`)) badgetext += `<:StaffBadge:1051100916155162675> Fa parte dello staff\n`;
                     if (customprofile?.badges?.includes(`friend`)) badgetext += `<:FriendBadge:1051101076562137128> È un amico di Rogi\n`;
                     if (customprofile?.badges?.includes(`booster`)) badgetext += `<:BoostBadge:1051101313754210366> Boosta il server\n`;
+                    if (customprofile?.badges?.includes(`earlyrich`)) badgetext += `<:EarlyRichBadge:1087809067927474227> Ha superato i 3000 RogiBucks nella prima settimana dal rilascio\n`;
 
                     if (badgetext == ``) badgetext = `_Nessun Badge_`;
 
