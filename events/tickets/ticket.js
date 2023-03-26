@@ -100,41 +100,20 @@ module.exports = {
                 let row = new Discord.MessageActionRow()
                     .addComponents(button)
                 interaction.update({ embeds: [embed], components: [row] })
-                if (ticket.subcategory != `Facciamo una collaborazione?`) {
-                    interaction.channel.permissionOverwrites.set([
-                        {
-                            id: interaction.guild.id,
-                            deny: [`VIEW_CHANNEL`, `SEND_MESSAGES`]
-                        },
-                        {
-                            id: interaction.user.id,
-                            allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
-                        },
-                        {
-                            id: config.rolesid.moderator,
-                            allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
-                        }
-                    ])
-                } else if (ticket.subcategory == `Facciamo una collaborazione?`) {
-                    interaction.channel.permissionOverwrites.set([
-                        {
-                            id: interaction.guild.id,
-                            deny: [`VIEW_CHANNEL`, `SEND_MESSAGES`]
-                        },
-                        {
-                            id: interaction.user.id,
-                            allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
-                        },
-                        {
-                            id: config.rolesid.moderator,
-                            allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
-                        },
-                        {
-                            id: `985910805730054154`,
-                            allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
-                        }
-                    ])
-                }
+                interaction.channel.permissionOverwrites.set([
+                    {
+                        id: interaction.guild.id,
+                        deny: [`VIEW_CHANNEL`, `SEND_MESSAGES`]
+                    },
+                    {
+                        id: interaction.user.id,
+                        allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
+                    },
+                    {
+                        id: config.rolesid.moderator,
+                        allow: [`VIEW_CHANNEL`, `SEND_MESSAGES`, `ATTACH_FILES`]
+                    }
+                ]);
                 let embedlog = new Discord.MessageEmbed()
                     .setTitle(`✉️ Ticket Aperto ✉️`)
                     .setColor(`GREEN`)

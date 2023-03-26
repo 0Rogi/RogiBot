@@ -54,7 +54,7 @@ module.exports = {
         //? Se l'utente non ha un canale
         if (!channel) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`❌ ERRORE ❌`)
+                .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                 .setDescription(`*Non hai nessun canale privato, creane uno da <#991643168275697734>*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
@@ -73,7 +73,7 @@ module.exports = {
                 if (textchannel.permissionsFor(user).has(`VIEW_CHANNEL`, true)) {
                     //? Risponde all'interazione
                     let embed = new Discord.MessageEmbed()
-                        .setTitle(`❌ ERRORE ❌`)
+                        .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                         .setColor(`RED`)
                         .setDescription(`*Questo utente ha già accesso alla tua stanza privata*`);
                     interaction.editReply({ embeds: [embed] });
@@ -100,7 +100,7 @@ module.exports = {
                 if (user.roles.cache.has(config.rolesid.moderator) || user.permissions.has(`ADMINISTRATOR`) || user.bot) {
                     //? Risponde all'interazione
                     let embed = new Discord.MessageEmbed()
-                        .setTitle(`❌ ERRORE ❌`)
+                        .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                         .setColor(`RED`)
                         .setDescription(`*Questo utente non puo' essere rimosso dalla tua stanza privata*`);
                     interaction.editReply({ embeds: [embed] });
@@ -111,7 +111,7 @@ module.exports = {
                 if (!textchannel.permissionsFor(user).has(`VIEW_CHANNEL`, true)) {
                     //? Risponde all'interazione
                     let embed = new Discord.MessageEmbed()
-                        .setTitle(`❌ ERRORE ❌`)
+                        .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                         .setColor(`RED`)
                         .setDescription(`*Questo utente non ha già accesso alla tua stanza privata*`);
                     interaction.editReply({ embeds: [embed] });

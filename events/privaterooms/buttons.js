@@ -28,7 +28,7 @@ module.exports = {
                 //? Check if the user is at least level 30
                 if (!interaction.member.roles.cache.has(config.rolesid.level30) && !interaction.member.roles.cache.has(config.rolesid.level30) && !interaction.member.roles.cache.has(config.rolesid.level40) && !interaction.member.roles.cache.has(config.rolesid.level50) && !interaction.member.roles.cache.has(config.rolesid.level60) && !interaction.member.roles.cache.has(config.rolesid.level70) && !interaction.member.roles.cache.has(config.rolesid.level80) && !interaction.member.roles.cache.has(config.rolesid.level90) && !interaction.member.roles.cache.has(config.rolesid.level100) && !interaction.member.roles.cache.has(config.rolesid.serverbooster) && !interaction.member.permissions.has(`ADMINISTRATOR`) && !interaction.member.roles.cache.has(config.rolesid.passallrewards)) {
                     let embed = new Discord.MessageEmbed()
-                        .setTitle(`❌ ERRORE ❌`)
+                        .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                         .setDescription(`Hai bisogno almeno del livello 30 per rendere la tua chat NSFW :disappointed:`)
                         .setColor(`RED`);
                     interaction.reply({ embeds: [embed], ephemeral: true });

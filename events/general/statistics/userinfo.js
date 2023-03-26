@@ -158,7 +158,7 @@ module.exports = {
 
             if (interaction.customId.split(`,`)[2] == interaction.member.user.id) {
                 const embed = new Discord.MessageEmbed()
-                    .setTitle(`❌ ERRORE ❌`)
+                    .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                     .setDescription(`_Non puoi mettere like al tuo stesso profilo_`)
                     .setColor(`RED`);
                 interaction.reply({ embeds: [embed], ephemeral: true });

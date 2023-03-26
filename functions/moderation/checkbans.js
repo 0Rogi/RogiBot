@@ -2,7 +2,7 @@ const config = require(`${process.cwd()}/JSON/config.json`)
 
 module.exports = async function checkbans() {
     let bans = await client.guilds.cache.get(config.idServer.idServer).bans.fetch()
-    bans.forEach(ban => {
+    bans?.forEach(ban => {
         database.collection(`UserStats`).find({ id: ban.user.id }).toArray(function (err, result) {
             if (!result[0]) {
                 database.collection(`UserStats`).insertOne({
@@ -28,7 +28,7 @@ module.exports = async function checkbans() {
         })
     })
     database.collection(`UserStats`).find().toArray(function (err, result) {
-        result.forEach(r => {
+        result?.forEach(r => {
             if (r?.moderation.type == `banned` && !bans.has(r.id)) {
                 database.collection(`UserStats`).updateOne({ id: r.id }, {
                     $set: { moderation: {} }

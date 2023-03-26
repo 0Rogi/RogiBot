@@ -1,3 +1,5 @@
+const config = require(`../../JSON/config.json`);
+
 module.exports = {
     name: `emojify`,
     description: `Trasforma il messaggio in emoji`,

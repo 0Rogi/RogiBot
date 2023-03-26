@@ -128,7 +128,7 @@ module.exports = {
                     if (!interaction.member.roles.cache.has(config.rolesid.serverbooster) && permissionlevel < 3) {
 
                         const embed = new Discord.MessageEmbed()
-                            .setTitle(`❌ ERRORE ❌`)
+                            .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                             .setDescription(`_Devi **boostare il server** per impostare i tuoi social nel tuo profilo_`)
                             .setColor(`YELLOW`);
                         interaction.reply({ embeds: [embed], ephemeral: true })
@@ -240,7 +240,7 @@ module.exports = {
             let birthday = interaction.fields.getTextInputValue(`ModalProfileBirthdayInput`);
 
             const embederr = new Discord.MessageEmbed()
-                .setTitle(`❌ ERRORE ❌`)
+                .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                 .setDescription(`*Inserisci una data valida!\n\n\`Esempio: 21/02\`*`)
                 .setColor(`RED`);
 

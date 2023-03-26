@@ -26,7 +26,7 @@ module.exports = {
         //? Se l'utente non ha un canale
         if (!channel) {
             let embed = new Discord.MessageEmbed()
-                .setTitle(`❌ ERRORE ❌`)
+                .setTitle(`<a:error:1086952752892092416> ERRORE <a:error:1086952752892092416>`)
                 .setDescription(`*Non hai nessun canale privato, creane uno da <#991643168275697734>*`)
                 .setColor(`RED`);
             interaction.editReply({ embeds: [embed] });
