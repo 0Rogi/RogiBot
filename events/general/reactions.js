@@ -7,7 +7,9 @@ module.exports = {
         if (serverstats.maintenance && process.env.local && !serverstats.testers.includes(message.author.id)) return;
         if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(message.author.id)) return;
 
-        if(message.channel.parent == config.channelsid.funparent) return;
+        if (message.channel.parent == config.channelsid.funparent) return;
+
+        if (message.channel.parent.id == `997201530832834610`) return;
 
         content = message.content.toLowerCase();
 

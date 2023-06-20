@@ -88,7 +88,7 @@ module.exports = function events(event) {
         } break;
 
         case `AprilFool`: {
-            server.setIcon(`https://i.imgur.com/BxfH7Um.png`);
+            server.setIcon(`https://i.imgur.com/J5UeaZR.png`);
             server.setName(`RoGi DiScOrD`);
         } break;
 

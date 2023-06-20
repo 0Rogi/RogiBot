@@ -84,6 +84,16 @@ client.on(`interactionCreate`, async interaction => {
     if (serverstats.maintenance && !process.env.local && serverstats.testers.includes(interaction.user.id)) return
 
     if (!interaction.isCommand()) return
+
+    if (interaction.channel.parent.id == `997201530832834610`) {
+        const embed = new Discord.MessageEmbed()
+            .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)
+            .setDescription(`Non puoi eseguire comandi in questa categoria!`)
+            .setColor(`RED`);
+        interaction.reply({ embeds: [embed], ephemeral: true });
+        return;
+    }
+
     let command = client.commands.get(interaction.commandName)
     if (!command) return
 
