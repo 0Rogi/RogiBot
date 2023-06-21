@@ -15,7 +15,7 @@ module.exports = {
             }
         ],
     },
-    permissionlevel: 1,
+    permissionlevel: 0,
     allowedchannels: [`ALL`],
     async execute(interaction) {
         await interaction.deferReply();
