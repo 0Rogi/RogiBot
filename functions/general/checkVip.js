@@ -35,7 +35,7 @@ module.exports = async function checkVip() {
                 .setAuthor({
                     name: `💎 ${u.nickname} ha perso il VIP 💎`, iconURL: `https://minotar.net/helm/${u.nickname}/128.png`
                 });
-            client2.channels.cache.get(`1102995974235881472`).send({ embeds: [embedChat] });
+            client2.channels.cache.get(`1121088737703633127`).send({ embeds: [embedChat] });
         }
     });
 }

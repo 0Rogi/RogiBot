@@ -37,7 +37,7 @@ module.exports = {
             .setAuthor({
                 name: `💎 ${nickname} ha ricevuto il VIP 💎`, iconURL: `https://minotar.net/helm/${nickname}/128.png`
             });
-        client2.channels.cache.get(`1102995974235881472`).send({ embeds: [embedChat] });
+        client2.channels.cache.get(`1121088737703633127`).send({ embeds: [embedChat] });
 
         const button = new Discord.MessageButton()
             .setLabel(`Riscatta il VIP`)
