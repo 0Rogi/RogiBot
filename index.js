@@ -12,6 +12,8 @@ try {
 
 client2.login(process.env.token2);
 
+process.env.TZ = "Europe/Rome";
+
 client.login(process.env.token).then(() => {
     require(`./handler`)
 })
