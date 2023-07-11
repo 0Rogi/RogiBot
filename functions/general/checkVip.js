@@ -8,11 +8,11 @@ module.exports = async function checkVip() {
         const user = client.guilds.cache.get(config.idServer.idServer).members.cache.find(x => x.id == u.id);
 
         if (!user) stillBoost = false;
-        if (!user.roles.cache.has(config.rolesid.serverbooster)) stillBoost = false;
+        if (!user?.roles.cache.has(config.rolesid.serverbooster)) stillBoost = false;
 
         if (!stillBoost) {
             client.channels.cache.get(`1118947905961721939`).send(`lp user ${u.nickname} parent clear`);
-            client.channels.cache.get(`1118947905961721939`).send(`tellraw @a {"text": "${user.user.username}${user.user.discriminator != `0` ? `#` + user.user.discriminator : ``} ha smesso di boostare il server, ${u.nickname} ha perso il VIP!", "color": "red"}`);
+            client.channels.cache.get(`1118947905961721939`).send(`tellraw @a {"text": "${u.username} ha smesso di boostare il server, ${u.nickname} ha perso il VIP!", "color": "red"}`);
 
             database.collection(`ServerStats`).updateOne({}, {
                 $pull: {
