@@ -41,11 +41,6 @@ module.exports = {
                             emoji: `😂`
                         },
                         {
-                            label: `Artificial Intelligence`,
-                            value: `ai`,
-                            emoji: `🤖`
-                        },
-                        {
                             label: `Economy`,
                             value: `economy`,
                             emoji: `🤑`,

@@ -31,13 +31,6 @@ module.exports = {
                         .addField(`🪲 Bug:`, msg.embeds[0].fields[0].value.toString())
                         .addField(`📤 Risposta:`, message.content.toString())
                         .setColor(`RED`);
-                    await user.send({ embeds: [embeduser] }).catch(() => {
-                        message.reply(`Quest'utente ha i dm chiusi`).then(msg => {
-                            setTimeout(() => {
-                                msg.delete();
-                            }, 1000 * 2);
-                        });
-                    });
                     let embed1 = new Discord.MessageEmbed()
                         .setTitle(`📤 Bug Response 📤`)
                         .setDescription(embed.description)
@@ -45,6 +38,17 @@ module.exports = {
                         .addField(embed.fields[0].name, embed.fields[0].value)
                         .addField(`📤 Risposta da ${message.author.username}:`, message.content.toString())
                         .setColor(`RED`);
+                    if (embed.image?.url) {
+                        embed1.setImage(embed.image?.url)
+                        embeduser.setImage(embed.image?.url)
+                    }
+                    await user.send({ embeds: [embeduser] }).catch(() => {
+                        message.reply(`Quest'utente ha i dm chiusi`).then(msg => {
+                            setTimeout(() => {
+                                msg.delete();
+                            }, 1000 * 2);
+                        });
+                    });
                     msg.edit({ embeds: [embed1], components: [] });
                     message.delete();
                 }

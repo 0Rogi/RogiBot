@@ -20,7 +20,10 @@ module.exports = {
         database.collection(`UserStats`).find({ id: member.id }).toArray(async function (err, result) {
             if (!result[0]) {
                 client.channels.cache.get(config.channelsid.logs.members.join).send({ embeds: [embed] })
-                client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed] })
+                const embedplogs = new Discord.MessageEmbed()
+                    .setAuthor({ name: `[JOIN] @${member.user.username}`, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
+                    .setColor(`GREEN`);
+                client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embedplogs] })
             } else if (result[0]) {
                 let roles = ``
                 await result[0].roles.forEach(role => {
@@ -33,7 +36,10 @@ module.exports = {
                 embed.addField(`👔 Ruoli:`, roles)
                 embed.setTitle(`🎉 Utente Ritornato 🎉`)
                 client.channels.cache.get(config.channelsid.logs.members.join).send({ embeds: [embed] })
-                client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed] })
+                const embedplogs = new Discord.MessageEmbed()
+                    .setAuthor({ name: `[JOIN] @${member.user.username}`, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
+                    .setColor(`GREEN`);
+                client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embedplogs] })
             }
         })
     }

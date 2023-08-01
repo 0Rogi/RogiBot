@@ -173,9 +173,9 @@ module.exports = {
                                             emoji: `<:twitch:1050834468400812062>`
                                         },
                                         {
-                                            label: `Twitter`,
+                                            label: `X/Twitter`,
                                             value: `twitter`,
-                                            emoji: `<:twitter:1087850003185274941>`
+                                            emoji: `<:x_:1135598841048088656>`
                                         },
                                         {
                                             label: `Reddit`,
@@ -405,10 +405,10 @@ module.exports = {
                 case `twitter`: {
                     const modal = new Discord.Modal()
                         .setCustomId(`ModalProfileTwitter,${interaction.user.id}`)
-                        .setTitle(`Profilo Twitter`)
+                        .setTitle(`Profilo X/Twitter`)
                     const twitter = new Discord.TextInputComponent()
                         .setCustomId(`ModalProfileTwitterInput`)
-                        .setLabel(`Username del tuo profilo twitter`)
+                        .setLabel(`Username del tuo profilo x/twitter`)
                         .setPlaceholder(`rogi23yt`)
                         .setMinLength(1)
                         .setMaxLength(15)
@@ -514,8 +514,8 @@ module.exports = {
                     })
 
                     const embed = new Discord.MessageEmbed()
-                        .setTitle(`Profilo Twitter Impostato`)
-                        .setDescription(`Il tuo profilo twitter è stato impostato a:\n\nhttps://twitter.tv/${interaction.fields.getTextInputValue(`ModalProfileTwitterInput`)}`)
+                        .setTitle(`Profilo X/Twitter Impostato`)
+                        .setDescription(`Il tuo profilo X/twitter è stato impostato a:\n\nhttps://twitter.com/${interaction.fields.getTextInputValue(`ModalProfileTwitterInput`)}`)
                         .setColor(`YELLOW`);
                     interaction.reply({ embeds: [embed], ephemeral: true });
                 } break;
@@ -584,25 +584,3 @@ module.exports = {
         }
     }
 }
-
-/*
-    customprofile: {
-        name: name/null,
-        gender: gender/null,
-        birthday: birthday/null,
-        bio: bio/null,
-        socialmedia: {
-            youtube: id/null,
-            tiktok: username/null,
-            github: username/null,
-            instagram: username/null,
-            twitch: username/null,
-            twitter: username/null,
-            reddit: username/null,
-        },
-        favoritecolor: color/null,
-        likes: 0,
-        likeduser: [].
-        badges: []
-    }
-*/

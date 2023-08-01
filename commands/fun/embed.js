@@ -109,7 +109,7 @@ module.exports = {
 			}
 
 			let embed1 = new Discord.MessageEmbed()
-				.setAuthor({ name: interaction.user.tag, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
+				.setAuthor({ name: `@` + interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
 				.setColor(interaction.options.getString(`color`) || `YELLOW`)
 				.setDescription(text.toString());
 			interaction.editReply({ embeds: [embed1] });

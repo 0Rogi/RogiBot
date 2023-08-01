@@ -1,4 +1,3 @@
-const https = require(`https`);
 const config = require(`${process.cwd()}/JSON/config.json`);
 
 module.exports = {
@@ -11,30 +10,26 @@ module.exports = {
 	permissionlevel: 0,
 	allowedchannels: [config.channelsid.commands],
 	requirement: `none`,
-	execute(interaction) {
-		interaction.deferReply().then(() => {
-			let url = 'https://www.reddit.com/r/memes/hot/.json?limit=100';
-			https.get(url, (result) => {
-				let body = '';
-				result.on('data', (chunk) => {
-					body += chunk;
-				})
-				result.on('end', () => {
-					let response = JSON.parse(body);
-					let index = response.data.children[Math.floor(Math.random() * 99) + 1].data;
-					let embed = new Discord.MessageEmbed()
-						.setTitle(index.title)
-						.setImage(index.url_overridden_by_dest)
-						.setFooter({ text: `👍🏻 ${index.ups}` })
-						.setColor(`YELLOW`);
-					let button = new Discord.MessageButton()
-						.setEmoji(`➡️`)
-						.setCustomId(`NextMeme,${interaction.user.id}`)
-						.setStyle(`PRIMARY`);
-					let row = new Discord.MessageActionRow().addComponents(button);
-					interaction.editReply({ embeds: [embed], components: [row] });
-				})
-			})
-		})
+	async execute(interaction) {
+
+		await interaction.deferReply();
+
+		let url = 'https://www.reddit.com/r/memesITA/hot/.json?limit=100';
+		const res = await fetch(url);
+		const data = await res.json();
+
+		let index = data.data.children[Math.floor(Math.random() * 99) + 1].data;
+
+		let embed = new Discord.MessageEmbed()
+			.setTitle(index.title)
+			.setImage(index.url_overridden_by_dest)
+			.setFooter({ text: `👍🏻 ${index.ups} | 💭 ${index.num_comments}` })
+			.setColor(`YELLOW`);
+		let button = new Discord.MessageButton()
+			.setEmoji(`➡️`)
+			.setCustomId(`NextMeme,${interaction.user.id}`)
+			.setStyle(`PRIMARY`);
+		let row = new Discord.MessageActionRow().addComponents(button);
+		interaction.editReply({ embeds: [embed], components: [row] });
 	}
 }

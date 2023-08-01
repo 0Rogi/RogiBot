@@ -11,7 +11,7 @@ module.exports = {
         options: [
             {
                 name: `search`,
-                description: `Cerca dei porno su pornhub`,
+                description: `Cerca dei video su pornhub`,
                 type: `SUB_COMMAND`,
                 options: [
                     {
@@ -24,7 +24,7 @@ module.exports = {
             },
             {
                 name: `info`,
-                description: `Manda sesso orale`,
+                description: `Manda informazioni su un video di pornhub`,
                 type: `SUB_COMMAND`,
                 options: [
                     {
@@ -41,7 +41,6 @@ module.exports = {
     allowedchannels: [config.channelsid.nsfw],
     requirement: `none`,
     async execute(interaction) {
-
         if (interaction.channel != config.channelsid.nsfw) {
             let embed = new Discord.MessageEmbed()
                 .setTitle(`<a:error:1086952752892092416> Errore <a:error:1086952752892092416>`)

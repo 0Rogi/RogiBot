@@ -104,7 +104,7 @@ module.exports = {
             let dm = true;
 
             let embed1 = new Discord.MessageEmbed()
-                .setAuthor({ name: `[TEMPMUTE] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
+                .setAuthor({ name: `[TEMPMUTE] @${interaction.member.user.username}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
                 .setDescription(`⚠️ **HO AVVISATO** QUEST'UTENTE IN DM ⚠️`)
                 .setColor(`PURPLE`)
                 .addField(`👤 Utente:`, `Nome: ${user.username} - ID: ${user.id}\n||${user.toString()}||`)
@@ -137,7 +137,10 @@ module.exports = {
             if (dm == false) embed1.setDescription(`⚠️ **NON POSSO AVVISARE** QUESTO UTENTE IN DM ⚠️`);
 
             client.channels.cache.get(config.channelsid.logs.moderation.tempmute).send({ embeds: [embed3] });
-            client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed3] });
+            const embedplogs = new Discord.MessageEmbed()
+                .setAuthor({ name: `[TEMPMUTE] @${user.username} (${timeembed.trim()})`, iconURL: user.displayAvatarURL({ dynamic: true }) })
+                .setColor(`PURPLE`)
+            client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embedplogs] });
 
             interaction.editReply({ embeds: [embed1] });
 

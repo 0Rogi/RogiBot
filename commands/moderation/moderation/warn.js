@@ -134,7 +134,7 @@ module.exports = {
                 let dm = true;
 
                 let embed = new Discord.MessageEmbed()
-                    .setAuthor({ name: `[WARN] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
+                    .setAuthor({ name: `[WARN] @${interaction.member.user.username}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
                     .setDescription(`⚠️ **HO AVVISATO** QUEST'UTENTE IN DM ⚠️`)
                     .setColor(`PURPLE`)
                     .addField(`👤 Utente:`, `Nome: ${user.user.username} - ID: ${user.id}\n||${user.toString()}||`)
@@ -201,7 +201,7 @@ module.exports = {
                         });
 
                         const embed = new Discord.MessageEmbed()
-                            .setAuthor({ name: `[EDITWARN] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
+                            .setAuthor({ name: `[EDITWARN] @${interaction.member.user.username}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
                             .setColor(`PURPLE`)
                             .addField(`👤 Utente:`, `Nome: ${user.username} - ID: ${user.id}\n||${user.toString()}||`)
                             .addField(`📕 Vecchio Motivo:`, oldReason, true)
@@ -251,7 +251,7 @@ module.exports = {
                         });
 
                         const embed = new Discord.MessageEmbed()
-                            .setAuthor({ name: `[CLEARWARNS] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
+                            .setAuthor({ name: `[CLEARWARNS] @${interaction.member.user.username}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
                             .setColor(`PURPLE`)
                             .setDescription(`Tutti gli avvertimenti di ${user.toString()} sono **stati cancellati**!`)
                         interaction.editReply({ embeds: [embed] });
@@ -286,7 +286,7 @@ module.exports = {
                         });
 
                         const embed = new Discord.MessageEmbed()
-                            .setAuthor({ name: `[REMOVEWARN] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
+                            .setAuthor({ name: `[REMOVEWARN] @${interaction.member.user.username}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
                             .setColor(`PURPLE`)
                             .addField(`👤 Utente:`, `Nome: ${user.username} - ID: ${user.id}\n||${user.toString()}||`)
                             .addField(`📕 Warn:`, reason, true);

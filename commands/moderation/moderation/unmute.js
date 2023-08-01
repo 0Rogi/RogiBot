@@ -56,7 +56,7 @@ module.exports = {
             let dm = true;
 
             let embed1 = new Discord.MessageEmbed()
-                .setAuthor({ name: `[UNMUTE] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
+                .setAuthor({ name: `[UNMUTE] @${interaction.member.user.username}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
                 .setDescription(`⚠️ **HO AVVISATO** QUEST'UTENTE IN DM ⚠️`)
                 .setColor(`PURPLE`)
                 .addField(`Utente:`, `Nome: ${user.username} - ID: ${user.id}\n||${user.toString()}||`);

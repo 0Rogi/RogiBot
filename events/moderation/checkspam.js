@@ -52,7 +52,7 @@ module.exports = {
                     })
                     message.member.roles.add(config.rolesid.tempmuted)
                     let embed = new Discord.MessageEmbed()
-                        .setAuthor({ name: `[TEMPMUTE] ${message.member.user.tag}`, iconURL: message.member.displayAvatarURL({ dynamic: true }) })
+                        .setAuthor({ name: `[TEMPMUTE] @${message.member.user.username}`, iconURL: message.member.displayAvatarURL({ dynamic: true }) })
                         .setColor(`PURPLE`)
                         .addField(`👤 Utente:`, `Nome: ${message.author.username}, ID: ${message.author.id}\n||${message.member.toString()}||`)
                         .addField(`⏰ Tempo:`, `10 minuti`, true)
@@ -82,7 +82,10 @@ module.exports = {
                     message.author.send({ embeds: [embed3] }).catch(() => { })
                     client.channels.cache.get(config.channelsid.logs.moderation.spam).send({ embeds: [embed2] })
                     client.channels.cache.get(config.channelsid.logs.moderation.tempmute).send({ embeds: [embed4] })
-                    client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed4] })
+                    const embedplogs = new Discord.MessageEmbed()
+                        .setAuthor({ name: `[TEMPMUTE - SPAM] @${message.author.username} (10 minuti)`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+                        .setColor(`PURPLE`)
+                    client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embedplogs] });
                     checkspam.delete(message.author.id)
                     return
                 }

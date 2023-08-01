@@ -37,7 +37,10 @@ module.exports = {
             .addField(`📖 Motivo:`, reason)
 
         client.channels.cache.get(config.channelsid.logs.moderation.bans).send({ embeds: [embed] })
-        client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed] })
+        const embedplogs = new Discord.MessageEmbed()
+            .setAuthor({ name: `[BAN MANUALE] @${target.username}`, iconURL: target.displayAvatarURL({ dynamic: true }) })
+            .setColor(`PURPLE`)
+        client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embedplogs] });
 
     }
 }

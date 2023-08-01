@@ -47,7 +47,7 @@ module.exports = {
                     if (customprofile?.socialmedia?.github) socialmediatext += `<:github:1086952560755212330> [Apri Profilo](https://github.com/${customprofile?.socialmedia?.github})\n`;
                     if (customprofile?.socialmedia?.instagram) socialmediatext += `<:instagram:1086952178234699836> [Apri Profilo](https://instagram.com/${customprofile?.socialmedia?.instagram})\n`;
                     if (customprofile?.socialmedia?.twitch) socialmediatext += `<:twitch:1050834468400812062> [Apri Profilo](https://twitch.tv/${customprofile?.socialmedia?.twitch})\n`;
-                    if (customprofile?.socialmedia?.twitter) socialmediatext += `<:twitter:1087850003185274941> [Apri Profilo](https://twitter.com/${customprofile?.socialmedia?.twitter})\n`;
+                    if (customprofile?.socialmedia?.twitter) socialmediatext += `<:x_:1135598841048088656> <:twitter:1087850003185274941> [Apri Profilo](https://twitter.com/${customprofile?.socialmedia?.twitter})\n`;
                     if (customprofile?.socialmedia?.reddit) socialmediatext += `<:reddit:1050834465322192978> [Apri Profilo](https://reddit.com/users/${customprofile?.socialmedia?.reddit})\n`;
 
                     if (socialmediatext == ``) socialmediatext = `_Nessun Social Media Impostato_`;
@@ -55,7 +55,7 @@ module.exports = {
                     if (!client.guilds.cache.get(`602019987279839274`).members.cache.find(x => x.id == interaction.customId.split(`,`)[2]).roles.cache.has(`853313137737596998`) && !permissionlevel >= 2) socialmediatext = `_Nessun Social Media Impostato_`;
 
                     const embed = new Discord.MessageEmbed()
-                        .setTitle(member.user.tag)
+                        .setTitle(`@` + member.user.username)
                         .setDescription(customprofile?.bio || `_Nessuna Bio Impostata_`)
                         .addField(`🏷️ Nome:`, customprofile?.name || `_Nessun Nome Impostato_`, true)
                         .addField(`👱 Genere:`, customprofile?.gender || `_Nessun Genere Impostato_`, true)
@@ -95,7 +95,7 @@ module.exports = {
             let user = interaction.guild.members.cache.find(x => x.id == interaction.customId.split(`,`)[2]);
 
             let embed = new Discord.MessageEmbed()
-                .setTitle(user.user.tag)
+                .setTitle(user.user.username)
                 .setThumbnail(user.displayAvatarURL({ dynamic: true }))
                 .setColor(!user?.displayHexColor || user?.displayHexColor == "#000000" ? "#ffffff" : user?.displayHexColor);
 

@@ -6,7 +6,7 @@ module.exports = async function createTranscript(channelId, messagesf) {
     let transcript = ``
 
     messages.forEach(msg => {
-        transcript += `@${msg.author.tag} - ${moment(msg.createdAt).format(`ddd DD MMM YYYY, HH:mm:ss`)}:\n`
+        transcript += `@${msg.author.username} - ${moment(msg.createdAt).format(`ddd DD MMM YYYY, HH:mm:ss`)}:\n`
         if (msg.content) transcript += `Contenuto: ${msg.content}\n`
         if (msg.attachments.size > 0) {
             msg.attachments.forEach(attachment => {

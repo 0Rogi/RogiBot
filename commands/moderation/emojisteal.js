@@ -25,7 +25,7 @@ module.exports = {
             }
         ]
     },
-    permissionlevel: 2 ,
+    permissionlevel: 2,
     allowedchannels: [`ALL`],
     async execute(interaction) {
         await interaction.deferReply();
@@ -45,7 +45,7 @@ module.exports = {
 
         interaction.guild.emojis.create(url, name).then(emoji => {
             let embed = new Discord.MessageEmbed()
-                .setAuthor({ name: `[EMOJISTEAL] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
+                .setAuthor({ name: `[EMOJISTEAL] @${interaction.member.user.username}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
                 .setDescription(`L'emoji ${emoji.toString()} è stata **creata**!`)
                 .setColor(`PURPLE`);
             interaction.editReply({ embeds: [embed] });

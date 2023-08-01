@@ -58,7 +58,7 @@ module.exports = {
             })
             if (bestemmia) {
                 let embed = new Discord.MessageEmbed()
-                    .setAuthor({ name: `[TEMPMUTE] ${message.author.tag}`, iconURL: message.member.displayAvatarURL({ dynamic: true }) })
+                    .setAuthor({ name: `[TEMPMUTE] @${message.author.username}`, iconURL: message.member.displayAvatarURL({ dynamic: true }) })
                     .setColor(`PURPLE`)
                     .addField(`👤 Utente:`, `Nome: ${message.author.username}, ID: ${message.author.id}\n||${message.author.toString()}||`)
                     .addField(`⏰ Tempo:`, `10 minuti`, true)
@@ -73,7 +73,10 @@ module.exports = {
                     .addField(`👤 Utente:`, `Nome: **${message.author.username}**, ID: **${message.author.id}**\n||${message.member.toString()}||`)
                     .addField(`⏰ Tempo:`, `10 minuti`)
                     .addField(`📖 Motivo:`, `Bestemmia`)
-                client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed2] })
+                const embedplogs = new Discord.MessageEmbed()
+                    .setAuthor({ name: `[TEMPMUTE - BESTEMMIA] @${message.author.username} (10 minuti)`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+                    .setColor(`PURPLE`)
+                client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embedplogs] });
                 client.channels.cache.get(config.channelsid.logs.moderation.tempmute).send({ embeds: [embed2] })
                 client.channels.cache.get(channel).send({ embeds: [embed] })
             }

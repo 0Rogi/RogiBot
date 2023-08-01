@@ -24,11 +24,6 @@ module.exports = {
                     .setTitle(`😂 Comandi di Divertimento 😂`)
                     .setDescription(`**/cset <:StaffTag:1086953683511693312>**\n*Imposta un nuovo numero in counting*\n**/cstats**\n*Mostra le informazioni sul counting*\n**/embed <:LevellingTag:1086953847227957328>**\n*Trasforma il tuo messaggio in un embed*\n**/emojify <:LevellingTag:1086953847227957328>**\n*Trasforma il tuo messaggio in emoji*\n**/lyrics <:LevellingTag:1086953847227957328>**\n*Cerca il testo di una canzone*\n**/meme**\n*Mostra un meme da reddit*\n**/rps <:LevellingTag:1086953847227957328>**\n*Gioca a sasso, carta, forbice con il bot*\n**/say**\n*Fa dire qualcosa al bot*\n**/translate <:LevellingTag:1086953847227957328>**\n*Traduce in italiano un messaggio*\n**/skin**\n*Cerca la skin di minecraft di un utente premium*`)
             } break
-            case `ai`: {
-                embed
-                    .setTitle(`🤖 Intelligenza Artificiale 🤖`)
-                    .setDescription(`**/chatgpt <:LevellingTag:1086953847227957328>**\n*Utilizza ChatGPT qui su discord! Non sai cos'è ChatGPT? Usa comunque il comando, ti sarà spiegato 😌*\n**/dalle <:LevellingTag:1086953847227957328>**\n*Utilizza Dall-E qui su discord! Non sai cos'è Dall-E? Usa comunque il comando, ti sarà spiegato 🙃*`)
-            } break;
             case `economy`: {
                 embed
                     .setTitle(`🤑 Comandi di Economia 🤑`)

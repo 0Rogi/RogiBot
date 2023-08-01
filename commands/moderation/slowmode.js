@@ -68,7 +68,7 @@ module.exports = {
             .replace(`hours`, `ore`);
 
         let embed = new Discord.MessageEmbed()
-            .setAuthor({ name: `[SLOWMODE] ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
+            .setAuthor({ name: `[SLOWMODE] @${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
             .setColor(`PURPLE`)
             .addField(`⚓ Canale:`, `Nome: ${interaction.channel.name} - ID: ${interaction.channel.id}\n||${interaction.channel.toString()}||`);
         if (time == 0) {

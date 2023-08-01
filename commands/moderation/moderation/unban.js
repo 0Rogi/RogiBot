@@ -68,7 +68,7 @@ module.exports = {
             })
 
             let embed1 = new Discord.MessageEmbed()
-                .setAuthor({ name: `[UNBAN] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
+                .setAuthor({ name: `[UNBAN] @${interaction.member.user.username}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
                 .setColor(`PURPLE`)
                 .addField(`👤 Utente:`, `Nome: ${user.username} - ID: ${user.id}\n||${user.toString()}||`);
 

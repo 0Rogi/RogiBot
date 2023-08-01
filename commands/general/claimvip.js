@@ -70,8 +70,6 @@ module.exports = {
         interaction.editReply({ embeds: [embed], components: [row] }).then(m => {
             const button = m.components[0].components[0];
             setTimeout(() => {
-                console.log(button.disabled)
-                console.log(button)
                 if (!button.disabled) {
                     button.setLabel(`Riscatta il VIP - 30s`);
                     const row = new Discord.MessageActionRow().addComponents(button);

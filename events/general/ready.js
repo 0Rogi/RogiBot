@@ -45,7 +45,7 @@ module.exports = {
 
             let testers = ``;
             serverstats.testers.forEach(tester => {
-                testers += `${client.users.cache.get(tester)?.tag}, `;
+                testers += `@${client.users.cache.get(tester)?.username}, `;
             })
             if (testers != ``)
                 testers = testers.slice(0, testers.length - 2);
@@ -215,8 +215,6 @@ module.exports = {
                 })
             }
         }, 1000)
-
-        checkVip(); //! Togliere
 
         setInterval(checkVip, 1000 * 60 * 5);
     }

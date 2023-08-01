@@ -5,7 +5,7 @@ module.exports = {
     description: `Paga qualcuno con i tuoi RogiBucks`,
     data: {
         name: `pay`,
-        description: `Paga qualcuno utilzizando i tuoi RogiBucks`,
+        description: `Paga qualcuno utilizzando i tuoi RogiBucks`,
         options: [
             {
                 name: `utente`,

@@ -19,7 +19,10 @@ module.exports = {
             .setColor(`RED`);
 
         client.channels.cache.get(config.channelsid.logs.members.leave).send({ embeds: [embed] });
-        client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embed] });
+        const embedplogs = new Discord.MessageEmbed()
+            .setAuthor({ name: `[LEAVE] @${member.user.username}`, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
+            .setColor(`RED`);
+        client.channels.cache.get(config.channelsid.publiclogs).send({ embeds: [embedplogs] });
 
         database.collection(`UserStats`).find({ id: member.id }).toArray(function (err, result) {
             if (!result[0]) {

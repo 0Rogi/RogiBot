@@ -24,7 +24,7 @@ module.exports = {
             let user = interaction.guild.members.cache.find(x => x.id == interaction.options.getUser(`utente`)?.id) || interaction.member;
 
             let embed = new Discord.MessageEmbed()
-                .setTitle(user.user.tag)
+                .setTitle(`@` + user.user.username)
                 .setThumbnail(user.displayAvatarURL({ dynamic: true }))
                 .setColor(!user?.displayHexColor || user?.displayHexColor == "#000000" ? "#ffffff" : user?.displayHexColor);
 

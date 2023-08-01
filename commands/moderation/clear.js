@@ -86,7 +86,7 @@ module.exports = {
             })
 
             let embed = new Discord.MessageEmbed()
-                .setAuthor({ name: `[CLEAR] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
+                .setAuthor({ name: `[CLEAR] @${interaction.member.user.username}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
                 .setDescription(`**${messagesfound.length.toString()} messaggi di ${user.toString()}** sono stati **eliminati** all'interno degli **ultimi ${count.toString()} messaggi** di questo canale`)
                 .setColor(`PURPLE`);
             interaction.editReply({ embeds: [embed] });
@@ -106,7 +106,7 @@ module.exports = {
 
         if (!user) {
             let embed = new Discord.MessageEmbed()
-                .setAuthor({ name: `[CLEAR] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
+                .setAuthor({ name: `[CLEAR] @${interaction.member.user.username}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
                 .setDescription(`**${count.toString()} messaggi** sono stati **eliminati** all'interno di questo canale`)
                 .setColor(`PURPLE`);
             interaction.editReply({ embeds: [embed] });

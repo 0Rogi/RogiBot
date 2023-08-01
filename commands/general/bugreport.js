@@ -12,6 +12,12 @@ module.exports = {
                 description: `Il bug che vuoi segnalare`,
                 type: `STRING`,
                 required: true
+            },
+            {
+                name: `immagine`,
+                description: `Uno screen come prova`,
+                type: `ATTACHMENT`,
+                required: false
             }
         ],
     },
@@ -42,6 +48,10 @@ module.exports = {
                 .addField(`🪲Bug:`, bug.toString())
                 .setThumbnail(interaction.member.displayAvatarURL({ dynamic: true }))
                 .setColor(`YELLOW`)
+            if (interaction.options.getAttachment(`immagine`)) {
+                embed1.setImage(interaction.options.getAttachment(`immagine`).url);
+                embed2.setImage(interaction.options.getAttachment(`immagine`).url);
+            }
             client.channels.cache.get(config.channelsid.logs.bugs).send({ embeds: [embed1] })
             interaction.editReply({ embeds: [embed2] })
         })

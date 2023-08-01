@@ -47,7 +47,7 @@ module.exports = {
             },
         ],
     },
-    permissionlevel: 2 ,
+    permissionlevel: 2,
     allowedchannels: [`ALL`],
     async execute(interaction) {
         await interaction.deferReply();
@@ -69,7 +69,7 @@ module.exports = {
         if (id5) usersid.push(id5);
 
         let embed1 = new Discord.MessageEmbed()
-            .setAuthor({ name: `[BANWAVE] ${interaction.member.user.tag}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
+            .setAuthor({ name: `[BANWAVE] @${interaction.member.user.username}`, iconURL: interaction.member.displayAvatarURL({ dynamic: true }) })
             .setColor(`PURPLE`);
 
         let notbanned = `**😐 UTENTI NON BANDITI:**`;
