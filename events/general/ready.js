@@ -23,8 +23,6 @@ const checkBadges = require(`${process.cwd()}/functions/general/checkbadges.js`)
 const addStaffInDB = require(`${process.cwd()}/functions/helper/addStaffInDB.js`);
 const generateGame = require(`../../functions/generategames`);
 
-const checkVip = require(`../../functions/general/checkVip.js`);
-
 module.exports = {
     name: `ready`,
     async execute() {
@@ -215,7 +213,5 @@ module.exports = {
                 })
             }
         }, 1000)
-
-        setInterval(checkVip, 1000 * 60 * 5);
     }
 }

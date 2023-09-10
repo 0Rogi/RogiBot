@@ -10,7 +10,7 @@ module.exports = {
 
         if (!message.guild || message.guild != config.idServer.idServer) return
         if (!message.author || !message.member) return
-        if (message.member.permissions.has(`MANAGE_MESSAGES`) || message.member.roles.cache.has(config.rolesid.friend) || message.member.roles.cache.has(config.rolesid.vip) || message.author.bot) return
+        if (message.member.permissions.has(`MANAGE_MESSAGES`) || message.member.roles.cache.has(config.rolesid.friend) || message.author.bot) return
         if (!message.content) return
         if (message.content.length < 10) return
 

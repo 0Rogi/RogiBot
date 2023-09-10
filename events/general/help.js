@@ -17,7 +17,7 @@ module.exports = {
             case `general`: {
                 embed
                     .setTitle(`🎡 Comandi Generali 🎡`)
-                    .setDescription(`**/avatar**\n*Mostra l'avatar di un utente*\n**/bugreport**\n*Segnala un bug*\n**/clearsnipe <:StaffTag:1086953683511693312>**\n*Nasconde da /snipe l'ultimo messaggio eliminato*\n**/help**\n*Mostra tutti i comandi del bot*\n**/snipe <:LevellingTag:1086953847227957328>**\n*Mostra l'ultimo messaggio eliminato nel server*\n**/suggestion**\n*Proponi un suggerimento*\n**/test**\n*Controlla che i bot funzionino*\n**/time**\n*Mostra l'ora attuale*\n**/github**\n*Mostra il profilo github di Rogi*\n**/instagram**\n*Mostra il profilo instagram di Rogi*\n**/invite**\n*Mostra l'invito di questo server*\n**/tiktok**\n*Mostra il profilo tiktok di Rogi*\n**/youtube**\n*Mostra il canale youtube di Rogi*`)
+                    .setDescription(`**/avatar**\n*Mostra l'avatar di un utente*\n**/bugreport**\n*Segnala un bug*\n**/clearsnipe <:StaffTag:1086953683511693312>**\n*Nasconde da /snipe l'ultimo messaggio eliminato*\n**/help**\n*Mostra tutti i comandi del bot*\n**/snipe <:LevellingTag:1086953847227957328>**\n*Mostra l'ultimo messaggio eliminato nel server*\n**/suggestion**\n*Proponi un suggerimento*\n**/ping**\n*Controlla che li bot funzioni*\n**/time**\n*Mostra l'ora attuale*\n**/github**\n*Mostra il profilo github di Rogi*\n**/instagram**\n*Mostra il profilo instagram di Rogi*\n**/invite**\n*Mostra l'invito di questo server*\n**/tiktok**\n*Mostra il profilo tiktok di Rogi*\n**/youtube**\n*Mostra il canale youtube di Rogi*`)
             } break
             case `fun`: {
                 embed
