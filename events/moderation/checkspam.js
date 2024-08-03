@@ -17,7 +17,7 @@ module.exports = {
         if (message.member.roles.cache.has(config.rolesid.muted) || message.member.roles.cache.has(config.rolesid.tempmuted)) return;
 
         if (message.author.bot || message.member.permissions.has(`MANAGE_MESSAGES`) || message.member.permissions.has(`ADMINISTRATOR`)) return
-        if (message.channel == config.channelsid.nsfw) return
+
         if (checkspam.has(message.author.id)) {
             let user = checkspam.get(message.author.id)
             if (message.createdTimestamp - user.lastmsg <= 4000 && message.channel.rateLimitPerUser <= 2 || message.createdTimestamp - user.lastmsg <= 7000 && message.channel.rateLimitPerUser > 2) {

@@ -48,20 +48,6 @@ module.exports = {
                 VIEW_CHANNEL: false,
             });
 
-            let nsfw = client.channels.cache.get(config.channelsid.nsfw);
-            let level80 = interaction.guild.roles.cache.find(r => r.id == config.rolesid.level80);
-            let level90 = interaction.guild.roles.cache.find(r => r.id == config.rolesid.level90);
-            let level100 = interaction.guild.roles.cache.find(r => r.id == config.rolesid.level100);
-            nsfw.permissionOverwrites.edit(level80, {
-                VIEW_CHANNEL: false,
-            });
-            nsfw.permissionOverwrites.edit(level90, {
-                VIEW_CHANNEL: false,
-            });
-            nsfw.permissionOverwrites.edit(level100, {
-                VIEW_CHANNEL: false,
-            });
-
             let unverified = interaction.guild.roles.cache.find(r => r.id == config.rolesid.unverified);
             let verifychannel = client.channels.cache.get(config.channelsid.verify);
             verifychannel.permissionOverwrites.edit(unverified, {
@@ -95,20 +81,6 @@ module.exports = {
             let serverbooster = interaction.guild.roles.cache.find(r => r.id == config.rolesid.serverbooster);
             let serverboosterchannel = client.channels.cache.get(config.channelsid.serverbooster);
             serverboosterchannel.permissionOverwrites.edit(serverbooster, {
-                VIEW_CHANNEL: true,
-            });
-
-            let nsfw = client.channels.cache.get(config.channelsid.nsfw);
-            let level80 = interaction.guild.roles.cache.find(r => r.id == config.rolesid.level80);
-            let level90 = interaction.guild.roles.cache.find(r => r.id == config.rolesid.level90);
-            let level100 = interaction.guild.roles.cache.find(r => r.id == config.rolesid.level100);
-            nsfw.permissionOverwrites.edit(level80, {
-                VIEW_CHANNEL: true,
-            });
-            nsfw.permissionOverwrites.edit(level90, {
-                VIEW_CHANNEL: true,
-            });
-            nsfw.permissionOverwrites.edit(level100, {
                 VIEW_CHANNEL: true,
             });
 
